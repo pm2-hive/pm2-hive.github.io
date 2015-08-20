@@ -1,0 +1,160 @@
+---
+layout: default
+---
+
+<!-- <div class="jumbotron text-center"> -->
+<!--   <div class="container-fluid"> -->
+<!--     <h1>PM2 is a production process manager for Node.js / io.js applications</h1> -->
+<!--   </div> -->
+<!--   <div class="container"> -->
+
+<!--   </div> -->
+<!-- </div> -->
+
+
+<div class="container index-page">
+  <div class="row index-box text-center">
+    <img src="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png"/>
+    <br/>
+    <h2>Advanced, production process manager for Node.js</h2>
+  </div>
+  <div class="row index-box text-center">
+    <div class="col-md-4 col-md-offset-4">
+      <pre class="pre-home" style="text-align : center">$ npm install pm2 -g <span class="blinking-cursor">|</span></pre>
+    </div>
+  </div>
+
+  <hr class="index-divider">
+
+  <div class="row index-box">
+    <div class="col-md-6 box-desc">
+      <h2>Features</h2>
+      <p>A Complete feature set for production environment, built with a worldwide community of developers and enterprises</p>
+
+      <pre class="pre-home">$ pm2 start app.js</pre>
+    </div>
+
+    <div class="col-md-6">
+      <div class="col-md-6 col-xs-6">
+        <ul class="pm2-tick-list">
+          <li><a target="_blank" title="Behavior configuration" href="/docs/usage/application-declaration/">Behavior configuration</a></li>
+          <li><a target="_blank" href="/docs/usage/use-pm2-with-cloud-providers/" title="PM2 on Heroku / Azure / Google App Engine">PaaS Compatible</a></li>
+          <li><a target="_blank" href="/docs/usage/watch-and-restart/" title="Watch and Reload">Watch & Reload</a></li>
+          <li><a target="_blank" href="/docs/usage/log-management/" title="Log management">Log management</a></li>
+          <li><a target="_blank" href="/docs/usage/monitoring/" title="Monitoring PM2 and Node.js">Monitoring</a></li>
+          <li>Module System</li>
+          <li><a target="_blank" href="/docs/usage/pm2-api/" title="PM2 API">API</a></li>
+          <li><a target="_blank" href="/docs/usage/monitoring/#max-memory-restart" title="Max Memory Reload">Max memory reload</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 col-xs-6">
+        <ul class="pm2-tick-list">
+          <li><a target="_blank" href="/docs/usage/cluster-mode/" title="Node.js PM2 Cluster mode">Cluster Mode</a></li>
+          <li><a target="_blank" href="/docs/usage/cluster-mode/#reload-without-downtime" title="Hot Reload">Hot reload</a></li>
+          <li><a target="_blank" href="/docs/usage/pm2-development/" title="PM2 in development">Development workflow</a></li>
+          <li><a target="_blank" href="/docs/usage/startup/" title="Startup Script Generation">Startup Scripts</a></li>
+          <li><a target="_blank" href="/docs/usage/auto-completion/" title="Setup Auto Completion">Auto completion</a></li>
+          <li><a target="_blank" href="/docs/usage/deployment/" title="Deployment Workflow">Deployment workflow</a></li>
+          <li><a target="_blank" href="/docs/usage/monitoring/#keymetrics-monitoring" title="Keymetrics monitoring">Keymetrics monitoring</a></li>
+          <li><a target="_blank" href="/docs/usage/specifics/#run-next-generation-javascript" title="ES6 support">ES6 support with BabelJS</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="index-divider">
+
+  <div class="row index-box">
+    <div class="col-md-6">
+      <img src="/images/pm2-monit.png" title="PM2 Monit"/>
+    </div>
+    <div class="col-md-6 box-desc">
+      <h2>Monitoring</h2>
+      <p>Monitoring all processes launched:</p>
+      <div class="highlight-index">
+        <pre class="pre-home">$ pm2 monit</pre>
+      </div>
+    </div>
+  </div>
+
+  <hr class="index-divider">
+
+  <div class="row index-box">
+    <div class="col-md-6 box-desc">
+      <h2>Microservice</h2>
+      <p>List all processes:</p>
+      <pre class="pre-home">$ pm2 list</pre>
+      <p>Act on them:</p>
+      <pre class="pre-home">$ pm2 stop    <app_name|id|all>
+$ pm2 restart <app_name|id|all>
+$ pm2 delete  <app_name|id|all></pre>
+    </div>
+    <div class="col-md-6">
+      <img src="/images/pm2-list.png" title="PM2 list"/>
+    </div>
+  </div>
+
+  <hr class="index-divider">
+
+  <div class="text-center">
+    <div class="btn-wrapper">
+      <a title="PM2 Quickstart" href="https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#quick-start-1" target="_blank" class="btn btn-featured">QuickStart</a>
+      <a title="PM2 features" href="https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#features-1" target="_blank" class="btn btn-featured">Features</a>
+    </div>
+  </div>
+
+  <hr class="index-divider">
+
+  <div class="index-box">
+    <h2 class="text-center">
+      Who's using PM2 ?
+    </h2>
+    <!-- <a href="{{ site.baseurl }}/users/"> -->
+    <!--   Who's using PM2 ? -->
+    <!-- </a> -->
+
+    <div class="pm2-user-container">
+      <div class="row index-box">
+
+        {% for user in site.data.users limit:3 %}
+        <div class="col-md-4 col-sm-6">
+          <a class="pm2-user" href="{{user.url}}" title="{{user.name}}">
+            <img class="img-responsive" src="/images/users/{{user.logo}}" title="{{user.name}}">
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="btn-wrapper">
+        <a title="Meet more companies" href="{{ site.baseurl }}/users/" class="btn btn-sm btn-featured">Meet more Users</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="index-divider">
+
+  <div class="index-box">
+    <div class="row">
+      <h2 class="text-center">Client Testimonial</h2>
+      <div class="col-md-3 col-md-offset-1 oval-quotes">
+        <p>Guys just installed pm2 on my live server and hooked up to Keymetrics.
+          Very impressed. Its all seamless and awesome!</p>
+        <p><strong>Adam Robinson</strong></p>
+      </div>
+      <div class="col-md-3 col-md-offset-1 oval-quotes">
+        <p>Just fell in love with pm2 Much better that forever to restart node procs if nec.</p>
+        <p><strong>Christian Kellner</strong></p>
+      </div>
+      <div class="col-md-3 col-md-offset-1 oval-quotes">
+        <p>Recently switched to pm2 from forever.. not looking back!</p>
+        <p><strong>Samuel Brown</strong></p>
+      </div>
+    </div>
+    <br/>
+    <br/>
+  </div>
+
+</div>

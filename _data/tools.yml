@@ -1,0 +1,7 @@
+- name: Pm2 built-ins
+  items:
+    pm2_webshell: Webshell
+    pm2_server_monit: Server Monit
+    pm2_logrotate: Logrotate
+    pm2_syslog: Syslog
+    pm2_auto_pull: Auto pull

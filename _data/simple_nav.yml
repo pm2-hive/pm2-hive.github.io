@@ -1,0 +1,63 @@
+- title: Usage
+  url: /docs/usage/
+  subnav:
+    - title: Full documentation
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#table-of-contents
+      blank: true
+    - title: Quick Start
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#quick-start-1
+      blank: true
+    - title: Update PM2
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#how-to-update-pm2
+      blank: true
+
+- title: Features
+  url: /docs/usage/
+  subnav:
+    - title: Cluster Mode
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#clustering-cluster_mode
+      blank: true
+    - title: Watch & Restart
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#watch--restart
+      blank: true
+    - title: CPU / Mem monitoring
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#monitoring-cpumemory
+      blank: true
+    - title: Log Management
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#logs-management
+      blank: true
+    - title: JSON declaration
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#jsjson-app-declaration
+      blank: true
+    - title: Deployment
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#deployment
+      blank: true
+    - title: Setup Auto completion
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#pm2-tab-completion
+      blank: true
+    - title: Auto memory restart
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#max-memory-restart
+      blank: true
+    - title: Startup Script
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#startup-script
+      blank: true
+    - title: Development tool
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#using-pm2-in-development
+      blank: true
+    - title: ES6 auto wrap
+      url: https://github.com/Unitech/PM2/blob/development/ADVANCED_README.md#run-next-generation-javascript
+      blank: true
+    - title: Programmatic API
+      url: https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#using-pm2-programmatically
+      blank: true
+
+- title: Advanced
+  url: /docs/advanced/
+  subnav:
+    - title: Modules Available
+      url: https://github.com/Unitech/PM2/blob/development/ADVANCED_README.md#using-pm2-in-cloud-providers
+      blank: true
+    - title: Modules Available
+      url: https://github.com/Unitech/PM2/blob/master/doc/MODULE.md#modules-system
+    - title: Modules Doc
+      url: https://github.com/Unitech/PM2/blob/master/doc/MODULE.md#modules-system

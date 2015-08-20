@@ -1,0 +1,92 @@
+<nav id="header" class="navbar navbar-default navbar-fixed-top navbar-pm2" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" data-target="#navigation" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand logo" href="{{ site.baseurl }}/"></a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        {% for item in site.data.nav %}
+          {% if item.subnav %}
+            <li class="dropdown {% if page.url contains item.url %}active{% endif %}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ item.title }} <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                {% for item in item.subnav %}
+                <li {% if page.url contains item.url %} class="active"{% endif %}>
+                  <a {% if item.blank == true %} target="_blank" {% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li {% if page.url contains item.url %} class="active" {% endif %} >
+              <a {% if page.blank == true %} target="_blank"{% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="btn-monit" target="_blank" title="Monitor PM2" target="_blank" href="https://keymetrics.io/"><button class="btn btn-info" type="button">Monitor PM2</button></a></li>
+        <li>
+          <div id="search">
+            <form action="#" class="navbar-form" method="get" onsubmit="return false">
+              <div class="input-group">
+                <span class="search-icon fa fa-search"></span>
+                <input type="text" class="form-control" placeholder="Search..." id="search-query" name="q" autocomplete="off">
+              </div>
+            </form>
+          </div>
+
+          <section id="search-results" style="display: none;">
+            <div class="entries">
+            </div>
+          </section>
+
+          {% raw %}
+          <script id="search-results-template" type="text/mustache">
+            {{#entries}}
+              <article>
+                <h3>
+                  {{#date}}<small><time datetime="{{pubdate}}" pubdate>{{displaydate}}</time></small>{{/date}}
+                  <a href="{{url}}">{{title}}</a>
+                </h3>
+              </article>
+            {{/entries}}
+          </script>
+          {% endraw %}
+        </li>
+
+
+        <li class="li-github">
+          <a href="https://github.com/Unitech/PM2" style="color:white">
+            <iframe src="https://ghbtns.com/github-btn.html?user=Unitech&repo=PM2&type=star&count=true&size=medium" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+            <!-- <i class="fa fa-github fa-2"></i> -->
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<script src="/scripts/search/mustache.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/scripts/search/uri.js" type="text/javascript" charset="utf-8"></script>
+<script src="/scripts/search/date.format.js" type="text/javascript" charset="utf-8"></script>
+<script src="/scripts/search/lunr.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/scripts/search/jquery.lunr.search.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#search-query').lunrSearch({
+          indexUrl: '/scripts/index.json',   // Url for the .json file containing search index data
+          results : '#search-results',  // selector for containing search results element
+          entries : '.entries',         // selector for search entries containing element (contained within results above)
+          template: '#search-results-template'  // selector for Mustache.js template
+        });
+      });
+    </script>

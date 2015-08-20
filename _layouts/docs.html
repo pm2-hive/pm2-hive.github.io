@@ -1,0 +1,35 @@
+---
+layout: page
+---
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      {{ content }}
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+
+        <div class="actions-on-doc">
+          <a href="#" class="next-page" title="Go to next page">
+            <button class="btn btn-info">Next page</button>
+          </a>
+          <br/>
+          <a target="_blank" href="https://github.com/keymetrics/keymetrics.github.io/tree/master/{{page.path}}" title="Edit Page">
+            <button class="btn btn-success">Edit this Page</button>
+          </a>
+          <br/>
+          <!-- <a target="_blank" href="https://keymetrics.io" title="Monitor PM2"> -->
+          <!--   <button class="btn btn-success">Monitor PM2</button> -->
+          <!-- </a> -->
+          <!-- <br/> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ "/scripts/docs.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>

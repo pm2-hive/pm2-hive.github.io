@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="header-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-push-3">
+        <h1 class="text-center">{{page.title}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-push-3">
+      <p class="small text-center text-muted">Posted {{ page.date | date: "%b %-d, %Y" }} by {{ page.author }}{% if page.meta %} · {{ page.meta }}{% endif %}</p>
+
+      {{content}}
+
+    </div>
+  </div>
+</div>
