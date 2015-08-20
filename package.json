@@ -1,5 +1,5 @@
 {
-  "name": "keymetrics.github.io",
+  "name": "pm2-hive.github.io",
   "private": true,
   "version": "1.0.0",
   "description": "pm2.io",
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keymetrics/keymetrics.github.io.git"
+    "url": "git+https://github.com/keymetrics/pm2-hive.github.io.git"
   },
   "bugs": {
-    "url": "https://github.com/keymetrics/keymetrics.github.io/issues"
+    "url": "https://github.com/keymetrics/pm2-hive.github.io/issues"
   },
-  "homepage": "https://github.com/keymetrics/keymetrics.github.io#readme"
+  "homepage": "https://github.com/keymetrics/pm2-hive.github.io#readme"
 }

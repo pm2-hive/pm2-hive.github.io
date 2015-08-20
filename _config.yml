@@ -6,6 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
   startup script, micro service management, at a glance.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://pm2.keymetrics.io" # the base hostname & protocol for your site
+repo_url: "https://github.com/pm2-hive/pm2-hive.github.io"
 twitter_username: jekyllrb
 github_username:  jekyll
 
