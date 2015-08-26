@@ -45,7 +45,8 @@ It contains this:
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
       "path" : "/var/www/production",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production",
+      "pre-deploy-local" : "echo 'This is a local executed command'"
     },
     "dev" : {
       "user" : "node",
@@ -111,7 +112,7 @@ $ pm2 deploy <configuration_file> <environment> <command>
     [ref]                deploy to [ref], the "ref" setting, or latest tag
 ```
 
-## Commands
+## Related Commands
 
 ```
 $ pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
@@ -137,6 +138,7 @@ Just add the "key" attribute with file path to the .pem key within the attribute
 
 ## Considerations
 
+- You can use the option `--force` to skip local change detection
 - You might want to commit your node_modules folder ([#622](https://github.com/Unitech/pm2/issues/622)) or add the `npm install` command to the `post-deploy` section: `"post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"`
 - Verify that your remote server has the permission to git clone the repository
 - You can declare specific environment variable depending on the environment you want to deploy the code to. For instance to declare variables for the production environment, just add "env_production": {} and declare that variables.
