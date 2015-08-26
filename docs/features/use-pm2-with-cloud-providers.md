@@ -36,6 +36,20 @@ pm2.connect(function() {
   }, function(err) {
     if (err) return console.error('Error while launching applications', err.stack || err);
     console.log('PM2 and application has been succesfully started');
+    
+    // Display logs in standard output 
+    pm2.launchBus(function(err, bus) {
+      console.log('[PM2] Log streaming started');
+
+      bus.on('log:out', function(packet) {
+       console.log('[App:%s] %s', packet.process.name, packet.data);
+      });
+        
+      bus.on('log:out', function(packet) {
+        console.log('[App:%s][Err] %s', packet.process.name, packet.data);
+      });
+    });
+      
   });
 });
 ```
@@ -67,7 +81,23 @@ pm2.connect(function() {
     },
     post_update: ["npm install"]       // Commands to execute once we do a pull from Keymetrics
   }, function() {
-    pm2.interact(PRIVATE_KEY, PUBLIC_KEY, MACHINE_NAME, function() {});
+    pm2.interact(PRIVATE_KEY, PUBLIC_KEY, MACHINE_NAME, function() {
+    
+     // Display logs in standard output 
+     pm2.launchBus(function(err, bus) {
+       console.log('[PM2] Log streaming started');
+ 
+       bus.on('log:out', function(packet) {
+        console.log('[App:%s] %s', packet.process.name, packet.data);
+       });
+        
+       bus.on('log:out', function(packet) {
+         console.log('[App:%s][Err] %s', packet.process.name, packet.data);
+       });
+      });
+    
+    
+    });
   });
 });
 ```
