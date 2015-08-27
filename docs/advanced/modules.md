@@ -101,7 +101,7 @@ var conf    = pmx.initModule({
     // Override PID to be monitored (for CPU and Memory blocks)
     pid              : pmx.resolvePidPaths(['/var/run/redis.pid', '/var/run/redis/redis-server.pid']),
 
-    window : {
+    widget : {
 
       // Module display type. Currently only 'generic' is available
       type : 'generic',
