@@ -50,7 +50,7 @@ $ cd my-module/
 $ pm2 install .
 ```
 
-To check the the module logs:
+To check the module logs:
 
 ```bash
 $ pm2 logs <module-name>
