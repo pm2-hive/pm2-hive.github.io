@@ -60,7 +60,7 @@ $ pm2 logs <module-name>
 
 ## Package.json: Declare options, widget aspect and module behavior
 
-A package.json must be present with some extra fields like `config` for configuration variables and `apps` to declare the [behavior of this module](https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#options-1):
+A package.json must be present with some extra fields like `config` for configuration variables and `apps` to declare the [behavior of this module](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
 ```javascript
 {
