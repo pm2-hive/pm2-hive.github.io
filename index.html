@@ -81,7 +81,7 @@ $ pm2 restart <app_name|id|all>
 $ pm2 delete  <app_name|id|all></pre>
     </div>
     <div class="col-md-6">
-      <img src="/images/pm2-list.png" title="PM2 list"/>
+      <img src="/images/pm2-list.png" alt="PM2 list"/>
     </div>
   </div>
 
@@ -110,7 +110,7 @@ $ pm2 delete  <app_name|id|all></pre>
         {% for user in site.data.users limit:3 %}
         <div class="col-md-4 col-sm-6">
           <a class="pm2-user" href="{{user.url}}" title="{{user.name}}">
-            <img class="img-responsive" src="/images/users/{{user.logo}}" title="{{user.name}}">
+            <img class="img-responsive" src="/images/users/{{user.logo}}" alt="{{user.name}}">
           </a>
         </div>
         {% endfor %}
