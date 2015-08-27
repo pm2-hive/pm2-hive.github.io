@@ -43,24 +43,24 @@ $ pm2 publish
 
 In order to develop a module easily, PM2 offers a simple development workflow.
 
-To start a module in development mode with auto restart on file change just do:
+To start a module in development mode with auto-restart on file change just do:
 
 ```bash
 $ cd my-module/
 $ pm2 install .
 ```
 
-To consult the logs printed by the module do:
+To check the the module logs:
 
 ```bash
 $ pm2 logs <module-name>
 ```
 
-# Writing a module, the basics
+# Writing a module - the basics
 
 ## Package.json: Declare options, widget aspect and module behavior
 
-A package.json must be present with some extra fields like `config` for configuration variables and `apps` to declare the [behavior of this module](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+A package.json must be present with some extra fields like `config` for configuration variables and `apps` to declare the [behavior of this module](https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#options-1):
 
 ```javascript
 {
@@ -174,7 +174,7 @@ Add default configuration values in package.json under the "config" attribute:
 }
 ```
 
-Then these values are accessible via the data returned by pmx.initModule().
+These values are then accessible via the data returned by pmx.initModule().
 
 Example:
 
@@ -201,20 +201,20 @@ Example:
 $ pm2 set server-monitoring:days_interval 2
 ```
 
-**NOTE** These variables are written in `~/.pm2/module_conf.json`, so if you prefer, you can directly edit these variables in this file.
-**NOTE2** You can display configuration variable via `pm2 conf [module-name]`
-**NOTE3** When you set a new value the target module is restarted
-**NOTE4** You have to typecast yourself values, it is always strings!
+- **NOTE1**: These variables are written in `~/.pm2/module_conf.json`, you can also edit this file to change the values
+- **NOTE2**: You can display configuration variable via `pm2 conf [module-name]`
+- **NOTE3**: When you set a new value, the target module is restarted
+- **NOTE4**: You have to typecast yourself values, they are always strings!
 
 ### With Keymetrics
 
-In the main Keymetrics Dashboard, the module will have a button called "Configure". Once you click on it you will be able to access / modify all configurations variable exposed on the package.json!
+In the main Keymetrics Dashboard, the module will have a button called "Configure". Once you click on it you will be able to access / modify all configuration variables exposed on the package.json!
 
 # PMX Helpers methods for Modules
 
 ## pmx.initModule(JSON)
 
-This is the main method to be called to transform the current application into a PM2 Module. It is preferred that this method is called before any other required modules.
+This is the main method, it transforms the current application into a PM2 Module. It is preferred that this method is called before any other required modules.
 
 ## pmx.configureModule(JSON)
 
