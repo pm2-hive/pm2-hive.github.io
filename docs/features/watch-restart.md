@@ -18,7 +18,7 @@ If `--watch` is enabled, stopping it won't stop watching:
 
 Restart toggle the `watch` parameter when triggered.
 
-To watch specific paths, please use a JS/JSON app declaration, `watch` can take a string or an array of paths. Default is `true`:
+To watch specific paths, please use a [JS/JSON app declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
 
 ```json
 {
@@ -30,7 +30,7 @@ To watch specific paths, please use a JS/JSON app declaration, `watch` can take 
 }
 ```
 
-As specified in the [Schema](#a988):
+As specified in the [Schema](http://pm2.keymetrics.io/docs/usage/application-declaration/#declaration-via-js-json-or-json5-file):
 
 - `watch` can be a boolean, an array of paths or a string representing a path. Default to `false`
 - `ignore_watch` can be an array of paths or a string, it'll be interpreted by [chokidar](https://github.com/paulmillr/chokidar#path-filtering) as a glob or a regular expression.
