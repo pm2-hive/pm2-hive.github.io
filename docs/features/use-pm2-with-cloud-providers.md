@@ -91,8 +91,8 @@ pm2.connect(function() {
         console.log('[App:%s] %s', packet.process.name, packet.data);
        });
         
-       bus.on('log:out', function(packet) {
-         console.log('[App:%s][Err] %s', packet.process.name, packet.data);
+       bus.on('log:err', function(packet) {
+         console.error('[App:%s][Err] %s', packet.process.name, packet.data);
        });
       });
     
