@@ -13,7 +13,7 @@ It's particularly usefull for micro service based applications.
 
 Here is an example of JSON configuration file, let's call it processes.json:
 
-```json
+```js
 {
   "apps" : [{
     // Application #1
