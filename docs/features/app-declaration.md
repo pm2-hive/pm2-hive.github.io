@@ -5,17 +5,18 @@ description: Manage applications via a configuration file
 permalink: /docs/usage/application-declaration/
 ---
 
-PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files... of each process you need to manage via JSON/JSON5/JS configuration.
+PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes via a JSON configuration file.
 
 It's particularly usefull for micro service based applications.
 
-## Declaration via JS, JSON or JSON5 file
+## Application declaration file
 
-You can define parameters for your apps in a JS/JSON file:
+Here is an example of JSON configuration file, let's call it processes.json:
 
 ```json
 {
   "apps" : [{
+    // Application #1
     "name"        : "worker-app",
     "script"      : "worker.js",
     "args"        : ["--toto=heya coco", "-d", "1"],
@@ -28,6 +29,7 @@ You can define parameters for your apps in a JS/JSON file:
         "AWESOME_SERVICE_API_TOKEN": "xxx"
     }
   },{
+    // Application #2
     "name"       : "api-app",
     "script"     : "api.js",
     "instances"  : 4,
@@ -43,24 +45,24 @@ Then you can run:
 
 ```bash
 # Start all apps
-$ pm2 start processes.js[on]
+$ pm2 start processes.json
 
 # Stop
-$ pm2 stop processes.js[on]
+$ pm2 stop processes.json
 
 # Restart
-$ pm2 start processes.js[on]
+$ pm2 start processes.json
 ## Or
-$ pm2 restart processes.js[on]
+$ pm2 restart processes.json
 
 # Reload
-$ pm2 reload processes.js[on]
+$ pm2 reload processes.json
 
 # Graceful Reload
-$ pm2 gracefulReload processes.js[on]
+$ pm2 gracefulReload processes.json
 
 # Delete from PM2
-$ pm2 delete processes.js[on]
+$ pm2 delete processes.json
 ```
 
 ## Options
