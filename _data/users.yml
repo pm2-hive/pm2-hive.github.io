@@ -1,17 +1,15 @@
 - name: Paypal
   logo: paypal.png
-- name: Bloomberg
-  logo: bloomberg.png
 - name: Intuit
   logo: intuit.png
+- name: Viadeo
+  logo: Viadeo.png
 - name: Microsoft
   logo: microsoft.png
 - name: IBM
   logo: ibm.png
 - name: Mappy
   logo: mappy.jpg
-- name: Viadeo
-  logo: Viadeo.png
 - name: Southwest
   logo: southwest.jpg
 - name: Yandex
