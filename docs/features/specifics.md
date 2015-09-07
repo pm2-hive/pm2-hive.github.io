@@ -12,7 +12,7 @@ It’s a general rule that you shouldn’t run node as root, but only root can b
 ```bash
 $ sudo apt-get install authbind
 $ sudo touch /etc/authbind/byport/80
-$ sudo chown {{user}} /etc/authbind/byport/80
+$ sudo chown %user% /etc/authbind/byport/80
 $ sudo chmod 755 /etc/authbind/byport/80
 $ authbind --deep pm2 update
 ```
