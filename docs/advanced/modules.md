@@ -143,7 +143,7 @@ var conf    = pmx.initModule({
         // Name of custom metrics to be displayed as a "major metrics"
         main_probes : ['Processes']
       },
-    }
+    },
 
     // Status (in the future, not implemented yet)
     status_check : ['latency', 'event loop', 'query/s']
