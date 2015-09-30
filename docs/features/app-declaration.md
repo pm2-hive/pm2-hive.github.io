@@ -34,8 +34,8 @@ Here is an example of JSON configuration file, let's call it processes.json:
     "script"     : "api.js",
     "instances"  : 4,
     "exec_mode"  : "cluster_mode",
-    "error_file" : "./examples/child-err.log",
-    "out_file"   : "./examples/child-out.log",
+    "error_file" : "./examples/child-err.log", // Relative path seems to fail
+    "out_file"   : "./examples/child-out.log", // Relative path seems to fail
     "pid_file"   : "./examples/child.pid"
   }]
 }
