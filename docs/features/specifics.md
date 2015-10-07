@@ -43,22 +43,6 @@ $ PM2_HOME='.pm2' pm2 list
 $ PM2_HOME='.pm3' pm2 list
 ```
 
-## Run Next generation Javascript
-
-PM2 embeds [BabelJS](https://babeljs.io/) to use [next generation Javascript](http://es6-features.org/) both in development and production.
-
-All features are supported, like watch and restart, cluster mode, reload and related.
-
-To run an ES6/ES7 applications:
-
-```bash
-# Enable ES6/ES7 live compilation
-$ pm2 start app.js --next-gen-js
-
-# Or use the .es extension to automatically enable it
-$ pm2 start app.es
-```
-
 ## Launch PM2 in no deamon
 
 Launching PM2 without daemonizing itself:
