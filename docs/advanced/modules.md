@@ -68,7 +68,6 @@ A package.json must be present with some extra fields like `config` for configur
   "version": "1.0.0",       // Used as the module version
   "description": "my desc", // Used as the module comment
   "dependencies": {
-    "pm2": "latest",
     "pmx": "latest"         // Common dependencies to communiate with Keymetrics
   },
   "config": {              // Default configuration value
