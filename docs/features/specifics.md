@@ -155,6 +155,8 @@ You may also use the `babel-node` interpreter by setting:
 }
 ```
 
+[Original issue](https://github.com/Unitech/pm2/issues/1643#issuecomment-144101986).
+
 ## User tips from issues
 
 - [Vagrant and pm2 #289](https://github.com/Unitech/pm2/issues/289#issuecomment-42900019)
