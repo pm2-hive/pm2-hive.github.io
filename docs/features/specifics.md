@@ -127,6 +127,36 @@ _EOF_
 echo $my_json | pm2 start -
 ```
 
+## Babeljs
+
+If you want to use the *cluster mode* with `babeljs` you have to use the [require hook](https://babeljs.io/docs/usage/require/). For example:
+
+Assuming `index.js`, `server.js`:
+
+**index.js**
+```javascript
+require('babel/register')
+require('./server.js')
+```
+
+**server.js**
+```javascript
+import p from 'path'
+```
+
+And start the app from `index.js`, using the cluster or fork mode.
+
+You may also use the `babel-node` interpreter by setting:
+
+```javascript
+{
+  "exec_interpreter" : "babel-node",
+  "exec_mode": "fork"
+}
+```
+
+[Original issue](https://github.com/Unitech/pm2/issues/1643#issuecomment-144101986).
+
 ## User tips from issues
 
 - [Vagrant and pm2 #289](https://github.com/Unitech/pm2/issues/289#issuecomment-42900019)
