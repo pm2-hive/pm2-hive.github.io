@@ -134,12 +134,14 @@ If you want to use the *cluster mode* with `babeljs` you have to use the [requir
 Assuming `index.js`, `server.js`:
 
 **index.js**
+
 ```javascript
 require('babel/register')
 require('./server.js')
 ```
 
 **server.js**
+
 ```javascript
 import p from 'path'
 ```
