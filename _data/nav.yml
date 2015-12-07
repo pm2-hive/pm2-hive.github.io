@@ -1,15 +1,13 @@
 - title: Usage
-  url: /docs/usage/
+  url: /docs/usage/quick-start/
   subnav:
     - title: Quick Start
       url: /docs/usage/quick-start/
-    - title: Process management
+    - title: Process Management
       url: /docs/usage/process-management/
-    - title: Update PM2
-      url: /docs/usage/quick-start/#how-to-update-pm2
 
 - title: Features
-  url: /docs/usage/
+  url: /docs/usage/cluster-mode/
   subnav:
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
@@ -41,7 +39,7 @@
       url: /docs/usage/contributing/
 
 - title: Advanced
-  url: /docs/advanced/
+  url: /docs/advanced/pm2-module-system/
   subnav:
     - title: Module System
       url: /docs/advanced/pm2-module-system/

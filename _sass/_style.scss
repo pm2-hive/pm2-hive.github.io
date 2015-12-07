@@ -4,7 +4,6 @@ body {
     color : #333;
     font-family: 'Open Sans', sans-serif;
     font-size : 18px;
-    margin-top: 45px;
     margin-bottom: 250px;
 }
 
@@ -339,6 +338,7 @@ ul.pm2-tick-list li::before {
 }
 
 .sidebar {
+    margin-left : 5px;
     button {
         width : 80%;
         margin-bottom : 5px;
@@ -486,6 +486,40 @@ h6:target::before, .h6:target::before
     height: 100px;
 }
 
+
+.nav-title {
+    font-size : 21px;
+    margin-top : 15px;
+}
+
+#navigator {
+}
+
+.navigator-fixed {
+    position: fixed;
+    top: 5px;
+}
+
+.nav-left {
+    list-style-type : none;
+    margin-top : 12px;
+    margin-left : 0px;
+    .main-active {
+        color : #333;
+        font-weight : bold;
+    }
+
+    & > li > a {
+        color : #8c8e87;
+        font-size : 15px;
+        &:hover {
+            text-decoration : none;
+            padding-bottom : 2px;
+            border-bottom : 2px solid #5bc0de;
+        }
+    }
+}
+
 //All Of Fame
 
 .container-contributors {
@@ -529,6 +563,9 @@ h6:target::before, .h6:target::before
 }
 
 @media (max-width: 991px) {
+    .nav-left,
+    #navigator,
+    .navbar-right,
     .sidebar {
         display: none;
     }

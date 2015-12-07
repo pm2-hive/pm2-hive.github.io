@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Specifics
-description: Specifics
+description: Specifics, ES6/AuthBind...
 permalink: /docs/usage/specifics/
 ---
 

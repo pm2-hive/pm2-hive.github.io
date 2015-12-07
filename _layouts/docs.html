@@ -4,46 +4,54 @@ layout: page
 
 <div class="container">
   <div class="row">
+    <div class="col-md-3" style="position : relative">
+
+      <div id="navigator">
+        {% for item in site.data.nav %}
+
+        <div class="nav-title">{{item.title}}</div>
+
+        <ul class="nav-left">
+          {% for item in item.subnav %}
+          <li>
+            <a {% if item.title == page.title %} class="main-active"{% endif %} {% if item.blank == true %} target="_blank" {% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a>
+
+            {% if item.title == page.title %}
+            <div class="sidebar">
+              <ul class="nav auto-nav"></ul>
+            </div>
+            {% endif %}
+
+          </li>
+          {% endfor %}
+        </ul>
+
+        {% endfor %}
+
+        <button style="min-width : 130px"  class="btn btn-success">Edit this Page</button>
+      </div>
+    </div>
+
+
     <div class="col-md-9 docs-content">
       {{ content }}
 
       <br/>
       <div id="disqus_thread"></div>
       <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES * * */
-                var disqus_shortname = 'pm2';
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'pm2';
 
-                /* * * DON'T EDIT BELOW THIS LINE * * */
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     </div>
 
-    <div class="col-md-3">
-      <div class="sidebar">
-        <ul class="nav"></ul>
-
-        <div class="actions-on-doc">
-          <a href="#" class="next-page" title="Go to next page">
-            <button class="btn btn-info">Next page</button>
-          </a>
-          <br/>
-          <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}" title="Edit Page">
-            <button class="btn btn-success">Edit this Page</button>
-          </a>
-          <br/>
-          <!-- <a target="_blank" href="https://keymetrics.io" title="Monitor PM2"> -->
-          <!--   <button class="btn btn-success">Monitor PM2</button> -->
-          <!-- </a> -->
-          <!-- <br/> -->
-        </div>
-
-      </div>
-    </div>
   </div>
 </div>
 

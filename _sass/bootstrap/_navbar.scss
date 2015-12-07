@@ -11,15 +11,11 @@
 .navbar {
   position: relative;
   min-height: $navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
-  margin-bottom: $navbar-margin-bottom;
-  border: 1px solid transparent;
 
   // Prevent floats from breaking the navbar
   @include clearfix;
 
-  @media (min-width: $grid-float-breakpoint) {
-    border-radius: $navbar-border-radius;
-  }
+
 }
 
 
@@ -417,7 +413,8 @@
 
       &:hover,
       &:focus {
-        color: $navbar-default-link-hover-color;
+color: white;
+//        color: $navbar-default-link-hover-color;
         background-color: $navbar-default-link-hover-bg;
       }
     }

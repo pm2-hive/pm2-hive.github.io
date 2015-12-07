@@ -16,7 +16,7 @@ Internally it embeds the NPM install procedure. So a PM2 module is published on 
 
 Your creativity is the limit. A PM2 module can do pretty anything. From a log rotation module, a load balancer, a private NPM repository, a Node.js based wikipedia, an antivirus for server... Your creativity is the limit! (*internal pub/sub mecanism in a ROS style = offer micro services that can be subscribed to (setup procedure = conf system!)*)
 
-## Super charged modules, with Keymetrics
+## Keymetrics supercharged
 
 The real power of the module system comes once PM2 is linked to Keymetrics.
 When using [the keymetrics library](https://github.com/keymetrics/pmx) you can build a dedicated interface displayed on Keymetrics as well as [expose metrics](https://github.com/keymetrics/pmx#expose-metrics-measure-anything), [remotely trigger actions](https://github.com/keymetrics/pmx#expose-functions-trigger-functions-remotely), [alert about issues](https://github.com/keymetrics/pmx#report-alerts-errors--uncaught-exceptions), [notify about events](https://github.com/keymetrics/pmx#emit-events) or allow to configure the module remotely!
@@ -58,7 +58,7 @@ $ pm2 logs <module-name>
 
 # Writing a module - the basics
 
-## Package.json: Declare options, widget aspect and module behavior
+## Package.json: Options, visual and behavior
 
 A package.json must be present with some extra fields like `config` for configuration variables and `apps` to declare the [behavior of this module](https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#options-1):
 
