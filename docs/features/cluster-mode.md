@@ -32,7 +32,7 @@ $ pm2 start app.js -i 3
 
 - You don't need to modify anything from your code to be able to use this nifty feature.
 - If in Fork Mode, In your application, the environment variable `NODE_APP_INSTANCE` is exposed so you can listen for different port if needed. (e.g .listen(8000 + process.env.NODE_APP_INSTANCE))
-- Be sure your [**application is stateless**](http://localhost:4000/docs/usage/knowledge/#stateless-apps) meaning that there is not any local data stored in the process, like sessions/websocket connections etc. Use Redis, Mongo or other DB to share states between processes.
+- Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/knowledge/#stateless-apps) meaning that there is not any local data stored in the process, like sessions/websocket connections etc. Use Redis, Mongo or other DB to share states between processes.
 
 ## Reload without Downtime
 

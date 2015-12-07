@@ -12,7 +12,7 @@ It’s a general rule that you shouldn’t run node as root, but only root can b
 ```bash
 $ sudo apt-get install authbind
 $ sudo touch /etc/authbind/byport/80
-$ sudo chown user /etc/authbind/byport/80
+$ sudo chown %user% /etc/authbind/byport/80
 $ sudo chmod 755 /etc/authbind/byport/80
 $ authbind --deep pm2 update
 ```
@@ -41,22 +41,6 @@ This will start two different PM2 instances. To list processes managed by each d
 ```bash
 $ PM2_HOME='.pm2' pm2 list
 $ PM2_HOME='.pm3' pm2 list
-```
-
-## Run Next generation Javascript
-
-PM2 embeds [BabelJS](https://babeljs.io/) to use [next generation Javascript](http://es6-features.org/) both in development and production.
-
-All features are supported, like watch and restart, cluster mode, reload and related.
-
-To run an ES6/ES7 applications:
-
-```bash
-# Enable ES6/ES7 live compilation
-$ pm2 start app.js --next-gen-js
-
-# Or use the .es extension to automatically enable it
-$ pm2 start app.es
 ```
 
 ## Launch PM2 in no deamon
@@ -142,6 +126,38 @@ _EOF_
 
 echo $my_json | pm2 start -
 ```
+
+## Babeljs
+
+If you want to use the *cluster mode* with `babeljs` you have to use the [require hook](https://babeljs.io/docs/usage/require/). For example:
+
+Assuming `index.js`, `server.js`:
+
+**index.js**
+
+```javascript
+require('babel/register')
+require('./server.js')
+```
+
+**server.js**
+
+```javascript
+import p from 'path'
+```
+
+And start the app from `index.js`, using the cluster or fork mode.
+
+You may also use the `babel-node` interpreter by setting:
+
+```javascript
+{
+  "exec_interpreter" : "babel-node",
+  "exec_mode": "fork"
+}
+```
+
+[Original issue](https://github.com/Unitech/pm2/issues/1643#issuecomment-144101986).
 
 ## User tips from issues
 

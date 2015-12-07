@@ -233,3 +233,5 @@ Get configuration variables for modules (same object than what is returned by pm
 ## pmx.resolvePidPaths([])
 
 Pass an array of possible pid file path location, open it and return the value.
+=======
+[Updated documention for module system](http://docs.keymetrics.io/docs/usage/building-module/)
