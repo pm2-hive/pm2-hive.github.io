@@ -14,13 +14,13 @@ A step-by-step tutorial is available here : [Deploy and Iterate faster with PM2 
 
 Please read the [Considerations to use PM2 deploy](#considerations)
 
-1- Generate a sample ecosystem.json5 file that list processes and deployment environment
+1- Generate a sample ecosystem.json file that list processes and deployment environment
 
 ```bash
 $ pm2 ecosystem
 ```
 
-In the current folder a `ecosystem.json5` file will be created.
+In the current folder a `ecosystem.json` file will be created.
 It contains this:
 
 ```json
@@ -41,7 +41,7 @@ It contains this:
   "deploy" : {
     "production" : {
       "user" : "node",
-      "host" : "212.83.163.1",
+      "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
       "path" : "/var/www/production",
@@ -119,6 +119,28 @@ $ pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
 $ pm2 startOrReload all.json             # Invoke reload
 $ pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 ```
+
+## Multi host deployment
+
+To deploy to multiple host in the same time, just declare each host in an array under the attribute `host`
+
+```json
+{
+  [...]
+  "deploy" : {
+    "production" : {
+      "user" : "node",
+      "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:repo.git",
+      "path" : "/var/www/production",
+      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production",
+      "pre-deploy-local" : "echo 'This is a local executed command'"
+    }
+  [...]
+}
+```
+
 
 ## Using file key for authenticating
 
