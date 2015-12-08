@@ -3,7 +3,7 @@ body {
     background: #f2f2f2;
     color : #333;
     font-family: 'Open Sans', sans-serif;
-    font-size : 18px;
+    font-size : 15px;
     margin-bottom: 250px;
 }
 
@@ -56,7 +56,7 @@ pre {
     color: #333;
     border-radius : 0;
     border: 1px solid rgb(231, 231, 231);
-    font-size : 15px;
+    font-size : 13px;
 }
 
 //logos
@@ -69,7 +69,7 @@ pre {
 
 // For HOMEPAGE
 .index-page {
-
+    font-size : 18px;
     h1 {
         font-size: 40px;
         font-weight: normal;
@@ -239,11 +239,11 @@ pre {
     background: #161616 url("../images/pattern.png");
     color : white;
     font-family : 'Blender';
-    height : 150px;
+    height : 90px;
 
     h1 {
-        margin-top: 48px;
-        font-size : 48px;
+        margin-top: 24px;
+        font-size : 37px;
     }
 }
 
@@ -290,8 +290,9 @@ ul.pm2-tick-list li::before {
 //Docs
 
 .docs-content {
+    padding-left : 43px;
     p {
-        margin: 0 0 16px;
+        margin: 0 0 10px;
     }
     h3, .h3 {
         font-size: 23px;
@@ -301,11 +302,11 @@ ul.pm2-tick-list li::before {
 
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
-    line-height: 27px;
+    line-height: 24px;
 
     h2 {
         border-bottom: 1px solid #A0A0A0;
-        margin: 40px 0 20px;
+        margin: 20px 0 20px;
         padding-bottom: 9px;
     }
 
@@ -381,7 +382,7 @@ a:focus {
 
 .sidebar .nav > li > a {
     display: block;
-    padding: 4px 20px;
+    padding: 2px 20px;
     font-size: 15px;
     color: #8c8e87;
 }
@@ -493,6 +494,9 @@ h6:target::before, .h6:target::before
 }
 
 #navigator {
+    overflow-y : scroll;
+    height: 98%;
+    padding-bottom : 40px;
 }
 
 .navigator-fixed {
@@ -509,6 +513,9 @@ h6:target::before, .h6:target::before
         font-weight : bold;
     }
 
+    & > li {
+        padding : 3px 0px;
+    }
     & > li > a {
         color : #8c8e87;
         font-size : 15px;
@@ -562,7 +569,28 @@ h6:target::before, .h6:target::before
     }
 }
 
+@media (min-width: 991px) {
+    .caret,
+    .dropdown-menu,
+    .nav-min-screen{
+        display : none !important;
+    }
+
+    .nav-fullscreen {
+        display : block !important;
+    }
+}
+
 @media (max-width: 991px) {
+    .nav-min-screen {
+        display : block !important;
+    }
+
+    .nav-fullscreen {
+        display : none !important;
+    }
+
+
     .nav-left,
     #navigator,
     .navbar-right,

@@ -1011,6 +1011,47 @@ pm2.connect(function() {
 });
 ```
 
+## Send message to process
+
+Available in PM2 0.15.11>
+
+pm2-call.js:
+
+```javascript
+pm2.connect(function() {
+  pm2.sendDataToProcessId({
+    type : 'process:msg',
+    data : {
+      some : 'data',
+      hello : true
+    },
+    id   : proc1.pm2_env.pm_id
+  }, function(err, res) {
+  });
+});
+
+pm2.launchBus(function(err, bus) {
+  pm2_bus.on('process:msg', function(packet) {
+    packet.data.success.should.eql(true);
+    packet.process.pm_id.should.eql(proc1.pm2_env.pm_id);
+    done();
+  });
+});
+```
+
+pm2-app.js:
+
+```javascript
+process.on('message', function(packet) {
+  process.send({
+    type : 'process:msg',
+    data : {
+     success : true
+    }
+ });
+});
+```
+
 ## Programmatic API
 
 <table class="table table-striped table-bordered">

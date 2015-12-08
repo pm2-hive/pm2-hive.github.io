@@ -21,17 +21,17 @@
       url: /docs/usage/application-declaration/
     - title: Deployment
       url: /docs/usage/deployment/
-    - title: Setup Auto completion
+    - title: Setup Auto Completion
       url: /docs/usage/auto-completion/
     - title: Startup Script
       url: /docs/usage/startup/
-    - title: Development tool
+    - title: PM2 Development mode
       url: /docs/usage/pm2-development/
     - title: Specifics, ES6/AuthBind...
       url: /docs/usage/specifics/
     - title: PM2 API
       url: /docs/usage/pm2-api/
-    - title: Knowledge
+    - title: Specifics
       url: /docs/usage/knowledge/
     - title: Use PM2 in Cloud Providers
       url: /docs/usage/use-pm2-with-cloud-providers/

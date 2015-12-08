@@ -45,7 +45,7 @@ $ pm2 startup
 
 [More information](/docs/usage/startup/)
 
-## PM2 configuration folder structure
+## Folder structure
 
 Once PM2 is started, it automatically create these folders:
 

@@ -14,7 +14,11 @@
         {% for item in site.data.nav %}
           {% if item.subnav %}
             <li class="dropdown {% if page.url contains item.url %}active{% endif %}">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ item.title }} <span class="caret"></span></a>
+
+              <a class="nav-fullscreen" href="{{item.url}}" role="button" aria-expanded="false">{{ item.title }}</a>
+
+              <a href="#" class="nav-min-screen dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ item.title }} <span class="caret"></span></a>
+
               <ul class="dropdown-menu" role="menu">
                 {% for item in item.subnav %}
                 <li {% if page.url contains item.url %} class="active"{% endif %}>
