@@ -5,11 +5,33 @@ description: One page documentation
 permalink: /docs/usage/pm2-doc-single-page/
 ---
 
-![PM2](https://github.com/unitech/pm2/raw/master/pres/pm2.20d3ef.png)
+<div align="center">
+  <a href="http://pm2.keymetrics.io">
+    <img width=710px src="https://github.com/unitech/pm2/raw/master/pres/pm2.20d3ef.png">
+  </a>
 
-**P**(rocess) **M**(anager) **2**
+<br/>
+<b>P</b>(rocess) <b>M</b>(anager) <b>2</b>
+<br/><br/>
 
-PM2 is a production process manager for Node.js / io.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
+ <a href="https://www.bithound.io/github/Unitech/pm2">
+ <img src="https://www.bithound.io/github/Unitech/pm2/badges/score.svg" alt="bitHound Score">
+</a>
+
+<a href="https://www.npmjs.com/package/pm2">
+  <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/pm2.svg?style=flat-square"/>
+</a>
+
+<a href="https://travis-ci.org/Unitech/pm2">
+  <img src="https://travis-ci.org/Unitech/pm2.svg?branch=master" alt="Build Status"/>
+</a>
+
+
+<br/>
+<br/>
+</div>
+
+PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
 
 Starting an application in production mode is as easy as:
 
@@ -17,15 +39,47 @@ Starting an application in production mode is as easy as:
 $ pm2 start app.js
 ```
 
-PM2 is constantly assailed by [more than 400 tests](https://travis-ci.org/Unitech/PM2).
+PM2 is constantly assailed by [more than 700 tests](https://travis-ci.org/Unitech/pm2).
 
-Compatible with [io.js](https://github.com/iojs/io.js) and [Node.js](https://github.com/joyent/node).
-Compatible with CoffeeScript.
-Works on Linux (stable) & MacOSx (stable) & Windows (stable).
+Official website: [http://pm2.keymetrics.io](http://pm2.keymetrics.io)
 
-[![Version npm](https://img.shields.io/npm/v/pm2.svg?style=flat-square)](https://www.npmjs.com/package/pm2)[![NPM Downloads](https://img.shields.io/npm/dm/pm2.svg?style=flat-square)](https://www.npmjs.com/package/pm2)[![Build Status](https://img.shields.io/travis/Unitech/PM2/master.svg?style=flat-square)](https://travis-ci.org/Unitech/PM2)[![Dependencies](https://img.shields.io/david/Unitech/pm2.svg?style=flat-square)](https://david-dm.org/Unitech/pm2)
+Works on Linux (stable) & MacOSx (stable) & Windows (bêta).
 
 [![NPM](https://nodei.co/npm/pm2.png?downloads=true&downloadRank=true)](https://nodei.co/npm/pm2/)
+
+## Install PM2
+
+```bash
+$ npm install pm2 -g
+```
+
+*npm is a builtin CLI when you install Node.js - [Installing Node.js with NVM](https://keymetrics.io/2015/02/03/installing-node-js-and-io-js-with-nvm/)*
+
+## Start an application
+
+```bash
+$ pm2 start app.js
+```
+
+Your app is now put in background, monitored and kept alive forever.
+
+[More about Process Management](http://pm2.keymetrics.io/docs/usage/quick-start/#cheat-sheet)
+
+## Module system
+
+PM2 embeds a simple and powerful module system. Installing a module is straightforward:
+
+```bash
+$ pm2 install <module_name>
+```
+
+Here are some PM2 compatible modules (standalone Node.js applications managed by PM2):
+
+[**pm2-logrotate**](https://github.com/pm2-hive/pm2-logrotate) auto rotate logs of PM2 and applications managed<br/>
+[**pm2-webshell**](https://github.com/pm2-hive/pm2-webshell) expose a fully capable terminal in browsers<br/>
+[**pm2-autopull**](https://github.com/pm2-hive/pm2-auto-pull) auto pull all applications managed by PM2<br/>
+
+[How to write a module](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/)
 
 
 PM2 can **generate startup scripts and configure them**.
@@ -92,17 +146,18 @@ $ pm2 resurrect
 ```
 
 
-PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files... of each process you need to manage via JSON/JSON5/JS configuration.
+PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes via a JSON configuration file.
 
 It's particularly usefull for micro service based applications.
 
-## Declaration via JS, JSON or JSON5 file
+## Application declaration file
 
-You can define parameters for your apps in a JS/JSON file:
+Here is an example of JSON configuration file, let's call it processes.json:
 
-```json
+```js
 {
   "apps" : [{
+    // Application #1
     "name"        : "worker-app",
     "script"      : "worker.js",
     "args"        : ["--toto=heya coco", "-d", "1"],
@@ -115,6 +170,7 @@ You can define parameters for your apps in a JS/JSON file:
         "AWESOME_SERVICE_API_TOKEN": "xxx"
     }
   },{
+    // Application #2
     "name"       : "api-app",
     "script"     : "api.js",
     "instances"  : 4,
@@ -130,24 +186,24 @@ Then you can run:
 
 ```bash
 # Start all apps
-$ pm2 start processes.js[on]
+$ pm2 start processes.json
 
 # Stop
-$ pm2 stop processes.js[on]
+$ pm2 stop processes.json
 
 # Restart
-$ pm2 start processes.js[on]
+$ pm2 start processes.json
 ## Or
-$ pm2 restart processes.js[on]
+$ pm2 restart processes.json
 
 # Reload
-$ pm2 reload processes.js[on]
+$ pm2 reload processes.json
 
 # Graceful Reload
-$ pm2 gracefulReload processes.js[on]
+$ pm2 gracefulReload processes.json
 
 # Delete from PM2
-$ pm2 delete processes.js[on]
+$ pm2 delete processes.json
 ```
 
 ## Options
@@ -1441,7 +1497,7 @@ It’s a general rule that you shouldn’t run node as root, but only root can b
 ```bash
 $ sudo apt-get install authbind
 $ sudo touch /etc/authbind/byport/80
-$ sudo chown user /etc/authbind/byport/80
+$ sudo chown %user% /etc/authbind/byport/80
 $ sudo chmod 755 /etc/authbind/byport/80
 $ authbind --deep pm2 update
 ```
@@ -1470,22 +1526,6 @@ This will start two different PM2 instances. To list processes managed by each d
 ```bash
 $ PM2_HOME='.pm2' pm2 list
 $ PM2_HOME='.pm3' pm2 list
-```
-
-## Run Next generation Javascript
-
-PM2 embeds [BabelJS](https://babeljs.io/) to use [next generation Javascript](http://es6-features.org/) both in development and production.
-
-All features are supported, like watch and restart, cluster mode, reload and related.
-
-To run an ES6/ES7 applications:
-
-```bash
-# Enable ES6/ES7 live compilation
-$ pm2 start app.js --next-gen-js
-
-# Or use the .es extension to automatically enable it
-$ pm2 start app.es
 ```
 
 ## Launch PM2 in no deamon
@@ -1571,6 +1611,38 @@ _EOF_
 
 echo $my_json | pm2 start -
 ```
+
+## Babeljs
+
+If you want to use the *cluster mode* with `babeljs` you have to use the [require hook](https://babeljs.io/docs/usage/require/). For example:
+
+Assuming `index.js`, `server.js`:
+
+**index.js**
+
+```javascript
+require('babel/register')
+require('./server.js')
+```
+
+**server.js**
+
+```javascript
+import p from 'path'
+```
+
+And start the app from `index.js`, using the cluster or fork mode.
+
+You may also use the `babel-node` interpreter by setting:
+
+```javascript
+{
+  "exec_interpreter" : "babel-node",
+  "exec_mode": "fork"
+}
+```
+
+[Original issue](https://github.com/Unitech/pm2/issues/1643#issuecomment-144101986).
 
 ## User tips from issues
 
@@ -1752,8 +1824,8 @@ pm2.connect(function() {
         console.log('[App:%s] %s', packet.process.name, packet.data);
        });
         
-       bus.on('log:out', function(packet) {
-         console.log('[App:%s][Err] %s', packet.process.name, packet.data);
+       bus.on('log:err', function(packet) {
+         console.error('[App:%s][Err] %s', packet.process.name, packet.data);
        });
       });
     
@@ -1777,7 +1849,7 @@ If `--watch` is enabled, stopping it won't stop watching:
 
 Restart toggle the `watch` parameter when triggered.
 
-To watch specific paths, please use a JS/JSON app declaration, `watch` can take a string or an array of paths. Default is `true`:
+To watch specific paths, please use a [JS/JSON app declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
 
 ```json
 {
@@ -1789,7 +1861,7 @@ To watch specific paths, please use a JS/JSON app declaration, `watch` can take 
 }
 ```
 
-As specified in the [Schema](#a988):
+As specified in the [Schema](http://pm2.keymetrics.io/docs/usage/application-declaration/#declaration-via-js-json-or-json5-file):
 
 - `watch` can be a boolean, an array of paths or a string representing a path. Default to `false`
 - `ignore_watch` can be an array of paths or a string, it'll be interpreted by [chokidar](https://github.com/paulmillr/chokidar#path-filtering) as a glob or a regular expression.
