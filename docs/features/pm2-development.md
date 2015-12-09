@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: PM2 Development mode
+title: pm2-dev for development
 description: Developing application with PM2
 permalink: /docs/usage/pm2-development/
 ---

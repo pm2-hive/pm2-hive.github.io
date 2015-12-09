@@ -13,6 +13,8 @@
       url: /docs/usage/cluster-mode
     - title: Watch & Restart
       url: /docs/usage/watch-and-restart/
+    - title: Signals and clean restarts
+      url: /docs/usage/signals-clean-restart/
     - title: Monitoring
       url: /docs/usage/monitoring/
     - title: Log Management
@@ -25,7 +27,7 @@
       url: /docs/usage/auto-completion/
     - title: Startup Script
       url: /docs/usage/startup/
-    - title: PM2 Development mode
+    - title: pm2-dev for development
       url: /docs/usage/pm2-development/
     - title: Specifics, ES6/AuthBind...
       url: /docs/usage/specifics/
