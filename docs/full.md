@@ -1589,11 +1589,32 @@ process.on('SIGINT', function() {
 });
 ```
 
-## Increasing the KILL TIMEOUT delay
+## Custom delay before final SIGTERM signal
 
 If your application receive the SIGTERM signal too soon, you can configure PM2 to increase the [KILL_TIMEOUT](https://github.com/Unitech/pm2/blob/master/constants.js#L80) variable.
 
 To increase this value, add the PM2_KILL_TIMEOUT to /etc/environment and update PM2 via `pm2 update`
+
+## Forbidding PM2 to kill the process
+
+Catch the **SIGINT** and **SIGTERM** signal:
+
+```javascript
+//[...]
+
+process.on('SIGINT', function() {
+  clearInterval(my_interval);
+  my_db_connection.close();
+  current_jobs.save();
+});
+
+process.on('SIGTERM', function() {
+  // Wait 10 seconds before exiting process
+  setTimeout(function() {
+    process.exit(0);
+  }, 10000);
+});
+```
 
 
 ## Allow PM2 to bind applications on ports 80/443 without root
