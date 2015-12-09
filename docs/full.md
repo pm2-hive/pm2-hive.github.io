@@ -649,13 +649,13 @@ A step-by-step tutorial is available here : [Deploy and Iterate faster with PM2 
 
 Please read the [Considerations to use PM2 deploy](#considerations)
 
-1- Generate a sample ecosystem.json5 file that list processes and deployment environment
+1- Generate a sample ecosystem.json file that list processes and deployment environment
 
 ```bash
 $ pm2 ecosystem
 ```
 
-In the current folder a `ecosystem.json5` file will be created.
+In the current folder a `ecosystem.json` file will be created.
 It contains this:
 
 ```json
@@ -676,7 +676,7 @@ It contains this:
   "deploy" : {
     "production" : {
       "user" : "node",
-      "host" : "212.83.163.1",
+      "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
       "path" : "/var/www/production",
@@ -754,6 +754,28 @@ $ pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
 $ pm2 startOrReload all.json             # Invoke reload
 $ pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 ```
+
+## Multi host deployment
+
+To deploy to multiple host in the same time, just declare each host in an array under the attribute `host`
+
+```json
+{
+  [...]
+  "deploy" : {
+    "production" : {
+      "user" : "node",
+      "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:repo.git",
+      "path" : "/var/www/production",
+      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production",
+      "pre-deploy-local" : "echo 'This is a local executed command'"
+    }
+  [...]
+}
+```
+
 
 ## Using file key for authenticating
 
@@ -999,7 +1021,12 @@ $ npm install pm2 --save
 ```javascript
 var pm2 = require('pm2');
 
-pm2.connect(function() {
+pm2.connect(function(err) {
+  if (err) {
+    console.error(err);
+    process.exit(2);
+  }
+  
   pm2.start({
     script    : 'app.js',         // Script to be run
     exec_mode : 'cluster',        // Allow your app to be clustered
@@ -1533,9 +1560,9 @@ $ . <(pm2 completion)
 
 ## Signals
 
-When a process is restarted/stoped by PM2, some signals in a given order are sent to your process.
+When a process is restarted/stoped by PM2, some signals are sent in a given order to your process.
 
-First a **SIGINT** signal is sent to your process. If your application does not get stopped (or stop itself) after 10 tries, it will send a final **SIGTERM** signal.
+First **SIGINT** signals are sent to your process [every 100ms](https://github.com/Unitech/pm2/blob/master/lib/God/Methods.js#L221). If your application does not get stopped (or stop itself) after [KILL_TIMEOUT ms (default to 1,6second)](https://github.com/Unitech/pm2/blob/master/constants.js#L80), it will send a final **SIGTERM** signal.
 
 ## Cleaning states and jobs before stop
 
@@ -1561,6 +1588,12 @@ process.on('SIGINT', function() {
   }, 300);
 });
 ```
+
+## Increasing the KILL TIMEOUT delay
+
+If your application receive the SIGTERM signal too soon, you can configure PM2 to increase the [KILL_TIMEOUT](https://github.com/Unitech/pm2/blob/master/constants.js#L80) variable.
+
+To increase this value, add the PM2_KILL_TIMEOUT to /etc/environment and update PM2 via `pm2 update`
 
 
 ## Allow PM2 to bind applications on ports 80/443 without root
