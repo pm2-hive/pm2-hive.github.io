@@ -22,7 +22,12 @@ $ npm install pm2 --save
 ```javascript
 var pm2 = require('pm2');
 
-pm2.connect(function() {
+pm2.connect(function(err) {
+  if (err) {
+    console.error(err);
+    process.exit(2);
+  }
+  
   pm2.start({
     script    : 'app.js',         // Script to be run
     exec_mode : 'cluster',        // Allow your app to be clustered
