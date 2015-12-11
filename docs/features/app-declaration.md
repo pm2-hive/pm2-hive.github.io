@@ -11,8 +11,9 @@ It's particularly usefull for micro service based applications.
 
 ## Application declaration file
 
-Here is an example of JSON configuration file, let's call it processes.json:
+Here is an example of JSON configuration file, let's call it processes.json. Please note that you can [inject javascript into this file](http://pm2.keymetrics.io/docs/usage/application-declaration/#using-javascript-in-the-declaration)
 
+Content of a sample process.json:
 ```js
 {
   "apps" : [{
