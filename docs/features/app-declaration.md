@@ -106,7 +106,7 @@ You may have noticed that you can put comments, remove double quotes in JSON dec
 
 Example of ecosystem.json:
 
-```
+```javascript
 {
   apps : [{
     name   : process.env.USER,
