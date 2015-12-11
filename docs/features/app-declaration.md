@@ -119,7 +119,7 @@ Example of ecosystem.json:
 
 [Bash tests](https://github.com/Unitech/pm2/blob/master/test/bash/json_file.sh#L59)
 
-### List of all JSON-declaration fields avaibles
+## List of all JSON-declaration fields avaibles
 
 |        Field       |   Type  |                  Example                  |                                                                                          Description                                                                                         |
 |:------------------:|:-------:|:-----------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
