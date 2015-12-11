@@ -41,7 +41,7 @@ Here is an example of JSON configuration file, let's call it processes.json:
 }
 ```
 
-Then you can run:
+Then you can run the basics commands:
 
 ```bash
 # Start all apps
@@ -98,6 +98,26 @@ The following are valid options for JSON app declarations:
   }
 }
 ```
+
+## Using Javascript in the declaration
+
+You may have noticed that you can put comments, remove double quotes in JSON declaration file. It's because PM2 process the JSON file as a Javascript file meaning that you can inject Javascript into this file. For example you can access to the `process.env` object or you can use Javascript functions straight into your application file. Bu the way the file does not need to be prefixed to something else than *.json*
+
+Example of ecosystem.json:
+
+```
+{
+  apps : [{
+    name   : process.env.USER,
+    script : [".", "/", "e", "cho.js"].join('')
+  }, {
+    name   : 'API-2',
+    script : ["./", "api.js"].join('')
+  }]
+}
+```
+
+[Bash tests](https://github.com/Unitech/pm2/blob/master/test/bash/json_file.sh#L59)
 
 ### List of all JSON-declaration fields avaibles
 
