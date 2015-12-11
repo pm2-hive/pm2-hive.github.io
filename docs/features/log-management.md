@@ -71,7 +71,7 @@ Options:
 
 **Note**: To merge all logs into the same file set the same value for `error_file`, `out_file`.
 
-### Settings up a native logrotate
+### Setting up a native logrotate
 
 ```bash
 $ sudo pm2 logrotate -u user
