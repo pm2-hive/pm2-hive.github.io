@@ -25,6 +25,8 @@ It contains this:
 
 ```json
 {
+  // Applications to run with their options
+  // (See Application Declaration section)
   "apps" : [{
     "name"      : "API",
     "script"    : "app.js",
@@ -38,17 +40,30 @@ It contains this:
     "name"      : "WEB",
     "script"    : "web.js"
   }],
+  // Deployment part
+  // Here you describe each environment
   "deploy" : {
     "production" : {
       "user" : "node",
+      // Multi host is possible, just by passing IPs/hostname as an array
       "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
+      // Branch
       "ref"  : "origin/master",
+      // Git repository to clone
       "repo" : "git@github.com:repo.git",
+      // Path of the application on target servers
       "path" : "/var/www/production",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production",
+      // Commands to execute locally (on the same machine you deploy things)
+      // Can be multiple commands separated by the character ";"
       "pre-deploy-local" : "echo 'This is a local executed command'"
+      // Commands to be executed on the server after the repo has been cloned
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env production"
+      // Environment variables that must be injected in all applications on this env 
+      "env"  : {
+        "NODE_ENV": "production"
+      }
     },
-    "dev" : {
+    "staging" : {
       "user" : "node",
       "host" : "212.83.163.1",
       "ref"  : "origin/master",
@@ -56,7 +71,7 @@ It contains this:
       "path" : "/var/www/development",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env dev",
       "env"  : {
-        "NODE_ENV": "dev"
+        "NODE_ENV": "staging"
       }
     }
   }
