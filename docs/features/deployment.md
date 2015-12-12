@@ -139,12 +139,13 @@ $ pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 
 To deploy to multiple host in the same time, just declare each host in an array under the attribute `host`
 
-```json
+```javascript
 {
   [...]
   "deploy" : {
     "production" : {
       "user" : "node",
+      // Multi host in a js array
       "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
@@ -161,7 +162,7 @@ To deploy to multiple host in the same time, just declare each host in an array 
 
 Just add the "key" attribute with file path to the .pem key within the attributes "user", "hosts"...
 
-```
+```javascript
     "production" : {
       "key"  : "/path/to/some.pem",
       "user" : "node",
