@@ -23,7 +23,7 @@ $ pm2 ecosystem
 In the current folder a `ecosystem.json` file will be created.
 It contains this:
 
-```json
+```javascript
 {
   // Applications to run with their options
   // (See Application Declaration section)
