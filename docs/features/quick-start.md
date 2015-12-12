@@ -207,6 +207,7 @@ Options:
 Learn how to declare all your applications behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
 
 Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability 
+
 Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/)
 
 Monitor your production applications with [Keymetrics](https://keymetrics.io/)
