@@ -7,60 +7,87 @@ permalink: /docs/advanced/pm2-module-system/
 
 ![Module system](https://github.com/unitech/pm2/raw/master/pres/pm2-module.png)
 
-## What is a PM2 module?
+# Basics
 
-A PM2 module is basically a NPM module. But this time it's not a library, but a standalone process managed by PM2.
-Internally it embeds the NPM install procedure. So a PM2 module is published on NPM and installed from NPM.
+## What is a module?
+
+A PM2 module is a standalone software installed and managed by PM2.
+
+These softwares are pulled from the NPM repository and are published like a common Javascript library on NPM.
 
 ## What can be developed as a module?
 
-Your creativity is the limit. A PM2 module can do pretty anything. From a log rotation module, a load balancer, a private NPM repository, a Node.js based wikipedia, an antivirus for server... Your creativity is the limit! (*internal pub/sub mecanism in a ROS style = offer micro services that can be subscribed to (setup procedure = conf system!)*)
+Your creativity is the limit. A module can do anything, from a log rotation module, a load balancer, a Node.js based wikipedia, a DNS server, a SMTP server, an antivirus... Your creativity is the limit!
 
-## Keymetrics supercharged
+## Module interface with Keymetrics
 
-The real power of the module system comes once PM2 is linked to Keymetrics.
-When using [the keymetrics library](https://github.com/keymetrics/pmx) you can build a dedicated interface displayed on Keymetrics as well as [expose metrics](https://github.com/keymetrics/pmx#expose-metrics-measure-anything), [remotely trigger actions](https://github.com/keymetrics/pmx#expose-functions-trigger-functions-remotely), [alert about issues](https://github.com/keymetrics/pmx#report-alerts-errors--uncaught-exceptions), [notify about events](https://github.com/keymetrics/pmx#emit-events) or allow to configure the module remotely!
+With [Keymetrics](https://keymetrics.io/) you can create a customized interface with metrics monitoring and remote actions.
+
+This will give you this kind of result:
+
+<a href="/images/racks/mongodb-rack.png" title="Keymetrics interface explanation"><img src="/images/racks/mongodb-rack.png"/></a>
+<center><a href="https://github.com/pm2-hive/pm2-mongodb" title="pm2-mongodb">pm2-mongodb module</a></center>
+
+or
+
+<a href="/images/racks/server-monit.png" title="Keymetrics interface explanation"><img src="/images/racks/server-monit.png"/></a>
+<center><a href="https://github.com/pm2-hive/pm2-server-monit" title="pm2-server-monit">pm2-server-monit-module</a></center>
 
 ## Managing a module
 
 To manage a module, commands are straightforward:
 
 ```bash
-# INSTALL/UPDATE
+# Install / Update module
 $ pm2 install <module-name>
 
-# INSTALL VIA GIT (username/repository)
+# Install via Git (username/repository)
 $ pm2 install pm2-hive/pm2-docker
 
-# UNINSTALL
+# Generate a module boilerplate
+$ pm2 module:generate <module-name>
+
+# Uninstall module
 $ pm2 uninstall <module-name>
 
-# PUBLISH NEW MODULE RELEASE ON NPM
+# Publish new module (Inc Semver + Git push + NPM publish)
 $ pm2 publish
 ```
 
-## Development mode
+## Developing a module
 
-In order to develop a module easily, PM2 offers a simple development workflow.
-
-To start a module in development mode with auto-restart on file change just do:
+To generate a sample module:
 
 ```bash
-$ cd my-module/
+$ pm2 module:generate <module-name>
+```
+
+Now let's run this module with PM2:
+
+```bash
+$ cd <module-name>
 $ pm2 install .
 ```
 
-To check the module logs:
+You can now edit the source and when you change something, pm2 will automatically restart the module ([watch option activated](http://pm2.keymetrics.io/docs/usage/watch-and-restart/)).
+
+To display the logs:
 
 ```bash
 $ pm2 logs <module-name>
 ```
 
-# Writing a module - the basics
+To remove the module:
 
-## Package.json: Options, visual and behavior
+```
+$ pm2 uninstall <module-name>
+```
 
-A package.json must be present with some extra fields like `config` for configuration variables and `apps` to declare the [behavior of this module](https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#options-1):
+# Advanced
+
+## Package.json: Set options and behaviors
+
+A package.json must exists in the module root folder. Then some attributes like `config` for configuration variables and `apps` for [module behavior options](http://pm2.keymetrics.io/docs/usage/application-declaration/) can be added.
 
 ```javascript
 {
@@ -68,53 +95,42 @@ A package.json must be present with some extra fields like `config` for configur
   "version": "1.0.0",       // Used as the module version
   "description": "my desc", // Used as the module comment
   "dependencies": {
-    "pm2": "latest",
-    "pmx": "latest"         // Common dependencies to communiate with Keymetrics
+    "pmx": "latest"         // Add the dependency you need here
   },
-  "config": {              // Default configuration value
-                           // These values can be modified via Keymetrics or PM2 configuration system
-
-     "days_interval" : 7,  // -> this value is returned once you call pmx.initModule()
+  "config": {              // Default configuration value, overridable value via pm2 set <name>:<attr> <val>
+     "days_interval" : 7,  // This value is returned once you call pmx.initModule()
      "max_size" : 5242880
   },
-  "apps" : [{              // Application configuration
+  "apps" : [{              // Module behavior opts, Application configuration
     "merge_logs"         : true,
     "max_memory_restart" : "200M",
     "script"             : "index.js"
   }],
-  "author": "Keymetrics Inc.", // Optional
-  "license": "AGPL-3.0"        // Optional
+  "author": "Sarkozy",
+  "license": "MIT"
 }
 ```
 
 ## Module entry point
 
-This is the index.js file (declared in the package.json in the apps section):
-The pmx.initModule takes a range of options to configure the module display in Keymetrics or to override the PID monitored by PM2:
+In your main module entry point, call the `pmx.initModule(opts, fn(){});` to initialize your module:
 
 ```javascript
 var pmx     = require('pmx');
 
-// Initialize the module
 var conf    = pmx.initModule({
 
-    // Override PID to be monitored (for CPU and Memory blocks)
-    pid              : pmx.resolvePidPaths(['/var/run/redis.pid', '/var/run/redis/redis-server.pid']),
+    // Override PID to be monitored
+    pid              : pmx.resolvePidPaths(['/var/run/redis.pid']),
 
     widget : {
-
-      // Module display type. Currently only 'generic' is available
+      /**
+       * Keymetrics interface customization
+       */
       type : 'generic',
 
-      // Logo to be displayed on the top left block
-      // Must be https
-      logo : 'https://image.url',
-
-      // 0 = main element
-      // 1 = secondary
-      // 2 = main border
-      // 3 = secondary border
-      // 4 = text color (not implemented yet)
+      // Logo to be displayed on the top left block (must be https)
+      logo  : 'https://image.url',
       theme : ['#9F1414', '#591313', 'white', 'white'],
 
       // Toggle horizontal blocks above main widget
@@ -143,21 +159,20 @@ var conf    = pmx.initModule({
         // Name of custom metrics to be displayed as a "major metrics"
         main_probes : ['Processes']
       },
-    }
-
-    // Status (in the future, not implemented yet)
-    status_check : ['latency', 'event loop', 'query/s']
-    //= Status Green / Yellow / Red (maybe for probes?)
-
+    },
+}, function(err, conf) {
+  /**
+   * Main module entry
+   */
+  console.log(conf);
+  // Do whatever you need
+  require('./business_logic.js')(conf);
 });
-
-// Here we can see the default configuration values declared in the package.json
-console.log(conf);
 ```
 
-## Configuring a module
+## Module configuration
 
-In the package.json you can declare default options accessible in the Module under the attribute `config`. These values can be overriden by PM2 or Keymetrics.
+In the package.json you can declare default options accessible in the Module under the attribute `config`. These values can be overridden by PM2 or Keymetrics.
 
 ### Default values
 
@@ -179,10 +194,10 @@ These values are then accessible via the data returned by pmx.initModule().
 Example:
 
 ```javascript
-var conf = pmx.initModule({[...]});
-
-// Now we can read these values
-console.log(conf.days_interval);
+var conf = pmx.initModule({[...]}, function(err, conf) {
+  // Now we can read these values
+  console.log(conf.days_interval);
+});
 ```
 
 ## Override configuration values
@@ -210,28 +225,15 @@ $ pm2 set server-monitoring:days_interval 2
 
 In the main Keymetrics Dashboard, the module will have a button called "Configure". Once you click on it you will be able to access / modify all configuration variables exposed on the package.json!
 
-# PMX Helpers methods for Modules
+## Publishing a module
 
-## pmx.initModule(JSON)
+To update/publish a module, it's straightforward. The `pm2 publish` command will increment the minor version of the module, will `git add . ; git commit -m "VERSION"; git push origin master` then it will `npm publish`.
 
-This is the main method, it transforms the current application into a PM2 Module. It is preferred that this method is called before any other required modules.
-
-## pmx.configureModule(JSON)
-
-Add/Override a variable to module option (.axm_options)
-
-```javascript
-pmx.configureModule({
-  new_axm_option : true
-});
+```
+$ cd my-module
+$ pm2 publish
 ```
 
-## pmx.getConf()
+## You Built a module?
 
-Get configuration variables for modules (same object than what is returned by pmx.initModule())
-
-## pmx.resolvePidPaths([])
-
-Pass an array of possible pid file path location, open it and return the value.
-=======
-[Updated documention for module system](http://docs.keymetrics.io/docs/usage/building-module/)
+If you built an interesting module, please send us an email, we will promote your module and add it to Keymetrics: [https://keymetrics.io/contact/](https://keymetrics.io/contact/)
