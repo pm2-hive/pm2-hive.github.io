@@ -5,12 +5,10 @@ description: Easily deploy applications with PM2
 permalink: /docs/usage/deployment/
 ---
 
-PM2 embeds a simple and powerful deployment system with revision tracing.
-It's based on <a href="https://github.com/visionmedia/deploy">https://github.com/visionmedia/deploy</a>
-
-A step-by-step tutorial is available here : [Deploy and Iterate faster with PM2 deploy](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/)
-
 ## Getting started
+
+PM2 embeds a simple and powerful deployment system with revision tracing. [Another step by step tutorial here](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/)
+
 
 Please read the [Considerations to use PM2 deploy](#considerations)
 
