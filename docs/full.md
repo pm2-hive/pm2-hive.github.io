@@ -524,6 +524,8 @@ If the `alias` exists, you can use it as a CLI option, but do not forget to turn
 Once you declared this file, you will now just need to specify your Cloud Provider to start this file.
 
 
+## Auto load balancing: Cluster mode
+
 The **cluster mode** allows to scale your Node.js application accross all CPUs available and to update them without any downtime! Your application does not need any modification to be able to use this nifty feature.
 
 It's perfectly fitted for networked applications handling HTTP(s)/UDP/TCP connections.
@@ -879,6 +881,8 @@ By default, logs (error and output), pid files, dumps, and PM2 logs are located 
 └── pids
 ```
 
+
+## Log management
 
 PM2 allows you to manage logs easily. You can display all application logs in real-time, flush them, and reload them.
 There are also different ways to configure how PM2 will handle your logs (separated in different files, merged, with timestamp...) without modifying anything in your code.
@@ -2001,6 +2005,8 @@ pm2.connect(function() {
 });
 ```
 
+
+## Auto restart apps on file change
 
 PM2 can automatically restart your app when a file changes in the current directory or its subdirectories:
 

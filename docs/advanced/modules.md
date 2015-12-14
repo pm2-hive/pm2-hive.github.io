@@ -19,7 +19,7 @@ A PM2 module is a standalone software installed and managed by PM2. These softwa
 
 ## Module interface with Keymetrics
 
-With [Keymetrics](https://keymetrics.io/) you can create a customized interface with metrics monitoring and remote actions.
+With [Keymetrics](https://keymetrics.io/) you can [create a customized interface](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/#module-entry-point) with [metrics monitoring](http://docs.keymetrics.io/docs/pages/custom-metrics/) and [remote actions](http://docs.keymetrics.io/docs/pages/custom-actions/).
 
 This will give you this kind of result:
 
@@ -85,7 +85,7 @@ $ pm2 uninstall <module-name>
 
 ## package.json for options
 
-A **package.json must exists** in the module root folder. Then some attributes like `config` for configuration variables and `apps` for [module behavior options](http://pm2.keymetrics.io/docs/usage/application-declaration/) can be added.
+A **package.json must exists** in the module root folder. Then some attributes like `config` for [configuration variables](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/#module-configuration) and `apps` for [module behavior options](http://pm2.keymetrics.io/docs/usage/application-declaration/) can be added.
 
 ```javascript
 {
