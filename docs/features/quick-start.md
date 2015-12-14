@@ -27,9 +27,9 @@ $ pm2 start app.js
 
 ## Convenient setup
 
-[How To Use pm2 to Setup a Node.js Production Environment On An Ubuntu VPS](https://www.digitalocean.com/community/articles/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps)
-
 ### Setup Auto Completion
+
+It will help you autocompleting commands, application name and related:
 
 ```bash
 $ pm2 completion install
@@ -39,6 +39,8 @@ $ pm2 completion install
 
 ### Setup startup script
 
+Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this just run this command to generate an active startup script:
+
 ```bash
 $ pm2 startup
 ```
@@ -47,7 +49,7 @@ $ pm2 startup
 
 ## Folder structure
 
-Once PM2 is started, it automatically create these folders:
+Once PM2 is started, it will automatically create these folders:
 
 - `$HOME/.pm2` will contain all PM2 related files
 - `$HOME/.pm2/logs` will contain all applications logs
@@ -58,7 +60,11 @@ Once PM2 is started, it automatically create these folders:
 - `$HOME/.pm2/pub.sock` Socket file for publishable events
 - `$HOME/.pm2/conf.js` PM2 Configuration
 
+In Windows the $HOME environmenet variable may be $HOMEDRIVE + $HOMEPATH ([link](https://github.com/Unitech/pm2/blob/master/constants.js#L16))
+
 ## CheatSheet
+
+Here are some commands that worth to know. Just try them with a sample application or your current web application on your development machine:
 
 ```bash
 # Fork mode
@@ -110,6 +116,8 @@ $ pm2 start app.js --no-autorestart
 ```
 
 ## 42 ways of starting processes
+
+*ndlr;* 42 is the answer to life the universe and everything
 
 ```bash
 $ pm2 start app.js           # Start app.js
@@ -193,6 +201,16 @@ Options:
    --no-vizion                          skip vizion features (versioning control)
    --no-autorestart                     do not automatically restart apps
 ```
+
+## What's next?
+
+Learn how to declare all your applications behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
+
+Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability 
+
+Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/)
+
+Monitor your production applications with [Keymetrics](https://keymetrics.io/)
 
 ## How to update PM2
 
