@@ -137,16 +137,17 @@ pre {
     padding: 0 10px;
     top: 43px;
     left: 15px;
-    width: 134px;
+    width: 280px;
     border: 1px solid;
-    border-radius: 4px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    z-index: 9999;
+    font-family : helvetica;
 
     .entries {
         article {
             h3 {
                 font-size: 15px;
+                line-height: 18px;
+                margin: 11px 0px;
                 a {
                     color: #000000;
                 }
@@ -384,7 +385,7 @@ a:focus {
     display: block;
     padding: 2px 20px;
     font-size: 15px;
-    color: #8c8e87;
+    color: #5D5E5A;
 }
 
 .sidebar .nav > .active > ul, .sidebar .nav > li:hover > ul {
@@ -517,7 +518,7 @@ h6:target::before, .h6:target::before
         padding : 3px 0px;
     }
     & > li > a {
-        color : #8c8e87;
+        color: #5D5E5A;
         font-size : 15px;
         &:hover {
             text-decoration : none;
@@ -621,12 +622,18 @@ h6:target::before, .h6:target::before
 }
 
 @media (max-width: 767px) {
+    .docs-content {
+        padding-left : 15px !important;
+    }
     #search, #search-results {
         display: none;
     }
 }
 
 @media (max-width: 519px) {
+    .docs-content {
+        padding-left : 15px !important;
+    }
     .container-contributors .container .row > .col-xs-6 {
         width: 100% !important;
     }

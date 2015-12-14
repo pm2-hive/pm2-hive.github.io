@@ -5,6 +5,8 @@ description: Log management with PM2
 permalink: /docs/usage/log-management/
 ---
 
+## Log management
+
 PM2 allows you to manage logs easily. You can display all application logs in real-time, flush them, and reload them.
 There are also different ways to configure how PM2 will handle your logs (separated in different files, merged, with timestamp...) without modifying anything in your code.
 

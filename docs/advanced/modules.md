@@ -5,9 +5,11 @@ description: Standalone Node.JS applications runned by PM2
 permalink: /docs/advanced/pm2-module-system/
 ---
 
-![Module system](https://github.com/unitech/pm2/raw/master/pres/pm2-module.png)
+# Quick Start
 
-# Basics
+<br/>
+
+![Module system](https://github.com/unitech/pm2/raw/master/pres/pm2-module.png)
 
 ## What is a module?
 
@@ -21,12 +23,12 @@ With [Keymetrics](https://keymetrics.io/) you can create a customized interface 
 
 This will give you this kind of result:
 
-<a href="/images/mongodb-rack.png" title="Keymetrics interface explanation"><img src="/images/racks/mongodb-rack.png"/></a>
+<a href="/images/mongodb-rack.png" title="Keymetrics interface explanation"><img src="/images/mongodb-rack.png"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-mongodb" title="pm2-mongodb">pm2-mongodb module</a></center>
 
 or
 
-<a href="/images/server-monit.png" title="Keymetrics interface explanation"><img src="/images/racks/server-monit.png"/></a>
+<a href="/images/server-monit.png" title="Keymetrics interface explanation"><img src="/images/server-monit.png"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-server-monit" title="pm2-server-monit">pm2-server-monit-module</a></center>
 
 ## Managing a module
@@ -174,7 +176,7 @@ In the package.json you can declare default options accessible in the Module und
 
 Add default configuration values in package.json under the "config" attribute:
 
-```json
+```javascript
 {
  [...]
  "config": {             // Default configuration value
@@ -225,7 +227,7 @@ In the main Keymetrics Dashboard, the module will have a button called "Configur
 
 To update/publish a module, it's straightforward. The `pm2 publish` command will increment the minor version of the module, will `git add . ; git commit -m "VERSION"; git push origin master` then it will `npm publish`.
 
-```
+```bash
 $ cd my-module
 $ pm2 publish
 ```

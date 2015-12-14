@@ -1,4 +1,4 @@
-- title: Usage
+- title: Quick Start
   url: /docs/usage/quick-start/
   subnav:
     - title: Quick Start
@@ -6,7 +6,7 @@
     - title: Process Management
       url: /docs/usage/process-management/
 
-- title: Features
+- title: Documentation
   url: /docs/usage/cluster-mode/
   subnav:
     - title: Cluster Mode
@@ -37,16 +37,17 @@
       url: /docs/usage/knowledge/
     - title: Use PM2 in Cloud Providers
       url: /docs/usage/use-pm2-with-cloud-providers/
+    - title: Download as ZIP
+      url: https://github.com/Unitech/PM2/releases
+      blank: true
     - title: Contributing
       url: /docs/usage/contributing/
 
-- title: Advanced
+- title: Modules
   url: /docs/advanced/pm2-module-system/
   subnav:
     - title: Module System
       url: /docs/advanced/pm2-module-system/
-    - title: Single Page Doc
-      url: /docs/usage/pm2-doc-single-page/
-    - title: Download as ZIP
-      url: https://github.com/Unitech/PM2/releases
-      blank: true
+
+- title: Single page
+  url: /docs/usage/pm2-doc-single-page/

@@ -1,59 +1,77 @@
----
-layout: page
----
+<!DOCTYPE html>
+<html lang="en" {% if page.fullscreen %}class="babel-fullscreen"{% endif %} class="no-js">
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3" style="position : relative">
+  {% include head.html %}
 
-      <div id="navigator">
-        {% for item in site.data.nav %}
+  <body class="{% if page.title %}{{ page.title }}{% else %}home-page{% endif %}">
+    {% include header.html %}
 
-        <div class="nav-title">{{item.title}}</div>
-
-        <ul class="nav-left">
-          {% for item in item.subnav %}
-          <li>
-            <a {% if item.title == page.title %} class="main-active"{% endif %} {% if item.blank == true %} target="_blank" {% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a>
-
-            {% if item.title == page.title %}
-            <div class="sidebar">
-              <ul class="nav auto-nav"></ul>
-            </div>
-            {% endif %}
-
-          </li>
-          {% endfor %}
-        </ul>
-
-        {% endfor %}
-        <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}" title="Edit Page">
-          <button style="min-width : 130px"  class="btn btn-success">Edit this Page</button>
-        </a>
+    <div class="header-title">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>{{ page.title }}</h1>
+          </div>
+        </div>
       </div>
     </div>
 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3" style="position : relative">
 
-    <div class="col-md-9 docs-content">
-      {{ content }}
+          <div id="navigator">
+            {% for item in site.data.nav %}
 
-      <br/>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'pm2';
+            <div class="nav-title">{{item.title}}</div>
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            <ul class="nav-left">
+              {% for item in item.subnav %}
+              <li>
+                <a {% if item.title == page.title %} class="main-active"{% endif %} {% if item.blank == true %} target="_blank" {% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a>
+
+                {% if item.title == page.title %}
+                <div class="sidebar">
+                  <ul class="nav auto-nav"></ul>
+                </div>
+                {% endif %}
+
+              </li>
+              {% endfor %}
+            </ul>
+
+            {% endfor %}
+            <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}" title="Edit Page">
+              <button style="min-width : 130px"  class="btn btn-success">Edit this Page</button>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="col-md-9 docs-content">
+          {{ content }}
+
+          <br/><br/><br/><br/>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'pm2';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+
+      </div>
     </div>
 
-  </div>
-</div>
+    <script src="{{ "/scripts/docs.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
 
-<script src="{{ "/scripts/docs.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
+  </body>
+
+</html>
