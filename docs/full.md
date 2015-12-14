@@ -152,7 +152,9 @@ It's particularly usefull for micro service based applications.
 
 ## Application declaration file
 
-Here is an example of JSON configuration file, let's call it processes.json:
+Here is an example of JSON configuration file, let's call it processes.json. Please note that you can [inject javascript into this file](http://pm2.keymetrics.io/docs/usage/application-declaration/#using-javascript-in-the-declaration)
+
+Content of a sample process.json:
 
 ```js
 {
@@ -182,7 +184,7 @@ Here is an example of JSON configuration file, let's call it processes.json:
 }
 ```
 
-Then you can run:
+Then you can run the basics commands:
 
 ```bash
 # Start all apps
@@ -240,7 +242,27 @@ The following are valid options for JSON app declarations:
 }
 ```
 
-### List of all JSON-declaration fields avaibles
+## Using Javascript in the declaration
+
+You may have noticed that you can put comments, remove double quotes in JSON declaration file. It's because PM2 process the JSON file as a Javascript file meaning that you can inject Javascript into this file. For example you can access to the `process.env` object or you can use Javascript functions straight into your application file. By the way the file does not need to be prefixed to something else than *.json*
+
+Example of ecosystem.json:
+
+```javascript
+{
+  apps : [{
+    name   : process.env.USER,
+    script : [".", "/", "e", "cho.js"].join('')
+  }, {
+    name   : 'API-2',
+    script : ["./", "api.js"].join('')
+  }]
+}
+```
+
+[Bash tests](https://github.com/Unitech/pm2/blob/master/test/bash/json_file.sh#L59)
+
+## List of attributes available
 
 |        Field       |   Type  |                  Example                  |                                                                                          Description                                                                                         |
 |:------------------:|:-------:|:-----------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -658,8 +680,10 @@ $ pm2 ecosystem
 In the current folder a `ecosystem.json` file will be created.
 It contains this:
 
-```json
+```javascript
 {
+  // Applications to run with their options
+  // (See Application Declaration section)
   "apps" : [{
     "name"      : "API",
     "script"    : "app.js",
@@ -673,17 +697,30 @@ It contains this:
     "name"      : "WEB",
     "script"    : "web.js"
   }],
+  // Deployment part
+  // Here you describe each environment
   "deploy" : {
     "production" : {
       "user" : "node",
+      // Multi host is possible, just by passing IPs/hostname as an array
       "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
+      // Branch
       "ref"  : "origin/master",
+      // Git repository to clone
       "repo" : "git@github.com:repo.git",
+      // Path of the application on target servers
       "path" : "/var/www/production",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production",
+      // Commands to execute locally (on the same machine you deploy things)
+      // Can be multiple commands separated by the character ";"
       "pre-deploy-local" : "echo 'This is a local executed command'"
+      // Commands to be executed on the server after the repo has been cloned
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env production"
+      // Environment variables that must be injected in all applications on this env 
+      "env"  : {
+        "NODE_ENV": "production"
+      }
     },
-    "dev" : {
+    "staging" : {
       "user" : "node",
       "host" : "212.83.163.1",
       "ref"  : "origin/master",
@@ -691,7 +728,7 @@ It contains this:
       "path" : "/var/www/development",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env dev",
       "env"  : {
-        "NODE_ENV": "dev"
+        "NODE_ENV": "staging"
       }
     }
   }
@@ -759,12 +796,13 @@ $ pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 
 To deploy to multiple host in the same time, just declare each host in an array under the attribute `host`
 
-```json
+```javascript
 {
   [...]
   "deploy" : {
     "production" : {
       "user" : "node",
+      // Multi host in a js array
       "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
@@ -781,7 +819,7 @@ To deploy to multiple host in the same time, just declare each host in an array 
 
 Just add the "key" attribute with file path to the .pem key within the attributes "user", "hosts"...
 
-```
+```javascript
     "production" : {
       "key"  : "/path/to/some.pem",
       "user" : "node",
@@ -908,7 +946,7 @@ Options:
 
 **Note**: To merge all logs into the same file set the same value for `error_file`, `out_file`.
 
-### Settings up a native logrotate
+### Setting up a native logrotate
 
 ```bash
 $ sudo pm2 logrotate -u user
@@ -1351,9 +1389,9 @@ $ pm2 start app.js
 
 ## Convenient setup
 
-[How To Use pm2 to Setup a Node.js Production Environment On An Ubuntu VPS](https://www.digitalocean.com/community/articles/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps)
-
 ### Setup Auto Completion
+
+It will help you autocompleting commands, application name and related:
 
 ```bash
 $ pm2 completion install
@@ -1363,6 +1401,8 @@ $ pm2 completion install
 
 ### Setup startup script
 
+Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this just run this command to generate an active startup script:
+
 ```bash
 $ pm2 startup
 ```
@@ -1371,7 +1411,7 @@ $ pm2 startup
 
 ## Folder structure
 
-Once PM2 is started, it automatically create these folders:
+Once PM2 is started, it will automatically create these folders:
 
 - `$HOME/.pm2` will contain all PM2 related files
 - `$HOME/.pm2/logs` will contain all applications logs
@@ -1382,7 +1422,11 @@ Once PM2 is started, it automatically create these folders:
 - `$HOME/.pm2/pub.sock` Socket file for publishable events
 - `$HOME/.pm2/conf.js` PM2 Configuration
 
+In Windows the $HOME environmenet variable may be $HOMEDRIVE + $HOMEPATH ([link](https://github.com/Unitech/pm2/blob/master/constants.js#L16))
+
 ## CheatSheet
+
+Here are some commands that worth to know. Just try them with a sample application or your current web application on your development machine:
 
 ```bash
 # Fork mode
@@ -1434,6 +1478,8 @@ $ pm2 start app.js --no-autorestart
 ```
 
 ## 42 ways of starting processes
+
+*ndlr;* 42 is the answer to life the universe and everything
 
 ```bash
 $ pm2 start app.js           # Start app.js
@@ -1518,6 +1564,16 @@ Options:
    --no-autorestart                     do not automatically restart apps
 ```
 
+## What's next?
+
+Learn how to declare all your applications behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
+
+Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability 
+
+Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/)
+
+Monitor your production applications with [Keymetrics](https://keymetrics.io/)
+
 ## How to update PM2
 
 Install the latest pm2 version :
@@ -1562,7 +1618,7 @@ $ . <(pm2 completion)
 
 When a process is restarted/stoped by PM2, some signals are sent in a given order to your process.
 
-First **SIGINT** signals are sent to your process [every 100ms](https://github.com/Unitech/pm2/blob/master/lib/God/Methods.js#L221). If your application does not get stopped (or stop itself) after [KILL_TIMEOUT ms (default to 1,6second)](https://github.com/Unitech/pm2/blob/master/constants.js#L80), it will send a final **SIGTERM** signal.
+First **SIGINT** signals are sent to your process [every 100ms](https://github.com/Unitech/pm2/blob/master/lib/God/Methods.js#L221). If your application does not get stopped (or stop itself) after [KILL_TIMEOUT ms (default to 1,6second)](https://github.com/Unitech/pm2/blob/master/constants.js#L80), it will send a final **SIGKILL** signal.
 
 ## Cleaning states and jobs before stop
 
@@ -1589,32 +1645,15 @@ process.on('SIGINT', function() {
 });
 ```
 
-## Custom delay before SIGTERM
+## Custom delay before SIGKILL
 
-If your application receive the SIGTERM signal too soon, you can configure PM2 to increase the [KILL_TIMEOUT](https://github.com/Unitech/pm2/blob/master/constants.js#L80) variable.
+If your application receive the SIGKILL signal too soon, you can configure PM2 to increase the [KILL_TIMEOUT](https://github.com/Unitech/pm2/blob/master/constants.js#L80) variable.
 
 To increase this value, add the PM2_KILL_TIMEOUT to /etc/environment and update PM2 via `pm2 update`
 
-## Forbid PM2 to kill a process
+## Note about SIGKILL
 
-Catch the **SIGINT** and **SIGTERM** signal:
-
-```javascript
-//[...]
-
-process.on('SIGINT', function() {
-  clearInterval(my_interval);
-  my_db_connection.close();
-  current_jobs.save();
-});
-
-process.on('SIGTERM', function() {
-  // Wait 10 seconds before exiting process
-  setTimeout(function() {
-    process.exit(0);
-  }, 10000);
-});
-```
+The **SIGKILL** event cannot be intercepted in your application (newer Node.js version will throw an error if you are trying to install a signal handler on SIGKILL or SIGSTOP)
 
 
 ## Allow PM2 to bind applications on ports 80/443 without root

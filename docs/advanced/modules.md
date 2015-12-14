@@ -11,13 +11,9 @@ permalink: /docs/advanced/pm2-module-system/
 
 ## What is a module?
 
-A PM2 module is a standalone software installed and managed by PM2.
+A PM2 module is a standalone software installed and managed by PM2. These softwares are pulled from the NPM repository and are published like a common Javascript library on NPM.
 
-These softwares are pulled from the NPM repository and are published like a common Javascript library on NPM.
-
-## What can be developed as a module?
-
-Your creativity is the limit. A module can do anything, from a log rotation module, a load balancer, a Node.js based wikipedia, a DNS server, a SMTP server, an antivirus... Your creativity is the limit!
+[Anyone can create a module doing anything](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/#creating-a-module), your creativity is the limit. A module can be a log rotation module, a load balancer, a Node.js based wikipedia, a DNS server, a SMTP server, an antivirus... Your creativity is the limit!
 
 ## Module interface with Keymetrics
 
@@ -25,12 +21,12 @@ With [Keymetrics](https://keymetrics.io/) you can create a customized interface 
 
 This will give you this kind of result:
 
-<a href="/images/racks/mongodb-rack.png" title="Keymetrics interface explanation"><img src="/images/racks/mongodb-rack.png"/></a>
+<a href="/images/mongodb-rack.png" title="Keymetrics interface explanation"><img src="/images/racks/mongodb-rack.png"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-mongodb" title="pm2-mongodb">pm2-mongodb module</a></center>
 
 or
 
-<a href="/images/racks/server-monit.png" title="Keymetrics interface explanation"><img src="/images/racks/server-monit.png"/></a>
+<a href="/images/server-monit.png" title="Keymetrics interface explanation"><img src="/images/racks/server-monit.png"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-server-monit" title="pm2-server-monit">pm2-server-monit-module</a></center>
 
 ## Managing a module
@@ -54,7 +50,7 @@ $ pm2 uninstall <module-name>
 $ pm2 publish
 ```
 
-## Developing a module
+## Creating a module
 
 To generate a sample module:
 
@@ -85,9 +81,9 @@ $ pm2 uninstall <module-name>
 
 # Advanced
 
-## Package.json: Set options and behaviors
+## package.json for options
 
-A package.json must exists in the module root folder. Then some attributes like `config` for configuration variables and `apps` for [module behavior options](http://pm2.keymetrics.io/docs/usage/application-declaration/) can be added.
+A **package.json must exists** in the module root folder. Then some attributes like `config` for configuration variables and `apps` for [module behavior options](http://pm2.keymetrics.io/docs/usage/application-declaration/) can be added.
 
 ```javascript
 {
