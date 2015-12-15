@@ -9,11 +9,11 @@ PM2 empowers your process management workflow, by allowing you to fine-tune the 
 
 It's particularly usefull for micro service based applications.
 
-## Application declaration file
+## Ecosystem.json
 
-Here is an example of JSON configuration file, let's call it processes.json. Please note that you can [inject javascript into this file](http://pm2.keymetrics.io/docs/usage/application-declaration/#using-javascript-in-the-declaration)
+Here is an example of JSON configuration file, let's call it ecosystem.json. Please note that you can [inject javascript into this file](http://pm2.keymetrics.io/docs/usage/application-declaration/#using-javascript-in-the-declaration)
 
-Content of a sample process.json:
+Content of a sample ecosystem.json:
 
 ```js
 {
@@ -47,24 +47,24 @@ Then you can run the basics commands:
 
 ```bash
 # Start all apps
-$ pm2 start processes.json
+$ pm2 start ecosystem.json
 
 # Stop
-$ pm2 stop processes.json
+$ pm2 stop ecosystem.json
 
 # Restart
-$ pm2 start processes.json
+$ pm2 start ecosystem.json
 ## Or
-$ pm2 restart processes.json
+$ pm2 restart ecosystem.json
 
 # Reload
-$ pm2 reload processes.json
+$ pm2 reload ecosystem.json
 
 # Graceful Reload
-$ pm2 gracefulReload processes.json
+$ pm2 gracefulReload ecosystem.json
 
 # Delete from PM2
-$ pm2 delete processes.json
+$ pm2 delete ecosystem.json
 ```
 
 ## Options
