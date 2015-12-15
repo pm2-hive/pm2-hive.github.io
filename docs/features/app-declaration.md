@@ -123,7 +123,6 @@ Example of ecosystem.json:
 
 ## List of attributes available
 
-<div class="table">
 |        Field       |   Type  |                  Example                  |                                                                                          Description                                                                                         |
 |:------------------:|:-------:|:-----------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        name        |  string |                  "myAPI"                  |                                                                                name your app will have in PM2                                                                                |
@@ -152,131 +151,10 @@ Example of ecosystem.json:
 |        force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2                                          |
 |     next_gen_js    | boolean |                    true                   |                             defaults to false. if true, PM2 will launch your app using embedded BabelJS features which means you can run ES6/ES7 javascript code                             |
 |     restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.                             |
-</div>
 
 ## Schema
 
-The completely definitions:
-
-```JSON
-{
-  "script": {
-    "type": "string",
-    "require": true
-  },
-  "args": {
-    "type": [
-      "array",
-      "string"
-    ]
-  },
-  "node_args": {
-    "type": [
-      "array",
-      "string"
-    ]
-  },
-  "name": {
-    "type": "string"
-  },
-  "max_memory_restart": {
-    "type": [
-      "string",
-      "number"
-    ],
-    "regex": "^\\d+(G|M|K)?$",
-    "ext_type": "sbyte",
-    "desc": "it should be a NUMBER - byte, \"[NUMBER]G\"(Gigabyte), \"[NUMBER]M\"(Megabyte) or \"[NUMBER]K\"(Kilobyte)"
-  },
-  "instances": {
-    "type": "number",
-    "min": 0
-  },
-  "log_file": {
-    "type": [
-      "boolean",
-      "string"
-    ],
-    "alias": "log"
-  },
-  "error_file": {
-    "type": "string",
-    "alias": "error"
-  },
-  "out_file": {
-    "type": "string",
-    "alias": "output"
-  },
-  "pid_file": {
-    "type": "string",
-    "alias": "pid"
-  },
-  "cron_restart": {
-    "type": "string",
-    "alias": "cron"
-  },
-  "cwd": {
-    "type": "string"
-  },
-  "merge_logs": {
-    "type": "boolean"
-  },
-  "watch": {
-    "type": "boolean"
-  },
-  "ignore_watch": {
-    "type": [
-      "array",
-      "string"
-    ]
-  },
-  "watch_options": {
-    "type": "object"
-  },
-  "env": {
-    "type": ["object", "string"]
-  },
-  "^env_\\S*$": {
-    "type": [
-      "object",
-      "string"
-    ]
-  },
-  "log_date_format": {
-    "type": "string"
-  },
-  "min_uptime": {
-    "type": [
-      "number",
-      "string"
-    ],
-    "regex": "^\\d+(h|m|s)?$",
-    "desc": "it should be a NUMBER - milliseconds, \"[NUMBER]h\"(hours), \"[NUMBER]m\"(minutes) or \"[NUMBER]s\"(seconds)",
-    "min": 100,
-    "ext_type": "stime"
-  },
-  "max_restarts": {
-    "type": "number",
-    "min": 0
-  },
-  "exec_mode": {
-    "type": "string",
-    "regex": "^(cluster|fork)(_mode)?$",
-    "alias": "executeCommand",
-    "desc": "it should be \"cluster\"(\"cluster_mode\") or \"fork\"(\"fork_mode\") only"
-  },
-  "exec_interpreter": {
-    "type": "string",
-    "alias": "interpreter"
-  },
-  "write": {
-    "type": "boolean"
-  },
-  "force": {
-    "type": "boolean"
-  }
-}
-```
+<script src="https://gist-it.appspot.com/github/Unitech/pm2/blob/master/lib/schema.json"></script>
 
 ## Considerations
 
