@@ -11,6 +11,8 @@
   subnav:
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
+    - title: Setup Auto Completion
+      url: /docs/usage/auto-completion/
     - title: Watch & Restart
       url: /docs/usage/watch-and-restart/
     - title: Signals and clean restarts
@@ -23,8 +25,6 @@
       url: /docs/usage/application-declaration/
     - title: Deployment
       url: /docs/usage/deployment/
-    - title: Setup Auto Completion
-      url: /docs/usage/auto-completion/
     - title: Startup Script
       url: /docs/usage/startup/
     - title: pm2-dev for development
