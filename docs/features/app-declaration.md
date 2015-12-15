@@ -123,7 +123,7 @@ Example of ecosystem.json:
 
 ## List of attributes available
 
-{:.table}
+<div class="table">
 |        Field       |   Type  |                  Example                  |                                                                                          Description                                                                                         |
 |:------------------:|:-------:|:-----------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        name        |  string |                  "myAPI"                  |                                                                                name your app will have in PM2                                                                                |
@@ -152,6 +152,7 @@ Example of ecosystem.json:
 |        force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2                                          |
 |     next_gen_js    | boolean |                    true                   |                             defaults to false. if true, PM2 will launch your app using embedded BabelJS features which means you can run ES6/ES7 javascript code                             |
 |     restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.                             |
+</div>
 
 ## Schema
 
