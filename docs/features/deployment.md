@@ -5,7 +5,7 @@ description: Easily deploy applications with PM2
 permalink: /docs/usage/deployment/
 ---
 
-## Ecosystem
+## Ecosystem.json for Deployments
 
 The goal is to make deployment from 1 to 20 machines in 1 to 20 environments as simple as:
 
@@ -16,7 +16,6 @@ $ pm2 deploy ecosystem.json production
 ## Getting started
 
 PM2 embeds a simple and powerful deployment system with revision tracing. [Another step by step tutorial here](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/)
-
 
 Please read the [Considerations to use PM2 deploy](#considerations)
 
@@ -39,6 +38,8 @@ It contains this:
     "env": {
       "COMMON_VARIABLE": "true"
     },
+    // Environment variables injected when starting with --env production
+    // http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments
     "env_production" : {
       "NODE_ENV": "production"
     }
@@ -132,6 +133,12 @@ $ pm2 deploy <configuration_file> <environment> <command>
     list                 list previous deploy commits
     [ref]                deploy to [ref], the "ref" setting, or latest tag
 ```
+
+## Use different set of env variables
+
+In the `post-deploy` attribute, you may have noticed the command `pm2 startOrRestart ecosystem.json --env production`. The `--env <environment_name>` allow to inject different set of environment variables.
+
+Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments)
 
 ## Related Commands
 
