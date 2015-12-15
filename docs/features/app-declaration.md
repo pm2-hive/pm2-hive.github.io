@@ -112,7 +112,7 @@ The following are valid options for JSON app declarations:
 }
 ```
 
-## Switching to different environments
+## Switching to different environments-specific variables
 
 You may have noticed that you can declare multiple variable environments with the attribute `env_*` (e.g. env_production, env_staging...). These can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
 
