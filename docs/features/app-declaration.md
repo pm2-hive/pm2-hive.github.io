@@ -27,8 +27,15 @@ Content of a sample ecosystem.json:
     "merge_logs"  : true,
     "cwd"         : "/this/is/a/path/to/start/script",
     "env": {
-        "NODE_ENV": "production",
-        "AWESOME_SERVICE_API_TOKEN": "xxx"
+      "NODE_ENV": "development",
+      "AWESOME_SERVICE_API_TOKEN": "xxx"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    },
+    "env_staging" : {
+       "NODE_ENV" : "staging",
+       "TEST"     : true
     }
   },{
     // Application #2
@@ -94,11 +101,27 @@ The following are valid options for JSON app declarations:
   "exec_mode"        : "fork",
   "autorestart"      : false, // enable/disable automatic restart when an app crashes or exits
   "vizion"           : false, // enable/disable vizion features (versioning control)
+  // Default environment variables that will be injected in any environment and at any start
   "env": {
     "NODE_ENV": "production",
     "AWESOME_SERVICE_API_TOKEN": "xxx"
   }
+  "env_*" : {
+    "SPECIFIC_ENV" : true
+  }
 }
+```
+
+## Switching to different environments
+
+You may have noticed that you can declare multiple variable environments with the attribute `env_*` (e.g. env_production, env_staging...). These can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
+
+```bash
+# Inject what is declared in env_production
+$ pm2 start app.json --env production 
+
+# Inject what is declared in env_staging
+$ pm2 restart app.json --env staging
 ```
 
 ## Using Javascript in the declaration
