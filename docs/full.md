@@ -150,11 +150,11 @@ PM2 empowers your process management workflow, by allowing you to fine-tune the 
 
 It's particularly usefull for micro service based applications.
 
-## Application declaration file
+## Ecosystem.json
 
-Here is an example of JSON configuration file, let's call it processes.json. Please note that you can [inject javascript into this file](http://pm2.keymetrics.io/docs/usage/application-declaration/#using-javascript-in-the-declaration)
+Here is an example of JSON configuration file, let's call it ecosystem.json. Please note that you can [inject javascript into this file](http://pm2.keymetrics.io/docs/usage/application-declaration/#using-javascript-in-the-declaration)
 
-Content of a sample process.json:
+Content of a sample ecosystem.json:
 
 ```js
 {
@@ -168,8 +168,15 @@ Content of a sample process.json:
     "merge_logs"  : true,
     "cwd"         : "/this/is/a/path/to/start/script",
     "env": {
-        "NODE_ENV": "production",
-        "AWESOME_SERVICE_API_TOKEN": "xxx"
+      "NODE_ENV": "development",
+      "AWESOME_SERVICE_API_TOKEN": "xxx"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    },
+    "env_staging" : {
+       "NODE_ENV" : "staging",
+       "TEST"     : true
     }
   },{
     // Application #2
@@ -188,24 +195,24 @@ Then you can run the basics commands:
 
 ```bash
 # Start all apps
-$ pm2 start processes.json
+$ pm2 start ecosystem.json
 
 # Stop
-$ pm2 stop processes.json
+$ pm2 stop ecosystem.json
 
 # Restart
-$ pm2 start processes.json
+$ pm2 start ecosystem.json
 ## Or
-$ pm2 restart processes.json
+$ pm2 restart ecosystem.json
 
 # Reload
-$ pm2 reload processes.json
+$ pm2 reload ecosystem.json
 
 # Graceful Reload
-$ pm2 gracefulReload processes.json
+$ pm2 gracefulReload ecosystem.json
 
 # Delete from PM2
-$ pm2 delete processes.json
+$ pm2 delete ecosystem.json
 ```
 
 ## Options
@@ -235,11 +242,27 @@ The following are valid options for JSON app declarations:
   "exec_mode"        : "fork",
   "autorestart"      : false, // enable/disable automatic restart when an app crashes or exits
   "vizion"           : false, // enable/disable vizion features (versioning control)
+  // Default environment variables that will be injected in any environment and at any start
   "env": {
     "NODE_ENV": "production",
     "AWESOME_SERVICE_API_TOKEN": "xxx"
   }
+  "env_*" : {
+    "SPECIFIC_ENV" : true
+  }
 }
+```
+
+## Switching to different environments
+
+You may have noticed that you can declare multiple variable environments with the attribute `env_*` (e.g. env_production, env_staging...). These can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
+
+```bash
+# Inject what is declared in env_production
+$ pm2 start app.json --env production 
+
+# Inject what is declared in env_staging
+$ pm2 restart app.json --env staging
 ```
 
 ## Using Javascript in the declaration
@@ -263,6 +286,7 @@ Example of ecosystem.json:
 [Bash tests](https://github.com/Unitech/pm2/blob/master/test/bash/json_file.sh#L59)
 
 ## List of attributes available
+
 
 |        Field       |   Type  |                  Example                  |                                                                                          Description                                                                                         |
 |:------------------:|:-------:|:-----------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -295,127 +319,7 @@ Example of ecosystem.json:
 
 ## Schema
 
-The completely definitions:
-
-```JSON
-{
-  "script": {
-    "type": "string",
-    "require": true
-  },
-  "args": {
-    "type": [
-      "array",
-      "string"
-    ]
-  },
-  "node_args": {
-    "type": [
-      "array",
-      "string"
-    ]
-  },
-  "name": {
-    "type": "string"
-  },
-  "max_memory_restart": {
-    "type": [
-      "string",
-      "number"
-    ],
-    "regex": "^\\d+(G|M|K)?$",
-    "ext_type": "sbyte",
-    "desc": "it should be a NUMBER - byte, \"[NUMBER]G\"(Gigabyte), \"[NUMBER]M\"(Megabyte) or \"[NUMBER]K\"(Kilobyte)"
-  },
-  "instances": {
-    "type": "number",
-    "min": 0
-  },
-  "log_file": {
-    "type": [
-      "boolean",
-      "string"
-    ],
-    "alias": "log"
-  },
-  "error_file": {
-    "type": "string",
-    "alias": "error"
-  },
-  "out_file": {
-    "type": "string",
-    "alias": "output"
-  },
-  "pid_file": {
-    "type": "string",
-    "alias": "pid"
-  },
-  "cron_restart": {
-    "type": "string",
-    "alias": "cron"
-  },
-  "cwd": {
-    "type": "string"
-  },
-  "merge_logs": {
-    "type": "boolean"
-  },
-  "watch": {
-    "type": "boolean"
-  },
-  "ignore_watch": {
-    "type": [
-      "array",
-      "string"
-    ]
-  },
-  "watch_options": {
-    "type": "object"
-  },
-  "env": {
-    "type": ["object", "string"]
-  },
-  "^env_\\S*$": {
-    "type": [
-      "object",
-      "string"
-    ]
-  },
-  "log_date_format": {
-    "type": "string"
-  },
-  "min_uptime": {
-    "type": [
-      "number",
-      "string"
-    ],
-    "regex": "^\\d+(h|m|s)?$",
-    "desc": "it should be a NUMBER - milliseconds, \"[NUMBER]h\"(hours), \"[NUMBER]m\"(minutes) or \"[NUMBER]s\"(seconds)",
-    "min": 100,
-    "ext_type": "stime"
-  },
-  "max_restarts": {
-    "type": "number",
-    "min": 0
-  },
-  "exec_mode": {
-    "type": "string",
-    "regex": "^(cluster|fork)(_mode)?$",
-    "alias": "executeCommand",
-    "desc": "it should be \"cluster\"(\"cluster_mode\") or \"fork\"(\"fork_mode\") only"
-  },
-  "exec_interpreter": {
-    "type": "string",
-    "alias": "interpreter"
-  },
-  "write": {
-    "type": "boolean"
-  },
-  "force": {
-    "type": "boolean"
-  }
-}
-```
+<script src="https://gist-it.appspot.com/github/Unitech/pm2/blob/master/lib/schema.json"></script>
 
 ## Considerations
 
@@ -664,12 +568,17 @@ $ nvm alias default v0.11.14
 ```
 
 
-PM2 embeds a simple and powerful deployment system with revision tracing.
-It's based on <a href="https://github.com/visionmedia/deploy">https://github.com/visionmedia/deploy</a>
+## Ecosystem.json for Deployments
 
-A step-by-step tutorial is available here : [Deploy and Iterate faster with PM2 deploy](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/)
+The goal is to make deployment from 1 to 20 machines in 1 to 20 environments as simple as:
+
+```bash
+$ pm2 deploy ecosystem.json production
+```
 
 ## Getting started
+
+PM2 embeds a simple and powerful deployment system with revision tracing. [Another step by step tutorial here](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/)
 
 Please read the [Considerations to use PM2 deploy](#considerations)
 
@@ -692,6 +601,8 @@ It contains this:
     "env": {
       "COMMON_VARIABLE": "true"
     },
+    // Environment variables injected when starting with --env production
+    // http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments
     "env_production" : {
       "NODE_ENV": "production"
     }
@@ -785,6 +696,12 @@ $ pm2 deploy <configuration_file> <environment> <command>
     list                 list previous deploy commits
     [ref]                deploy to [ref], the "ref" setting, or latest tag
 ```
+
+## Use different set of env variables
+
+In the `post-deploy` attribute, you may have noticed the command `pm2 startOrRestart ecosystem.json --env production`. The `--env <environment_name>` allow to inject different set of environment variables.
+
+Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments)
 
 ## Related Commands
 
@@ -1620,9 +1537,9 @@ $ . <(pm2 completion)
 
 ## Signals
 
-When a process is restarted/stoped by PM2, some signals are sent in a given order to your process.
+When a process is stopped/restarted by PM2, some process signals are sent in a given order to your process.
 
-First **SIGINT** signals are sent to your process [every 100ms](https://github.com/Unitech/pm2/blob/master/lib/God/Methods.js#L221). If your application does not get stopped (or stop itself) after [KILL_TIMEOUT ms (default to 1,6second)](https://github.com/Unitech/pm2/blob/master/constants.js#L80), it will send a final **SIGKILL** signal.
+First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s (PM2_KILL_TIMEOUT (PM2 < 0.16.0) or --kill-timeout <number> (PM2 > 0.16.0)) it will receive a **SIGKILL** signal to force the process exit.
 
 ## Cleaning states and jobs before stop
 
