@@ -20,6 +20,37 @@
       <div class="row">
         <div class="col-md-3" style="position : relative">
 
+
+          <div id="search">
+            <form action="#" method="get" onsubmit="return false" style="margin-top : 25px">
+              <div class="input-group" style="width: 100%">
+                <span class="search-icon fa fa-search"></span>
+                <input type="text" class="form-control" placeholder="Search..." id="search-query" name="q" autocomplete="off">
+              </div>
+            </form>
+          </div>
+
+          <section id="search-results" style="display: none;">
+            <div class="entries">
+            </div>
+          </section>
+
+          {% raw %}
+          <script id="search-results-template" type="text/mustache">
+            {{#entries}}
+            <article>
+              <h3>
+                {{#date}}<small><time datetime="{{pubdate}}" pubdate>{{displaydate}}</time></small>{{/date}}
+                <a href="{{url}}">{{title}}</a>
+              </h3>
+            </article>
+            {{/entries}}
+          </script>
+          {% endraw %}
+
+
+
+
           <div id="navigator">
             {% for item in site.data.nav %}
 

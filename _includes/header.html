@@ -37,32 +37,6 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a class="btn-monit" target="_blank" title="Monitor PM2" target="_blank" href="https://keymetrics.io/"><button class="btn btn-info" type="button">Monitor PM2</button></a></li>
         <li>
-          <div id="search">
-            <form action="#" class="navbar-form" method="get" onsubmit="return false">
-              <div class="input-group">
-                <span class="search-icon fa fa-search"></span>
-                <input type="text" class="form-control" placeholder="Search..." id="search-query" name="q" autocomplete="off">
-              </div>
-            </form>
-          </div>
-
-          <section id="search-results" style="display: none;">
-            <div class="entries">
-            </div>
-          </section>
-
-          {% raw %}
-          <script id="search-results-template" type="text/mustache">
-            {{#entries}}
-              <article>
-                <h3>
-                  {{#date}}<small><time datetime="{{pubdate}}" pubdate>{{displaydate}}</time></small>{{/date}}
-                  <a href="{{url}}">{{title}}</a>
-                </h3>
-              </article>
-            {{/entries}}
-          </script>
-          {% endraw %}
         </li>
 
 
