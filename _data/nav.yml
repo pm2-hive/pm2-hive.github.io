@@ -27,8 +27,6 @@
       url: /docs/usage/deployment/
     - title: Startup Script
       url: /docs/usage/startup/
-    - title: pm2-dev for development
-      url: /docs/usage/pm2-development/
     - title: Specifics, ES6/AuthBind...
       url: /docs/usage/specifics/
     - title: PM2 API
