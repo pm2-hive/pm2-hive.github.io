@@ -12,7 +12,7 @@ By using the PM2 programmatic interface, you can manage your Node.js app very ea
 
 ## Heroku / Google App Engine / Azure
 
-First add PM2 as a dependency in you package.json, then just create a main.js file with this content (please modify according to your needs):
+First add PM2 as a dependency in your package.json, then just create a main.js file with this content (please modify according to your needs):
 
 ### Without Keymetrics
 
