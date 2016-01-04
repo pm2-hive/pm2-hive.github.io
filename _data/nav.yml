@@ -11,6 +11,8 @@
   subnav:
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
+    - title: Update PM2
+      url: /docs/usage/update-pm2/
     - title: Setup Auto Completion
       url: /docs/usage/auto-completion/
     - title: Watch & Restart

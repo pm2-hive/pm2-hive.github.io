@@ -1763,8 +1763,7 @@ You may also use the `babel-node` interpreter by setting:
 - https://medium.com/tech-talk/e7c0b0e5ce3c
 
 
-PM2 can **generate startup scripts and configure them**.
-PM2 is also smart enough to **save all your process list** and to **bring back all your processes at machine restart**.
+PM2 can **generates startup scripts and configure them** and is also smart enough to **save all your process list** and to **bring back all your processes at machine restart**.
 
 ## Command
 
@@ -1784,6 +1783,8 @@ $ pm2 save
 
 **Warning** It's tricky to make this feature work generically, so once PM2 has setup your startup script, reboot your server to make sure that PM2 has launched your apps!
 
+**Note** If you need to change some environmen
+
 ## Startup Systems support
 
 Three types of startup scripts are available:
@@ -1798,7 +1799,7 @@ The startup options are using:
 - **centos**/**redhat** will use `chkconfig` and the script `lib/scripts/pm2-init-centos.sh`
 - **gentoo** will use `rc-update` and the script `lib/scripts/pm2`
 - **systemd** will use `systemctl` and the script `lib/scripts/pm2.service`
-- **darwin** will use `launchd` to load a specific `plist` to resurrect processes after reboot.
+- **darwin** will use `launchd` to load a specific `plist` to resurrect processes after reboot
 
 ## User permissions
 
@@ -1809,6 +1810,11 @@ Just use the `-u <username>` option !
 ```bash
 $ pm2 startup ubuntu -u www
 ```
+
+## Override maximum open file descriptor
+
+The environment variable `MAX_OPEN_FILE` allows to change the maximum open file descriptor.
+Add the `MAX_OPEN_FILE` variable in /etc/default/pm2 
 
 ## Related commands
 
