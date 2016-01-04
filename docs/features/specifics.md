@@ -5,7 +5,7 @@ description: Specifics, ES6/AuthBind...
 permalink: /docs/usage/specifics/
 ---
 
-## Allow PM2 to bind applications on ports 80/443 without root
+## Listening on ports 80/443 without root
 
 It’s a general rule that you shouldn’t run node as root, but only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024.
 
@@ -102,7 +102,7 @@ $ pm2 start server.coffee --interpreter coffee
 
 That's all!
 
-## JSON app configuration via pipe from stdout
+## Piping JSON
 
 Pull-requests:
 - [#273](https://github.com/Unitech/pm2/pull/273)
