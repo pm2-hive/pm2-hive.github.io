@@ -5,14 +5,6 @@ description: Easily deploy applications with PM2
 permalink: /docs/usage/deployment/
 ---
 
-## Ecosystem.json for Deployments
-
-The goal is to make deployment from 1 to 20 machines in 1 to 20 environments as simple as:
-
-```bash
-$ pm2 deploy ecosystem.json production
-```
-
 ## Getting started
 
 PM2 embeds a simple and powerful deployment system with revision tracing. [Another step by step tutorial here](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/)
