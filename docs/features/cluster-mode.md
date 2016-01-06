@@ -5,7 +5,7 @@ description: Cluster Mode for Node.js
 permalink: /docs/usage/cluster-mode/
 ---
 
-## Auto load balancing: Cluster mode
+## Automatic load balancing
 
 The **cluster mode** allows to scale your Node.js application accross all CPUs available and to update them without any downtime! Your application does not need any modification to be able to use this nifty feature.
 
