@@ -5,6 +5,8 @@ description: Auto complete commands and arguments with PM2
 permalink: /docs/usage/auto-completion/
 ---
 
+## CLI completion
+
 Tab-completion for PM2:
 
 ```bash
