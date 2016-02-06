@@ -25,7 +25,7 @@ $ pm2 save
 
 **Warning** It's tricky to make this feature work generically, so once PM2 has setup your startup script, reboot your server to make sure that PM2 has launched your apps!
 
-**Note** If you need to change some environmen
+**Note** If you need to change some environment
 
 ## Startup Systems support
 
@@ -47,7 +47,7 @@ The startup options are using:
 
 Let's say you want the startup script to be executed under another user.
 
-Just use the `-u <username>` option !
+Just use the `-u <username>` option!
 
 ```bash
 $ pm2 startup ubuntu -u www
