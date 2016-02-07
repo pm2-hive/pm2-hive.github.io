@@ -27,8 +27,6 @@ Feel free to try it:
 
 [Discover the monitoring dashboard for PM2](https://app.keymetrics.io/#/register)
 
-Thanks in advance and we hope that you like PM2!
-
 ## Max Memory Restart
 
 PM2 allows to restart an application based on a memory limit.
