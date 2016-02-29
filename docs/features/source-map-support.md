@@ -39,6 +39,18 @@ Or via JSON file:
 }
 ```
 
+### Inspect exceptions
+
+Exceptions are logged into your application error log file.
+
+To check your logs to detect exceptions type:
+
+```bash
+$ pm2 logs main
+```
+
+Else use [https://keymetrics.io/](keymetrics.io) to have a clean listing and notifications about [new alerts happening](http://docs.keymetrics.io/docs/pages/issues/)
+
 ### Disable source map support
 
 If you do not want PM2 to automatically support javascript source map you can use the option `--disable-source-map`.
