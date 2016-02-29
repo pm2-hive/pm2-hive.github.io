@@ -7,7 +7,7 @@ permalink: /docs/usage/update-pm2/
 
 To get the most from PM2 and Keymetrics, make sure your PM2 version is up-to-date.
 
-Checkout the new releases: [https://github.com/Unitech/pm2/releases](https://github.com/Unitech/pm2/releases)
+Here is the Changelog: [https://github.com/Unitech/pm2/releases](https://github.com/Unitech/pm2/releases)
 
 ## Updating PM2
 
