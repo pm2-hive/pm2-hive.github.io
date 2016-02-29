@@ -33,7 +33,7 @@ E.G:
 
 Just copy/paste this line and the startup script will be configured for your OS.
 
-### Saving the current processes
+### Saving current processes
 
 Once you started all the applications you want to manage, too keep this list across expected/unexpected server restart, just type the command:
 
