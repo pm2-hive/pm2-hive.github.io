@@ -20,7 +20,7 @@ $ pm2 ecosystem
 In the current folder a `ecosystem.json` file will be created.
 It contains this:
 
-```json
+```javascript
 {
   // Applications to run with their options
   // (See Application Declaration section)
@@ -177,6 +177,25 @@ Just add the "key" attribute with file path to the .pem key within the attribute
       "path" : "/var/www/production",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env production"
     },
+```
+
+## *push your changes before deploying*
+
+You may get this message:
+
+```
+--> Deploying to dev environment
+--> on host 192.168.1.XX
+
+  push your changes before deploying
+
+Deploy failed
+```
+
+If you want to deploy without pushing any data just append the `--force` option:
+
+```bash
+$ pm2 deploy ecosystem.json production --force
 ```
 
 ## Considerations
