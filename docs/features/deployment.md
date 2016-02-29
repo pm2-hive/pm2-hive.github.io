@@ -179,7 +179,7 @@ Just add the "key" attribute with file path to the .pem key within the attribute
     },
 ```
 
-## *push your changes before deploying*
+## Force deployment
 
 You may get this message:
 
