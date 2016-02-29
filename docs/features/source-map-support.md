@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Source map support
-description: Source map support for exceptions
+description: Source map support for BabelJS/Typescript and any transpiler
 permalink: /docs/usage/source-map-support/
 ---
 
