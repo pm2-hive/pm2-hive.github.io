@@ -9,33 +9,51 @@ PM2 can **generates startup scripts and configure them** and is also smart enoug
 
 ## Command
 
+To get the automatically configured startup script for your machine you need to type this command:
+
 ```bash
+# Auto-detect platform
 $ pm2 startup
-# auto-detect platform
-$ pm2 startup [platform]
-# render startup-script for a specific platform, the [platform] could be one of:
+
+# OR
+# Render startup-script for a specific platform, the [platform] could be one of:
 #   ubuntu|centos|redhat|gentoo|systemd|darwin|amazon
+$ pm2 startup [platform] -
 ```
 
-Once you have started the apps and want to keep them on server reboot do:
+The output of this command may be a recommendation of the line to copy/paste with all environment variables and options configured for you.
+
+E.G:
+
+```bash
+[PM2] You have to run this command as root. Execute the following command:
+      sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v4.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
+```
+
+
+Just copy/paste this line and the startup script will be configured for your OS.
+
+### Saving the current processes
+
+Once you started all the applications you want to manage, too keep this list across expected/unexpected server restart, just type the command:
 
 ```bash
 $ pm2 save
 ```
 
-**Warning** It's tricky to make this feature work generically, so once PM2 has setup your startup script, reboot your server to make sure that PM2 has launched your apps!
+Doing this will save the process list with their current environment into the dump file `$PM2_HOME/.pm2/dump.pm2`
 
-**Note** If you need to change some environment
+**Warning** We recommend you to double check that everything is working correctly by restarting your server. 
 
 ## Startup Systems support
 
-Three types of startup scripts are available:
+Multiple types of startup scripts are available:
 
 - SystemV init script (with the option `ubuntu` or `centos`)
 - OpenRC init script (with the option `gentoo`)
 - SystemD init script (with the `systemd` option)
 
-The startup options are using:
+The distribution option after doing `pm2 startup <distribution>` will use:
 
 - **ubuntu** will use `updaterc.d` and the script `lib/scripts/pm2-init.sh`
 - **centos**/**redhat** will use `chkconfig` and the script `lib/scripts/pm2-init-centos.sh`
@@ -60,15 +78,26 @@ Add the `MAX_OPEN_FILE` variable in /etc/default/pm2
 
 ## Related commands
 
-Dump all processes status and environment managed by PM2:
+### Verify startup apps
+
+Tool to verify startup applications (available on Ubuntu):
 
 ```bash
-$ pm2 [dump|save]
+$ sudo apt-get install rcconf
+# Check for pm2 script related
+$ sudo rcconf
 ```
 
-It populates the file `~/.pm2/dump.pm2` by default.
+### Remove init scripts
 
-To bring back the latest dump:
+```
+# Ubuntu
+$ sudo update-rc.d -f pm2-init.sh remove
+```
+
+### Bring back dump
+
+Bring back previously saved processes (via pm2 save):
 
 ```bash
 $ pm2 resurrect
