@@ -21,6 +21,8 @@
       url: /docs/usage/signals-clean-restart/
     - title: Monitoring
       url: /docs/usage/monitoring/
+    - title: Source map support
+      url: /docs/usage/source-map-support/
     - title: Log Management
       url: /docs/usage/log-management/
     - title: Application Declaration
