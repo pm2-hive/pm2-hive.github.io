@@ -53,7 +53,7 @@ Just use the `-u <username>` option!
 $ pm2 startup ubuntu -u www
 ```
 
-## Override maximum open file descriptor
+## Override max open fd
 
 The environment variable `MAX_OPEN_FILE` allows to change the maximum open file descriptor.
 Add the `MAX_OPEN_FILE` variable in /etc/default/pm2 
