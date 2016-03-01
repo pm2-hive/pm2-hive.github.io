@@ -45,6 +45,12 @@
     - title: Contributing
       url: /docs/usage/contributing/
 
+- title: Tutorials
+  url: /docs/tutorials/
+  subnav:
+      - title: Capistrano-like deployments
+        url: /docs/tutorials/capistrano-like-deployments
+
 - title: Modules
   url: /docs/advanced/pm2-module-system/
   subnav:
