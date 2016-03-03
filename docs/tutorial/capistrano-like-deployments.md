@@ -5,6 +5,8 @@ description: How to deploy with pm2, symlinks and a correct working directory
 permalink: /docs/tutorials/capistrano-like-deployments
 ---
 
+# Capistrano like deployments
+
 ## The main issue
 
 No mather what tool you would use to deploy your code, you might get confronted to a capistano-like structure. This method is usually having a similar directory tree:
