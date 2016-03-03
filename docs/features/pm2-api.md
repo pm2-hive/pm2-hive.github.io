@@ -39,6 +39,18 @@ pm2.connect(function(err) {
 });
 ```
 
+## No daemon
+
+Make sure you killed pm2 before via `pm2 kill`, then to start pm2 programmatically in no deamon mode, you need to pass the `true` as the first argument of `pm2.connect`:
+
+```javascript
+var pm2 = require('pm2');
+
+pm2.connect(true, function(err) {
+  // Do stuff
+});
+```
+
 ## Send message to process
 
 Available in PM2 0.15.11>
