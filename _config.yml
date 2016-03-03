@@ -13,9 +13,6 @@ github_username:  jekyll
 sass:
   sass_dir: _sass
 
-# Build settings
-markdown: redcarpet
-highlighter: pygments
 
 exclude: ['node_modules', 'docs/intro.md']
 
