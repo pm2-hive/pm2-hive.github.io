@@ -71,7 +71,30 @@ Options:
 }
 ```
 
-**Note**: To merge all logs into the same file set the same value for `error_file`, `out_file`.
+### Combine out and err logs
+
+To combine all logs into the same file set the same value for `error_file`, `out_file` or use an additional `log_file`.
+
+For example, this keeps `out` and `err` separated but adds a combined file:
+
+```
+{
+  "log_file": "combined.outerr.log",
+  "out_file": "out.log",
+  "err_file": "err.log"
+}
+```
+
+Or if you want out and err combined without any other file, just use the same log file:
+
+```
+{
+  "out_file": "combined.log",
+  "err_file": "combinde.log"
+}
+```
+
+Note that relatives logs paths will usually be written in the `PM2_HOME` (`~/.pm2/logs`).
 
 ### Setting up a native logrotate
 
