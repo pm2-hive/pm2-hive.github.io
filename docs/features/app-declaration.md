@@ -5,7 +5,7 @@ description: Manage applications via a configuration file
 permalink: /docs/usage/application-declaration/
 ---
 
-PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes via a JSON configuration file.
+PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes and lot more via a JSON configuration file.
 
 It's particularly usefull for micro service based applications.
 
@@ -72,6 +72,17 @@ $ pm2 gracefulReload ecosystem.json
 
 # Delete from PM2
 $ pm2 delete ecosystem.json
+```
+
+### Act on specific process
+
+You can also act on a particular application name by using the option `--only <app_name>`:
+
+```bash
+$ pm2 start   ecosystem.json --only api-app
+$ pm2 restart ecosystem.json --only api-app
+$ pm2 reload  ecosystem.json --only api-app
+$ pm2 delete  ecosystem.json --only api-app
 ```
 
 ## Options
