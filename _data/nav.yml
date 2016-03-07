@@ -11,8 +11,16 @@
   subnav:
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
+    - title: Application Declaration
+      url: /docs/usage/application-declaration/
+    - title: Log Management
+      url: /docs/usage/log-management/
     - title: Update PM2
       url: /docs/usage/update-pm2/
+    - title: Deployment
+      url: /docs/usage/deployment/
+    - title: Startup Script
+      url: /docs/usage/startup/
     - title: Setup Auto Completion
       url: /docs/usage/auto-completion/
     - title: Watch & Restart
@@ -23,14 +31,6 @@
       url: /docs/usage/monitoring/
     - title: Source map support
       url: /docs/usage/source-map-support/
-    - title: Log Management
-      url: /docs/usage/log-management/
-    - title: Application Declaration
-      url: /docs/usage/application-declaration/
-    - title: Deployment
-      url: /docs/usage/deployment/
-    - title: Startup Script
-      url: /docs/usage/startup/
     - title: Specifics, ES6/AuthBind...
       url: /docs/usage/specifics/
     - title: PM2 API
