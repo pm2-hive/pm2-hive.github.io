@@ -97,6 +97,7 @@ The following are valid options for JSON app declarations:
   "script"           : "bin/app.js",
   "node_args"        : ["--harmony", " --max-stack-size=102400000"],
   "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+  "source_map_support": true,
   "error_file"       : "/var/log/node-app/node-app.stderr.log",
   "out_file"         : "log/node-app.stdout.log",
   "pid_file"         : "pids/node-geo-api.pid",
