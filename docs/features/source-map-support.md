@@ -7,11 +7,7 @@ permalink: /docs/usage/source-map-support/
 
 If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get interesting informations you need to generate [source map files](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
 
-<center>
-
 ![source map](/images/sourcemaps.png)
-
-</center>
 
 Once these source map file are generated, PM2 will automatically detects them and will help you inspect errors.
 
