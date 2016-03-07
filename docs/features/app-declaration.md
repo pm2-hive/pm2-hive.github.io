@@ -15,7 +15,7 @@ Here is an example of JSON configuration file, let's call it ecosystem.json. Ple
 
 Content of a sample ecosystem.json:
 
-```js
+```
 {
   "apps" : [{
     // Application #1
