@@ -5,7 +5,7 @@ description: Auto restart PM2 and processes at server reboot
 permalink: /docs/usage/startup/
 ---
 
-PM2 can **generates startup scripts and configure them** and is also smart enough to **save all your process list** and to **bring back all your processes at machine restart**.
+PM2 can generates startup scripts and configure them in order to keep your process list intact accross expected or unexpected machine restarts.
 
 ## Command
 
@@ -30,8 +30,11 @@ E.G:
       sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v4.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
-
 Just copy/paste this line and the startup script will be configured for your OS.
+
+### Windows consideration
+
+There are some external libraries to generate a Windows compatible startup script, please checkout [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) or [pm2-windows-startup](https://www.npmjs.com/package/pm2-windows-startup).
 
 ### Saving current processes
 
