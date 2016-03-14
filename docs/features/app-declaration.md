@@ -21,7 +21,7 @@ Content of a sample ecosystem.json:
     // Application #1
     "name"        : "worker-app",
     "script"      : "worker.js",
-    "args"        : ["--toto=heya coco", "-d", "1"],
+    "args"        : "--toto=heya coco -d 1",
     "watch"       : true,
     "node_args"   : "--harmony",
     "merge_logs"  : true,
@@ -93,9 +93,9 @@ The following are valid options for JSON app declarations:
 {
   "name"             : "node-app",
   "cwd"              : "/srv/node-app/current",
-  "args"             : ["--toto=heya coco", "-d", "1"],
+  "args"             : "--toto=heya coco -d 1",
   "script"           : "bin/app.js",
-  "node_args"        : ["--harmony", " --max-stack-size=102400000"],
+  "node_args"        : "--harmony --max-stack-size=102400000",
   "log_date_format"  : "YYYY-MM-DD HH:mm Z",
   "source_map_support": true,
   "error_file"       : "/var/log/node-app/node-app.stderr.log",
@@ -165,8 +165,8 @@ Example of ecosystem.json:
 |:------------------:|:-------:|:-----------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        name        |  string |                  "myAPI"                  |                                                                                name your app will have in PM2                                                                                |
 |       script       |  string |                "bin/app.js"               |                                                                                       path of your app                                                                                       |
-|        args        |   list  |       ["--enable-logs", "-n", "15"]       |                                                                        arguments given to your app when it is launched                                                                       |
-|      node_args     |   list  |   ["--harmony", "--max-stack-size=1024"]  |                                                                          arguments given to node when it is launched                                                                         |
+|        args        |   string  |       "--enable-logs -n 15"       |                                                                        arguments given to your app when it is launched                                                                       |
+|      node_args     |   string  |   "--harmony --max-stack-size=1024"  |                                                                          arguments given to node when it is launched                                                                         |
 |         cwd        |  string |            "/var/www/app/prod"            |                                                                      the directory from which your app will be launched                                                                      |
 |      exec_mode     |  string |                 "cluster"                 |                                                    "fork" mode is used by default, "cluster" mode can be configured with `instances` field                                                   |
 |      instances     |  number |                     4                     | number of instances for your clustered app, `0` means as much instances as you have CPU cores. a negative value means CPU cores - value (e.g -1 on a 4 cores machine will spawn 3 instances) |
