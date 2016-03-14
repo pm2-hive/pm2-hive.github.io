@@ -56,7 +56,7 @@ It contains this:
       // Can be multiple commands separated by the character ";"
       "pre-deploy-local" : "echo 'This is a local executed command'"
       // Commands to be executed on the server after the repo has been cloned
-      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
       // Environment variables that must be injected in all applications on this env 
       "env"  : {
         "NODE_ENV": "production"
