@@ -15,6 +15,8 @@ Check out [this article](http://keymetrics.io/2014/07/02/manage-processes-progra
 
 This example shows you how to start app.js with some configuration attributes. What is passed to start is the same than what you can declare in a [JS/JSON configuration](/docs/usage/application-declaration/) file:
 
+**NB**: Do not forget to call `pm2.disconnect()` everytime you exit your script!
+
 ```bash
 $ npm install pm2 --save
 ```
