@@ -124,7 +124,7 @@ $ pm2 start app.js           # Start app.js
 
 $ pm2 start app.js -- -a 23  # Pass arguments '-a 23' argument to app.js script
 
-$ pm2 start app.js --name serverone # Start a process an name it as server one
+$ pm2 start app.js --name serverone # Start a process and name it as serverone
                                     # you can now stop the process by doing
                                     # pm2 stop serverone
 
