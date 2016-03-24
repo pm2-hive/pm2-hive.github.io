@@ -115,7 +115,7 @@ $ pm2 start app.js --no-vizion
 $ pm2 start app.js --no-autorestart
 ```
 
-## 42 ways of starting processes
+## *42 starts*
 
 *ndlr;* 42 is the answer to life the universe and everything
 
