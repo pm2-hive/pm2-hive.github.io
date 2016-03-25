@@ -11,7 +11,7 @@ When a process is stopped/restarted by PM2, some process signals are sent in a g
 
 First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s (PM2_KILL_TIMEOUT (PM2 < 0.16.0) or --kill-timeout <number> (PM2 > 0.16.0)) it will receive a **SIGKILL** signal to force the process exit.
 
-## Cleaning states and jobs before stop
+## Cleaning states and jobs
 
 If you need to clean some stuff (stop intervals, stop connection to database...) you can intercept the SIGINT signal to prepare your application to exit.
 
