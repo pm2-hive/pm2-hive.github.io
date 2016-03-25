@@ -13,7 +13,7 @@ It's particularly usefull for micro service based applications.
 
 Here is an example of JSON configuration file, declaring 2 applications, let's call it ecosystem.json:
 
-```
+```json
 {
   "apps" : [{
     "name"        : "worker-app",
@@ -180,7 +180,6 @@ Example of ecosystem.json:
 ## Considerations
 
 - All command line options passed when using the JSON app declaration will be dropped i.e.
-
 - You can start as many JSON app declarations as you want.
 
 ```bash
