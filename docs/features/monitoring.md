@@ -50,7 +50,7 @@ $ pm2 start big-array.js --max-memory-restart 20M
 
 ### Programmatic
 
-```
+```javascript
 pm2.start({
   name               : "max_mem",
   script             : "big-array.js",
