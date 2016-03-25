@@ -179,8 +179,11 @@ Example of ecosystem.json:
 
 ## Considerations
 
-- All command line options passed when using the JSON app declaration will be dropped i.e.
-- You can start as many JSON app declarations as you want.
+All command line options passed when using the JSON app declaration will be dropped i.e.
+
+### Multiple JSON
+
+You can start as many JSON app declarations as you want.
 
 ```bash
 $ cat node-app-1.json
@@ -201,7 +204,11 @@ root  24271  0.0  0.3  696428  24208 ? Sl 17:36 0:00 pm2: node-app-2
 
 *Note* that if you execute `pm2 start node-app-2` again, it will spawn an additional instance node-app-2.
 
+### CWD
+
 **cwd:** your JSON declaration does not need to reside with your script.  If you wish to maintain the JSON(s) in a location other than your script (say, `/etc/pm2/conf.d/node-app.json`) you will need to use the `cwd` feature (Note, this can be really helpful for capistrano style directory structures that uses symlinks). Files can be either relative to the `cwd` directory, or absolute (see example below).
+
+### CLI/JSON options
 
 All the keys can be used in a JSON configured file, but will remain almost the same on the command line e.g.:
 
@@ -212,69 +219,59 @@ max_restarts      -> --max_restarts
 force             -> --force
 ```
 
-**Notes**
-- Using quotes to make an ESC, e.g.:
+Using quotes to make an ESC, e.g.:
 
-  ```
-  $pm2 start test.js --node-args "port=3001 sitename='first pm2 app'"
-  ```
+```bash
+$pm2 start test.js --node-args "port=3001 sitename='first pm2 app'"
+```
 
-  The `nodeArgs` argument will be parsed as
+The `nodeArgs` argument will be parsed as
 
-  ```JSON
-  [
-    "port=3001",
-    "sitename=first pm2 app"
-  ]
-  ```
-
-  but not
-
-  ```JSON
-  [
-    "port=3001",
-    "sitename='first",
-    "pm2",
-    "app'"
-  ]
+```JSON
+[
+  "port=3001",
+  "sitename=first pm2 app"
+]
   ```
 
-- RegExp key
+but not
 
-  Matches the keys of configured JSON by RegExp (not by string comparison), e.g. `^env_\\S*$` will match all `env` keys like `env_production`, `env_test`, and valid them according to the schemas specifications.
+```JSON
+[
+  "port=3001",
+  "sitename='first",
+  "pm2",
+  "app'"
+]
+```
 
-- Special `ext_type`
+### env_<NAME>
 
-  - min_uptime
+Matches the keys of configured JSON by RegExp (not by string comparison), e.g. `^env_\\S*$` will match all `env` keys like `env_production`, `env_test`, and valid them according to the schemas specifications.
 
+### Special `ext_type`
+
+- min_uptime
     Value of `min_uptime` can be:
-
       - **Number**
         e.g. `"min_uptime": 3000` means 3000 milliseconds.
       - **String**
         Therefore, we are making it short and easy to configure: `h`, `m` and `s`, e.g.: `"min_uptime": "1h"` means one hour, `"min_uptime": "5m"` means five minutes and `"min_uptime": "10s"` means ten seconds (those will be transformed into milliseconds).
 
-  - max_memory_restart
-
-    Value of `max_memory_restart` can be:
-      - **Number**
+- max_memory_restart
+  Value of `max_memory_restart` can be:
+    - **Number**
         e.g. `"max_memory_restart": 1024` means 1024 bytes (**NOT BITS**).
-      - **String**
+    - **String**
         Therefore, we are making it short and easy to configure: `G`, `M` and `K`, e.g.: `"max_memory_restart": "1G"` means one gigabytes, `"max_memory_restart": "5M"` means five megabytes and `"max_memory_restart": "10K"` means ten kilobytes (those will be transformed into byte(s)).
 
 - Optional values
-
   For example `exec_mode` can take `cluster` (`cluster_mode`) or `fork` (`fork_mode`) as possible values.
 
 - Things to know
-
-  - maximum
-
-    `"instances": 0` means that we will launch the maximum processes possible according to the numbers of CPUs (cluster mode)
-
+  - `"instances": 0` means that we will launch the maximum processes possible according to the numbers of CPUs (cluster mode)
   - array
-
-    `args`, `node_args` and `ignore_watch` could be type of `Array` (e.g.: `"args": ["--toto=heya coco", "-d", "1"]`) or `string` (e.g.: `"args": "--to='heya coco' -d 1"`)
+  `args`, `node_args` and `ignore_watch` could be type of `Array` (e.g.: `"args": ["--toto=heya coco", "-d", "1"]`) or `string` (e.g.: `"args": "--to='heya coco' -d 1"`)
 
 
 Once you declared this file, you will now just need to specify your Cloud Provider to start this file.
