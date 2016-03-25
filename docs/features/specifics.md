@@ -5,7 +5,7 @@ description: Specifics, ES6/AuthBind...
 permalink: /docs/usage/specifics/
 ---
 
-## Listening on ports 80 without root
+## Listening on port 80 w/o root
 
 It’s a general rule that you shouldn’t run node as root, but only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024.
 
@@ -45,30 +45,24 @@ $ PM2_HOME='.pm3' pm2 list
 
 ## Launch PM2 in no deamon
 
+Make sure you kill any PM2 instance before starting PM2 in no deamon mode (`pm2 kill`).
+
 Launching PM2 without daemonizing itself:
 
 ```bash
 $ pm2 start app.js --no-daemon
 ```
 
-Sending a system signal to a process:
-
-```bash
-$ pm2 sendSignal SIGUSR2 my-app
-```
-
 ## Configuration file
 
-You can specify the following options by editing the file `~/.pm2/custom_options.sh`:
+You can edit some PM2 option by editing the file `$HOME/.pm2/conf.js`.
 
 ```
-PM2_RPC_PORT
-PM2_PUB_PORT
-PM2_BIND_ADDR
-PM2_API_PORT
-PM2_GRACEFUL_TIMEOUT
-PM2_MODIFY_REQUIRE
-PM2_KILL_TIMEOUT
+PM2_LOG_FILE_PATH  // PM2 log file path
+PM2_PID_FILE_PATH  // Pid file path
+DUMP_FILE_PATH     // Dump file path (for pm2 save && pm2 resurrect)
+CONCURRENT_ACTIONS // Concurrent process actions
+WEB_INTERFACE      // Port of the PM2 web api
 ```
 
 ## API health endpoint
@@ -79,12 +73,13 @@ $ pm2 web
 
 ## Enabling Harmony ES6
 
-The `--node-args` option permit to launch script with V8 flags, so to enable harmony for a process just do this:
+The `--node-args` option permit to add arguments to the node interpreter. To enable harmony for a process just do this:
+
 ```bash
 $ pm2 start my_app.js --node-args="--harmony"
 ```
 
-And with JSON declaration:
+And within a JSON declaration:
 
 ```json
 [{
@@ -127,37 +122,9 @@ _EOF_
 echo $my_json | pm2 start -
 ```
 
-## Babeljs
+## Transpilers
 
-If you want to use the *cluster mode* with `babeljs` you have to use the [require hook](https://babeljs.io/docs/usage/require/). For example:
-
-Assuming `index.js`, `server.js`:
-
-**index.js**
-
-```javascript
-require('babel/register')
-require('./server.js')
-```
-
-**server.js**
-
-```javascript
-import p from 'path'
-```
-
-And start the app from `index.js`, using the cluster or fork mode.
-
-You may also use the `babel-node` interpreter by setting:
-
-```javascript
-{
-  "exec_interpreter" : "babel-node",
-  "exec_mode": "fork"
-}
-```
-
-[Original issue](https://github.com/Unitech/pm2/issues/1643#issuecomment-144101986).
+Refer to [Using transpilers with PM2](http://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2) tuto
 
 ## User tips from issues
 
