@@ -90,11 +90,15 @@ Or if you want out and err combined without any other file, just use the same lo
 ```
 {
   "out_file": "combined.log",
-  "err_file": "combinde.log"
+  "err_file": "combined.log"
 }
 ```
 
 Note that relatives logs paths will usually be written in the `PM2_HOME` (`~/.pm2/logs`).
+
+### Disabling log suffix
+
+Use the `--merge-logs` option to disable automatic log file suffixing.
 
 ### Setting up a native logrotate
 
