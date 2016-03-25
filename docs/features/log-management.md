@@ -15,8 +15,17 @@ There are also different ways to configure how PM2 will handle your logs (separa
 Displaying logs of a specified process or of all processes in real-time:
 
 ```bash
+# Display option for pm2 logs command
+$ pm2 logs -h
+
+# Display all apps logs
 $ pm2 logs
-$ pm2 logs big-api
+
+# Display only api app logs
+$ pm2 logs api
+
+# Display X lines of api log file
+$ pm2 logs big-api --lines 1000
 ```
 
 ## Flushing logs
@@ -27,7 +36,7 @@ This will empty all current application logs managed by PM2:
 $ pm2 flush # Clear all the logs
 ```
 
-Or you can install Log rotate to handle the log rotation.
+Or you can install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-management/#pm2-logrotate-module) or [enable the log rotate](http://pm2.keymetrics.io/docs/usage/log-management/#setting-up-a-native-logrotate) script to handle the log rotation.
 
 ## Reloading all logs
 
