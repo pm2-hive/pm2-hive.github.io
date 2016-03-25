@@ -27,9 +27,10 @@ Feel free to try it:
 
 [Discover the monitoring dashboard for PM2](https://app.keymetrics.io/#/register)
 
-## Max Memory Restart
+## Memory threshold
 
 PM2 allows to restart an application based on a memory limit.
+Please note that the PM2 internal worker, checking memory and related, start every 30 seconds, so you may wait a bit before your process get restarted automatically on memory threshold.
 
 ### CLI
 
