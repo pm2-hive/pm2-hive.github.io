@@ -11,14 +11,11 @@ It's particularly usefull for micro service based applications.
 
 ## Ecosystem.json
 
-Here is an example of JSON configuration file, let's call it ecosystem.json. Please note that you can [inject javascript into this file](http://pm2.keymetrics.io/docs/usage/application-declaration/#using-javascript-in-the-declaration)
-
-Content of a sample ecosystem.json:
+Here is an example of JSON configuration file, declaring 2 applications, let's call it ecosystem.json:
 
 ```
 {
   "apps" : [{
-    // Application #1
     "name"        : "worker-app",
     "script"      : "worker.js",
     "watch"       : true,
@@ -29,7 +26,6 @@ Content of a sample ecosystem.json:
        "NODE_ENV": "production"
     }
   },{
-    // Application #2
     "name"       : "api-app",
     "script"     : "api.js",
     "instances"  : 4
@@ -40,27 +36,27 @@ Content of a sample ecosystem.json:
 Then you can run the basics commands:
 
 ```bash
-# Start all apps
+# Start all applications
 $ pm2 start ecosystem.json
 
 # Start only worker-app
 $ pm2 start ecosystem.json --only worker-app
 
-# Stop
+# Stop all
 $ pm2 stop ecosystem.json
 
-# Restart
+# Restart all
 $ pm2 start ecosystem.json
 ## Or
 $ pm2 restart ecosystem.json
 
-# Reload
+# Reload all
 $ pm2 reload ecosystem.json
 
-# Graceful Reload
+# Graceful Reload all
 $ pm2 gracefulReload ecosystem.json
 
-# Delete
+# Delete all
 $ pm2 delete ecosystem.json
 ```
 
@@ -109,6 +105,7 @@ The following are valid options for JSON app declarations:
     "AWESOME_SERVICE_API_TOKEN": "xxx"
   }
   // env_<NAME OF YOUR ENVIRONMENT>
+  // This section is injected if you use the --env CLI option (see below)
   "env_*" : {
     "SPECIFIC_ENV" : true
   }
@@ -179,10 +176,6 @@ Example of ecosystem.json:
 |     post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard                                        |
 |        force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2                                          |
 |     restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.                             |
-
-## Schema
-
-<script src="https://gist-it.appspot.com/github/Unitech/pm2/blob/master/lib/schema.json"></script>
 
 ## Considerations
 
