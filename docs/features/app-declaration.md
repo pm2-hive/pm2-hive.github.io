@@ -232,7 +232,7 @@ The `nodeArgs` argument will be parsed as
   "port=3001",
   "sitename=first pm2 app"
 ]
-  ```
+```
 
 but not
 
@@ -244,6 +244,14 @@ but not
   "app'"
 ]
 ```
+
+### Disabling logs
+
+You can pass `/dev/null` to error_file or out_file to disable logs saving.
+
+### Logs suffix
+
+You can disable automatic ID suffixs on logs (e.g. `app-name-ID.log`) by passing enabling the option `merge_logs: true`
 
 ### env_<NAME>
 
