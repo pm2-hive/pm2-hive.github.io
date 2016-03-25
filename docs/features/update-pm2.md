@@ -31,6 +31,6 @@ And finally update the in-memory PM2 process:
 $ pm2 update
 ```
 
-That's all, you know have a fresh PM2 system!
+That's all, you now have a fresh PM2 system!
 
 
