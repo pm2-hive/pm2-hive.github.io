@@ -35,8 +35,6 @@
       url: /docs/usage/specifics/
     - title: PM2 API
       url: /docs/usage/pm2-api/
-    - title: Specifics
-      url: /docs/usage/knowledge/
     - title: Use PM2 in Cloud Providers
       url: /docs/usage/use-pm2-with-cloud-providers/
     - title: Download as ZIP
