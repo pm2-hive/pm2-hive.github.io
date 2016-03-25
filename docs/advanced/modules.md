@@ -7,10 +7,6 @@ permalink: /docs/advanced/pm2-module-system/
 
 # Quick Start
 
-<br/>
-
-![Module system](https://github.com/unitech/pm2/raw/master/pres/pm2-module.png)
-
 ## What is a module?
 
 A PM2 module is a standalone software installed and managed by PM2. These softwares are pulled from the NPM repository and are published like a common Javascript library on NPM.
