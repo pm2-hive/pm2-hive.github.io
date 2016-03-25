@@ -9,7 +9,7 @@ permalink: /docs/usage/signals-clean-restart/
 
 When a process is stopped/restarted by PM2, some system signals are sent to your process in a given order.
 
-First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s (default value that you can customize via --kill-timeout <ms> or kill_timeout: <ms> in JSON) it will receive a **SIGKILL** signal to force the process exit.
+First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *(default value that you can customize via --kill-timeout <ms> or kill_timeout: <ms> in JSON)* it will receive a **SIGKILL** signal to force the process exit.
 
 ## Cleaning states and jobs
 
