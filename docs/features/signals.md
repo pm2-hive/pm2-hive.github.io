@@ -7,13 +7,13 @@ permalink: /docs/usage/signals-clean-restart/
 
 ## Signals
 
-When a process is stopped/restarted by PM2, some process signals are sent in a given order to your process.
+When a process is stopped/restarted by PM2, some system signals are sent to your process in a given order.
 
-First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s (PM2_KILL_TIMEOUT (PM2 < 0.16.0) or --kill-timeout <number> (PM2 > 0.16.0)) it will receive a **SIGKILL** signal to force the process exit.
+First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s (default value that you can customize via --kill-timeout <ms> or kill_timeout: <ms> in JSON) it will receive a **SIGKILL** signal to force the process exit.
 
 ## Cleaning states and jobs
 
-If you need to clean some stuff (stop intervals, stop connection to database...) you can intercept the SIGINT signal to prepare your application to exit.
+As stated before, if you need to clean some stuff (stop intervals, stop connection to database...) you can intercept the SIGINT signal to prepare your application to exit.
 
 Here is a sample on how to intercept the SIGINT signal with Node.js:
 
@@ -36,11 +36,25 @@ process.on('SIGINT', function() {
 });
 ```
 
-## Custom delay before SIGKILL
+## Customize exit delay
 
-If your application receive the SIGKILL signal too soon, you can configure PM2 to increase the [KILL_TIMEOUT](https://github.com/Unitech/pm2/blob/master/constants.js#L80) variable.
+Via CLI, this will lengthen the timeout to 3000ms:
 
-To increase this value, add the PM2_KILL_TIMEOUT to /etc/environment and update PM2 via `pm2 update`
+```bash
+$ pm2 start app.js --kill-timeout 3000
+```
+
+Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+
+```json
+{
+  "apps" : [{
+    "name"         : "api",
+    "script"       : "app.js",
+    "kill_timeout" : 3000
+  }]
+}
+```
 
 ## Note about SIGKILL
 
