@@ -21,31 +21,18 @@ Content of a sample ecosystem.json:
     // Application #1
     "name"        : "worker-app",
     "script"      : "worker.js",
-    "args"        : "--toto=heya coco -d 1",
     "watch"       : true,
-    "node_args"   : "--harmony",
-    "merge_logs"  : true,
-    "cwd"         : "/this/is/a/path/to/start/script",
     "env": {
       "NODE_ENV": "development",
-      "AWESOME_SERVICE_API_TOKEN": "xxx"
     },
     "env_production" : {
        "NODE_ENV": "production"
-    },
-    "env_staging" : {
-       "NODE_ENV" : "staging",
-       "TEST"     : true
     }
   },{
     // Application #2
     "name"       : "api-app",
     "script"     : "api.js",
-    "instances"  : 4,
-    "exec_mode"  : "cluster_mode",
-    "error_file" : "./examples/child-err.log",
-    "out_file"   : "./examples/child-out.log",
-    "pid_file"   : "./examples/child.pid"
+    "instances"  : 4
   }]
 }
 ```
@@ -55,6 +42,9 @@ Then you can run the basics commands:
 ```bash
 # Start all apps
 $ pm2 start ecosystem.json
+
+# Start only worker-app
+$ pm2 start ecosystem.json --only worker-app
 
 # Stop
 $ pm2 stop ecosystem.json
@@ -70,7 +60,7 @@ $ pm2 reload ecosystem.json
 # Graceful Reload
 $ pm2 gracefulReload ecosystem.json
 
-# Delete from PM2
+# Delete
 $ pm2 delete ecosystem.json
 ```
 
@@ -104,13 +94,13 @@ The following are valid options for JSON app declarations:
   "instances"        : 6, //or 0 => 'max'
   "min_uptime"       : "200s", // 200 seconds, defaults to 1000
   "max_restarts"     : 10, // defaults to 15
-  "max_memory_restart": "1M", // 1 megabytes, e.g.: "2G", "10M", "100K", 1024 the default unit is byte.
+  "max_memory_restart": "100M", // 1 megabytes, e.g.: "2G", "10M", "100K", 1024 the default unit is byte.
   "cron_restart"     : "1 0 * * *",
   "watch"            : false,
   "ignore_watch"      : ["[\\/\\\\]\\./", "node_modules"],
   "merge_logs"       : true,
   "exec_interpreter" : "node",
-  "exec_mode"        : "fork",
+  "exec_mode"        : "cluster",
   "autorestart"      : false, // enable/disable automatic restart when an app crashes or exits
   "vizion"           : false, // enable/disable vizion features (versioning control)
   // Default environment variables that will be injected in any environment and at any start
@@ -118,6 +108,7 @@ The following are valid options for JSON app declarations:
     "NODE_ENV": "production",
     "AWESOME_SERVICE_API_TOKEN": "xxx"
   }
+  // env_<NAME OF YOUR ENVIRONMENT>
   "env_*" : {
     "SPECIFIC_ENV" : true
   }
@@ -168,7 +159,7 @@ Example of ecosystem.json:
 |        args        |   string  |       "--enable-logs -n 15"       |                                                                        arguments given to your app when it is launched                                                                       |
 |      node_args     |   string  |   "--harmony --max-stack-size=1024"  |                                                                          arguments given to node when it is launched                                                                         |
 |         cwd        |  string |            "/var/www/app/prod"            |                                                                      the directory from which your app will be launched                                                                      |
-|      exec_mode     |  string |                 "cluster"                 |                                                    "fork" mode is used by default, "cluster" mode can be configured with `instances` field                                                   |
+|      exec_mode     |  string |                 "cluster"                 |                                                    "fork" mode is used by default (for node and any other kind of scripts), "cluster" mode can be configured with `instances` field (node.js only)                                                   |
 |      instances     |  number |                     4                     | number of instances for your clustered app, `0` means as much instances as you have CPU cores. a negative value means CPU cores - value (e.g -1 on a 4 cores machine will spawn 3 instances) |
 |  exec_interpreter  |  string |                   "node"                  |                       defaults to "node". can be "python", "ruby", "bash" or whatever interpreter you wish to use. "none" will execute your app as a binary executable                       |
 |   log_date_format  |  string |            "YYYY-MM-DD HH:mm Z"           |                                                                   format in which timestamps will be displayed in the logs                                                                   |
@@ -187,7 +178,6 @@ Example of ecosystem.json:
 |       vizion       | boolean |                   false                   |                                               true by default. if false, PM2 will start without vizion features (versioning control metadatas)                                               |
 |     post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard                                        |
 |        force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2                                          |
-|     next_gen_js    | boolean |                    true                   |                             defaults to false. if true, PM2 will launch your app using embedded BabelJS features which means you can run ES6/ES7 javascript code                             |
 |     restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.                             |
 
 ## Schema
@@ -196,7 +186,9 @@ Example of ecosystem.json:
 
 ## Considerations
 
-All command line options passed when using the JSON app declaration will be dropped i.e.
+- All command line options passed when using the JSON app declaration will be dropped i.e.
+
+- You can start as many JSON app declarations as you want.
 
 ```bash
 $ cat node-app-1.json
@@ -207,8 +199,6 @@ $ cat node-app-1.json
   "cwd" : "/srv/node-app-1/current"
 }
 ```
-
-You can start as many JSON app declarations as you want.  Continuing from above:
 
 ```bash
 $ pm2 start node-app-2.json
@@ -229,9 +219,6 @@ exec_mode         -> --execute_command
 max_restarts      -> --max_restarts
 force             -> --force
 ```
-
-If the `alias` exists, you can use it as a CLI option, but do not forget to turn the camelCasing to underscore split `executeCommand` to `--execute_command`.
-
 
 **Notes**
 - Using quotes to make an ESC, e.g.:
