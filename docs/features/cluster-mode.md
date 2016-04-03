@@ -13,6 +13,8 @@ Compared to a single instance setup, using the cluster mode can increase perform
 
 It's perfectly fitted for networked applications handling HTTP(s)/UDP/TCP connections.
 
+## Usage
+
 To enable the **cluster mode**, just pass the -i <instances> option:
 
 ```bash
@@ -46,7 +48,14 @@ As opposed to `restart`, which kills and restarts the process, `reload` achieves
 To reload an app:
 
 ```bash
+$ pm2 reload process.yml
+```
+
+Or:
+
+```bash
 $ pm2 reload api
+$ pm2 reload process.yml --only api
 ```
 
 If the reload system hasn't managed to reload your app, a timeout will fallback to a classic restart.
