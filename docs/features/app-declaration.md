@@ -95,6 +95,8 @@ $ pm2 delete  ecosystem.json --only api-app
 
 The following are valid attributes:
 
+| Attr name        | Type           | Description  |
+| ------------- |:-------------:| -----:|
 |name| (string) |application name (default to script filename without extension)|
 |script| (string) | script path relative to pm2 start|
 |cwd| (string) | folder to CD|
