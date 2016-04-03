@@ -5,18 +5,21 @@ description: Manage applications via a configuration file
 permalink: /docs/usage/application-declaration/
 ---
 
-PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes and lot more via a JSON configuration file.
+## Application declaration
 
-It's particularly usefull for micro service based applications.
+PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes and lot more via a configuration file. It's particularly usefull for micro service based applications.
 
-## Ecosystem.json
+This file can be both JSON or YAML.
 
-Here is an example of JSON configuration file, declaring 2 applications, let's call it ecosystem.json:
+## Example
+
+### process.json
+
+Here is an example of JSON configuration file, declaring 2 applications:
 
 ```json
 {
   "apps" : [{
-    "name"        : "worker-app",
     "script"      : "worker.js",
     "watch"       : true,
     "env": {
@@ -28,36 +31,53 @@ Here is an example of JSON configuration file, declaring 2 applications, let's c
   },{
     "name"       : "api-app",
     "script"     : "api.js",
-    "instances"  : 4
+    "instances"  : 4,
+    "exec_mode"  : "cluster"
   }]
 }
 ```
+
+### process.yml
+
+Here is the name example in YAML format:
+
+```yaml
+apps:
+  - script   : api.js
+    instances: 4
+    exec_mode: cluster
+  - script : worker.js
+    watch  : true
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
+```
+
+### CLI
 
 Then you can run the basics commands:
 
 ```bash
 # Start all applications
-$ pm2 start ecosystem.json
+$ pm2 start process.[json|yml]
 
 # Start only worker-app
-$ pm2 start ecosystem.json --only worker-app
+$ pm2 start process.[json|yml] --only worker-app
 
 # Stop all
-$ pm2 stop ecosystem.json
+$ pm2 stop process.[json|yml]
 
 # Restart all
-$ pm2 start ecosystem.json
+$ pm2 start   process.[json|yml]
 ## Or
-$ pm2 restart ecosystem.json
+$ pm2 restart process.[json|yml]
 
 # Reload all
-$ pm2 reload ecosystem.json
-
-# Graceful Reload all
-$ pm2 gracefulReload ecosystem.json
+$ pm2 reload process.[json|yml]
 
 # Delete all
-$ pm2 delete ecosystem.json
+$ pm2 delete process.[json|yml]
 ```
 
 ### Act on specific process
@@ -71,9 +91,22 @@ $ pm2 reload  ecosystem.json --only api-app
 $ pm2 delete  ecosystem.json --only api-app
 ```
 
-## Options
+## Attributes available
 
-The following are valid options for JSON app declarations:
+The following are valid attributes:
+
+|name| (string) |application name (default to script filename without extension)|
+|script| (string) | script path relative to pm2 start|
+|cwd| (string) | folder to CD|
+|args| (string) | string containing all arguments passed via CLI to script|
+|interpreter| (string) | interpreter absolute path|
+|interpreter_args| (string) | option to pass to the interpreter|
+|node_args| (string) | alias to interpreter_args |
+|log_date_format| (string) | log date format (see log section)(eg "YYYY-MM-DD HH:mm Z")|
+|error_file| (string)| error file path (default to $HOME/.pm2/logs/XXXerr.log)|
+|out_file| (string) | output file path (default to $HOME/.pm2/logs/XXXout.log)|
+|pid_file| (string) | pid file path (default to $HOME/.pm2/pid/app-pm_id.pid)|
+|min_uptime| (string) | minimum uptime |
 
 ```js
 {
@@ -143,8 +176,6 @@ Example of ecosystem.json:
   }]
 }
 ```
-
-[Bash tests](https://github.com/Unitech/pm2/blob/master/test/bash/json_file.sh#L59)
 
 ## Considerations
 
