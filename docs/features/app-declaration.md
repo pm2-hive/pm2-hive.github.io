@@ -95,21 +95,6 @@ $ pm2 delete  ecosystem.json --only api-app
 
 The following are valid attributes:
 
-| Attr name        | Type           | Description  |
-| ------------- |:-------------:| -----:|
-|name| (string) |application name (default to script filename without extension)|
-|script| (string) | script path relative to pm2 start|
-|cwd| (string) | folder to CD|
-|args| (string) | string containing all arguments passed via CLI to script|
-|interpreter| (string) | interpreter absolute path|
-|interpreter_args| (string) | option to pass to the interpreter|
-|node_args| (string) | alias to interpreter_args |
-|log_date_format| (string) | log date format (see log section)(eg "YYYY-MM-DD HH:mm Z")|
-|error_file| (string)| error file path (default to $HOME/.pm2/logs/XXXerr.log)|
-|out_file| (string) | output file path (default to $HOME/.pm2/logs/XXXout.log)|
-|pid_file| (string) | pid file path (default to $HOME/.pm2/pid/app-pm_id.pid)|
-|min_uptime| (string) | minimum uptime |
-
 ```js
 {
   "name"             : "node-app",
