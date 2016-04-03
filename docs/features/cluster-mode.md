@@ -41,24 +41,22 @@ The *-i* or *instances* option can be:
 
 As opposed to `restart`, which kills and restarts the process, `reload` achieves a 0-second-downtime reload.
 
-**Warning** This feature only works for apps in **cluster mode**, that uses HTTP/HTTPS/Socket connections.
-
 To reload an app:
 
 ```bash
-$ pm2 reload process.yml
+$ pm2 reload <app_name>
 ```
 
 Or:
 
 ```bash
-$ pm2 reload api
+$ pm2 reload process.yml
 $ pm2 reload process.yml --only api
 ```
 
 If the reload system hasn't managed to reload your app, a timeout will fallback to a classic restart.
 
-## Statelessfy your app
+## Stateless-fy your app
 
 Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that there is not any local data stored in the process, like sessions/websocket connections etc. Use Redis, Mongo or other DB to share states between processes.
 
