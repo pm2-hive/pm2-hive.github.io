@@ -73,15 +73,13 @@ $ pm2 web
 
 ## Stateless apps
 
-We recommend (and you must) write stateless NodeJS apps. Apps that don't retain any form of local variables or local instances or whatever local.
-Every data, states, websocket session, session data, must be shared via any kind of database.
+It's a general rule that your production application should be stateless. Every data, states, websocket session, session data, must be shared via any kind of database our PUB/SUB system.
 
-We recommend using Redis for sharing session data, websocket.
+If not your application will be painfull to scale across the same servers and accross multiple servers.
 
-- [Configuring SocketIO](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO)
-- [Redis session store for Connect](https://github.com/visionmedia/connect-redis)
+For example you could use [connect-redis](https://github.com/visionmedia/connect-redis) to share sessions.
 
-We recommend following the 12 factor convention : [http://12factor.net/](http://12factor.net/)
+We also recommend following the 12 factor convention : [http://12factor.net/](http://12factor.net/)
 
 ## Setup pm2 on a server
 
