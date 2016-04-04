@@ -25,6 +25,33 @@ The simplest way to start, daemonize and monitor your application is this:
 $ pm2 start app.js
 ```
 
+## Application declaration
+
+You can also create a configuration file to declare all attributes:
+
+process.yml:
+
+```yaml
+apps:
+  - script   : app.js
+    instances: 4
+    exec_mode: cluster
+  - script : worker.js
+    watch  : true
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
+```
+
+And start it easily:
+
+```bash
+$ pm2 start process.yml
+```
+
+Read more about application declaration [here](/docs/usage/application-declaration/)
+
 ## Convenient setup
 
 ### Setup Auto Completion
@@ -206,7 +233,7 @@ Options:
 
 Learn how to declare all your applications behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
 
-Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability 
+Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability
 
 Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/)
 
