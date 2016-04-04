@@ -97,10 +97,8 @@ Application behavior and configuration can be fine-tuned with the following attr
 
 ### General
 
-<div class="tables-start">&nbsp;</div>
-
 |    Field |   Type  |  Example |  Description|
-|:------------------:|:-------:|:------------------------------:|:-------------------------|
+|:----------|:-------:|:------------------------------:|:-------------------------|
 |name   | (string)   | "my-api" | application name (default to script filename without extension)|
 |script| (string)    | "./api/app.js" | script path relative to pm2 start|
 |cwd| (string)       | "/var/www/" | the directory from which your app will be launched|
@@ -109,24 +107,16 @@ Application behavior and configuration can be fine-tuned with the following attr
 |interpreter_args| (string) | "--harmony" | option to pass to the interpreter|
 |node_args| (string) |   |alias to interpreter_args |
 
-<div class="tables-end">&nbsp;</div>
-
-<script type="text/javascript">
-(function() {
-    $('div.tables-begin').nextUntil('div.tables-end', 'table').addClass('table table-bordered');
-    })();
-    </script>
 
 ### Advanced features
 
 |    Field |   Type  |  Example |  Description|
-|:------------------:|:-------:|:------------------------------:|:-------------------------|
+|:----------|:-------:|:------------------------------:|:-------------------------|
 |instances | number | -1 | number of app instance to be launched |
 |exec_mode | string | "cluster" | mode to start your app, can be "cluster" or "fork", default fork|
 | watch   | boolean or [] |  true |  enable watch & restart feature, if a file change in the folder or subfolder, your app will get reloaded |
 |    ignore_watch    |   list  |     ["[\\/\\\\]\\./", "node_modules"]     | list of regex to ignore some file or folder names by the watch feature|
 | max_memory_restart |  string |  "150M" |  your app will be restarted if it exceeds the amount of memory specified. human-friendly format : it can be "10M", "100K", "2G" and so on... |
-
 | env |  object |   {"NODE_ENV": "development", "ID": "42"}  | env variables which will appear in your app |
 | env_<ENV_NAME> |  object |   {"NODE_ENV": "production", "ID": "89"}  | inject <ENV_NAME> when doing pm2 restart app.yml --env <ENV_NAME>|
 | source_map_support | boolean |  true | default to true, enable/disable source map file support when throwing exception|
@@ -134,7 +124,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 ### Log files
 
 |    Field |   Type  |  Example |  Description|
-|:------------------:|:-------:|:------------------------------:|:-------------------------|
+|:----------|:-------:|:------------------------------:|:-------------------------|
 |log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
 |error_file| (string)| | error file path (default to $HOME/.pm2/logs/XXXerr.log)|
 |out_file| (string) | | output file path (default to $HOME/.pm2/logs/XXXout.log)|
@@ -145,7 +135,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 ### Control flow
 
 |    Field |   Type  |  Example |  Description|
-|:------------------:|:-------:|:------------------------------:|:-------------------------|
+|:----------|:-------:|:------------------------------:|:-------------------------|
 |min_uptime| (string) | | min uptime of the app to be considered started |
 |max_restarts| number | 10 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted|
 | autorestart | boolean |  false  |  true by default. if false, PM2 will not restart your app if it crashes or ends peacefully  |
