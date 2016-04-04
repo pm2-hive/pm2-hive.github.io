@@ -97,7 +97,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 
 ### General
 
-<div class="tables-start"></div>
+<div class="tables-start">&nbsp;</div>
 
 |    Field |   Type  |  Example |  Description|
 |:------------------:|:-------:|:------------------------------:|:-------------------------|
@@ -109,7 +109,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |interpreter_args| (string) | "--harmony" | option to pass to the interpreter|
 |node_args| (string) |   |alias to interpreter_args |
 
-<div class="tables-end"></div>
+<div class="tables-end">&nbsp;</div>
 
 <script type="text/javascript">
 (function() {
