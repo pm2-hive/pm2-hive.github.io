@@ -117,7 +117,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 | watch   | boolean or [] |  true |  enable watch & restart feature, if a file change in the folder or subfolder, your app will get reloaded |
 |    ignore_watch    |   list  |     ["[\\/\\\\]\\./", "node_modules"]     | list of regex to ignore some file or folder names by the watch feature|
 | max_memory_restart |  string |  "150M" |  your app will be restarted if it exceeds the amount of memory specified. human-friendly format : it can be "10M", "100K", "2G" and so on... |
-| env |  object |   {"NODE_ENV": "development", "ID": "42"}  | env variables which will appear in your app |
+| env |  object |   ```json {"NODE_ENV": "development", "ID": "42"} ``` | env variables which will appear in your app |
 | env_<ENV_NAME> |  object |   {"NODE_ENV": "production", "ID": "89"}  | inject <ENV_NAME> when doing pm2 restart app.yml --env <ENV_NAME>|
 | source_map_support | boolean |  true | default to true, enable/disable source map file support when throwing exception|
 
