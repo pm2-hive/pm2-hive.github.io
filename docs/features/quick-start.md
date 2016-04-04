@@ -27,7 +27,7 @@ $ pm2 start app.js
 
 ## Application declaration
 
-You can also create a configuration file to declare all attributes:
+You can also create a configuration file manage multiple applications:
 
 process.yml:
 
