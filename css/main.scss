@@ -133,7 +133,6 @@ table th {
 table th:first-child {
     text-align: left;
     padding-left:20px;
-    font-weight: bold;
 }
 table tr:first-child th:first-child {
     -moz-border-radius-topleft:3px;
@@ -151,8 +150,9 @@ table tr {
 }
 table td:first-child {
     text-align: left;
-    padding-left:20px;
+    padding-left:12px;
     border-left: 0;
+    font-weight: bold;
 }
 table td {
     padding:18px;
