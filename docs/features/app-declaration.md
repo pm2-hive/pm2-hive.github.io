@@ -39,7 +39,7 @@ Here is an example of JSON configuration file, declaring 2 applications:
 
 ### process.yml
 
-Here is the name example in YAML format:
+Here is the same example in YAML format:
 
 ```yaml
 apps:
