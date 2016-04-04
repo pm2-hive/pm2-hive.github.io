@@ -97,7 +97,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 
 ### General
 
-{:table}
+<div class="table">
 |    Field |   Type  |  Example |  Description|
 |:------------------:|:-------:|:------------------------------:|:-------------------------|
 |name   | (string)   | "my-api" | application name (default to script filename without extension)|
@@ -107,6 +107,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |interpreter| (string) | "/usr/bin/python" |interpreter absolute path (default to node)|
 |interpreter_args| (string) | "--harmony" | option to pass to the interpreter|
 |node_args| (string) |   |alias to interpreter_args |
+</div>
 
 ### Advanced features
 
