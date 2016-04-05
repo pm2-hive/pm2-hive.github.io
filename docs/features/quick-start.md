@@ -134,7 +134,7 @@ $ pm2 delete all         # Will remove all processes from pm2 list
 # Misc
 
 $ pm2 reset <process>    # Reset meta data (restarted time...)
-$ pm2 updatePM2          # Update in memory pm2
+$ pm2 update             # Update in memory pm2
 $ pm2 ping               # Ensure pm2 daemon has been launched
 $ pm2 sendSignal SIGUSR2 my-app # Send system signal to script
 $ pm2 start app.js --no-daemon
