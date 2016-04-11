@@ -119,7 +119,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 | max_memory_restart |  string |  "150M" |  your app will be restarted if it exceeds the amount of memory specified. human-friendly format : it can be "10M", "100K", "2G" and so on... |
 | env |  object |   {"NODE_ENV": "development", "ID": "42"}  | env variables which will appear in your app |
 | env_<ENV_NAME> |  object |   {"NODE_ENV": "production", "ID": "89"}  | inject <ENV_NAME> when doing pm2 restart app.yml --env <ENV_NAME>|
-| source_map_support | boolean |  true | default to true, enable/disable source map file support when throwing exception|
+| source_map_support | boolean |  true | default to true, [enable/disable source map file](http://pm2.keymetrics.io/docs/usage/source-map-support/) support when throwing exception|
 
 ### Log files
 
