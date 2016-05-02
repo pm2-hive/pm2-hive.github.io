@@ -231,7 +231,7 @@ Options:
 
 ## What's next?
 
-Learn how to declare all your applications' behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
+Learn how to declare all your application's behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
 
 Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability
 
