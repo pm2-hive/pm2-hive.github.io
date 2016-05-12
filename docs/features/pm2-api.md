@@ -65,9 +65,8 @@ pm2.connect(function(err) {
   * `args` - A string or array of strings of arguments to pass to the script.
   * `interpreterArgs` - A string or array of strings of arguments to call the interpreter process with. Eg "--harmony" or ["--harmony","--debug"]. Only applies if `interpreter` is something other than "none" (its "node" by default).
   * `cwd` - The working directory to start the process with.
-  * `error` - (Default: "~/.pm2/logs/app_name.err") The path to a file to append stderr output to.
-  * `output` - (Default: "~/.pm2/logs/out.log") The path to a file to append stdout output to. 
-  * `logFile` - Specifies a file path to append both stderr and stdout output. 
+  * `output` - (Default: "~/.pm2/logs/out.log") The path to a file to append stdout output to. Can be the same file as `error`.
+  * `error` - (Default: "~/.pm2/logs/app_name.err") The path to a file to append stderr output to. Can be the same file as `output`.
   * `logDateFormat` - The display format for log timestamps (eg "YYYY-MM-DD HH:mm Z"). The format is a [moment display format](http://momentjs.com/docs/#/displaying/).
   * `pid` - (Default: "~/.pm2/logs/~/.pm2/pids/app_name-id.pid") The path to a file to write the pid of the started process. The file will be overwritten. Note that the file is not used in any way by pm2 and so the user is free to manipulate or remove that file at any time. The file will be deleted when the process is stopped or the daemon killed.
   * `minUptime` - The minimum uptime of the script before it's considered successfully started. 
