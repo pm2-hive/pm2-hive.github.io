@@ -82,7 +82,7 @@ Edit the file according to your needs.
 
 ```bash
 $ ssh-keygen -t rsa
-$ ssh-copy-id root@myserver.com
+$ ssh-copy-id node@myserver.com
 ```
 
 3- Now initialize the remote folder with:
