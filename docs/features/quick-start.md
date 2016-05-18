@@ -7,7 +7,7 @@ permalink: /docs/usage/quick-start/
 
 <center><img src="/images/logo_pm2.png" name="logo pm2"/></center>
 
-Welcome to this PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 and your application is ready to handle ton of traffic!
+Welcome to this PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 and your application is ready to handle a ton of traffic!
 
 ## Installation
 
@@ -27,7 +27,7 @@ $ pm2 start app.js
 
 ## Application declaration
 
-You can also create a configuration file manage multiple applications:
+You can also create a configuration file to manage multiple applications:
 
 process.yml:
 
@@ -91,7 +91,7 @@ In Windows the $HOME environmenet variable may be $HOMEDRIVE + $HOMEPATH ([link]
 
 ## CheatSheet
 
-Here are some commands that worth to know. Just try them with a sample application or your current web application on your development machine:
+Here are some commands that are worth knowing. Just try them with a sample application or your current web application on your development machine:
 
 ```bash
 # Fork mode
@@ -231,7 +231,7 @@ Options:
 
 ## What's next?
 
-Learn how to declare all your applications behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
+Learn how to declare all your application's behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
 
 Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability
 
