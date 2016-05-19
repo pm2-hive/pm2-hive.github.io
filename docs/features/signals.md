@@ -1,11 +1,23 @@
 ---
 layout: docs
-title: Signals and clean restarts
+title: Graceful restart/reload/stop
 description: How signals are handled in PM2
 permalink: /docs/usage/signals-clean-restart/
 ---
 
-## Signals
+To allow gracefull restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit. 
+
+```javascript
+process.on('SIGINT', function() {
+   db.stop(function(err) {
+     process.exit(err ? 1 : 0);
+   });
+});
+```
+
+Now `pm2 reload` will become a gracefulReload.
+
+## Explanation: Signals flow
 
 When a process is stopped/restarted by PM2, some system signals are sent to your process in a given order.
 
