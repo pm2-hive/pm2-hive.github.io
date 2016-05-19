@@ -25,7 +25,7 @@
       url: /docs/usage/auto-completion/
     - title: Watch & Restart
       url: /docs/usage/watch-and-restart/
-    - title: Signals and clean restarts
+    - title: Graceful restart/reload
       url: /docs/usage/signals-clean-restart/
     - title: Monitoring
       url: /docs/usage/monitoring/
