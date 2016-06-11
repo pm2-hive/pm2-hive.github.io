@@ -14,9 +14,9 @@ If you want to share, bundle, pack or deploy your code base, it's often better t
 For example, a usual directory structure will look like this:
 
 ```
----| src
----| dist
----| package.json
+├── src
+├── dist
+└── package.json
 ```
 
 Where `src` contains es6 , coffescript, or whatever and `dist` is the transpiled Javascript. 
