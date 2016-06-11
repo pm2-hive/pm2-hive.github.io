@@ -13,11 +13,11 @@ No mather what tool you would use to deploy your code, you might get confronted 
 
 ```
 project_root
----| current -> releases/20150301100000 # this is a symlink to the current release
----| releases
-------| 20150301100000
-------| 20150228100000
-------| 20150226100000
+├── current -> releases/20150301100000 # this is a symlink to the current release
+└── releases
+    ├── 20150301100000
+    ├── 20150228100000
+    └── 20150226100000
 ```
 
 Usually, when running this kind of deployments, old releases get deleted when there are no more used. Indeed, when a new release is issued:
@@ -55,13 +55,13 @@ The structure now looks like this:
 
 ```
 project_root # in this example absolute path is /home/www/project_root
----| current -> releases/20150301100000 # this is a symlink to the current release
----| releases
-------| 20150301100000
-------| 20150228100000
-------| 20150226100000
----| logs # keeping our pm2 logs in here is a good idea so that they stay the same between deployments
----| configuration # Are you comitting your database environments?
+├── current -> releases/20150301100000 # this is a symlink to the current release
+├── releases
+|   ├── 20150301100000
+|   ├── 20150228100000
+|   └── 20150226100000
+├── logs # keeping our pm2 logs in here is a good idea so that they stay the same between deployments
+└── configuration # Are you comitting your database environments?
 ```
 
 And, what's more important than this is to define the pm2 ecosystem to match this structure:
@@ -114,21 +114,21 @@ Where the static project directory would be:
 
 ```
 project_root 
----| logs 
----| configuration 
------| development.yml 
----| data 
------| staging.sqlite 
------| development.sqlite 
+├── logs 
+├── configuration 
+|   └── development.yml 
+└── data 
+    ├── staging.sqlite 
+    └── development.sqlite 
 ```
 
 When deployed, all you have to do is to link `logs`, `configuration`, `data` to the parent directory! So, in a deployed environment of the same project, it'd look a lot like this:
 
 ```
 project_root 
----| logs -> ../logs
----| configuration  -> ../configuration
----| data -> /home/www/project_root/data # absolute path for the example
+├── logs -> ../logs
+├── configuration  -> ../configuration
+└── data -> /home/www/project_root/data # absolute path for the example
 ```
 
 For more informations, take a look at the [original issue](https://github.com/Unitech/pm2/issues/1623).
