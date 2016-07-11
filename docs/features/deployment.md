@@ -51,6 +51,11 @@ It contains this:
       "repo" : "git@github.com:repo.git",
       // Path of the application on target servers
       "path" : "/var/www/production",
+      // Can be used to give options in the format used in the configura-
+      // tion file.  This is useful for specifying options for which there
+      // is no separate command-line flag, see 'man ssh' 
+      // can be either a single string or an array of strings
+      "ssh_options": "StrictHostKeyChecking=no",
       // Commands to execute locally (on the same machine you deploy things)
       // Can be multiple commands separated by the character ";"
       "pre-deploy-local" : "echo 'This is a local executed command'"
@@ -67,6 +72,7 @@ It contains this:
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
       "path" : "/var/www/development",
+      "ssh_options": ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env dev",
       "env"  : {
         "NODE_ENV": "staging"
