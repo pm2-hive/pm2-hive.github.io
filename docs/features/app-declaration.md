@@ -7,7 +7,7 @@ permalink: /docs/usage/application-declaration/
 
 ## Application declaration
 
-PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes and lot more via a configuration file. It's particularly usefull for micro service based applications.
+PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes and lot more via a configuration file. It's particularly useful for micro service based applications.
 
 This file can be both JSON or YAML.
 
