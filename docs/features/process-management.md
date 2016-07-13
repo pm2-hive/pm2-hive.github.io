@@ -83,6 +83,11 @@ The interpreter is set by default with this equivalence:
 }
 ```
 
+### Arbitraty code execution
+
+```bash
+$ pm2 start arbitrary-app --interpreter=none
+```
 
 ### JSON configuration
 
