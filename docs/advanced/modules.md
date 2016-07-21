@@ -182,7 +182,7 @@ $ cd my-module
 $ pm2 publish
 ```
 
-## Super Charged modules with Keymetrics
+## Modules <3 Keymetrics
 
 With [Keymetrics](https://keymetrics.io/) you can [create a customized interface](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/#module-entry-point) with [metrics monitoring](http://docs.keymetrics.io/docs/pages/custom-metrics/) and [remote actions](http://docs.keymetrics.io/docs/pages/custom-actions/).
 
