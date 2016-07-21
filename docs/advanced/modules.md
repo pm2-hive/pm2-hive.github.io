@@ -169,7 +169,7 @@ $ pm2 set server-monitoring:days_interval 2
 - **NOTE3**: When you set a new value, the target module is automatically restarted
 - **NOTE4**: Type casting is automatic (Boolean, Number, String)
 
-### Publishing a module
+## Publishing a module
 
 To update/publish a module, it's straightforward. The `pm2 publish` command will increment the minor version of the module, will `git add . ; git commit -m "VERSION"; git push origin master` then it will `npm publish`.
 
