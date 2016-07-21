@@ -73,9 +73,7 @@ To remove the module:
 $ pm2 uninstall <module-name>
 ```
 
-# More about modules
-
-## package.json for options
+## Sugar in Package.json
 
 Complementary informations can be added to the **package.json** file.
 
