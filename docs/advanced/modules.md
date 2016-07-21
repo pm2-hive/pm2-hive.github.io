@@ -132,7 +132,7 @@ In the package.json you can declare default options accessible in the Module und
 
 Add default configuration values in package.json under the "config" attribute:
 
-```javascript
+```
 {
  [...]
  "config": {             // Default configuration value
