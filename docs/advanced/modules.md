@@ -191,8 +191,6 @@ This will give you this kind of result:
 <a href="/images/mongodb-rack.png" title="Keymetrics interface explanation"><img src="/images/mongodb-rack.png"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-mongodb" title="pm2-mongodb">pm2-mongodb module</a></center>
 
-or
-
 <a href="/images/server-monit.png" title="Keymetrics interface explanation"><img src="/images/server-monit.png"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-server-monit" title="pm2-server-monit">pm2-server-monit-module</a></center>
 
