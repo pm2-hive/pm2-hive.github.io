@@ -150,7 +150,7 @@ pmx.configureModule({
   human_info : [
     ['Status' , 'Module ready'],
     ['Comment', 'This is a superb comment the user should see'],
-    ['IP'     , 'my machine ip!]
+    ['IP'     , 'my machine ip!']
   ]
 });
 ```
