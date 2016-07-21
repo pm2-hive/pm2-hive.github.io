@@ -150,7 +150,7 @@ var conf = pmx.initModule({[...]}, function(err, conf) {
 });
 ```
 
-## Override configuration values
+### Changing values
 
 Changing the default values of a module is simple just do:
 
