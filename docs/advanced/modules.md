@@ -5,8 +5,6 @@ description: Standalone Node.JS applications runned by PM2
 permalink: /docs/advanced/pm2-module-system/
 ---
 
-# Quick Start
-
 ## PM2 Modules
 
 A PM2 module is a standalone software installed and managed by PM2. These softwares are pulled from the NPM repository and are published like a common Javascript library on NPM.
