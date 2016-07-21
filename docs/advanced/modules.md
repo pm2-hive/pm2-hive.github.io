@@ -120,6 +120,45 @@ var conf    = pmx.initModule({
 });
 ```
 
+## Extra display
+
+Instead of pm2 listing your processes once the module is installed, you can change this behavior to display a table to display the content you like.
+
+To enable this behavior edit the package.json and add env section with **PM2_EXTRA_DISPLAY** set to true:
+
+package.json:
+
+```
+{
+  [...]
+  "apps" : [{
+    "script" : "index.js",
+    "env"    : {
+      "PM2_EXTRA_DISPLAY" : "true"
+    }
+  }],
+  [...]
+}
+```
+
+Then in your code:
+
+```javascript
+var pmx = require('pmx');
+
+pmx.configureModule({
+  human_info : [
+    ['Status' , 'Module ready'],
+    ['Comment', 'This is a superb comment the user should see'],
+    ['IP'     , 'my machine ip!]
+  ]
+});
+```
+
+You will then be able to see this kind of table when the module is installed!
+
+![Extra module display](/images/pm2-monit.png)
+
 ## Module configuration
 
 In the package.json you can declare default options accessible in the Module under the attribute `config`. These values can be overridden by PM2 or Keymetrics.
