@@ -157,7 +157,7 @@ pmx.configureModule({
 
 You will then be able to see this kind of table when the module is installed!
 
-![Extra module display](/images/pm2-monit.png)
+![Extra module display](/images/module-extra-display.png)
 
 ## Module configuration
 
