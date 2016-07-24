@@ -52,19 +52,7 @@ $ pm2 start process.yml
 
 Read more about application declaration [here](/docs/usage/application-declaration/)
 
-## Convenient setup
-
-### Setup Auto Completion
-
-It will help you autocompleting commands, application name and related:
-
-```bash
-$ pm2 completion install
-```
-
-[More information](/docs/usage/auto-completion/)
-
-### Setup startup script
+## Setup startup script
 
 Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this just run this command to generate an active startup script:
 
