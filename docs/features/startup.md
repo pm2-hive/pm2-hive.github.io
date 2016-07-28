@@ -5,11 +5,11 @@ description: Auto restart PM2 and processes at server reboot
 permalink: /docs/usage/startup/
 ---
 
-PM2 can generates startup scripts and configure them in order to keep your process list intact accross expected or unexpected machine restarts.
+PM2 can generate startup scripts and configure them in order to keep your process list intact across expected or unexpected machine restarts.
 
 ## Command
 
-To get the automatically configured startup script for your machine you need to type this command:
+To get the automatically-configured startup script for your machine you need to type this command:
 
 ```bash
 # Auto-detect platform
@@ -38,7 +38,7 @@ There are some external libraries to generate a Windows compatible startup scrip
 
 ### Saving current processes
 
-Once you started all the applications you want to manage, too keep this list across expected/unexpected server restart, just type the command:
+Once you started all the applications you want to manage, to keep this list across expected/unexpected server restart, just type the command:
 
 ```bash
 $ pm2 save
