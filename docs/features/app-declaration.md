@@ -214,8 +214,8 @@ root  24271  0.0  0.3  696428  24208 ? Sl 17:36 0:00 pm2: node-app-2
 All the keys can be used in a JSON configured file, but will remain almost the same on the command line e.g.:
 
 ```
-exec_mode         -> --execute_command
-max_restarts      -> --max_restarts
+exec_mode         -> --execute-command
+max_restarts      -> --max-restarts
 force             -> --force
 ```
 
