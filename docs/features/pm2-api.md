@@ -13,7 +13,7 @@ It's also useful when you deploy a Node.js application [in any kind of Cloud Pro
 
 This example shows you how to start app.js with some configuration attributes. What is passed to start is the same than what you can declare in a [JS/JSON configuration](/docs/usage/application-declaration/) file:
 
-**NB**: Do not forget to call `pm2.disconnect()` everytime you exit your script!
+**NB**: If your script does not exit by itself, make sure you call `pm2.disconnect()` at the end
 
 ```bash
 $ npm install pm2 --save
