@@ -1,15 +1,15 @@
 ---
 layout: docs
-title: Application Declaration
+title: Process File
 description: Manage applications via a configuration file
 permalink: /docs/usage/application-declaration/
 ---
 
-## Application declaration
+## Process File
 
-PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each processes and lot more via a configuration file. It's particularly useful for micro service based applications.
+PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each app via a process file. It's particularly useful for micro service based applications.
 
-This file can be both JSON or YAML.
+Format supported are JSON or YAML. The JSON format is handled like a classic javascript file, so you can put comments or execute code inside it.
 
 ## Example
 
@@ -19,20 +19,21 @@ Here is an example of JSON configuration file, declaring 2 applications:
 
 ```json
 {
-  "apps" : [{
-    "script"      : "worker.js",
-    "watch"       : true,
-    "env": {
+  apps : [{
+    name        : "worker",
+    script      : "worker.js",
+    watch       : true,
+    env: {
       "NODE_ENV": "development",
     },
-    "env_production" : {
+    env_production : {
        "NODE_ENV": "production"
     }
   },{
-    "name"       : "api-app",
-    "script"     : "api.js",
-    "instances"  : 4,
-    "exec_mode"  : "cluster"
+    name       : "api-app",
+    script"    : "api.js",
+    instances  : 4,
+    exec_mode  : "cluster"
   }]
 }
 ```
@@ -44,9 +45,11 @@ Here is the same example in YAML format:
 ```yaml
 apps:
   - script   : api.js
+    name     : 'api-app',
     instances: 4
     exec_mode: cluster
   - script : worker.js
+    name   : 'worker',
     watch  : true
     env    :
       NODE_ENV: development
@@ -56,39 +59,39 @@ apps:
 
 ### CLI
 
-Then you can run the basics commands:
+Then you can run and manage your processes easily:
 
 ```bash
 # Start all applications
-$ pm2 start process.[json|yml]
+$ pm2 start process.json
 
-# Start only worker-app
-$ pm2 start process.[json|yml] --only worker-app
+# Start only the app named worker-app
+$ pm2 start process.json --only worker-app
 
 # Stop all
-$ pm2 stop process.[json|yml]
+$ pm2 stop process.json
 
 # Restart all
-$ pm2 start   process.[json|yml]
+$ pm2 start   process.json
 ## Or
-$ pm2 restart process.[json|yml]
+$ pm2 restart process.json
 
 # Reload all
-$ pm2 reload process.[json|yml]
+$ pm2 reload process.json
 
 # Delete all
-$ pm2 delete process.[json|yml]
+$ pm2 delete process.json
 ```
 
-### Act on specific process
+### Act on a specific process
 
 You can also act on a particular application name by using the option `--only <app_name>`:
 
 ```bash
-$ pm2 start   process.[json|yml] --only api-app
-$ pm2 restart process.[json|yml] --only api-app
-$ pm2 reload  process.[json|yml] --only api-app
-$ pm2 delete  process.[json|yml] --only api-app
+$ pm2 start   process.json --only api-app
+$ pm2 restart process.json --only api-app
+$ pm2 reload  process.json --only api-app
+$ pm2 delete  process.json --only api-app
 ```
 
 ## Attributes available
@@ -155,10 +158,10 @@ Example:
 
 ```bash
 # Inject what is declared in env_production
-$ pm2 start process.[json|yml] --env production
+$ pm2 start process.json --env production
 
 # Inject what is declared in env_staging
-$ pm2 restart process.[json|yml] --env staging
+$ pm2 restart process.json --env staging
 ```
 
 ## JSON & Javascript
