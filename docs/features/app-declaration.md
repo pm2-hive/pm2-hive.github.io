@@ -21,7 +21,7 @@ Here is an example of JSON configuration file, declaring 2 applications:
 {
   apps : [{
     name        : "worker",
-    script      : "worker.js",
+    script      : "./worker.js",
     watch       : true,
     env: {
       "NODE_ENV": "development",
@@ -31,7 +31,7 @@ Here is an example of JSON configuration file, declaring 2 applications:
     }
   },{
     name       : "api-app",
-    script"    : "api.js",
+    script     : "./api.js",
     instances  : 4,
     exec_mode  : "cluster"
   }]
@@ -44,12 +44,12 @@ Here is the same example in YAML format:
 
 ```yaml
 apps:
-  - script   : api.js
-    name     : 'api-app',
+  - script   : ./api.js
+    name     : 'api-app'
     instances: 4
     exec_mode: cluster
-  - script : worker.js
-    name   : 'worker',
+  - script : ./worker.js
+    name   : 'worker'
     watch  : true
     env    :
       NODE_ENV: development
