@@ -19,12 +19,17 @@ $ pm2 start  app.js -i max
 
 Or via a [yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
-```yaml
-apps:
-  script    : api.js
-  instances : max
-  exec_mode : cluster
+```javascript
+{
+  apps : [{
+    script    : api.js,
+    instances : max,
+    exec_mode : 'cluster'
+  }]
+}
 ```
+
+Then to start this Process File:
 
 ```bash
 $ pm2 start processes.yml
