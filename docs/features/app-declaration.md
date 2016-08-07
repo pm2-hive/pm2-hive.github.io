@@ -17,7 +17,7 @@ Format supported are JSON or YAML. The JSON format is handled like a classic jav
 
 Here is an example of JSON configuration file, declaring 2 applications:
 
-```json
+```javascript
 {
   apps : [{
     name        : "worker",
