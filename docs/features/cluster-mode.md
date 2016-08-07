@@ -9,8 +9,6 @@ permalink: /docs/usage/cluster-mode/
 
 The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any modifications. This increase overall reliability and performance, depending on the number of CPUs available.
 
-Compared to a single instance setup, using the cluster mode can **increase performance up to 650% on a 8 cores CPU**.
-
 ## Usage
 
 To enable the **cluster mode**, just pass the -i <instances> option:
@@ -56,12 +54,23 @@ $ pm2 reload process.yml --only api
 
 If the reload system hasn't managed to reload your app, a timeout will fallback to a classic restart.
 
-## Stateless-fy your app
+## Gracefull Shutdown
 
-Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that there is not any local data stored in the process, like sessions/websocket connections etc. Use Redis, Mongo or other DB to share states between processes.
+In production environment, you may need to wait for remaining queries to be processed or close all connections before exiting the application. On the *PM2 reload context* it can be translated into a very long reload or a reload that doesn't work (fallback to restart) meaning that your app still has open connections on exit or you may need to close all databases connections, clear a data queue or whatever.
 
-## Close all connections
+To Gracefully Shutdown an application you can catch the **SIGINT** signal (the first signal sent on exit by PM2) and execute actions to wait/clear all these states:
 
-Sometimes you can experience a **very long reload, or a reload that doesn't work** (fallback to restart) meaning that your app still has open connections on exit or you may need to close all databases connections, clear a data queue or whatever.
+```javascript
+process.on('SIGINT', function() {
+   db.stop(function(err) {
+     process.exit(err ? 1 : 0);
+   });
+});
+```
 
-To work around this problem you have to **close all connections and blocking stuff** with the [Clean Restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) feature.
+[Read more about Graceful Shutdown](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) feature.
+
+## Statelessify your application
+
+Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that there is not any local data stored in the process, like sessions/websocket connections, session-memory and related. Use Redis, Mongo or other DB to share states between processes.
+
