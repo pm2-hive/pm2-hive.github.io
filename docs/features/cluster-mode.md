@@ -7,7 +7,7 @@ permalink: /docs/usage/cluster-mode/
 
 ## Cluster Mode
 
-The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any modifications. This increase overall reliability and performance, depending on the number of CPUs available.
+The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any code modifications. This increase greatly performance and reliability, depending on the number of CPUs available.
 
 ## Usage
 
@@ -32,7 +32,7 @@ Or via a [yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declar
 Then to start this Process File:
 
 ```bash
-$ pm2 start processes.yml
+$ pm2 start processes.json
 ```
 
 The *-i* or *instances* option can be:
@@ -53,8 +53,8 @@ $ pm2 reload <app_name>
 Or:
 
 ```bash
-$ pm2 reload process.yml
-$ pm2 reload process.yml --only api
+$ pm2 reload process.json
+$ pm2 reload process.json --only api
 ```
 
 If the reload system hasn't managed to reload your app, a timeout will fallback to a classic restart.
