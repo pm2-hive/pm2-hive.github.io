@@ -36,9 +36,9 @@ Just add pm2 to your app dependencies:
 Then we will need to change the startup scripts. We call the pm2 from the node_modules folder:
 
 ```json
-scripts": {
-    "start": "node ./node_modules/.bin/pm2 start app.js --name yourApp",
-	"poststart":  "node ./node_modules/.bin/pm2 logs"
+"scripts": {
+  "start": "node ./node_modules/.bin/pm2 start app.js --name yourApp",
+  "poststart":  "node ./node_modules/.bin/pm2 logs"
 }
 ```
 
