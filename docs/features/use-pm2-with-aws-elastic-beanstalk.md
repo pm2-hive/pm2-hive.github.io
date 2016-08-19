@@ -2,7 +2,7 @@
 layout: docs
 title: PM2 in ElasticBeanstalk
 description: Use PM2 in a AWS Elastic Beanstalk
-permalink: /docs/usage/use-pm2-with-aws-elastic-beanstalk/
+permalink: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
 ---
 
 # Using PM2/Keymetrics in AWS Elastic Beanstalk

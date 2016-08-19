@@ -52,6 +52,8 @@
         url: /docs/tutorials/pm2-nginx-production-setup
       - title: Using transpilers with pm2
         url: /docs/tutorials/using-transpilers-with-pm2
+      - title: Use PM2 in Beanstalk
+        url: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
 
 - title: Modules
   url: /docs/advanced/pm2-module-system/
