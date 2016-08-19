@@ -11,7 +11,7 @@ This page will guide you step by step through the pm2/Keymetrics integration in 
 
 We created a repository for easy testing: [pm2-ebs-demo](https://github.com/keymetrics/pm2-ebs-demo)
 
-##Setup Beanstalk
+## Setup Beanstalk
 
 Go to your app directory and use `eb init` to setup beanstalk.
 
@@ -27,7 +27,7 @@ option_settings:
     value: "npm start"
 ```
 
-##Integrate PM2
+## Integrate PM2
 
 The easier and less invasive way to monitor your app using pm2 is by requiring it as a npm module. We will simply change the `package.json` structure to let pm2 start the application.
 Just add pm2 to your app dependencies: 
@@ -47,7 +47,7 @@ Then we will need to change the startup scripts. We call the pm2 from the node_m
 
 That's all! Run `eb deploy` to get a pm2 instance on your ElasticBeanstalk instances with minimal overhead.
 
-##Integrate PM2 with Keymetrics
+## Integrate PM2 with Keymetrics
 We just need to pass two variables to pm2 from the env to make it link to Keymetrics: `KEYMETRICS_PUBLIC` and `KEYMETRICS_SECRET`.
 
 * When creating the environment from the cli:
