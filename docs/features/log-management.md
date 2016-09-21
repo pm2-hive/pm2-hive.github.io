@@ -28,6 +28,22 @@ $ pm2 logs api
 $ pm2 logs big-api --lines 1000
 ```
 
+## JSON output
+
+Starting PM2 2.x, you can now output logs in JSON format with the `--json` option:
+
+```bash
+$ pm2 logs --json
+```
+
+## Formated output
+
+Starting PM2 2.x, you can now output logs in FORMAT with the `--format` option:
+
+```bash
+$ pm2 logs --format
+```
+
 ## Flushing logs
 
 This will empty all current application logs managed by PM2:
@@ -37,6 +53,16 @@ $ pm2 flush # Clear all the logs
 ```
 
 Or you can install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-management/#pm2-logrotate-module) or [enable the log rotate](http://pm2.keymetrics.io/docs/usage/log-management/#setting-up-a-native-logrotate) script to handle the log rotation.
+
+## Rotating Logs
+
+[**pm2-logrotate**](https://github.com/pm2-hive/pm2-logrotate) auto rotate logs of PM2 and applications managed:
+
+```bash
+$ pm2 install pm2-logrotate
+```
+
+[Options](https://github.com/pm2-hive/pm2-logrotate#configure)
 
 ## Reloading all logs
 
@@ -127,12 +153,4 @@ This will write a basic logrotate configuration to `/etc/logrotate.d/pm2-user` t
         delaycompress
         create 0640 user user
 }
-```
-
-## pm2-logrotate Module
-
-[**pm2-logrotate**](https://github.com/pm2-hive/pm2-logrotate) auto rotate logs of PM2 and applications managed<br/>
-
-```bash
-$ pm2 install pm2-logrotate
 ```
