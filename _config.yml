@@ -13,6 +13,13 @@ github_username:  jekyll
 sass:
   sass_dir: _sass
 
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+highlighter: rouge
 
 exclude: ['node_modules', 'docs/intro.md']
 

@@ -85,3 +85,8 @@ DEPENDENCIES
   jekyll
   jekyll-lunr-js-search
   jekyll-redirect-from
+  jekyll-watch
+  kramdown
+
+BUNDLED WITH
+   1.12.5
