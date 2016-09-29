@@ -77,6 +77,7 @@ The **SIGKILL** event cannot be intercepted in your application (newer Node.js v
 For some unknown reason, in cluster mode (if someone has an explanation we are interested) Node will not call the callback for SIGINT event in some situation. Here you have some example because it isnt easy to understand :
 
 This callback here will be called **ONLY if your server has recevied one request**:
+
 ```javascript
 var http = require('http');
 
@@ -91,6 +92,7 @@ process.on('SIGINT', function() {
 ```
 
 This callback here will be called:
+
 ```javascript
 var http = require('http');
 

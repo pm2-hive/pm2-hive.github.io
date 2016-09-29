@@ -101,3 +101,13 @@ pm2.connect(function() {
   });
 });
 ```
+
+## Or via environment variables
+
+You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET at the VM/Dyno level and when pm2 will start, it will automatically connect to Keymetrics. Or in bash mode:
+
+```
+$ export KEYMETRICS_PUBLIC="XXXX"
+$ export KEYMETRICS_SECRET="YYYY"
+$ pm2 update
+```
