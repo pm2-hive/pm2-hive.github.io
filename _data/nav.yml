@@ -21,6 +21,8 @@
       url: /docs/usage/deployment/
     - title: Startup Script
       url: /docs/usage/startup/
+    - title: Docker Integration
+      url: /docs/usage/docker-pm2-nodejs/
     - title: Setup Auto Completion
       url: /docs/usage/auto-completion/
     - title: Watch & Restart
@@ -60,4 +62,3 @@
   subnav:
     - title: Module System
       url: /docs/advanced/pm2-module-system/
-
