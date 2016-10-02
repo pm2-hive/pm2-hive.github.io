@@ -34,13 +34,13 @@ RUN npm install pm2 -g
 Then replace the CMD directive:
 
 ```
-CMD ["node", "api.js"]
+CMD ["node", "app.js"]
 ```
 
 To this one:
 
 ```
-CMD ["pm2-docker", "api.js"]
+CMD ["pm2-docker", "app.js"]
 ```
 
 *NB: Please note that you have to replace app.js with your application.*
