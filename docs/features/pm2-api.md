@@ -122,27 +122,35 @@ pm2.connect(function(err) {
     * `pm_exec_path` - The path of the script being run in this process.
 
 **`pm2.list(errback)`** - Gets the list of running processes being managed by pm2.
+
 * `errback(err, processDescriptionList)` - The `processDescriptionList` parameter will contain a list of `processDescription` objects as defined under `pm2.describe`. 
 
 **`pm2.dump(errback)`** - Writes the process list to a json file at the path in the DUMP_FILE_PATH environment variable ("~/.pm2/dump.pm2" by default).
+
 * `errback(err, result)`
 
 **`pm2.flush(process,errback)`** - Flush the logs.
+
 * `errback(err, result)`
 
 **`pm2.dump(errback)`**
+
 * `errback(err, result)`
 
 **`pm2.reloadLogs(errback)`** - *Rotates* the log files. The new log file will have a higher number in it (the default format being `${process.name}-${out|err}-${number}.log`).
+
 * `errback(err, result)`
 
 **`pm2.launchBus(errback)`** - Opens a message bus 
+
 * `errback(err, bus)` - The `bus` will be an [Axon Sub Emitter](https://github.com/tj/axon#pubemitter--subemitter) object used to listen to and send events.
 
 **`pm2.sendSignalToProcessName(signal, process, errback)`**
+
 * `errback(err, result)`
 
 **`pm2.startup(platform, errback)`** - Registers the script as a process that will start on machine boot. Platform can currently be: "ubuntu", "centos", "redhat", "gentoo", "systemd", "darwin", or "amazon". The current process list will be dumped and saved for resurrection on reboot.
+
 * `errback(err, result)`
 
 ## Send message to process
