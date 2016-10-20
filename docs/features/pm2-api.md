@@ -100,6 +100,7 @@ pm2.connect(function(err) {
 **`pm2.killDaemon(errback)`** - Kills the pm2 daemon (same as `pm2 kill`). Note that when the daemon is killed, all its processes are also killed. Also note that you still have to explicitly disconnect from the daemon even after you kill it.
 
 **`pm2.describe(process,errback)`** - Returns various information about a process: eg what stdout/stderr and pid files are used.
+
 * `errback(err, processDescription)`
 * `processDescription` - An object with information about the process. Contains the properties:
   * `name` - The name given in the original `start` command. 
