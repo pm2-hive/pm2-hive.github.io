@@ -56,6 +56,15 @@ It contains this:
       // is no separate command-line flag, see 'man ssh' 
       // can be either a single string or an array of strings
       "ssh_options": "StrictHostKeyChecking=no",
+      // To prepare the host by installing required software (eg: git) 
+      // even before the setup process starts
+      // can be multiple commands separated by the character ";"
+      // or path to a script on your local machine
+      "pre-setup" : "apt-get install git",
+      // Commands / path to a script on the host machine
+      // This will be executed on the host after cloning the repository
+      // eg: placing configurations in the shared dir etc
+      "post-setup": "ls -la",
       // Commands to execute locally (on the same machine you deploy things)
       // Can be multiple commands separated by the character ";"
       "pre-deploy-local" : "echo 'This is a local executed command'"
@@ -160,6 +169,8 @@ To deploy to multiple host in the same time, just declare each host in an array 
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
       "path" : "/var/www/production",
+      "pre-setup" : "echo 'commands or local script path to be run on the host before the setup process starts'",
+      "post-setup": "echo 'commands or a script path to be run on the host after cloning the repo'",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env production",
       "pre-deploy-local" : "echo 'This is a local executed command'"
     }
