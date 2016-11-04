@@ -15,6 +15,7 @@ Just add a virtual host (best known as "server block" in the nginx world):
 
 upstream my_nodejs_upstream {
     server 127.0.0.1:3001;
+    keepalive 64;
 }
 
 server {
