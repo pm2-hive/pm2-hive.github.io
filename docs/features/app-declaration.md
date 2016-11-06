@@ -9,13 +9,42 @@ permalink: /docs/usage/application-declaration/
 
 PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each app via a process file. It's particularly useful for micro service based applications.
 
-Format supported are JSON or YAML. The JSON format is handled like a classic javascript file, so you can put comments or execute code inside it.
+Configuration format supported are Javascript, JSON and YAML.
 
-## Example
+## Generate configuration
 
-### process.json
+To generate a sample process file you can type this command:
 
-Here is an example of JSON configuration file, declaring 2 applications:
+```
+$ pm2 ecosystem
+```
+
+This will generates a sample `ecosystem.config.js`:
+
+```javascript
+module.exports = {
+  apps : [{
+    name        : "worker",
+    script      : "./worker.js",
+    watch       : true,
+    env: {
+      "NODE_ENV": "development",
+    },
+    env_production : {
+       "NODE_ENV": "production"
+    }
+  },{
+    name       : "api-app",
+    script     : "./api.js",
+    instances  : 4,
+    exec_mode  : "cluster"
+  }]
+}
+```
+
+### JSON format
+
+The configuration can be also in JSON format.
 
 ```javascript
 {
@@ -38,7 +67,7 @@ Here is an example of JSON configuration file, declaring 2 applications:
 }
 ```
 
-### process.yml
+### YAML format
 
 Here is the same example in YAML format:
 
@@ -63,24 +92,24 @@ Then you can run and manage your processes easily:
 
 ```bash
 # Start all applications
-$ pm2 start process.json
+$ pm2 start ecosystem.config.js
 
 # Start only the app named worker-app
-$ pm2 start process.json --only worker-app
+$ pm2 start ecosystem.config.js --only worker-app
 
 # Stop all
-$ pm2 stop process.json
+$ pm2 stop ecosystem.config.js
 
 # Restart all
-$ pm2 start   process.json
+$ pm2 start   ecosystem.config.js
 ## Or
-$ pm2 restart process.json
+$ pm2 restart ecosystem.config.js
 
 # Reload all
-$ pm2 reload process.json
+$ pm2 reload ecosystem.config.js
 
 # Delete all
-$ pm2 delete process.json
+$ pm2 delete ecosystem.config.js
 ```
 
 ### Act on a specific process
@@ -88,10 +117,10 @@ $ pm2 delete process.json
 You can also act on a particular application name by using the option `--only <app_name>`:
 
 ```bash
-$ pm2 start   process.json --only api-app
-$ pm2 restart process.json --only api-app
-$ pm2 reload  process.json --only api-app
-$ pm2 delete  process.json --only api-app
+$ pm2 start   ecosystem.config.js --only api-app
+$ pm2 restart ecosystem.config.js --only api-app
+$ pm2 reload  ecosystem.config.js --only api-app
+$ pm2 delete  ecosystem.config.js --only api-app
 ```
 
 ## Attributes available
@@ -140,15 +169,16 @@ Application behavior and configuration can be fine-tuned with the following attr
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
 |min_uptime| (string) | | min uptime of the app to be considered started |
+| listen_timeout | number | 8000 | time in ms before forcing a reload if app not listening |
 | kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#cleaning-states-and-jobs) |
-|max_restarts| number | 10 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted|
+| wait_ready | boolean | false | Instead of reload waiting for listen event, wait for process.send('ready') |
+| max_restarts| number | 10 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted|
+| restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
 | autorestart | boolean |  false  |  true by default. if false, PM2 will not restart your app if it crashes or ends peacefully  |
-| cron_restart    |  string |                "1 0 * * *"                |                                      a cron pattern to restart your app. only works in "cluster" mode for now. soon to be avaible in "fork" mode as well  |
+| cron_restart    |  string |                "1 0 * * *"                |                                      a cron pattern to restart your app. Application must be running for cron feature to work  |
 | vizion       | boolean |                   false                   |  true by default. if false, PM2 will start without vizion features (versioning control metadatas) |
 | post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard |
 | force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2 |
-| restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
-
 
 ## Switching environments
 
