@@ -56,8 +56,10 @@ Let's create a process.yml file with this content:
 ```yaml
 apps:
   - script   : 'app.js'
+    name     : 'APP'
     exec_mode: 'cluster'
     instances: 4
+  - script   : 'worker.js'
 ```
 
 All options available are [listed here](/docs/usage/application-declaration/#attributes-available)
@@ -66,6 +68,12 @@ You can then replace the **CMD** directive by this:
 
 ```
 CMD ["pm2-docker", "process.yml"]
+```
+
+To split each processes in his own Docker, you can use the --only [app-name] option:
+
+```
+CMD ["pm2-docker", "process.yml", "--only", "APP"]
 ```
 
 ### Logging Format option
