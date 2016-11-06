@@ -112,6 +112,14 @@ You may want to tell Developers to program inside a Container to keep a consista
 
 By replacing **pm2-docker** with **pm2-dev** the watch and restart feature will be enabled. This is quite interesting in a development Container when the host files are exposed to the container as a VOLUME.
 
+### Expose health endpoint
+
+```bash
+$ pm2-docker process.json --web
+```
+
+The `--web [port]` option allows to expose all vital signs (docker instance + application) via a JSON API.
+
 ### Using Keymetrics.io
 
 [Keymetrics.io](https://keymetrics.io/) is a monitoring service built on top of PM2 that allows to monitor and manage applications easily (logs, restart, exceptions monitoring...). Once you created a Bucket on Keymetrics you will get a public and a secret key.
