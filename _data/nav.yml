@@ -13,6 +13,8 @@
       url: /docs/usage/cluster-mode
     - title: Process File
       url: /docs/usage/application-declaration/
+    - title: Graceful restart/reload
+      url: /docs/usage/signals-clean-restart/
     - title: Log Management
       url: /docs/usage/log-management/
     - title: Update PM2
@@ -27,8 +29,6 @@
       url: /docs/usage/auto-completion/
     - title: Watch & Restart
       url: /docs/usage/watch-and-restart/
-    - title: Graceful restart/reload
-      url: /docs/usage/signals-clean-restart/
     - title: Monitoring
       url: /docs/usage/monitoring/
     - title: Source map support
