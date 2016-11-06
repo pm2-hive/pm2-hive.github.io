@@ -17,7 +17,7 @@ To enable the **cluster mode**, just pass the -i <instances> option:
 $ pm2 start  app.js -i max
 ```
 
-Or via a [yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
 ```javascript
 {
@@ -59,7 +59,7 @@ $ pm2 reload process.json --only api
 
 If the reload system hasn't managed to reload your app, a timeout will fallback to a classic restart.
 
-## Gracefull Shutdown
+## Graceful Shutdown
 
 In production environment, you may need to wait for remaining queries to be processed or close all connections before exiting the application. On the *PM2 reload context* it can be translated into a very long reload or a reload that doesn't work (fallback to restart) meaning that your app still has open connections on exit or you may need to close all databases connections, clear a data queue or whatever.
 
