@@ -71,3 +71,22 @@ Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declarati
   }]
 }
 ```
+
+## Graceful start
+
+You can from now (pm2 version `2.1.x`) make a graceful start. Sometimes you want to wait for your application to have etablished connections with your DBs/caches/workers/whatever, so PM2 need to wait before considering your application as `online`. 
+To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file so PM2 listen for that event, and in your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
+
+Note that PM2 have a timeout in case the event is never call, so in case your startup is longer than the default timeout (`3000` ms), you will want to increase it using `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file. 
+
+```javascript
+var http = require('http');
+var app = http.createServer(function(req, res) {
+  res.writeHead(200);
+  res.end('hey');
+})
+var listener = app.listen(0, function() {
+  console.log('Listening on port ' + listener.address().port);
+  process.send('ready');
+});
+```
