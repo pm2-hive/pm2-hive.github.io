@@ -20,6 +20,8 @@ If `--watch` is enabled, stopping it won't stop watching:
 
 Restart toggle the `watch` parameter when triggered.
 
+**Note** : **Watching system doesn't provide any graceful action, pm2 kill and restart your app without sending SIGINT**
+
 To watch specific paths, please use a [JS/JSON app declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
 
 ```json
