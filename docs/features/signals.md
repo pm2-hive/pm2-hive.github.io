@@ -5,6 +5,8 @@ description: How signals are handled in PM2
 permalink: /docs/usage/signals-clean-restart/
 ---
 
+** NOTE for Windows users : Graceful action aren't working on Windows since signals doesn't exist on this plateform, when we send a SIGINT to notify the process like below, the process is directly kill.**
+
 ## Graceful Stop
 
 To allow gracefull restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit. 
