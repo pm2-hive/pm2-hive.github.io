@@ -29,8 +29,9 @@ $ npm install git://github.com/Unitech/pm2#development -g
 
 ## Launch the tests
 
-[![Build Status](https://img.shields.io/travis/Unitech/PM2/master.svg?style=flat-square)](https://travis-ci.org/Unitech/PM2)
-[![Build Status](https://img.shields.io/travis/Unitech/PM2/development.svg?style=flat-square)](https://travis-ci.org/Unitech/PM2)
+Master: [![Build Status](https://img.shields.io/travis/Unitech/pm2/master.svg?style=flat-square)](https://travis-ci.org/Unitech/pm2)
+
+Dev   : [![Build Status](https://img.shields.io/travis/Unitech/pm2/development.svg?style=flat-square)](https://travis-ci.org/Unitech/pm2)
 
 Just try the tests before using PM2 on your production server
 
@@ -48,7 +49,6 @@ Also make sure you have all dependencies needed. For Ubuntu:
 $ sudo apt-get install build-essential
 # nvm is a Node.js version manager - https://github.com/creationix/nvm
 $ wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
-$ nvm install v0.11.14
-$ nvm use v0.11.14
-$ nvm alias default v0.11.14
+$ nvm install 4
+$ nvm use 4
 ```
