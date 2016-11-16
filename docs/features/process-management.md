@@ -30,6 +30,8 @@ To restart it just do:
 $ pm2 restart web-interface
 ```
 
+*NB: starting PM2 2.1.x, restarts are immutable, meaning that env will not auto-update. Use --update-env to update env*
+
 Now I want to **delete** the app from the PM2 process list.
 To do so:
 
