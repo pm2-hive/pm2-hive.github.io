@@ -85,13 +85,13 @@ The interpreter is set by default with this equivalence:
 }
 ```
 
-### Arbitraty code execution
+### Binary code execution
 
 ```bash
-$ pm2 start arbitrary-app --interpreter='none'
+$ pm2 start ./binary-app
 ```
 
-### JSON configuration
+### Process configuration
 
 To run a non-JS interpreter you must set `exec_mode` to `fork_mode` and `exec_interpreter` to your interpreter of choice.
 For example:
