@@ -115,6 +115,7 @@ For example:
 ## Max Memory Restart
 
 PM2 allows to restart an application based on a memory limit.
+
 Note that the max memory restart options are graceful (if your app support graceful action of course).
 
 ### CLI
