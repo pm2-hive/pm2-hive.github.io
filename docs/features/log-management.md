@@ -116,7 +116,7 @@ For example, this keeps `out` and `err` separated but adds a combined file:
 {
   "log_file": "combined.outerr.log",
   "out_file": "out.log",
-  "err_file": "err.log"
+  "error_file": "err.log"
 }
 ```
 
@@ -125,7 +125,7 @@ Or if you want out and err combined without any other file, just use the same lo
 ```
 {
   "out_file": "combined.log",
-  "err_file": "combined.log"
+  "error_file": "combined.log"
 }
 ```
 
@@ -134,6 +134,15 @@ Note that relatives logs paths will usually be written in the `PM2_HOME` (`~/.pm
 ### Disabling log suffix
 
 Use the `--merge-logs` option to disable automatic log file suffixing.
+
+### Disable logging
+
+```
+{
+  "out_file": "/dev/null",
+  "error_file": "/dev/null"
+}
+```
 
 ### Setting up a native logrotate
 
