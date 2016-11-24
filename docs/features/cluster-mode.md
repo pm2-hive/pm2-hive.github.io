@@ -22,9 +22,9 @@ Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-dec
 ```javascript
 {
   apps : [{
-    script    : api.js,
-    instances : max,
-    exec_mode : 'cluster'
+    script    : api.js",
+    instances : "max",
+    exec_mode : "cluster"
   }]
 }
 ```
