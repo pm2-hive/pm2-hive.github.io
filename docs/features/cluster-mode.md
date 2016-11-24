@@ -19,12 +19,12 @@ $ pm2 start  app.js -i max
 
 Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
-```javascript
+```json
 {
-  apps : [{
-    script    : api.js",
-    instances : "max",
-    exec_mode : "cluster"
+  "apps" : [{
+    "script"    : "api.js",
+    "instances" : "max",
+    "exec_mode" : "cluster"
   }]
 }
 ```
