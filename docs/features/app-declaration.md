@@ -127,6 +127,20 @@ $ pm2 reload  ecosystem.config.js --only api-app
 $ pm2 delete  ecosystem.config.js --only api-app
 ```
 
+### Switching environments
+
+You may have noticed that you can declare environment-specific variables with the attribute `env_*` (e.g. env_production, env_staging...). These can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
+
+Example:
+
+```bash
+# Inject what is declared in env_production
+$ pm2 start process.json --env production
+
+# Inject what is declared in env_staging
+$ pm2 restart process.json --env staging
+```
+
 ## Attributes available
 
 Application behavior and configuration can be fine-tuned with the following attributes:
@@ -183,37 +197,6 @@ Application behavior and configuration can be fine-tuned with the following attr
 | vizion       | boolean |                   false                   |  true by default. if false, PM2 will start without vizion features (versioning control metadatas) |
 | post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard |
 | force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2 |
-
-## Switching environments
-
-You may have noticed that you can declare environment-specific variables with the attribute `env_*` (e.g. env_production, env_staging...). These can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
-
-Example:
-
-```bash
-# Inject what is declared in env_production
-$ pm2 start process.json --env production
-
-# Inject what is declared in env_staging
-$ pm2 restart process.json --env staging
-```
-
-## JSON & Javascript
-
-JSON file are interpreter, so you can inject Javascript into a JSON configuration file.
-Example:
-
-```javascript
-{
-  apps : [{
-    name   : process.env.USER,
-    script : [".", "/", "e", "cho.js"].join('')
-  }, {
-    name   : 'API-2',
-    script : ["./", "api.js"].join('')
-  }]
-}
-```
 
 ## Considerations
 
