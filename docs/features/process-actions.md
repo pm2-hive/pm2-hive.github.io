@@ -17,7 +17,7 @@ $ npm install pmx --save
 
 Then in your code:
 
-```javasript
+```javascript
 var pmx = require('pmx');
 
 pmx.action('hello', function(reply) {
