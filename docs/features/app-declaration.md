@@ -19,7 +19,9 @@ To generate a sample process file you can type this command:
 $ pm2 ecosystem
 ```
 
-This will generates a sample `ecosystem.config.js`:
+This will generates a sample `ecosystem.config.js`.
+
+### Javascript format
 
 ```javascript
 module.exports = {
@@ -41,6 +43,8 @@ module.exports = {
   }]
 }
 ```
+
+**Note that using a Javascript configuration file require to prefix the file with .config.js**
 
 ### JSON format
 
