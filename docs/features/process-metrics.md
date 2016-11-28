@@ -17,7 +17,7 @@ $ npm install pmx --save
 
 Then in your code:
 
-```javasript
+```javascript
 var Probe = require('pmx').probe();
 
 var counter = 0;
