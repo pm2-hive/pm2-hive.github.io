@@ -25,8 +25,10 @@
       url: /docs/usage/startup/
     - title: Docker Integration
       url: /docs/usage/docker-pm2-nodejs/
-    - title: Setup Auto Completion
-      url: /docs/usage/auto-completion/
+    - title: Process Metrics
+      url: /docs/usage/process-metrics/
+    - title: Process Actions
+      url: /docs/usage/process-actions/
     - title: Watch & Restart
       url: /docs/usage/watch-and-restart/
     - title: Monitoring
