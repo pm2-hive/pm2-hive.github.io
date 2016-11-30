@@ -44,7 +44,7 @@ module.exports = {
 }
 ```
 
-**Note that using a Javascript configuration file require to prefix the file with .config.js**
+**Note that using a Javascript configuration file require to suffix the file with .config.js**
 
 ### JSON format
 
