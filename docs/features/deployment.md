@@ -99,6 +99,7 @@ Edit the file according to your needs.
 $ ssh-keygen -t rsa
 $ ssh-copy-id node@myserver.com
 ```
+If you encounter any errors, see the troubleshooting section below.
 
 3- Now initialize the remote folder with:
 
@@ -225,6 +226,60 @@ $ pm2 deploy ecosystem.json production --force
 - It deploys your code via ssh, you don't need any dependencies
 - Process are initialized / started automatically depending on application name in `ecosystem.json`
 - PM2-deploy repository is there: [pm2-deploy](https://github.com/Unitech/pm2-deploy)
+
+## Troubleshooting
+##### SSH clone errors
+In most cases, these errors will be caused by `pm2` not having the correct keys to clone your repository. You need to verify at every step that the keys are available.
+
+__Step 1__
+If you're certain your keys work, first try running `git clone your_repo.git` on the target server. If it succeeds, move onto the next steps. If not, make sure your keys are stored both on the server and on your git account.
+
+__Step 2__
+By default `ssh-copy-id` copies the default identiy, usually named `id_rsa`. If that is not the appropriate key:
+
+```bash
+$ ssh-copy-id -i path/to/my/key your_username@server.com
+```
+This adds your public key to the `~/.ssh/authorized_keys` file.
+
+__Step 3__
+If you get the following error:
+```
+--> Deploying to production environment
+--> on host mysite.com
+  ○ hook pre-setup
+  ○ running setup
+  ○ cloning git@github.com:user/repo.git
+Cloning into '/var/www/app/source'...
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+  failed to clone
+
+Deploy failed
+```
+...you may want to create an ssh config file. This is a sure fire way to ensure that the correct ssh keys are used for any given repository you're trying to clone. See [this example](https://gist.github.com/Protosac/c3fb459b1a942f161f23556f61a67d66):
+
+```
+# ~/.ssh/config
+Host alias
+    HostName myserver.com
+    User username
+    IdentityFile ~/.ssh/mykey
+# Usage: `ssh alias` 
+# Alternative: `ssh -i ~/.ssh/mykey username@myserver.com`
+
+Host deployment
+    HostName github.com
+    User username
+    IdentityFile ~/.ssh/github_rsa
+# Usage:
+# git@deployment:username/anyrepo.git 
+# This is for cloning any repo that uses that IdentityFile. This is a good way to make sure that your remote cloning commands use the appropriate key
+```
 
 ## Contributing
 
