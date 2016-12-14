@@ -40,7 +40,7 @@ E.G:
 
 Just copy/paste this line and the startup script will be configured for your OS.
 
-### Saving current processes
+## Saving current processes
 
 Once you started all the applications you want to manage, to keep this list across expected/unexpected server restart, just type the command:
 
@@ -49,6 +49,14 @@ $ pm2 save
 ```
 
 Doing this will save the process list with their current environment into the dump file `$PM2_HOME/.pm2/dump.pm2`
+
+### Manually resurrect processes
+
+Bring back previously saved processes (via pm2 save):
+
+```bash
+$ pm2 resurrect
+```
 
 ## Disabling startup system
 
@@ -62,10 +70,6 @@ Or if you specified yourself the init system:
 $ pm2 unstartup [platform] 
 ```
 
-### Windows consideration
-
-There are some external libraries to generate a Windows compatible startup script, please checkout [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) or [pm2-windows-startup](https://www.npmjs.com/package/pm2-windows-startup).
-
 ## User permissions
 
 Let's say you want the startup script to be executed under another user.
@@ -76,10 +80,8 @@ Just use the `-u <username>` option and the `--hp <user_home>`:
 $ pm2 startup ubuntu -u www --hp /home/ubuntu
 ```
 
-### Manually resurect processes
+## Windows consideration
 
-Bring back previously saved processes (via pm2 save):
+There are some external libraries to generate a Windows compatible startup script, please checkout [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) or [pm2-windows-startup](https://www.npmjs.com/package/pm2-windows-startup).
 
-```bash
-$ pm2 resurrect
-```
+
