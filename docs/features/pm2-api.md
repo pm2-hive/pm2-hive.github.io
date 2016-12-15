@@ -79,7 +79,7 @@ pm2.connect(function(err) {
   * `instances` - (*Default: 1*) How many instances of `script` to create. Only relevant in `exec_mode` 'cluster'.
   * `mergeLogs` - (Default: false) If true, merges the log files for all instances of `script` into one stderr log and one stdout log. Only applies in 'cluster' mode. For example, if you have 4 instances of 'test.js' started via pm2, normally you would have 4 stdout log files and 4 stderr log files, but with this option set to true you would only have one stdout file and one stderr file.
   * `watch` - If set to `true`, the application will be restarted on change of the `script` file.
-  * `force` (Default: false) By default, pm2 will only start a script if that script isn't already running. If `force` is set to true, pm2 will start a new instance of that script.
+  * `force` (Default: false) By default, pm2 will only start a script if that script isn't already running (a script is a path to an application, not the name of an application already running). If `force` is set to true, pm2 will start a new instance of that script.
   * `cron`
   * `executeCommand`
   * `write`
