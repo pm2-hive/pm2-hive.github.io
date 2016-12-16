@@ -11,10 +11,11 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 
 ## Init systems supported
 
-- **SystemD**: Ubuntu >= 16, CentOS, Arch, Debian >= 7
-- **Upstart**: Ubuntu <= 14
-- **Launchd**: Darwin, MacOSx
-- **rc.d**: FreeBSD
+- **systemd**: Ubuntu >= 16, CentOS >= 7, Arch, Debian >= 7
+- **upstart**: Ubuntu <= 14
+- **launchd**: Darwin, MacOSx
+- **rcd**: FreeBSD
+- **systemv**: Centos 6, Amazon Linux
 
 ## Command
 
@@ -23,22 +24,22 @@ To get the automatically-configured startup script for your machine you need to 
 ```bash
 # Detect available init system, generate configuration and enable startup system
 $ pm2 startup
+```
 
-# Or Render startup-script for a specific init system
-#   upstart|systemd|launchd|rcd|ubuntu|centos|redhat|gentoo|systemd|darwin|amazon
+You can specify the platform you use yourself if you want to (where platform can be either one of cited above): 
+```
 $ pm2 startup [platform]
 ```
 
 The output of this command may be a recommendation of the line to copy/paste with all environment variables and options configured for you.
 
-E.G:
-
+Example:
 ```bash
 [PM2] You have to run this command as root. Execute the following command:
       sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v4.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
-Just copy/paste this line and the startup script will be configured for your OS.
+Just copy/paste the line PM2 give you and the startup script will be configured for your OS.
 
 ## Saving current processes
 
@@ -64,7 +65,7 @@ $ pm2 resurrect
 $ pm2 unstartup
 ```
 
-Or if you specified yourself the init system:
+Above example let PM2 detect your platform, alternatively you can use another specified init system youself using :
 
 ```bash
 $ pm2 unstartup [platform] 
