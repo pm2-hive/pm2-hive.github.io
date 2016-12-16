@@ -127,6 +127,16 @@ $ pm2 reload  ecosystem.config.js --only api-app
 $ pm2 delete  ecosystem.config.js --only api-app
 ```
 
+### Updating configurations of already running applications
+
+Starting PM2 v2.1.X, environnement are immutable by default, that means they will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Take care that some options will not be updated (options that are listed under `General Attributes` below)
+
+Example
+```bash
+$ pm2 restart ecosystem.config.js --update-env
+$ pm2 startOrReload ecosystem.config.js --update-env
+```
+
 ### Switching environments
 
 You may have noticed that you can declare environment-specific variables with the attribute `env_*` (e.g. env_production, env_staging...). These can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
