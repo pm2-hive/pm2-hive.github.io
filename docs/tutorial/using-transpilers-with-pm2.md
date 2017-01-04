@@ -46,7 +46,7 @@ Just add `--watch` and you've a daemonized coffee script that'll restart on file
 #### Babel
 
 ```
-#- npm install -g babel-node
+#- npm install -g babel-cli
 #- pm2 start --interpreter babel-node index.es6
 ```
 
