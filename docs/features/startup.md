@@ -28,7 +28,7 @@ $ pm2 startup
 
 You can specify the platform you use yourself if you want to (where platform can be either one of cited above): 
 ```
-$ pm2 startup [platform]
+$ pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd]
 ```
 
 The output of this command may be a recommendation of the line to copy/paste with all environment variables and options configured for you.
@@ -68,7 +68,7 @@ $ pm2 unstartup
 Above example let PM2 detect your platform, alternatively you can use another specified init system youself using :
 
 ```bash
-$ pm2 unstartup [platform] 
+$ pm2 unstartup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd] 
 ```
 
 ## User permissions
