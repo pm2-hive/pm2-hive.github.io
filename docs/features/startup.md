@@ -9,6 +9,7 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 
 *Make sure you upgrade to PM2 > 2.2.x*
 
+
 ## Init systems supported
 
 - **systemd**: Ubuntu >= 16, CentOS >= 7, Arch, Debian >= 7
@@ -40,6 +41,8 @@ Example:
 ```
 
 Just copy/paste the line PM2 give you and the startup script will be configured for your OS.
+
+**NOTE** : Care that if you update your nodejs version (especially using nvm), you'll to re-run `pm2 startup` since the path of the `node` binary will change.
 
 ## Saving current processes
 
