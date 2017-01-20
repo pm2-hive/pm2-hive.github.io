@@ -42,7 +42,7 @@ Example:
 
 Just copy/paste the line PM2 give you and the startup script will be configured for your OS.
 
-**NOTE** : Care that if you update your nodejs version (especially using nvm), you'll to re-run `pm2 startup` since the path of the `node` binary will change.
+**NOTE** : When updating nodejs, the `pm2` binary path might change (it will if you're using nvm). Therefore, we would advise you to run the `startup` command again after any update.
 
 ## Saving current processes
 
