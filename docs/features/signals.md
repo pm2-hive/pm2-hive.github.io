@@ -97,6 +97,7 @@ There is still an old system that hook into `http.Server.listen` method, so when
 ## Windows gracefull stop
 
 Since signals aren't available your process will be killed, you need to listen for `shutdown` event :
+
 ```
 process.on('message', function(msg) {
   if (msg == 'shutdown') {
