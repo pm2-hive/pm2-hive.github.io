@@ -5,8 +5,6 @@ description: How signals are handled in PM2
 permalink: /docs/usage/signals-clean-restart/
 ---
 
-**NOTE for Windows users : Graceful action aren't working on Windows since signals doesn't exist on this plateform, when we send a SIGINT to notify the process like below, the process is directly kill.**
-
 ## Graceful Stop
 
 To allow gracefull restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit. 
@@ -88,5 +86,25 @@ var app = http.createServer(function(req, res) {
 var listener = app.listen(0, function() {
   console.log('Listening on port ' + listener.address().port);
   process.send('ready');
+});
+```
+
+## Gracefull start using `http.Server.listen`
+
+There is still an old system that hook into `http.Server.listen` method, so when your http server will accept connection, it will automaticly state your application as ready. You can increase the time PM2 will wait for the listen using the same variable as `--wait-ready` gracefull start : `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file.
+
+
+## Windows gracefull stop
+
+Since signals aren't available your process will be killed, you need to listen for `shutdown` event :
+```
+process.on('message', function(msg) {
+  if (msg == 'shutdown') {
+    console.log('Closing all connections...');
+    setTimeout(function() {
+      console.log('Finished closing connections');
+      process.exit(0);
+    }, 1500);
+  }
 });
 ```
