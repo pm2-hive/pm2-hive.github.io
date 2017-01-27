@@ -98,7 +98,7 @@ There is still an old system that hook into `http.Server.listen` method, so when
 
 Since signals aren't available your process will be killed, you need to listen for `shutdown` event :
 
-```
+```javascript
 process.on('message', function(msg) {
   if (msg == 'shutdown') {
     console.log('Closing all connections...');
