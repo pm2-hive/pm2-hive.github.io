@@ -9,7 +9,7 @@ permalink: /docs/usage/process-actions/
 
 By plugging process actions onto your code, you will be able to trigger them via the PM2 CLI.
 
-First make sure you add the library pmx to your code:
+First make sure you added the library pmx to your code:
 
 ```bash
 $ npm install pmx --save
@@ -29,7 +29,7 @@ setInterval(function() {
 }, 100);
 ```
 
-Start the application with PM2 and now to trigger process actions, use the command:
+Start the application with PM2. To trigger process actions, use the command:
 
 ```bash
 $ pm2 trigger <application-name> <action-name>
