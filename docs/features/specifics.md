@@ -7,7 +7,7 @@ permalink: /docs/usage/specifics/
 
 ## Listening on port 80 w/o root
 
-It’s a general rule that you shouldn’t run node as root, but only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024.
+It’s a general rule that you should not run node as root. However only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024.
 
 ```bash
 $ sudo apt-get install authbind
@@ -17,9 +17,9 @@ $ sudo chmod 755 /etc/authbind/byport/80
 $ authbind --deep pm2 update
 ```
 
-Now you can start applications with PM2 that can bind to port 80 without being root!
+Now you can start applications using PM2 that can bind to port 80 without being root!
 
-It's recommended to put an alias in your .bashrc file:
+It is recommended to put an alias in your .bashrc file:
 
 ```bash
 alias pm2='authbind --deep pm2'
@@ -27,9 +27,9 @@ alias pm2='authbind --deep pm2'
 
 ## Multiple PM2 on the same server
 
-The client and daemon communicates via socket files available in $HOME/.pm2/[pub.sock|rpc.sock]
+The client and daemon communicate via socket files available in $HOME/.pm2/[pub.sock|rpc.sock].
 
-You can start multiple PM2 instances by changing the `PM2_HOME` environmnent variable.
+You can start multiple PM2 instances by changing the `PM2_HOME` environment variable.
 
 ```bash
 $ PM2_HOME='.pm2' pm2 start echo.js --name="echo-node-1"
@@ -55,7 +55,7 @@ $ pm2 start app.js --no-daemon
 
 ## Configuration file
 
-You can edit some PM2 option by editing the file `$HOME/.pm2/conf.js`.
+You can edit some PM2 options by editing the file `$HOME/.pm2/conf.js`.
 
 ```
 PM2_LOG_FILE_PATH  // PM2 log file path
@@ -73,17 +73,17 @@ $ pm2 web
 
 ## Stateless apps
 
-It's a general rule that your production application should be stateless. Every data, states, websocket session, session data, must be shared via any kind of database our PUB/SUB system.
+It is a general rule that your production application should be stateless. Every data, states, websocket session, session data, must be shared via any kind of database or PUB/SUB system.
 
-If not your application will be painfull to scale across the same servers and accross multiple servers.
+If not, your application will be painfull to scale on the same server and accross multiple servers.
 
 For example you could use [connect-redis](https://github.com/visionmedia/connect-redis) to share sessions.
 
-We also recommend following the 12 factor convention : [http://12factor.net/](http://12factor.net/)
+We also recommend you to follow the 12 factor convention: [http://12factor.net/](http://12factor.net/)
 
 ## Setup pm2 on a server
 
-[How To Use pm2 to Setup a Node.js Production Environment On An Ubuntu VPS](https://www.digitalocean.com/community/articles/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps)
+[How To Use pm2 to Setup a Node.js Production Environment On An Ubuntu VPS](https://www.digitalocean.com/community/articles/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps).
 
 ## Log and PID files
 
@@ -101,7 +101,7 @@ By default, logs (error and output), pid files, dumps, and PM2 logs are located 
 
 ## Enabling Harmony ES6
 
-The `--node-args` option permit to add arguments to the node interpreter. To enable harmony for a process just do this:
+The `--node-args` option allows the addition of arguments to the node interpreter. To enable harmony for a process type the following command:
 
 ```bash
 $ pm2 start my_app.js --node-args="--harmony"
@@ -152,12 +152,12 @@ echo $my_json | pm2 start -
 
 ## Transpilers
 
-Refer to [Using transpilers with PM2](http://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2) tuto
+Refer to [Using transpilers with PM2](http://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2) tutorial.
 
 ## User tips from issues
 
 - [Vagrant and pm2 #289](https://github.com/Unitech/pm2/issues/289#issuecomment-42900019)
-- [Start the same app on different ports #322](https://github.com/Unitech/pm2/issues/322#issuecomment-46792733)
+- [Start the same application on different ports #322](https://github.com/Unitech/pm2/issues/322#issuecomment-46792733)
 - [Using ansible with pm2](https://github.com/Unitech/pm2/issues/88#issuecomment-49106686)
 - [Cron string as argument](https://github.com/Unitech/pm2/issues/496#issuecomment-49323861)
 - [Restart when process reaches a specific memory amount](https://github.com/Unitech/pm2/issues/141)
