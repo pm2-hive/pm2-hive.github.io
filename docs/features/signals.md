@@ -7,7 +7,7 @@ permalink: /docs/usage/signals-clean-restart/
 
 ## Graceful Stop
 
-To allow gracefull restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit. 
+To allow graceful restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit. 
 
 ```javascript
 process.on('SIGINT', function() {
@@ -27,9 +27,9 @@ First a **SIGINT** a signal is sent to your processes, signal you can catch to k
 
 ## Cleaning states and jobs
 
-As stated before, if you need to clean some stuff (stop intervals, stop connection to database...) you can intercept the SIGINT signal to prepare your application to exit.
+As stated before, if you need to clean-up (stop intervals, stop connection to database...) you can intercept the **SIGINT** signal to prepare your application to exit.
 
-Here is a sample on how to intercept the SIGINT signal with Node.js:
+Here is a sample on how to intercept the **SIGINT** signal with Node.js:
 
 ```javascript
 //[...]
@@ -72,10 +72,10 @@ Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declarati
 
 ## Graceful start
 
-You can from now (pm2 version `2.1.x`) make a graceful start. Sometimes you want to wait for your application to have etablished connections with your DBs/caches/workers/whatever, so PM2 need to wait before considering your application as `online`. 
-To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file so PM2 listen for that event, and in your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
+From now on (pm2 version `2.1.x`), you can make a graceful start. Sometimes you might need to wait for your application to have etablished connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. 
+To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
 
-Note that PM2 have a timeout in case the event is never call, so in case your startup is longer than the default timeout (`3000` ms), you will want to increase it using `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file. 
+Note that PM2 has a timeout in case the event is never called. If your startup takes more time than the default timeout (`3000` ms), you can increase it using `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file. 
 
 ```javascript
 var http = require('http');
@@ -89,14 +89,14 @@ var listener = app.listen(0, function() {
 });
 ```
 
-## Gracefull start using `http.Server.listen`
+## Graceful start using `http.Server.listen`
 
-There is still an old system that hook into `http.Server.listen` method, so when your http server will accept connection, it will automaticly state your application as ready. You can increase the time PM2 will wait for the listen using the same variable as `--wait-ready` gracefull start : `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file.
+There is still an old system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automaticaly state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file.
 
 
-## Windows gracefull stop
+## Windows graceful stop
 
-Since signals aren't available your process will be killed, you need to listen for `shutdown` event :
+When signals are not available your process gets killed. In that case, you need to listen for `shutdown` events:
 
 ```javascript
 process.on('message', function(msg) {
