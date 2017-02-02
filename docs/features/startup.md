@@ -27,12 +27,12 @@ To get the automatically-configured startup script for your machine you need to 
 $ pm2 startup
 ```
 
-You can specify the platform you use yourself if you want to (where platform can be either one of cited above): 
+You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
 $ pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd]
 ```
 
-The output of this command may be a recommendation of the line to copy/paste with all environment variables and options configured for you.
+The output of this command can be a recommendation of the line to copy/paste with all environment variables and options configured for you.
 
 Example:
 ```bash
@@ -40,23 +40,23 @@ Example:
       sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v4.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
-Just copy/paste the line PM2 give you and the startup script will be configured for your OS.
+You simply have to copy/paste the line PM2 give you and the startup script will be configured for your OS.
 
-**NOTE** : When updating nodejs, the `pm2` binary path might change (it will if you're using nvm). Therefore, we would advise you to run the `startup` command again after any update.
+**NOTE** : When updating nodejs, the `pm2` binary path might change (it will necessarily change if you are using nvm). Therefore, we would advise you to run the `startup` command after any update.
 
 ## Saving current processes
 
-Once you started all the applications you want to manage, to keep this list across expected/unexpected server restart, just type the command:
+Once you started all the applications you want to manage, you can save the list across expected/unexpected server restart by typing this command:
 
 ```bash
 $ pm2 save
 ```
 
-Doing this will save the process list with their current environment into the dump file `$PM2_HOME/.pm2/dump.pm2`
+It will save the process list with the corresponding environments into the dump file `$PM2_HOME/.pm2/dump.pm2`.
 
 ### Manually resurrect processes
 
-Bring back previously saved processes (via pm2 save):
+This brings back previously saved processes (via pm2 save):
 
 ```bash
 $ pm2 resurrect
@@ -68,7 +68,7 @@ $ pm2 resurrect
 $ pm2 unstartup
 ```
 
-Above example let PM2 detect your platform, alternatively you can use another specified init system youself using :
+The previous line code let PM2 detect your platform. Alternatively you can use another specified init system youself using:
 
 ```bash
 $ pm2 unstartup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd] 
