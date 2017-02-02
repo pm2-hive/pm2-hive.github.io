@@ -7,7 +7,7 @@ permalink: /docs/usage/application-declaration/
 
 ## Process File
 
-PM2 empowers your process management workflow, by allowing you to fine-tune the behavior, options, environment variables, logs files of each app via a process file. It's particularly useful for micro service based applications.
+PM2 empowers your process management workflow. It allows you to fine-tune the behavior, options, environment variables, logs files of each application via a process file. It's particularly useful for micro-service based applications.
 
 Configuration format supported are Javascript, JSON and YAML.
 
@@ -19,7 +19,7 @@ To generate a sample process file you can type this command:
 $ pm2 ecosystem
 ```
 
-This will generates a sample `ecosystem.config.js`.
+This will generate a sample, `ecosystem.config.js`.
 
 ### Javascript format
 
@@ -44,11 +44,11 @@ module.exports = {
 }
 ```
 
-**Note that using a Javascript configuration file require to suffix the file with .config.js**
+**Note that using a Javascript configuration file requires to suffix the file with .config.js**
 
 ### JSON format
 
-The configuration can be also in JSON format.
+The configuration can also be in JSON format.
 
 ```javascript
 {
@@ -118,7 +118,7 @@ $ pm2 delete ecosystem.config.js
 
 ### Act on a specific process
 
-You can also act on a particular application name by using the option `--only <app_name>`:
+You can also act on a particular application by using its name and the option `--only <app_name>`:
 
 ```bash
 $ pm2 start   ecosystem.config.js --only api-app
@@ -129,9 +129,9 @@ $ pm2 delete  ecosystem.config.js --only api-app
 
 ### Updating configurations of already running applications
 
-Starting PM2 v2.1.X, environnement are immutable by default, that means they will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Take care that some options will not be updated (options that are listed under `General Attributes` below)
+Starting PM2 v2.1.X, environnements are immutable by default, that means they will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Please note that some options will not be updated (options that are listed under `General Attributes` below).
 
-Example
+Example:
 
 ```bash
 $ pm2 restart ecosystem.config.js --update-env
@@ -140,7 +140,7 @@ $ pm2 startOrReload ecosystem.config.js --update-env
 
 ### Switching environments
 
-You may have noticed that you can declare environment-specific variables with the attribute `env_*` (e.g. env_production, env_staging...). These can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
+You may have noticed that you can declare environment-specific variables with the attribute `env_*` (e.g. env_production, env_staging...). They can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
 
 Example:
 
@@ -215,7 +215,7 @@ All command line options passed when using the JSON app declaration will be drop
 
 ### Multiple JSON
 
-You can start as many JSON app declarations as you want.
+You can start as many JSON application declarations as you want.
 
 ```bash
 $ cat node-app-1.json
@@ -286,7 +286,7 @@ You can disable automatic ID suffixs on logs (e.g. `app-name-ID.log`) by passing
 
 ### env_<NAME>
 
-Matches the keys of configured JSON by RegExp (not by string comparison), e.g. `^env_\\S*$` will match all `env` keys like `env_production`, `env_test`, and valid them according to the schemas specifications.
+It matches the keys of configured JSON by RegExp (not by string comparison), e.g. `^env_\\S*$` will match all `env` keys like `env_production`, `env_test`, and valid them according to the schemas specifications.
 
 ### Special `ext_type`
 
@@ -308,6 +308,6 @@ Matches the keys of configured JSON by RegExp (not by string comparison), e.g. `
   For example `exec_mode` can take `cluster` (`cluster_mode`) or `fork` (`fork_mode`) as possible values.
 
 - Things to know
-  - `"instances": 0` means that we will launch the maximum processes possible according to the numbers of CPUs (cluster mode)
+  - `"instances": 0` means that PM2 will launch the maximum processes possible according to the numbers of CPUs (cluster mode)
   - array
   `args`, `node_args` and `ignore_watch` could be type of `Array` (e.g.: `"args": ["--toto=heya coco", "-d", "1"]`) or `string` (e.g.: `"args": "--to='heya coco' -d 1"`)
