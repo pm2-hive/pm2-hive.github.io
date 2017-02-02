@@ -11,7 +11,7 @@ permalink: /docs/usage/docker-pm2-nodejs/
 
 ## Docker Integration
 
-Starting PM2 v2, a new binary gets installed automatically, called **pm2-docker**.
+Starting from PM2 v2.x, a new binary is automatically installed: **pm2-docker**.
 
 The goal of pm2-docker is to wrap your applications into a proper Node.js production environment. It solves major issues when running Node.js applications inside a container like:
 
@@ -25,7 +25,7 @@ Further than that, using PM2 as a layer between the container and the applicatio
 
 ### pm2-docker inside a Dockerfile
 
-At the beginning of your Dockerfile add this line to install pm2:
+At the beginning of your Dockerfile, add this line to install pm2:
 
 ```
 RUN npm install pm2 -g
@@ -37,7 +37,7 @@ Then replace the CMD directive:
 CMD ["node", "app.js"]
 ```
 
-To this one:
+With this one:
 
 ```
 CMD ["pm2-docker", "app.js"]
@@ -62,7 +62,7 @@ apps:
   - script   : 'worker.js'
 ```
 
-All options available are [listed here](/docs/usage/application-declaration/#attributes-available)
+All options available are [listed here](/docs/usage/application-declaration/#attributes-available).
 
 You can then replace the **CMD** directive by this:
 
@@ -84,7 +84,7 @@ If you want to change the log output format you can select one of this options:
 - **--format**: will output logs in = style format
 - **--raw**: will output logs as is
 
-To use one of this flag you just need to pass them to pm2-docker:
+To use one of this flag, you just need to pass them to pm2-docker:
 
 ```
 CMD ["pm2-docker", "--json", "process.yml"]
@@ -92,9 +92,9 @@ CMD ["pm2-docker", "--json", "process.yml"]
 
 ### Enabling Graceful Shutdown
 
-When the Container receive a shutdown signal, PM2 forwards this signal to your application allowing to close all database connection, wait that all queries are processed or any other final processing before a successfull graceful shutdown.
+When the Container receives a shutdown signal, PM2 forwards this signal to your application allowing to close all the database connections, wait that all queries have been processed or that any other final processing has been completed before a successfull graceful shutdown.
 
-To catch a shutdown signal it's straightforward. You just need to add a listener in your Node.js applications and execute anything needed before stopping the app:
+Catching a shutdown signal is straightforward. You need to add a listener in your Node.js applications and execute anything needed before stopping the app:
 
 ```javascript
 process.on('SIGINT', function() {
@@ -104,13 +104,13 @@ process.on('SIGINT', function() {
 });
 ```
 
-By default PM2 will wait 1600ms before sending a final SIGKILL signal. You can customize this delay by setting the `kill_timeout` option inside your application configuration file.
+By default PM2 will wait 1600ms before sending a final SIGKILL signal. You can modify this delay by setting the `kill_timeout` option inside your application configuration file.
 
 ### Development environment
 
-You may want to tell Developers to program inside a Container to keep a consistant environment between develoment, test and production.
+You may want to tell Developers to program inside a container to keep a consistant environment between develoment, test and production.
 
-By replacing **pm2-docker** with **pm2-dev** the watch and restart feature will be enabled. This is quite interesting in a development Container when the host files are exposed to the container as a VOLUME.
+Replacing **pm2-docker** with **pm2-dev** will enable the watch and restart features. This is quite interesting in a development container when the host files are exposed to the container as a VOLUME.
 
 ### Expose health endpoint
 
