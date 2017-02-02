@@ -82,7 +82,16 @@
         <div class="col-md-9 docs-content">
           {{ content }}
 
-          <br/><br/><br/><br/>
+          <br/>
+          <center>
+            <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}"
+               title="Edit Page">
+              <button style="min-width : 130px;"  class="btn btn-success">
+                <i class="fa fa-2x fa-github" aria-hidden="true" style=" margin-right: 9px; float: left"></i>
+                <span style="line-height:30px;display:inline-block;">Contribute to this page</span></button>
+            </a>
+          </center>
+          <br/><br/><br/>
           <div id="disqus_thread"></div>
           <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
