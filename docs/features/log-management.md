@@ -7,7 +7,7 @@ permalink: /docs/usage/log-management/
 
 ## Log management
 
-PM2 allows you to manage logs easily. You can display all application logs in real-time, flush them, and reload them.
+PM2 allows you to easily manage your application's logs. You can display the logs coming from all your applications in real-time, flush them, and reload them.
 There are also different ways to configure how PM2 will handle your logs (separated in different files, merged, with timestamp...) without modifying anything in your code.
 
 ## Displaying logs in real-time
@@ -30,7 +30,7 @@ $ pm2 logs big-api --lines 1000
 
 ## JSON output
 
-Starting PM2 2.x, you can now output logs in JSON format with the `--json` option:
+Starting with PM2 2.x, you can output logs in JSON format with the `--json` option:
 
 ```bash
 $ pm2 logs --json
@@ -38,7 +38,7 @@ $ pm2 logs --json
 
 ## Formated output
 
-Starting PM2 2.x, you can now output logs in FORMAT with the `--format` option:
+Starting with PM2 2.x, you can output logs in FORMAT with the `--format` option:
 
 ```bash
 $ pm2 logs --format
@@ -66,7 +66,7 @@ $ pm2 install pm2-logrotate
 
 ## Reloading all logs
 
-Reloading logs is specially usefull for Logrotate or any other rotating log system.
+Reloading logs is especially useful for Logrotate or any other rotating log system.
 You can reload logs by sending `SIGUSR2` to the PM2 process.
 You can also reload all logs via the command line with:
 
@@ -108,7 +108,7 @@ Options:
 
 ### Combine out and err logs
 
-To combine all logs into the same file set the same value for `error_file`, `out_file` or use an additional `log_file`.
+To combine all logs into the same file, set the same value for `error_file`, `out_file` or use an additional `log_file`.
 
 For example, this keeps `out` and `err` separated but adds a combined file:
 
@@ -120,7 +120,7 @@ For example, this keeps `out` and `err` separated but adds a combined file:
 }
 ```
 
-Or if you want out and err combined without any other file, just use the same log file:
+If you want out and err combined without using any other file, just use the same log file:
 
 ```
 {
