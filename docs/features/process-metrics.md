@@ -9,7 +9,7 @@ permalink: /docs/usage/process-metrics/
 
 By plugging process metrics onto your code, you will be able to monitor in-code values, in realtime.
 
-First make sure you add the library pmx to your code:
+First make sure you added the pmx library to your code:
 
 ```bash
 $ npm install pmx --save
@@ -34,7 +34,7 @@ setInterval(function() {
 }, 100);
 ```
 
-Start the application with PM2 and now to consult the process metrics, use the command:
+Start the application with PM2. To consult the process metrics, use the command:
 
 ```bash
 $ pm2 show <application-name>
@@ -57,7 +57,7 @@ Then you can program your very own metrics to track important informations. 4 di
 
 ### Simple Metric: Simple value reporting
 
-This allow to expose values that can be read instantly.
+This allows to expose values that can be read instantly.
 
 ```javascript
 var probe = pmx.probe();
@@ -80,7 +80,7 @@ valvar.set(23);
 
 ### Counter: Sequential value change
 
-Things that increment or decrement.
+Values that increment or decrement.
 
 ```javascript
 var probe = pmx.probe();
@@ -102,7 +102,7 @@ http.createServer(function(req, res) {
 
 ### Meter: Average calculated values
 
-Things that are measured as events / interval.
+Values that are measured as events / interval.
 
 ```javascript
 var probe = pmx.probe();
@@ -150,12 +150,12 @@ setInterval(function() {
 - `agg_type` : This param is optionnal, it can be `sum`, `max`, `min`, `avg` (default) or `none`. It will impact the way the probe data are aggregated within the **Keymetrics** backend. Use `none` if this is irrelevant (eg: constant or string value).
 - `alert` : For `Meter` and `Counter` probes. This param is optionnal. Creates an alert object (see below).
 
-## Alert System
+## Notification System
 
-An alert system allows you to trigger (email, slack, webhook...) notifications when a monitored value cross a threshold.
-When setting a threshold value, the color on the dashboard change from green to red depending on the alert level!
+A notification system allows you to trigger (email, slack, webhook...) alerts when a monitored value crosses a threshold.
+When setting a threshold value, the color on the dashboard changes from green to red depending on the alert level!
 
-You can both programmatically parameter this limit or on the dashboard by clicking on the button "alert".
+You can either programmatically parameter this limit or do it via the dashboard by clicking on the button "Alert".
 
 Example for a `cpu_usage` var:
 
