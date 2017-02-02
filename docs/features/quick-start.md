@@ -7,7 +7,7 @@ permalink: /docs/usage/quick-start/
 
 <center><img src="/images/logo_pm2.png" name="logo pm2"/></center>
 
-Welcome to this PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 and your application is ready to handle a ton of traffic!
+Welcome to the PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 to boost your application and to make it ready to handle a ton of traffic!
 
 ## Installation
 
@@ -19,7 +19,7 @@ $ npm install pm2@latest -g
 
 ## Usage
 
-The simplest way to start, daemonize and monitor your application is this:
+The simplest way to start, daemonize and monitor your application is by using this command line:
 
 ```bash
 $ pm2 start app.js
@@ -50,11 +50,11 @@ And start it easily:
 $ pm2 start process.yml
 ```
 
-Read more about application declaration [here](/docs/usage/application-declaration/)
+Read more about application declaration [here](/docs/usage/application-declaration/).
 
 ## Setup startup script
 
-Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this just run this command to generate an active startup script:
+Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this, just run this command to generate an active startup script:
 
 ```bash
 $ pm2 startup
@@ -75,11 +75,11 @@ Once PM2 is started, it will automatically create these folders:
 - `$HOME/.pm2/pub.sock` Socket file for publishable events
 - `$HOME/.pm2/conf.js` PM2 Configuration
 
-In Windows the $HOME environmenet variable may be $HOMEDRIVE + $HOMEPATH ([link](https://github.com/Unitech/pm2/blob/master/constants.js#L16))
+In Windows, the $HOME environment variable can be $HOMEDRIVE + $HOMEPATH ([link](https://github.com/Unitech/pm2/blob/master/constants.js#L16))
 
 ## CheatSheet
 
-Here are some commands that are worth knowing. Just try them with a sample application or your current web application on your development machine:
+Here are some commands that are worth knowing. Just try them with a sample application or with your current web application on your development machine:
 
 ```bash
 # Fork mode
@@ -87,7 +87,7 @@ $ pm2 start app.js --name my-api # Name process
 
 # Cluster mode
 $ pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
-$ pm2 start app.js -i max      # Same as above, but deprecated yet.
+$ pm2 start app.js -i max      # Same as above, but deprecated.
 
 # Listing
 
@@ -132,7 +132,7 @@ $ pm2 start app.js --no-autorestart
 
 ## *42 starts*
 
-*ndlr;* 42 is the answer to life the universe and everything
+*ndlr;* 42 is the answer to life, the universe and everything.
 
 ```bash
 $ pm2 start app.js           # Start app.js
@@ -219,17 +219,17 @@ Options:
 
 ## What's next?
 
-Learn how to declare all your application's behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/)
+Learn how to declare all your application's behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/).
 
-Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability
+Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability.
 
-Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/)
+Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/).
 
-Monitor your production applications with [Keymetrics](https://keymetrics.io/)
+Monitor your production applications with [Keymetrics](https://keymetrics.io/).
 
 ## How to update PM2
 
-Install the latest pm2 version :
+Install the latest pm2 version:
 
 ```bash
 $ npm install pm2@latest -g
