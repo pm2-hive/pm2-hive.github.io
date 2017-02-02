@@ -9,13 +9,13 @@ If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlan
 
 ![source map](/images/sourcemaps.png)
 
-Once these source map file are generated, PM2 will automatically detects them and will help you inspect errors.
+Once these source map files are generated, PM2 will automatically detects them and will help you inspect errors.
 
 ## Source map
 
-Since the version 1.0.2, PM2 embbeds a mecanism to support javascript source map.
+Since the version 1.0.2, PM2 embeds a mecanism to support javascript source map.
 
-**PM2 automatically detects javascript source map files** if the file you start (let's say app.js) has his equivalence (say app.js.map).
+**PM2 automatically detects javascript source map files** if the file you start (let's say app.js) has his map equivalence (e.g app.js.map).
 
 If you have a different layout, you can force the source map support by starting your application:
 
@@ -41,16 +41,16 @@ Or via JSON file:
 
 Exceptions are logged into your application error log file.
 
-To check your logs to detect exceptions type:
+To check your logs to detect exceptions, you simply have to type:
 
 ```bash
 $ pm2 logs main
 ```
 
-Else use [https://keymetrics.io/](keymetrics.io) to have a clean listing and notifications about [new alerts happening](http://docs.keymetrics.io/docs/pages/issues/)
+Else use [https://keymetrics.io/](keymetrics.io) to have a clean listing and notifications of [new alerts happening](http://docs.keymetrics.io/docs/pages/issues/).
 
 ### Disable source map support
 
 If you do not want PM2 to automatically support javascript source map you can use the option `--disable-source-map`.
 
-It can be both used via CLI and via JSON file.
+It can be done both via CLI and via JSON file.
