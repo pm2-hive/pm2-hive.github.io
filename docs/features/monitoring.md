@@ -12,7 +12,7 @@ permalink: /docs/usage/monitoring/
 </center>
 
 PM2 gives you a simple way to monitor the resource usage of your application.
-You can monitor memory and cpu very easily, straight from your terminal:
+You can monitor memory and CPU easily and straight from your terminal:
 
 ```bash
 $ pm2 monit
@@ -22,7 +22,7 @@ $ pm2 monit
 
 [![Keymetrics Dashboard](https://keymetrics.io/assets/images/application-demo.png)](https://app.keymetrics.io/#/register)
 
-If you manage your NodeJS app with PM2, Keymetrics makes it easy to monitor and manage apps accross servers.
+If you manage your Node.js application with PM2, we invite you to try Keymetrics. It makes monitoring and managing applications accross servers easier than ever.
 Feel free to try it:
 
 [Discover the monitoring dashboard for PM2](https://app.keymetrics.io/#/register)
@@ -30,7 +30,7 @@ Feel free to try it:
 ## Memory threshold
 
 PM2 allows to reload (auto fallback to restart) an application based on a memory limit. 
-Please note that the PM2 internal worker, checking memory and related, start every 30 seconds, so you may wait a bit before your process get restarted automatically on memory threshold.
+Please note that the PM2 internal worker (which checks memory and related), starts every 30 seconds, so you may have to wait a bit before your process gets restarted automatically after reaching the memory threshold.
 
 ### CLI
 
