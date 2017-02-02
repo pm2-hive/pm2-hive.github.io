@@ -7,11 +7,11 @@ permalink: /docs/usage/deployment/
 
 ## Getting started
 
-PM2 embeds a simple and powerful deployment system with revision tracing. [Another step by step tutorial here](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/)
+PM2 embeds a simple and powerful deployment system with revision tracing. [Another step by step tutorial here](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/).
 
-Please read the [Considerations to use PM2 deploy](#considerations)
+Please read the [Considerations to use PM2 deploy](#considerations).
 
-1- Generate a sample ecosystem.json file that list processes and deployment environment
+1- Generate a sample ecosystem.json file that lists the processes and the deployment environment.
 
 ```bash
 $ pm2 ecosystem
@@ -99,7 +99,7 @@ Edit the file according to your needs.
 $ ssh-keygen -t rsa
 $ ssh-copy-id node@myserver.com
 ```
-If you encounter any errors, see the troubleshooting section below.
+If you encounter any errors, please refer to the troubleshooting section below.
 
 3- Now initialize the remote folder with:
 
@@ -107,13 +107,13 @@ If you encounter any errors, see the troubleshooting section below.
 $ pm2 deploy <configuration_file> <environment> setup
 ```
 
-E.g:
+Example:
 
 ```bash
 $ pm2 deploy ecosystem.json production setup
 ```
 
-This command will create all the folders on your remote server.
+This command will create the folders on your remote server.
 
 4- Deploy your code
 
@@ -121,7 +121,7 @@ This command will create all the folders on your remote server.
 $ pm2 deploy ecosystem.json production
 ```
 
-Now your code will be populated, installed and started with PM2
+Now your code will be populated, installed and started with PM2.
 
 ## Deployment options
 
@@ -143,9 +143,9 @@ $ pm2 deploy <configuration_file> <environment> <command>
 
 ## Use different set of env variables
 
-In the `post-deploy` attribute, you may have noticed the command `pm2 startOrRestart ecosystem.json --env production`. The `--env <environment_name>` allow to inject different set of environment variables.
+In the `post-deploy` attribute, you may have noticed the command `pm2 startOrRestart ecosystem.json --env production`. The `--env <environment_name>` allows to inject different sets of environment variables.
 
-Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments)
+Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments).
 
 ## Related Commands
 
@@ -157,7 +157,7 @@ $ pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 
 ## Multi host deployment
 
-To deploy to multiple host in the same time, just declare each host in an array under the attribute `host`
+To deploy to multiple hosts in the same time, you just have to declare each host in an array under the attribute `host`.
 
 ```javascript
 {
@@ -182,7 +182,7 @@ To deploy to multiple host in the same time, just declare each host in an array 
 
 ## Using file key for authenticating
 
-Just add the "key" attribute with file path to the .pem key within the attributes "user", "hosts"...
+You just have to add the "key" attribute with file path to the .pem key within the attributes "user", "hosts"...
 
 ```javascript
     "production" : {
@@ -209,7 +209,7 @@ You may get this message:
 Deploy failed
 ```
 
-If you want to deploy without pushing any data just append the `--force` option:
+If you want to deploy without pushing any data, you can append the `--force` option:
 
 ```bash
 $ pm2 deploy ecosystem.json production --force
@@ -220,19 +220,19 @@ $ pm2 deploy ecosystem.json production --force
 - You can use the option `--force` to skip local change detection
 - You might want to commit your node_modules folder ([#622](https://github.com/Unitech/pm2/issues/622)) or add the `npm install` command to the `post-deploy` section: `"post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"`
 - Verify that your remote server has the permission to git clone the repository
-- You can declare specific environment variable depending on the environment you want to deploy the code to. For instance to declare variables for the production environment, just add "env_production": {} and declare that variables.
-- PM2 will look by default to `ecosystem.json`. So you can skip the <configuration_file> options if it's the case
+- You can declare specific environment variables depending on the environment you want to deploy the code to. For instance to declare variables for the production environment, add "env_production": {} and declare the variables.
+- By default, PM2 will use `ecosystem.json`. So you can skip the <configuration_file> options if this is the case
 - You can embed the "apps" & "deploy" section in the package.json
 - It deploys your code via ssh, you don't need any dependencies
-- Process are initialized / started automatically depending on application name in `ecosystem.json`
-- PM2-deploy repository is there: [pm2-deploy](https://github.com/Unitech/pm2-deploy)
+- Processes are initialized / started automatically depending on the application name in `ecosystem.json`
+- PM2-deploy repository can be found here: [pm2-deploy](https://github.com/Unitech/pm2-deploy)
 
 ## Troubleshooting
 ##### SSH clone errors
 In most cases, these errors will be caused by `pm2` not having the correct keys to clone your repository. You need to verify at every step that the keys are available.
 
 __Step 1__
-If you're certain your keys work, first try running `git clone your_repo.git` on the target server. If it succeeds, move onto the next steps. If not, make sure your keys are stored both on the server and on your git account.
+If you are certain your keys are correctly working, first try running `git clone your_repo.git` on the target server. If it succeeds, move onto the next steps. If it failed, make sure your keys are stored both on the server and on your git account.
 
 __Step 2__
 By default `ssh-copy-id` copies the default identiy, usually named `id_rsa`. If that is not the appropriate key:
@@ -254,14 +254,13 @@ Cloning into '/var/www/app/source'...
 Permission denied (publickey).
 fatal: Could not read from remote repository.
 
-Please make sure you have the correct access rights
-and the repository exists.
+Please make sure you have the correct access rights and that the repository exists.
 
-  failed to clone
+**Failed to clone**
 
 Deploy failed
 ```
-...you may want to create an ssh config file. This is a sure fire way to ensure that the correct ssh keys are used for any given repository you're trying to clone. See [this example](https://gist.github.com/Protosac/c3fb459b1a942f161f23556f61a67d66):
+...you may want to create a ssh config file. This is a sure way to ensure that the correct ssh keys are used for any given repository you're trying to clone. See [this example](https://gist.github.com/Protosac/c3fb459b1a942f161f23556f61a67d66):
 
 ```
 # ~/.ssh/config
