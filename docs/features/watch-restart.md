@@ -7,7 +7,7 @@ permalink: /docs/usage/watch-and-restart/
 
 ## Auto restart apps on file change
 
-PM2 can automatically restart your app when a file changes in the current directory or its subdirectories:
+PM2 can automatically restart your application when a file is modified in the current directory or its subdirectories:
 
 ```bash
 $ pm2 start app.js --watch
@@ -20,7 +20,7 @@ If `--watch` is enabled, stopping it won't stop watching:
 
 Restart toggle the `watch` parameter when triggered.
 
-**Note** : **Watching system doesn't provide any graceful action, pm2 kill and restart your app without sending SIGINT**
+**Note** : **Watching system does not provide any graceful action, pm2 kills and restarts your application without sending SIGINT**
 
 To watch specific paths, please use a [JS/JSON app declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
 
@@ -37,7 +37,7 @@ To watch specific paths, please use a [JS/JSON app declaration](http://pm2.keyme
 As specified in the [Schema](http://pm2.keymetrics.io/docs/usage/application-declaration/#declaration-via-js-json-or-json5-file):
 
 - `watch` can be a boolean, an array of paths or a string representing a path. Default to `false`
-- `ignore_watch` can be an array of paths or a string, it'll be interpreted by [chokidar](https://github.com/paulmillr/chokidar#path-filtering) as a glob or a regular expression.
+- `ignore_watch` can be an array of paths or a string, it will be interpreted by [chokidar](https://github.com/paulmillr/chokidar#path-filtering) as a glob or a regular expression.
 - `watch_options` is an object that will replace options given to chokidar. Please refer to [chokidar documentation](https://github.com/paulmillr/chokidar#api) for the definition.
 
 PM2 is giving chokidar these Default options:
