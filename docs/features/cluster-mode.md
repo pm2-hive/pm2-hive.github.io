@@ -7,7 +7,7 @@ permalink: /docs/usage/cluster-mode/
 
 ## Cluster Mode
 
-The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any code modifications. This increase greatly performance and reliability, depending on the number of CPUs available.
+The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any code modifications. This increase greatly the performance and the reliability of your applications, depending on the number of CPUs available.
 
 ## Usage
 
@@ -29,7 +29,7 @@ Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-dec
 }
 ```
 
-Then to start this Process File:
+Then to start the Process File:
 
 ```bash
 $ pm2 start processes.json
@@ -42,7 +42,7 @@ The *-i* or *instances* option can be:
 
 ## Reload
 
-As opposed to `restart`, which kills and restarts the process, `reload` achieves a 0-second-downtime reload.
+As opposed to `restart`, which kills and restarts the process, `reload` achieves a **0-second-downtime** reload.
 
 To reload an app:
 
@@ -57,11 +57,11 @@ $ pm2 reload process.json
 $ pm2 reload process.json --only api
 ```
 
-If the reload system hasn't managed to reload your app, a timeout will fallback to a classic restart.
+If the reload system hasn't managed to reload your application, a timeout will fallback to a classic restart.
 
 ## Graceful Shutdown
 
-In production environment, you may need to wait for remaining queries to be processed or close all connections before exiting the application. On the *PM2 reload context* it can be translated into a very long reload or a reload that doesn't work (fallback to restart) meaning that your app still has open connections on exit or you may need to close all databases connections, clear a data queue or whatever.
+In production environment, you may need to wait for remaining queries to be processed or close all connections before exiting the application. On the *PM2 reload context* it can be translated into a very long reload or a reload that doesn't work (fallback to restart) meaning that your application still has open connections on exit. You may alternatively need to close all databases connections, clear data queues or whatever.
 
 To Gracefully Shutdown an application you can catch the **SIGINT** signal (the first signal sent on exit by PM2) and execute actions to wait/clear all these states:
 
@@ -77,5 +77,5 @@ process.on('SIGINT', function() {
 
 ## Statelessify your application
 
-Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that there is not any local data stored in the process, like sessions/websocket connections, session-memory and related. Use Redis, Mongo or other DB to share states between processes.
+Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that no local data is stored in the process, for example sessions/websocket connections, session-memory and related. Use Redis, Mongo or other databases to share states between processes.
 
