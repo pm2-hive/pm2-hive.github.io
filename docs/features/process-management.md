@@ -16,7 +16,7 @@ $ pm2 start app.js --name "my-api"
 $ pm2 start web.js --name "web-interface"
 ```
 
-Now let's say I need to stop the web-interface:
+Now let's say you need to stop the web-interface:
 
 ```bash
 $ pm2 stop web-interface
@@ -32,14 +32,14 @@ $ pm2 restart web-interface
 
 *NB: starting PM2 2.1.x, restarts are immutable, meaning that env will not auto-update. Use --update-env to update env*
 
-Now I want to **delete** the app from the PM2 process list.
-To do so:
+Now you want to **delete** the app from the PM2 process list.
+You just have to enter the following commands:
 
 ```bash
 $ pm2 delete web-interface
 ```
 
-[You can declare options via configuration file too](/docs/usage/application-declaration/)
+[You can declare options via configuration file too](/docs/usage/application-declaration/).
 
 ## Process listing
 
@@ -116,7 +116,7 @@ For example:
 
 PM2 allows to restart an application based on a memory limit.
 
-Note that the max memory restart options are graceful (if your app support graceful action of course).
+Note that the max memory restart options are graceful (if your application supports graceful actions of course).
 
 ### CLI
 
