@@ -180,15 +180,15 @@ To deploy to multiple hosts in the same time, you just have to declare each host
 ```
 
 
-## Using file key for authenticating
+## Using private key to connect to your host
 
-You just have to add the "key" attribute with file path to the .pem key within the attributes "user", "hosts"...
+You just have to add the "key" attribute with path to the private key, see below example :
 
 ```javascript
     "production" : {
-      "key"  : "/path/to/some.pem",
-      "user" : "node",
-      "host" : "212.83.163.1",
+      "key"  : "/path/to/some.pem", // path to the private key to authenticate
+      "user" : "node",              // user used to authenticate
+      "host" : "212.83.163.1",      // where to connect
       "ref"  : "origin/master",
       "repo" : "git@github.com:repo.git",
       "path" : "/var/www/production",
@@ -208,7 +208,7 @@ You may get this message:
 
 Deploy failed
 ```
-
+That means that you have changes in your local system that aren't pushed inside your git repository, and since the deploy script get the update via `git pull` they will not be on your server.
 If you want to deploy without pushing any data, you can append the `--force` option:
 
 ```bash
