@@ -7,7 +7,7 @@ permalink: /docs/usage/contributing/
 
 ## Contributing/Development mode
 
-To play with PM2, it's very simple:
+It's very simple to play with PM2:
 
 ```bash
 $ pm2 kill   # kill the current pm2
@@ -33,7 +33,7 @@ Master: [![Build Status](https://img.shields.io/travis/Unitech/pm2/master.svg?st
 
 Dev   : [![Build Status](https://img.shields.io/travis/Unitech/pm2/development.svg?style=flat-square)](https://travis-ci.org/Unitech/pm2)
 
-Just try the tests before using PM2 on your production server
+Just try the tests before using PM2 on your production server:
 
 ```bash
 $ git clone https://github.com/Unitech/pm2.git
@@ -42,8 +42,9 @@ $ npm install  # Or do NODE_ENV=development npm install if some packages are mis
 $ npm test
 ```
 
-If a test is broken please report us issues [here](https://github.com/Unitech/pm2/issues?state=open)
-Also make sure you have all dependencies needed. For Ubuntu:
+If a test is not correctly working, please report issues [here](https://github.com/Unitech/pm2/issues?state=open).
+You should also make sure that you have all dependencies needed. 
+For Ubuntu:
 
 ```bash
 $ sudo apt-get install build-essential
