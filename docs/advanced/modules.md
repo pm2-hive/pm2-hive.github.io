@@ -7,7 +7,7 @@ permalink: /docs/advanced/pm2-module-system/
 
 ## PM2 Modules
 
-A PM2 module is a standalone software installed and managed by PM2. These softwares are pulled from the NPM repository and are published like a common Javascript library on NPM.
+A PM2 module is a standalone software installed and managed by PM2. These softwares are pulled from the NPM repository and are published as common Javascript libraries on NPM.
 
 [Anyone can create and publish a module](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/#creating-a-module). A module can be a [log rotation module](https://github.com/pm2-hive/pm2-logrotate), a [standalone http proxy](https://github.com/gridcontrol/proxy-only), a load balancer, a Node.js based wikipedia, a DNS server or any kind of utility. Your creativity is the limit!
 
@@ -59,7 +59,7 @@ $ cd <module-name>
 $ pm2 install .
 ```
 
-You can now edit the source and when you change something, pm2 will automatically restart the module ([watch option activated](http://pm2.keymetrics.io/docs/usage/watch-and-restart/)).
+You can now edit the source and when you change something, PM2 will automatically restart the module ([watch option activated](http://pm2.keymetrics.io/docs/usage/watch-and-restart/)).
 
 To display module logs:
 
@@ -122,7 +122,7 @@ var conf    = pmx.initModule({
 
 ## Extra display
 
-Instead of pm2 listing your processes once the module is installed, you can change this behavior to display a table to display the content you like.
+Instead of PM2 listing your processes once the module is installed, you can change its behavior to display a table containing the content you want.
 
 To enable this behavior edit the package.json and add env section with **PM2_EXTRA_DISPLAY** set to true:
 
@@ -157,7 +157,7 @@ pmx.configureModule({
 
 You will then be able to see this kind of table when the module is installed!
 
-![Extra module display](/images/module-extra-display.png)
+![Extra module display](/images/module-extra-display.png).
 
 ## Module configuration
 
@@ -191,7 +191,7 @@ var conf = pmx.initModule({[...]}, function(err, conf) {
 
 ### Changing values
 
-Changing the default values of a module is simple just do:
+Changing the default values of a module is simple, just do:
 
 ```bash
 $ pm2 set module_name:option_name <new_value>
@@ -210,7 +210,7 @@ $ pm2 set server-monitoring:days_interval 2
 
 ## Publishing a module
 
-To update/publish a module, it's straightforward. The `pm2 publish` command will increment the minor version of the module, will `git add . ; git commit -m "VERSION"; git push origin master` then it will `npm publish`.
+Updating or publishing a module is straightforward. The `pm2 publish` command will increment the minor version of the module, will `git add . ; git commit -m "VERSION"; git push origin master` then it will `npm publish`.
 
 ```bash
 $ cd my-module
@@ -283,7 +283,7 @@ var conf    = pmx.initModule({
 
 ### Changing conf values
 
-In the main Keymetrics Dashboard, the module will have a button called "Configure". Once you click on it you will be able to access / modify all configuration variables exposed on the package.json!
+In the main Keymetrics dashboard, the modules will have a button called "Configure". Once you click on it you will be able to access or/and modify all configuration variables exposed on the package.json!
 
 ## Wanna share your module?
 
