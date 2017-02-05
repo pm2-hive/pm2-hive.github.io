@@ -7,12 +7,12 @@ permalink: /docs/usage/use-pm2-with-cloud-providers/
 
 # Using PM2 in Cloud Providers
 
-Some time you do no have access to a raw CLI to start your Node.js applications.
-By using the PM2 programmatic interface, you can manage your Node.js app very easily.
+You might find yourself in a situation in which you do not have access to a raw CLI to start your Node.js applications.
+The PM2 programmatic interface offers you a convenient and easy way to manage your Node.js applications.
 
 ## Heroku / Google App Engine / Azure
 
-First add PM2 as a dependency in your package.json, then just create a main.js file with this content (please modify according to your needs):
+First, add PM2 as a dependency in your package.json, then you have to create a main.js file with the following content (please modify according to your needs):
 
 ### Without Keymetrics
 
@@ -28,7 +28,7 @@ pm2.connect(function() {
     name      : 'production-app',     // ----> THESE ATTRIBUTES ARE OPTIONAL:
     exec_mode : 'cluster',            // ----> https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#schema
     instances : instances,
-    max_memory_restart : maxMemory + 'M',   // Auto restart if process taking more than XXmo
+    max_memory_restart : maxMemory + 'M',   // Auto-restart if process takes more than XXmo
     env: {                            // If needed declare some environment variables
       "NODE_ENV": "production",
       "AWESOME_SERVICE_API_TOKEN": "xxx"
@@ -56,7 +56,7 @@ pm2.connect(function() {
 
 ### With Keymetrics
 
-The procedure is the same, but this time we will link PM2 to Keymetrics:
+The procedure remains the same.  However this time we will link PM2 to Keymetrics:
 
 ```javascript
 var pm2 = require('pm2');
@@ -74,7 +74,7 @@ pm2.connect(function() {
     name      : 'production-app',     // ----> THESE ATTRIBUTES ARE OPTIONAL:
     exec_mode : 'cluster',            // ----> https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#schema
     instances : instances,
-    max_memory_restart : maxMemory + 'M',   // Auto restart if process taking more than XXmo
+    max_memory_restart : maxMemory + 'M',   // Auto-restart if process takes more than XXmo
     env: {                            // If needed declare some environment variables
       "NODE_ENV": "production",
       "AWESOME_SERVICE_API_TOKEN": "xxx"
@@ -104,7 +104,7 @@ pm2.connect(function() {
 
 ## Or via environment variables
 
-You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET at the VM/Dyno level and when pm2 will start, it will automatically connect to Keymetrics. Or in bash mode:
+You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET at the VM/Dyno level so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
 
 ```
 $ export KEYMETRICS_PUBLIC="XXXX"
