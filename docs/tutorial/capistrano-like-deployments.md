@@ -9,7 +9,8 @@ permalink: /docs/tutorials/capistrano-like-deployments
 
 ## The main issue
 
-No mather what tool you would use to deploy your code, you might get confronted to a capistano-like structure. This method is usually having a similar directory tree:
+No matter the tools you use to deploy your code, you might get confronted to a **Capistrano**-like structure. 
+In general, the method will have a directory tree like this one:
 
 ```
 project_root
@@ -20,38 +21,42 @@ project_root
     └── 20150226100000
 ```
 
-Usually, when running this kind of deployments, old releases get deleted when there are no more used. Indeed, when a new release is issued:
+In most of this kind of deployment, old and no longer used releases get deleted. Indeed, a new release will have the following consequences:
 
 1. The project is deployed to a new path, here `releases/YYYYMMDDHHMMSS`
 2. The `current` symlink changes to the new path
-3. Delete some old releases
+3. Old releases are deleted.
 
-Now, when using pm2, you can be tempted to run everything like you usually would, for example:
+With PM2, you can be tempted to run everything like you usually would, for example:
 
 1. Do the deployment
-2. Restart the pm2 script from the just deployed directory
+2. Restart the PM2 script from the freshly deployed directory
 
-But wait, there is something wrong with this. Let's picture the first to the 11th deployment where the 1st release will be deleted (we want to keep 10 releases):
+But wait, there is something wrong with this method. Let's illustrate with the first to the 11th deployments. In our example, the 1st release will get deleted while we want to keep 10 releases:
 
 1. Do the first deployment
 2. From the `current` path, start our project `pm2 startOrRestart index.js`, the current working directory is `releases/20150301100000`
 3. Days are going by
 4. 11th deployment 
-5. The 1st deployment has no use anymore, it gets deleted
-6. `pm2 startOrRestart index.js` (or any pm2 command) will fail with error `Error: ENOENT, no such file or directory for process.cwd()`
+5. The 1st deployment is no longer used, in consequence it gets deleted
+6. `pm2 startOrRestart index.js` (or any PM2 command) will fail with error `Error: ENOENT, no such file or directory for process.cwd()`
 
-What has gone wrong? It's really straightforward: 10 days ago, PM2 was started in the `releases/20150301100000` but this one just got removed! So, `process.cwd()` doesn't exist anymore. It's just like running two shells in the same directory, removing it from one shell and trying to do any command in the other shell. This will fail with this kind of error:
+What has gone wrong then? 
+It's really straightforward: 10 days ago, PM2 was started in the `releases/20150301100000` but this one just got removed! 
+So, `process.cwd()` doesn't exist anymore. It's just like running two shells in the same directory, removing it from one shell and trying to run any command in the other shell. 
+It will fail and generate this kind of error:
 
 ```
-fatal: Unable to read current working directory: No such file or directory
+fatal: Unable to read current working directory: No such file or directory.
 ```
 
 ## The solution
 
-Capistrano structures, are great, in my opinion, because they allow you to rollback with nothing more than a symlink change. Now, to resolve this issue we just need to start pm2 in a directory that will never get removed.
-My proposal here is to define an absolute `project_root`, which will hold every necessary tools to get our application on tracks. It can be configuration files, logs, data (i.e. sqlite) etc. 
+In my opinion, Capistrano structures are great. They allow you to rollback with nothing more than a symlink change. 
+To resolve this issue we just need to start PM2 in a directory that will never get removed.
+My proposal here is to define an absolute `project_root`. It will store all the necessary tools required to get our application on tracks such as configuration files, logs, data (i.e. sqlite) etc. 
 
-The structure now looks like this:
+The structure should look like this now:
 
 ```
 project_root # in this example absolute path is /home/www/project_root
@@ -64,7 +69,7 @@ project_root # in this example absolute path is /home/www/project_root
 └── configuration # Are you comitting your database environments?
 ```
 
-And, what's more important than this is to define the pm2 ecosystem to match this structure:
+And, what's more important than this is to define the PM2 ecosystem to match this structure:
 
 ```json
 # ecosystem.json
@@ -82,7 +87,7 @@ And, what's more important than this is to define the pm2 ecosystem to match thi
 
 *You don't like absolute paths in this configuration? Use the `PWD` environement variable instead!*
 
-Now, the `ecosystem.json` is usually inside your project, or repository. To start it properly you'll have to start pm2 from the `project_root` directory:
+Now, the `ecosystem.json` is usually inside your project, or repository. To start it properly you'll have to start PM2 from the `project_root` directory:
 
 ```bash
 # somewhere in your deployment script
@@ -92,7 +97,7 @@ pm2 startOrRestart current/ecosystem.json
 
 ## Logs and data tip
 
-When working in continuous integration world, you'll rather have the `logs` and `data` directories inside your repository. This ease the testability and portability of your application. My suggestion to this, when refering to the capistrano structure, would be to symlink data directories to the parent level.
+When working in continuous integration world, you'll rather have the `logs` and `data` directories inside your repository. This eases the testability and portability of your application. When refering to a Capistrano structure, my suggestion would be to symlink data directories to the parent level.
 
 In this case, the `ecosystem.json` can be like this:
 
@@ -110,7 +115,7 @@ In this case, the `ecosystem.json` can be like this:
 }
 ```
 
-Where the static project directory would be:
+And the static project directory would be:
 
 ```
 project_root 
@@ -122,7 +127,8 @@ project_root
     └── development.sqlite 
 ```
 
-When deployed, all you have to do is to link `logs`, `configuration`, `data` to the parent directory! So, in a deployed environment of the same project, it'd look a lot like this:
+When deployed, all you have to do is to link `logs`, `configuration`, `data` to the parent directory! 
+This way, in a deployed environment of the same project, it'd look a lot like this:
 
 ```
 project_root 
@@ -133,7 +139,7 @@ project_root
 
 For more informations, take a look at the [original issue](https://github.com/Unitech/pm2/issues/1623).
 
-## Shipit pm2 example
+## Shipit PM2 example
 
 This is the task I use with [shipit](https://github.com/shipitjs/shipit). Note that the same command could apply to most of the deployment tools.
 
