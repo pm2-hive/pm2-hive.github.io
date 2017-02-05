@@ -52,21 +52,21 @@ The configuration can also be in JSON format.
 
 ```javascript
 {
-  apps : [{
-    name        : "worker",
-    script      : "./worker.js",
-    watch       : true,
-    env: {
-      "NODE_ENV": "development",
+  "apps" : [{
+    "name"        : "worker",
+    "script"      : "./worker.js",
+    "watch"       : true,
+    "env": {
+      "NODE_ENV": "development"
     },
-    env_production : {
+    "env_production" : {
        "NODE_ENV": "production"
     }
   },{
-    name       : "api-app",
-    script     : "./api.js",
-    instances  : 4,
-    exec_mode  : "cluster"
+    "name"       : "api-app",
+    "script"     : "./api.js",
+    "instances"  : 4,
+    "exec_mode"  : "cluster"
   }]
 }
 ```
