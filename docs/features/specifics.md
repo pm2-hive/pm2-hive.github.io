@@ -150,6 +150,10 @@ _EOF_
 echo $my_json | pm2 start -
 ```
 
+## Process title
+
+You can specify the env variable `PROCESS_FILE` when start an application with PM2, it will be set a process title. It pretty useful when trying to get specific data from the process, for example you can use `ps -fC name`.
+
 ## Transpilers
 
 Refer to [Using transpilers with PM2](http://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2) tutorial.
