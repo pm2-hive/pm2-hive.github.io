@@ -285,11 +285,7 @@ Note : starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of
 
 You can disable automatic ID suffixs on logs (e.g. `app-name-ID.log`) by passing enabling the option `merge_logs: true`
 
-### env_<NAME>
-
-It matches the keys of configured JSON by RegExp (not by string comparison), e.g. `^env_\\S*$` will match all `env` keys like `env_production`, `env_test`, and valid them according to the schemas specifications.
-
-Example :
+### Environement definition
 
 You'll need to use `--env <envname>` to tell pm2 to use specific environnement defined inside a process file :
 
