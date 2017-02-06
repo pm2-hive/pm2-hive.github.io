@@ -279,6 +279,7 @@ but not
 ### Disabling logs
 
 You can pass `/dev/null` to error_file or out_file to disable logs saving.
+Note : starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
 
 ### Logs suffix
 
@@ -287,6 +288,32 @@ You can disable automatic ID suffixs on logs (e.g. `app-name-ID.log`) by passing
 ### env_<NAME>
 
 It matches the keys of configured JSON by RegExp (not by string comparison), e.g. `^env_\\S*$` will match all `env` keys like `env_production`, `env_test`, and valid them according to the schemas specifications.
+
+Example :
+
+You'll need to use `--env <envname>` to tell pm2 to use specific environnement defined inside a process file :
+```
+{
+  "apps" : [{
+    "name"        : "worker",
+    "script"      : "./worker.js",
+    "watch"       : true,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    }
+  },{
+    "name"       : "api-app",
+    "script"     : "./api.js",
+    "instances"  : 4,
+    "exec_mode"  : "cluster"
+  }]
+}
+```
+In this example, you will run `pm2 start ecosystem.json` and it will start your application with the default environment (in development so).
+Then you use `pm2 start ecosystem.json --env production` and it will use the attribute `env_<name>` where name is `production` here, so it will start your app with `NODE_ENV=production`.
 
 ### Special `ext_type`
 
