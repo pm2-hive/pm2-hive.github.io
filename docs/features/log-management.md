@@ -28,21 +28,36 @@ $ pm2 logs api
 $ pm2 logs big-api --lines 1000
 ```
 
-## JSON output
-
-Starting with PM2 2.x, you can output logs in JSON format with the `--json` option:
+Starting with PM2 2.x, you can see logs in JSON format with the `--json` option:
 
 ```bash
 $ pm2 logs --json
 ```
 
-## Formated output
-
-Starting with PM2 2.x, you can output logs in FORMAT with the `--format` option:
+Starting with PM2 2.x, you can see logs with a special date format, just use the `--format` option:
 
 ```bash
 $ pm2 logs --format
 ```
+
+## Directly output json logs
+
+Starting PM2 `2.4.0`, you can directly ask pm2 to output logs in json using :
+  - CLI : `--log-type json`
+  - Process file : `"log_type": "json"`
+  
+This will output logs as json object into `err` and `out` files, see an example of json object:
+```json
+{
+   "message": "echo\n",                     // the acual message that has been `console.log`
+   "timestamp": "2017-02-06T14:51:38.896Z", // timestamp of the message, can be formated
+   "type": "out",                           // the type of logs, can be `err`, `out` or `PM2`
+   "process_id": 0,                         // the process id used by PM2
+   "app_name": "one-echo"                   // the application name
+}
+```
+
+Note: Timestamp can be formatted using `--format` in CLI and `"date_format": "JJ-MM-YYYY"` in process file, the formatting is done with `moment` so you can use every format that are accepted by it.
 
 ## Flushing logs
 
@@ -143,6 +158,9 @@ Use the `--merge-logs` option to disable automatic log file suffixing.
   "error_file": "/dev/null"
 }
 ```
+
+Starting PM2 `2.4.0`, you can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are harcoded string).
+**NOTE:** Take care that the merged log file will be still active, these values are only used for `error` and `out` files.
 
 ### Setting up a native logrotate
 
