@@ -293,7 +293,7 @@ Example :
 
 You'll need to use `--env <envname>` to tell pm2 to use specific environnement defined inside a process file :
 
-```
+```json
 {
   "apps" : [{
     "name"        : "worker",
