@@ -30,7 +30,7 @@ To restart it just do:
 $ pm2 restart web-interface
 ```
 
-*NB: starting PM2 2.1.x, restarts are immutable, meaning that env will not auto-update. Use --update-env to update env*
+**NB: starting PM2 2.1.x, restarts are immutable, meaning that environnement will not auto-update. Use --update-env to update env**
 
 Now you want to **delete** the app from the PM2 process list.
 You just have to enter the following commands:
@@ -38,6 +38,14 @@ You just have to enter the following commands:
 ```bash
 $ pm2 delete web-interface
 ```
+
+Since PM2 `2.4.0`, you can also restart/delete/stop/reload applications via regex (this one will only restart `http-1` and `http-2` but not `http-3`):
+
+```bash
+$ pm2 restart /http-[1,2]/
+```
+
+*Note : Regex are defined by leading and ending '/' and they are tested against applications name only (not the process id).*
 
 [You can declare options via configuration file too](/docs/usage/application-declaration/).
 
