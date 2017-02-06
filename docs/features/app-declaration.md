@@ -292,6 +292,7 @@ It matches the keys of configured JSON by RegExp (not by string comparison), e.g
 Example :
 
 You'll need to use `--env <envname>` to tell pm2 to use specific environnement defined inside a process file :
+
 ```
 {
   "apps" : [{
@@ -312,6 +313,7 @@ You'll need to use `--env <envname>` to tell pm2 to use specific environnement d
   }]
 }
 ```
+
 In this example, you will run `pm2 start ecosystem.json` and it will start your application with the default environment (in development so).
 Then you use `pm2 start ecosystem.json --env production` and it will use the attribute `env_<name>` where name is `production` here, so it will start your app with `NODE_ENV=production`.
 
