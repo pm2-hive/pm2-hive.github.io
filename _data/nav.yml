@@ -41,6 +41,8 @@
       url: /docs/usage/pm2-api/
     - title: Use PM2 in Cloud Providers
       url: /docs/usage/use-pm2-with-cloud-providers/
+    - title: Expose static files
+      url: /docs/usage/serve/
     - title: Download as ZIP
       url: https://github.com/Unitech/PM2/releases
       blank: true
