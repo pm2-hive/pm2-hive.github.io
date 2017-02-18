@@ -7,7 +7,7 @@ permalink: /docs/usage/cluster-mode/
 
 ## Cluster Mode
 
-The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any code modifications. This increase greatly the performance and the reliability of your applications, depending on the number of CPUs available.
+The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any code modifications. This greatly increases the performance and reliability of your applications, depending on the number of CPUs available.
 
 ## Usage
 
