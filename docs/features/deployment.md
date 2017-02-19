@@ -226,6 +226,7 @@ $ pm2 deploy ecosystem.json production --force
 - It deploys your code via ssh, you don't need any dependencies
 - Processes are initialized / started automatically depending on the application name in `ecosystem.json`
 - PM2-deploy repository can be found here: [pm2-deploy](https://github.com/Unitech/pm2-deploy)
+- **WINDOWS** : see point below (at the end)
 
 ## Troubleshooting
 ##### SSH clone errors
@@ -280,7 +281,7 @@ Host deployment
 # This is for cloning any repo that uses that IdentityFile. This is a good way to make sure that your remote cloning commands use the appropriate key
 ```
 
-#### Windows
+## Windows Consideration
 
 To run the deploy script under Windows, you need to use a unix shell like bash, so we recommand to install either [Git bash](https://git-scm.com/download/win), [Babun](http://babun.github.io/) or  [Cygwin](https://cygwin.com/install.html)
 
