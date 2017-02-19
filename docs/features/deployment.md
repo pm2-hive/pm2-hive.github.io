@@ -280,6 +280,10 @@ Host deployment
 # This is for cloning any repo that uses that IdentityFile. This is a good way to make sure that your remote cloning commands use the appropriate key
 ```
 
+#### Windows
+
+To run the deploy script under Windows, you need to use a unix shell like bash, so we recommand to install either [Git bash](https://git-scm.com/download/win), [Babun](http://babun.github.io/) or  [Cygwin](https://cygwin.com/install.html)
+
 ## Contributing
 
 The module is <a href="https://github.com/Unitech/pm2-deploy">https://github.com/Unitech/pm2-deploy</a>
