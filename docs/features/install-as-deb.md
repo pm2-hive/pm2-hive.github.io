@@ -13,7 +13,7 @@ It is built to work with the lastest Long Term Support release of ubuntu
 
 ```bash
 # 1. Add the PM2 repository signing key
-wget -O - http://apt.pm2.io/ubuntu/apt.pm2.io.gpg.key | sudo apt-key add -
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv D1EA2D4C
 
 # 2. Add the PM2 repository
 echo "deb http://apt.pm2.io/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/pm2.list
