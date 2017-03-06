@@ -14,7 +14,7 @@ The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp serv
 To enable the **cluster mode**, just pass the -i <instances> option:
 
 ```bash
-$ pm2 start  app.js -i max
+$ pm2 start  app.js -i 0
 ```
 
 Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
@@ -23,7 +23,7 @@ Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-dec
 {
   "apps" : [{
     "script"    : "api.js",
-    "instances" : "max",
+    "instances" : 0,
     "exec_mode" : "cluster"
   }]
 }
