@@ -36,7 +36,7 @@ $ pm2 start processes.json
 ```
 
 The *-i* or *instances* option can be:
-- **max** to spread the app across all CPUs
+- **0** to spread the app across all CPUs
 - **-1** to spread the app across all CPUs - 1
 - **number** to spread the app across **number** CPUs
 
