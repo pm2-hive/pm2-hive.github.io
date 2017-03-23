@@ -180,7 +180,7 @@ To deploy to multiple hosts in the same time, you just have to declare each host
 ```
 
 
-## Using private key to connect to your host
+## Using private key
 
 You just have to add the "key" attribute with path to the private key, see below example :
 
