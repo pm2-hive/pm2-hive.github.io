@@ -7,10 +7,55 @@ permalink: /docs/usage/use-pm2-with-cloud-providers/
 
 # Using PM2 in Cloud Providers
 
-You might find yourself in a situation in which you do not have access to a raw CLI to start your Node.js applications.
-The PM2 programmatic interface offers you a convenient and easy way to manage your Node.js applications.
+You might find yourself in a situation in which you do not have access to a raw CLI to start your Node.js applications. You have 3 ways to circumvent this:
+* Use the preinstall directive to install PM2 globally and start your application in the start script.
+* Require PM2 as a dependency and call the module via the start script.
+* The PM2 programmatic interface offers you a convenient way to manage your Node.js applications.
 
-## Heroku / Google App Engine / Azure
+## Preinstall PM2 globally
+
+The easiest way is to install pm2 globally via the preinstall scripts and start your application via pm2.
+
+In package.json:
+```json
+  "scripts": {
+    "preinstall": "npm install pm2 -g",
+    "start": "pm2 start --attach app.js"
+   },
+```
+
+* `--attach` Launches the logs of PM2 in the console after starting the app
+* Use `ecosystem.json` instead of `app.js` for a cleaner configuration
+
+## Require PM2 as a module
+
+Depending on your cloud provider, the `preinstall` script might not be supported or pm2 might not be installed globally.
+To solve this we can require pm2 from the `node_module` folder:
+
+Install pm2 in your projet using `npm install --save pm2`
+
+In package.json:
+```json
+  "scripts": {
+    "start": "node ./node_modules/.bin/pm2 start --attach app.js"
+  }
+```
+
+* `--attach` Launches the logs of PM2 in the console after starting the app
+* Use `ecosystem.json` instead of `app.js` for a cleaner configuration
+
+
+### Link to Keymetrics via environment variables
+
+You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
+
+```
+$ export KEYMETRICS_PUBLIC="XXXX"
+$ export KEYMETRICS_SECRET="YYYY"
+$ pm2 update
+```
+
+## Programmatic start
 
 First, add PM2 as a dependency in your package.json, then you have to create a main.js file with the following content (please modify according to your needs):
 
@@ -100,14 +145,4 @@ pm2.connect(function() {
     });
   });
 });
-```
-
-## Or via environment variables
-
-You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET at the VM/Dyno level so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
-
-```
-$ export KEYMETRICS_PUBLIC="XXXX"
-$ export KEYMETRICS_SECRET="YYYY"
-$ pm2 update
 ```
