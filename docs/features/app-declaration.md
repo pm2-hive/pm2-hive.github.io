@@ -127,7 +127,7 @@ $ pm2 reload  ecosystem.config.js --only api-app
 $ pm2 delete  ecosystem.config.js --only api-app
 ```
 
-### Updating configurations of already running applications
+### Updating running conf
 
 Starting PM2 v2.1.X, environnements are immutable by default, that means they will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Please note that some options will not be updated (options that are listed under `General Attributes` below).
 
