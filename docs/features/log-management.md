@@ -144,7 +144,7 @@ If you want out and err combined without using any other file, just use the same
 }
 ```
 
-Note that relatives logs paths will usually be written in the `PM2_HOME` (`~/.pm2/logs`).
+Note that relative logs paths will be based unpon `cwd`.
 
 ### Disabling log suffix
 
