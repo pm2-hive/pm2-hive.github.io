@@ -11,5 +11,5 @@ PM2 comes with a handy development tool that allow you to start an application a
 # Start your application in development mode
 # = Print the logs and restart on file change
 
-$ pm2-dev run my-app.js
+$ pm2-dev start my-app.js
 ```
