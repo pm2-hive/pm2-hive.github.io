@@ -9,7 +9,12 @@ PM2 comes with a handy development tool that allow you to start an application a
 
 ```bash
 # Start your application in development mode
-# = Print the logs and restart on file change
+# it print the logs and restart on file change too
 
+# Two way of running your application :
 $ pm2-dev start my-app.js
+
+# or
+
+$ pm2-dev my-app.js
 ```
