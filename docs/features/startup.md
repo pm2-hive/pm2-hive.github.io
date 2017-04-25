@@ -15,6 +15,7 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 - **systemd**: Ubuntu >= 16, CentOS >= 7, Arch, Debian >= 7
 - **upstart**: Ubuntu <= 14
 - **launchd**: Darwin, MacOSx
+- **openrc**: Gentoo Linux, Arch Linux
 - **rcd**: FreeBSD
 - **systemv**: Centos 6, Amazon Linux
 
@@ -29,7 +30,7 @@ $ pm2 startup
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
-$ pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd]
+$ pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd | openrc]
 ```
 
 The output of this command can be a recommendation of the line to copy/paste with all environment variables and options configured for you.
@@ -71,7 +72,7 @@ $ pm2 unstartup
 The previous line code let PM2 detect your platform. Alternatively you can use another specified init system youself using:
 
 ```bash
-$ pm2 unstartup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd] 
+$ pm2 unstartup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd | openrc] 
 ```
 
 ## User permissions
