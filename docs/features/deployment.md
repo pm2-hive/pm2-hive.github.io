@@ -283,7 +283,7 @@ Host deployment
 
 ## Windows Consideration
 
-To run the deploy script under Windows, you need to use a unix shell like bash, so we recommand to install either [Git bash](https://git-scm.com/download/win), [Babun](http://babun.github.io/) or  [Cygwin](https://cygwin.com/install.html)
+To run the deploy script under Windows, you need to use a unix shell like bash, so we recommend to install either [Git bash](https://git-scm.com/download/win), [Babun](http://babun.github.io/) or  [Cygwin](https://cygwin.com/install.html)
 
 ## Contributing
 
