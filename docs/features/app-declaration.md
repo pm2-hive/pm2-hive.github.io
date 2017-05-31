@@ -129,7 +129,7 @@ $ pm2 delete  ecosystem.config.js --only api-app
 
 ### Updating running conf
 
-Starting PM2 v2.1.X, environnements are immutable by default, that means they will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Please note that some options will not be updated (options that are listed under `General Attributes` below).
+Starting PM2 v2.1.X, environments are immutable by default, that means they will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Please note that some options will not be updated (options that are listed under `General Attributes` below).
 
 Example:
 
@@ -287,7 +287,7 @@ You can disable automatic ID suffixs on logs (e.g. `app-name-ID.log`) by passing
 
 ### Environment definition
 
-You'll need to use `--env <envname>` to tell pm2 to use specific environnement defined inside a process file :
+You'll need to use `--env <envname>` to tell pm2 to use specific environment defined inside a process file :
 
 ```json
 {
@@ -327,7 +327,7 @@ Then you use `pm2 start ecosystem.json --env production` and it will use the att
     - **Number**
         e.g. `"max_memory_restart": 1024` means 1024 bytes (**NOT BITS**).
     - **String**
-        Therefore, we are making it short and easy to configure: `G`, `M` and `K`, e.g.: `"max_memory_restart": "1G"` means one gigabytes, `"max_memory_restart": "5M"` means five megabytes and `"max_memory_restart": "10K"` means ten kilobytes (those will be transformed into byte(s)).
+        Therefore, we are making it short and easy to configure: `G`, `M` and `K`, e.g.: `"max_memory_restart": "1G"` means one gigabyte, `"max_memory_restart": "5M"` means five megabytes and `"max_memory_restart": "10K"` means ten kilobytes (those will be transformed into byte(s)).
 
 - Optional values
   For example `exec_mode` can take `cluster` (`cluster_mode`) or `fork` (`fork_mode`) as possible values.
