@@ -269,7 +269,7 @@ $ pm2 restart app.json --env staging
 
 ## Using Javascript in the declaration
 
-You may have noticed that you can put comments, remove double quotes in JSON declaration file. It's because PM2 process the JSON file as a Javascript file meaning that you can inject Javascript into this file. For example you can access to the `process.env` object or you can use Javascript functions straight into your application file. By the way the file does not need to be prefixed to something else than *.json*
+You may have noticed that you can include comments and remove double quotes in PM2's JSON declaration file. That's because PM2 processes the JSON file as a Javascript file, meaning that you can inject Javascript into this file. For example you can access the `process.env` object or you can use Javascript functions straight in your application file. By the way, the file does not need to have an extension other than *.json*
 
 Example of ecosystem.json:
 
