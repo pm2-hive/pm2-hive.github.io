@@ -15,6 +15,8 @@
       url: /docs/usage/application-declaration/
     - title: Graceful restart/reload
       url: /docs/usage/signals-clean-restart/
+    - title: Environment management
+      url: /docs/usage/environment/
     - title: Log Management
       url: /docs/usage/log-management/
     - title: Update PM2
