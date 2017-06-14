@@ -11,7 +11,8 @@ PM2 will inject environment in this order when **starting** a new processs :
 
 - First the PM2 CLI will use its environment so the current environment of your shell will be injected.
 - PM2 will then inject the environment that you can configure with the ecosystem file :
-```javascript=
+
+```javascript
 module.exports = {
   apps : [
       {
@@ -28,7 +29,7 @@ module.exports = {
 
 Here you can see that PM2 will override the current environment to add `NODE_ENV=development`. But you can also define different environments like this : 
 
-```javascript=
+```javascript
 module.exports = {
   apps : [
       {
@@ -75,7 +76,7 @@ Two processes can never have the same number, its still true after `pm2 restart`
 
 You may have problems with [node-config](https://github.com/Unitech/pm2/issues/2045) with the `NODE_APP_INSTANCE` name, so you can rename it with `instance_var` options : 
 
-```javascript=
+```javascript
 module.exports = {
   apps : [
       {
