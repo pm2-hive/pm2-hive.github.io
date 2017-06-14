@@ -50,7 +50,7 @@ module.exports = {
 
 The configuration can also be in JSON format.
 
-```javascript
+```json
 {
   "apps" : [{
     "name"        : "worker",
