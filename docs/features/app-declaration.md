@@ -175,6 +175,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |:----------|:-------:|:------------------------------:|:-------------------------|
 |instances | number | -1 | number of app instance to be launched |
 |exec_mode | string | "cluster" | mode to start your app, can be "cluster" or "fork", default fork|
+|instance_var | string | "NODE_APP_INSTANCE" | when launching multiple instances, assign the instance &#35; to an environment variable of this name. (default to `"NODE_APP_INSTANCE"`)
 | watch   | boolean or [] |  true |  enable watch & restart feature, if a file change in the folder or subfolder, your app will get reloaded |
 |    ignore_watch    |   list  |     ["[\\/\\\\]\\./", "node_modules"]     | list of regex to ignore some file or folder names by the watch feature|
 | max_memory_restart |  string |  "150M" |  your app will be restarted if it exceeds the amount of memory specified. human-friendly format : it can be "10M", "100K", "2G" and so on... |
