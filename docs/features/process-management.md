@@ -30,7 +30,7 @@ To restart it just do:
 $ pm2 restart web-interface
 ```
 
-**NB: starting PM2 2.1.x, restarts are immutable, meaning that environnement will not auto-update. Use --update-env to update env**
+**NB: starting PM2 2.1.x, restarts are immutable, meaning that environnement changes will not change your process, see [--update-env](http://pm2.keymetrics.io/docs/usage/environment/#while-restarting-reloading-a-process)**
 
 Now you want to **delete** the app from the PM2 process list.
 You just have to enter the following commands:
