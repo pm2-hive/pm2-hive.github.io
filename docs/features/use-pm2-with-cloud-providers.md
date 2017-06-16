@@ -44,7 +44,7 @@ In package.json:
   }
 ```
 
-### Link to [Keymetrics](https://keymetrics.io/) via environment variables
+## Link to [Keymetrics](https://keymetrics.io/) via environment variables
 
 You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
 
