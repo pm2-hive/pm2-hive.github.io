@@ -49,7 +49,7 @@ Starting PM2 `2.4.0`, you can directly ask pm2 to output logs in json using :
 This will output logs as json object into `err` and `out` files, see an example of json object:
 ```json
 {
-   "message": "echo\n",                     // the acual message that has been `console.log`
+   "message": "echo\n",                     // the actual message that has been `console.log`
    "timestamp": "2017-02-06T14:51:38.896Z", // timestamp of the message, can be formated
    "type": "out",                           // the type of logs, can be `err`, `out` or `PM2`
    "process_id": 0,                         // the process id used by PM2
