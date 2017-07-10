@@ -35,7 +35,7 @@ module.exports = {
       {
         name: "myapp",
         script: "./app.js",
-        watche: true,
+        watch: true,
         env: {
             "PORT": 3000,
             "NODE_ENV": "development"
