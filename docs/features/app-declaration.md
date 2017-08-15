@@ -71,6 +71,31 @@ The configuration can also be in JSON format.
 }
 ```
 
+### JSON5 format
+
+Alternatively, JSON5 is also supported
+
+```json5
+{
+  apps: [{
+    name: 'worker',
+    script: './worker.js',
+    watch: true,
+    env: {
+      NODE_ENV: 'development'
+    },
+    env_production: {
+      NODE_ENV: 'production'
+    }
+  }, {
+    name: 'api-app',
+    script: './api.js',
+    instances: 4,
+    exec_mode: 'cluster'
+  }]
+}
+```
+
 ### YAML format
 
 Here is the same example in YAML format (**use JSON format if possible**):
