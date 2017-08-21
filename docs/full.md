@@ -208,9 +208,6 @@ $ pm2 restart ecosystem.json
 # Reload
 $ pm2 reload ecosystem.json
 
-# Graceful Reload
-$ pm2 gracefulReload ecosystem.json
-
 # Delete from PM2
 $ pm2 delete ecosystem.json
 ```
@@ -511,7 +508,7 @@ process.on('message', function(msg) {
 Then use the command:
 
 ```bash
-$ pm2 gracefulReload [all|name]
+$ pm2 reload [all|name]
 ```
 
 When PM2 starts a new process to replace an old one, it will wait for the new process to begin listening to a connection or a timeout before sending the shutdown message to the old one. You can define the timeout value with the `PM2_GRACEFUL_LISTEN_TIMEOUT` environament variable. If a script does not need to listen to a connection, it can manually tell PM2 that the process has started up by calling `process.send('online')`.
@@ -710,7 +707,6 @@ Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#sw
 ```
 $ pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
 $ pm2 startOrReload all.json             # Invoke reload
-$ pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 ```
 
 ## Multi host deployment
@@ -1091,10 +1087,6 @@ process.on('message', function(packet) {
       <td><b>Reload</b></td>
       <td>pm2.reload(proc_name|all, fn(err, proc){})</td>
     </tr>
-      <tr>
-      <td><b>Graceful Reload</b></td>
-      <td>pm2.gracefulReload(proc_name|all, fn(err, proc){})</td>
-    </tr>
 </table>
 
 <table class="table table-striped table-bordered">
@@ -1381,7 +1373,6 @@ $ pm2 stop all           # Stop all processes
 $ pm2 restart all        # Restart all processes
 
 $ pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
-$ pm2 gracefulReload all # Send exit message then reload (for networked apps)
 
 $ pm2 stop 0             # Stop specific process id
 $ pm2 restart 0          # Restart specific process id
