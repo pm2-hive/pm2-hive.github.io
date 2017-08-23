@@ -21,7 +21,21 @@ The goal of pm2-docker is to wrap your applications into a proper Node.js produc
 
 Further than that, using PM2 as a layer between the container and the application brings PM2 features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/), [source map support](/docs/usage/source-map-support/) and other great features to manage your Node.js application in production environment.
 
-## Usage
+## Official Supported Docker Image
+
+You can find the official Docker Image embedding the PM2 runtime here:
+
+https://hub.docker.com/r/keymetrics/pm2
+
+
+- keymetrics/pm2:`latest` with `node:alpine`
+- keymetrics/pm2:`8` with `node:8-alpine`
+- keymetrics/pm2:`7` with `node:7-alpine`
+- keymetrics/pm2:`6` with `node:6-alpine`
+- keymetrics/pm2:`4` with `node:4-alpine`
+- keymetrics/pm2:`next` with `node:alpine` and `pm2@next`
+
+## pm2-docker usage
 
 ### pm2-docker inside a Dockerfile
 
