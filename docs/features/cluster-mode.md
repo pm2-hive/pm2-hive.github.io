@@ -14,8 +14,10 @@ The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp serv
 To enable the **cluster mode**, just pass the -i <instances> option:
 
 ```bash
-$ pm2 start  app.js -i 0
+$ pm2 start app.js -i max
 ```
+
+*max means that PM2 will auto detect the number of available CPUs and run as many processes as possible in load balanced mode*
 
 Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
@@ -23,7 +25,7 @@ Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-dec
 {
   "apps" : [{
     "script"    : "api.js",
-    "instances" : 0,
+    "instances" : "max",
     "exec_mode" : "cluster"
   }]
 }
@@ -36,7 +38,7 @@ $ pm2 start processes.json
 ```
 
 The *-i* or *instances* option can be:
-- **0** to spread the app across all CPUs
+- **0/max** to spread the app across all CPUs
 - **-1** to spread the app across all CPUs - 1
 - **number** to spread the app across **number** CPUs
 
@@ -78,4 +80,6 @@ process.on('SIGINT', function() {
 ## Statelessify your application
 
 Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that no local data is stored in the process, for example sessions/websocket connections, session-memory and related. Use Redis, Mongo or other databases to share states between processes.
+
+Another resource on how to write efficient, production ready stateless application is The Twelve Factor Application manifesto: https://12factor.net/
 
