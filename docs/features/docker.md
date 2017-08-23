@@ -25,8 +25,7 @@ Further than that, using PM2 as a layer between the container and the applicatio
 
 You can find the official Docker Image embedding the PM2 runtime here:
 
-https://hub.docker.com/r/keymetrics/pm2
-
+[https://hub.docker.com/r/keymetrics/pm2](https://hub.docker.com/r/keymetrics/pm2)
 
 - keymetrics/pm2:`latest` with `node:alpine`
 - keymetrics/pm2:`8` with `node:8-alpine`
