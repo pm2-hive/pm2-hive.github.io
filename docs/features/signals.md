@@ -19,38 +19,7 @@ process.on('SIGINT', function() {
 
 Now `pm2 reload` will become a gracefulReload.
 
-## Explanation: Signals flow
-
-When a process is stopped/restarted by PM2, some system signals are sent to your process in a given order.
-
-First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *([customizable](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#customize-exit-delay))* it will receive a **SIGKILL** signal to force the process exit.
-
-## Cleaning states and jobs
-
-As stated before, if you need to clean-up (stop intervals, stop connection to database...) you can intercept the **SIGINT** signal to prepare your application to exit.
-
-Here is a sample on how to intercept the **SIGINT** signal with Node.js:
-
-```javascript
-//[...]
-
-process.on('SIGINT', function() {
-  // My process has received a SIGINT signal
-  // Meaning PM2 is now trying to stop the process
-
-  // So I can clean some stuff before the final stop
-  clearInterval(my_interval);
-  my_db_connection.close();
-  current_jobs.save();
-
-  setTimeout(function() {
-    // 300ms later the process kill it self to allow a restart
-    process.exit(0);
-  }, 300);
-});
-```
-
-## Customize exit delay
+### Configure the kill timeout
 
 Via CLI, this will lengthen the timeout to 3000ms:
 
@@ -72,10 +41,7 @@ Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declarati
 
 ## Graceful start
 
-From now on (pm2 version `2.1.x`), you can make a graceful start. Sometimes you might need to wait for your application to have etablished connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. 
-To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
-
-Note that PM2 has a timeout in case the event is never called. If your startup takes more time than the default timeout (`3000` ms), you can increase it using `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file. 
+Sometimes you might need to wait for your application to have etablished connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
 
 ```javascript
 var http = require('http');
@@ -85,14 +51,48 @@ var app = http.createServer(function(req, res) {
 })
 var listener = app.listen(0, function() {
   console.log('Listening on port ' + listener.address().port);
+  // Here we send the ready signal to PM2
   process.send('ready');
 });
 ```
 
-## Graceful start using `http.Server.listen`
+Then start the application:
 
-There is still an old system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automaticaly state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `PM2_GRACEFUL_LISTEN_TIMEOUT` env variable or `listen_timeout` entry in process file.
+```bash
+$ pm2 start app.js --wait-ready
+```
 
+### Configure the ready timeout
+
+By default, PM2 wait 3000ms for the `ready` signal.
+
+Via CLI, this will lengthen the timeout to 3000ms:
+
+```bash
+$ pm2 start app.js --wait-ready --listen-timeout 3000
+```
+
+Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+
+```json
+{
+  "apps" : [{
+    "name"         : "api",
+    "script"       : "app.js",
+    "listen_timeout" : 3000
+  }]
+}
+```
+
+### Graceful start using `http.Server.listen`
+
+There is still the default system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automaticaly state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `listen_timeout` entry in process file or `--listen-timeout=XXXX` via CLI.
+
+## Explanation: Signals flow
+
+When a process is stopped/restarted by PM2, some system signals are sent to your process in a given order.
+
+First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *([customizable](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#customize-exit-delay))* it will receive a **SIGKILL** signal to force the process exit.
 
 ## Windows graceful stop
 
