@@ -27,7 +27,7 @@ alias pm2='authbind --deep pm2'
 
 ## Multiple PM2 on the same server
 
-The client and daemon communicate via socket files available in $HOME/.pm2/[pub.sock|rpc.sock].
+The client and daemon communicate via socket files available in $HOME/.pm2/pub.sock and $HOME/.pm2/rpc.sock.
 
 You can start multiple PM2 instances by changing the `PM2_HOME` environment variable.
 
@@ -53,23 +53,7 @@ Launching PM2 without daemonizing itself:
 $ pm2 start app.js --no-daemon
 ```
 
-## Configuration file
-
-You can edit some PM2 options by editing the file `$HOME/.pm2/conf.js`.
-
-```
-PM2_LOG_FILE_PATH  // PM2 log file path
-PM2_PID_FILE_PATH  // Pid file path
-DUMP_FILE_PATH     // Dump file path (for pm2 save && pm2 resurrect)
-CONCURRENT_ACTIONS // Concurrent process actions
-WEB_INTERFACE      // Port of the PM2 web api
-```
-
-## API health endpoint
-
-```bash
-$ pm2 web
-```
+There is also the CLI `pm2-runtime` installed by default at PM2 installation, that is a drop-in replacement of the Node.js binary.
 
 ## Stateless apps
 
@@ -170,9 +154,13 @@ Refer to [Using transpilers with PM2](http://pm2.keymetrics.io/docs/tutorials/us
 
 ## External resources and articles
 
+- [PM2 — Utility Overview & Installation](https://futurestud.io/tutorials/pm2-utility-overview-installation)
+- [How To Set Up a Node.js Application for Production on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
+- [Tutorial: Creating and managing a Node.js server on AWS, part 2](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea95f8a1)
 - [Goodbye node-forever, hello pm2](http://devo.ps/blog/goodbye-node-forever-hello-pm2/)
+- [https://www.howtoforge.com/tutorial/how-to-deploy-nodejs-applications-with-pm2-and-nginx-on-ubuntu/](https://www.howtoforge.com/tutorial/how-to-deploy-nodejs-applications-with-pm2-and-nginx-on-ubuntu/)
 - [https://serversforhackers.com/editions/2014/11/04/pm2/](https://serversforhackers.com/editions/2014/11/04/pm2/)
-- http://www.allaboutghost.com/keep-ghost-running-with-pm2/
+- [http://www.allaboutghost.com/keep-ghost-running-with-pm2/](http://www.allaboutghost.com/keep-ghost-running-with-pm2/)
 - http://blog.ponyfoo.com/2013/09/19/deploying-node-apps-to-aws-using-grunt
 - http://www.allaboutghost.com/keep-ghost-running-with-pm2/
 - http://bioselemental.com/keeping-ghost-alive-with-pm2/
