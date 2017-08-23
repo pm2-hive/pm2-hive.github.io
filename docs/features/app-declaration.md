@@ -21,6 +21,8 @@ $ pm2 ecosystem
 
 This will generate a sample, `ecosystem.config.js`.
 
+To generate a ecosystem file without any comment just run `pm2 ecosystem simple`.
+
 ### Javascript format
 
 ```javascript
