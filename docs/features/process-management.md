@@ -12,14 +12,14 @@ PM2 is a process manager. It manages your applications states, so you can start,
 Start a process:
 
 ```bash
-$ pm2 start app.js --name "my-api"
-$ pm2 start web.js --name "web-interface"
+pm2 start app.js --name "my-api"
+pm2 start web.js --name "web-interface"
 ```
 
 Now let's say you need to stop the web-interface:
 
 ```bash
-$ pm2 stop web-interface
+pm2 stop web-interface
 ```
 
 As you can see **the process hasn't disappeared**. It's still there but in `stopped` status.
@@ -27,7 +27,7 @@ As you can see **the process hasn't disappeared**. It's still there but in `stop
 To restart it just do:
 
 ```bash
-$ pm2 restart web-interface
+pm2 restart web-interface
 ```
 
 **NB: starting PM2 2.1.x, restarts are immutable, meaning that environnement changes will not change your process, see [--update-env](http://pm2.keymetrics.io/docs/usage/environment/#while-restarting-reloading-a-process)**
@@ -36,13 +36,13 @@ Now you want to **delete** the app from the PM2 process list.
 You just have to enter the following commands:
 
 ```bash
-$ pm2 delete web-interface
+pm2 delete web-interface
 ```
 
 Since PM2 `2.4.0`, you can also restart/delete/stop/reload applications via regex (this one will only restart `http-1` and `http-2` but not `http-3`):
 
 ```bash
-$ pm2 restart /http-[1,2]/
+pm2 restart /http-[1,2]/
 ```
 
 *Note : Regex are defined by leading and ending '/' and they are tested against applications name only (not the process id).*
@@ -54,15 +54,15 @@ $ pm2 restart /http-[1,2]/
 To list all running processes:
 
 ```bash
-$ pm2 list
+pm2 list
 # Or
-$ pm2 [list|ls|l|status]
+pm2 [list|ls|l|status]
 ```
 
 To get more details about a specific process:
 
 ```bash
-$ pm2 show 0
+pm2 show 0
 ```
 
 ## Start any process type
@@ -70,13 +70,13 @@ $ pm2 show 0
 For scripts in other languages:
 
 ```bash
-$ pm2 start echo.pl --interpreter=perl
+pm2 start echo.pl --interpreter=perl
 
-$ pm2 start echo.coffee
-$ pm2 start echo.php
-$ pm2 start echo.py
-$ pm2 start echo.sh
-$ pm2 start echo.rb
+pm2 start echo.coffee
+pm2 start echo.php
+pm2 start echo.py
+pm2 start echo.sh
+pm2 start echo.rb
 ```
 
 The interpreter is set by default with this equivalence:
@@ -96,7 +96,7 @@ The interpreter is set by default with this equivalence:
 ### Binary code execution
 
 ```bash
-$ pm2 start ./binary-app
+pm2 start ./binary-app
 ```
 
 ### Process configuration
@@ -129,7 +129,7 @@ Note that the max memory restart options are graceful (if your application suppo
 ### CLI
 
 ```bash
-$ pm2 start big-array.js --max-memory-restart 20M
+pm2 start big-array.js --max-memory-restart 20M
 ```
 
 ### JSON

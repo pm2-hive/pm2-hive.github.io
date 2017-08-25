@@ -36,7 +36,7 @@ PM2 is a production process manager for Node.js applications with a built-in loa
 Starting an application in production mode is as easy as:
 
 ```bash
-$ pm2 start app.js
+pm2 start app.js
 ```
 
 PM2 is constantly assailed by [more than 700 tests](https://travis-ci.org/Unitech/pm2).
@@ -50,7 +50,7 @@ Works on Linux (stable) & MacOSx (stable) & Windows (bêta).
 ## Install PM2
 
 ```bash
-$ npm install pm2 -g
+npm install pm2 -g
 ```
 
 *npm is a builtin CLI when you install Node.js - [Installing Node.js with NVM](https://keymetrics.io/2015/02/03/installing-node-js-and-io-js-with-nvm/)*
@@ -58,7 +58,7 @@ $ npm install pm2 -g
 ## Start an application
 
 ```bash
-$ pm2 start app.js
+pm2 start app.js
 ```
 
 Your app is now put in background, monitored and kept alive forever.
@@ -70,7 +70,7 @@ Your app is now put in background, monitored and kept alive forever.
 PM2 embeds a simple and powerful module system. Installing a module is straightforward:
 
 ```bash
-$ pm2 install <module_name>
+pm2 install <module_name>
 ```
 
 Here are some PM2 compatible modules (standalone Node.js applications managed by PM2):
@@ -88,9 +88,9 @@ PM2 is also smart enough to **save all your process list** and to **bring back a
 ## Command
 
 ```bash
-$ pm2 startup
+pm2 startup
 # auto-detect platform
-$ pm2 startup [platform]
+pm2 startup [platform]
 # render startup-script for a specific platform, the [platform] could be one of:
 #   ubuntu|centos|redhat|gentoo|systemd|darwin|amazon
 ```
@@ -98,7 +98,7 @@ $ pm2 startup [platform]
 Once you have started the apps and want to keep them on server reboot do:
 
 ```bash
-$ pm2 save
+pm2 save
 ```
 
 **Warning** It's tricky to make this feature work generically, so once PM2 has setup your startup script, reboot your server to make sure that PM2 has launched your apps!
@@ -126,7 +126,7 @@ Let's say you want the startup script to be executed under another user.
 Just use the `-u <username>` option !
 
 ```bash
-$ pm2 startup ubuntu -u www
+pm2 startup ubuntu -u www
 ```
 
 ## Related commands
@@ -134,7 +134,7 @@ $ pm2 startup ubuntu -u www
 Dump all processes status and environment managed by PM2:
 
 ```bash
-$ pm2 [dump|save]
+pm2 [dump|save]
 ```
 
 It populates the file `~/.pm2/dump.pm2` by default.
@@ -142,7 +142,7 @@ It populates the file `~/.pm2/dump.pm2` by default.
 To bring back the latest dump:
 
 ```bash
-$ pm2 resurrect
+pm2 resurrect
 ```
 
 
@@ -195,21 +195,21 @@ Then you can run the basics commands:
 
 ```bash
 # Start all apps
-$ pm2 start ecosystem.json
+pm2 start ecosystem.json
 
 # Stop
-$ pm2 stop ecosystem.json
+pm2 stop ecosystem.json
 
 # Restart
-$ pm2 start ecosystem.json
+pm2 start ecosystem.json
 ## Or
-$ pm2 restart ecosystem.json
+pm2 restart ecosystem.json
 
 # Reload
-$ pm2 reload ecosystem.json
+pm2 reload ecosystem.json
 
 # Delete from PM2
-$ pm2 delete ecosystem.json
+pm2 delete ecosystem.json
 ```
 
 ## Options
@@ -258,10 +258,10 @@ Example:
 
 ```bash
 # Inject what is declared in env_production
-$ pm2 start app.json --env production 
+pm2 start app.json --env production 
 
 # Inject what is declared in env_staging
-$ pm2 restart app.json --env staging
+pm2 restart app.json --env staging
 ```
 
 ## Using Javascript in the declaration
@@ -325,7 +325,7 @@ Example of ecosystem.json:
 All command line options passed when using the JSON app declaration will be dropped i.e.
 
 ```bash
-$ cat node-app-1.json
+cat node-app-1.json
 
 {
   "name" : "node-app-1",
@@ -337,8 +337,8 @@ $ cat node-app-1.json
 You can start as many JSON app declarations as you want.  Continuing from above:
 
 ```bash
-$ pm2 start node-app-2.json
-$ ps aux | grep node-app
+pm2 start node-app-2.json
+ps aux | grep node-app
 root  14735  5.8  1.1  752476  83932 ? Sl 00:08 0:00 pm2: node-app-1
 root  24271  0.0  0.3  696428  24208 ? Sl 17:36 0:00 pm2: node-app-2
 ```
@@ -436,20 +436,20 @@ It's perfectly fitted for networked applications handling HTTP(s)/UDP/TCP connec
 To enable the **cluster mode**, just pass the -i <instances> option:
 
 ```bash
-$ pm2 start app.js -i 1
+pm2 start app.js -i 1
 ```
 
 You can pass multiple values to the instances (-i) option:
 
 ```bash
 # Start the maximum processes depending on available CPUs
-$ pm2 start app.js -i 0
+pm2 start app.js -i 0
 
 # Start the maximum processes -1 depending on available CPUs
-$ pm2 start app.js -i -1
+pm2 start app.js -i -1
 
 # Start 3 processes
-$ pm2 start app.js -i 3
+pm2 start app.js -i 3
 ```
 
 ## Considerations
@@ -467,7 +467,7 @@ As opposed to `restart`, which kills and restarts the process, `reload` achieves
 To reload an app:
 
 ```bash
-$ pm2 reload api
+pm2 reload api
 ```
 
 If the reload system hasn't managed to reload your app, a timeout will fallback to a classic restart.
@@ -508,7 +508,7 @@ process.on('message', function(msg) {
 Then use the command:
 
 ```bash
-$ pm2 reload [all|name]
+pm2 reload [all|name]
 ```
 
 When PM2 starts a new process to replace an old one, it will wait for the new process to begin listening to a connection or a timeout before sending the shutdown message to the old one. You can define the timeout value with the `PM2_GRACEFUL_LISTEN_TIMEOUT` environament variable. If a script does not need to listen to a connection, it can manually tell PM2 that the process has started up by calling `process.send('online')`.
@@ -523,10 +523,10 @@ Node 0.10 is not compatible with PM2 Cluster Mode, please upgrade.
 To play with PM2, it's very simple:
 
 ```bash
-$ pm2 kill   # kill the current pm2
-$ git clone my_pm2_fork.git
-$ cd pm2/
-$ DEBUG=* ./bin/pm2 --no-daemon
+pm2 kill   # kill the current pm2
+git clone my_pm2_fork.git
+cd pm2/
+DEBUG=* ./bin/pm2 --no-daemon
 ```
 
 Each time you edit the code, be sure to kill and restart PM2 to make changes taking effect.
@@ -537,7 +537,7 @@ Each time you edit the code, be sure to kill and restart PM2 to make changes tak
 ## Install PM2 development
 
 ```bash
-$ npm install git://github.com/Unitech/pm2#development -g
+npm install git://github.com/Unitech/pm2#development -g
 ```
 
 ## Launch the tests
@@ -548,22 +548,22 @@ $ npm install git://github.com/Unitech/pm2#development -g
 Just try the tests before using PM2 on your production server
 
 ```bash
-$ git clone https://github.com/Unitech/pm2.git
-$ cd pm2
-$ npm install  # Or do NODE_ENV=development npm install if some packages are missing
-$ npm test
+git clone https://github.com/Unitech/pm2.git
+cd pm2
+npm install  # Or do NODE_ENV=development npm install if some packages are missing
+npm test
 ```
 
 If a test is broken please report us issues [here](https://github.com/Unitech/pm2/issues?state=open)
 Also make sure you have all dependencies needed. For Ubuntu:
 
 ```bash
-$ sudo apt-get install build-essential
+sudo apt-get install build-essential
 # nvm is a Node.js version manager - https://github.com/creationix/nvm
-$ wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
-$ nvm install v0.11.14
-$ nvm use v0.11.14
-$ nvm alias default v0.11.14
+wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
+nvm install v0.11.14
+nvm use v0.11.14
+nvm alias default v0.11.14
 ```
 
 
@@ -572,7 +572,7 @@ $ nvm alias default v0.11.14
 The goal is to make deployment from 1 to 20 machines in 1 to 20 environments as simple as:
 
 ```bash
-$ pm2 deploy ecosystem.json production
+pm2 deploy ecosystem.json production
 ```
 
 ## Getting started
@@ -584,7 +584,7 @@ Please read the [Considerations to use PM2 deploy](#considerations)
 1- Generate a sample ecosystem.json file that list processes and deployment environment
 
 ```bash
-$ pm2 ecosystem
+pm2 ecosystem
 ```
 
 In the current folder a `ecosystem.json` file will be created.
@@ -652,20 +652,20 @@ Edit the file according to your needs.
 2- Be sure that you have the public ssh key on your local machine
 
 ```bash
-$ ssh-keygen -t rsa
-$ ssh-copy-id root@myserver.com
+ssh-keygen -t rsa
+ssh-copy-id root@myserver.com
 ```
 
 3- Now initialize the remote folder with:
 
 ```bash
-$ pm2 deploy <configuration_file> <environment> setup
+pm2 deploy <configuration_file> <environment> setup
 ```
 
 E.g:
 
 ```bash
-$ pm2 deploy ecosystem.json production setup
+pm2 deploy ecosystem.json production setup
 ```
 
 This command will create all the folders on your remote server.
@@ -673,7 +673,7 @@ This command will create all the folders on your remote server.
 4- Deploy your code
 
 ```bash
-$ pm2 deploy ecosystem.json production
+pm2 deploy ecosystem.json production
 ```
 
 Now your code will be populated, installed and started with PM2
@@ -683,7 +683,7 @@ Now your code will be populated, installed and started with PM2
 Display deploy help via `pm2 deploy help`:
 
 ```
-$ pm2 deploy <configuration_file> <environment> <command>
+pm2 deploy <configuration_file> <environment> <command>
 
   Commands:
     setup                run remote setup commands
@@ -705,8 +705,8 @@ Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#sw
 ## Related Commands
 
 ```
-$ pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
-$ pm2 startOrReload all.json             # Invoke reload
+pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
+pm2 startOrReload all.json             # Invoke reload
 ```
 
 ## Multi host deployment
@@ -807,8 +807,8 @@ There are also different ways to configure how PM2 will handle your logs (separa
 Displaying logs of a specified process or of all processes in real-time:
 
 ```bash
-$ pm2 logs
-$ pm2 logs big-api
+pm2 logs
+pm2 logs big-api
 ```
 
 ## Flushing logs
@@ -816,7 +816,7 @@ $ pm2 logs big-api
 This will empty all current application logs managed by PM2:
 
 ```bash
-$ pm2 flush # Clear all the logs
+pm2 flush # Clear all the logs
 ```
 
 Or you can install Log rotate to handle the log rotation.
@@ -828,7 +828,7 @@ You can reload logs by sending `SIGUSR2` to the PM2 process.
 You can also reload all logs via the command line with:
 
 ```bash
-$ pm2 reloadLogs
+pm2 reloadLogs
 ```
 
 ## Log configuration
@@ -838,7 +838,7 @@ $ pm2 reloadLogs
 Example:
 
 ```bash
-$ pm2 start echo.js --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
+pm2 start echo.js --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
 ```
 
 Options:
@@ -868,7 +868,7 @@ Options:
 ### Setting up a native logrotate
 
 ```bash
-$ sudo pm2 logrotate -u user
+sudo pm2 logrotate -u user
 ```
 
 This will write a basic logrotate configuration to `/etc/logrotate.d/pm2-user` that will look like this:
@@ -890,7 +890,7 @@ This will write a basic logrotate configuration to `/etc/logrotate.d/pm2-user` t
 [**pm2-logrotate**](https://github.com/pm2-hive/pm2-logrotate) auto rotate logs of PM2 and applications managed<br/>
 
 ```bash
-$ pm2 install pm2-logrotate
+pm2 install pm2-logrotate
 ```
 
 
@@ -904,7 +904,7 @@ PM2 gives you a simple way to monitor the resource usage of your application.
 You can monitor memory and cpu very easily, straight from your terminal:
 
 ```bash
-$ pm2 monit
+pm2 monit
 ```
 
 ## Keymetrics monitoring
@@ -925,7 +925,7 @@ PM2 allows to restart an application based on a memory limit.
 ### CLI
 
 ```bash
-$ pm2 start big-array.js --max-memory-restart 20M
+pm2 start big-array.js --max-memory-restart 20M
 ```
 
 ### JSON
@@ -972,7 +972,7 @@ Check out [this article](http://keymetrics.io/2014/07/02/manage-processes-progra
 This example shows you how to start app.js with some configuration attributes. What is passed to start is the same than what you can declare in a [JS/JSON configuration](/docs/usage/application-declaration/) file:
 
 ```bash
-$ npm install pm2 --save
+npm install pm2 --save
 ```
 
 ```javascript
@@ -1135,7 +1135,7 @@ PM2 comes with a handy development tool that allow you to start an application a
 # Start your application in development mode
 # = Print the logs and restart on file change
 
-$ pm2-dev run my-app.js
+pm2-dev run my-app.js
 ```
 
 
@@ -1146,14 +1146,14 @@ PM2 is a process manager. It manages your applications states, so you can start,
 Start a process:
 
 ```bash
-$ pm2 start app.js --name "my-api"
-$ pm2 start web.js --name "web-interface"
+pm2 start app.js --name "my-api"
+pm2 start web.js --name "web-interface"
 ```
 
 Now let's say I need to stop the web-interface:
 
 ```bash
-$ pm2 stop web-interface
+pm2 stop web-interface
 ```
 
 As you can see **the process hasn't disappeared**. It's still there but in `stopped` status.
@@ -1161,14 +1161,14 @@ As you can see **the process hasn't disappeared**. It's still there but in `stop
 To restart it just do:
 
 ```bash
-$ pm2 restart web-interface
+pm2 restart web-interface
 ```
 
 Now I want to **delete** the app from the PM2 process list.
 To do so:
 
 ```bash
-$ pm2 delete web-interface
+pm2 delete web-interface
 ```
 
 [You can declare options via configuration file too](/docs/usage/application-declaration/)
@@ -1178,15 +1178,15 @@ $ pm2 delete web-interface
 To list all running processes:
 
 ```bash
-$ pm2 list
+pm2 list
 # Or
-$ pm2 [list|ls|l|status]
+pm2 [list|ls|l|status]
 ```
 
 To get more details about a specific process:
 
 ```bash
-$ pm2 show 0
+pm2 show 0
 ```
 
 ## Start any process type
@@ -1194,13 +1194,13 @@ $ pm2 show 0
 For scripts in other languages:
 
 ```bash
-$ pm2 start echo.pl --interpreter=perl
+pm2 start echo.pl --interpreter=perl
 
-$ pm2 start echo.coffee
-$ pm2 start echo.php
-$ pm2 start echo.py
-$ pm2 start echo.sh
-$ pm2 start echo.rb
+pm2 start echo.coffee
+pm2 start echo.php
+pm2 start echo.py
+pm2 start echo.sh
+pm2 start echo.rb
 ```
 
 The interpreter is set by default with this equivalence:
@@ -1246,7 +1246,7 @@ PM2 allows to restart an application based on a memory limit.
 ### CLI
 
 ```bash
-$ pm2 start big-array.js --max-memory-restart 20M
+pm2 start big-array.js --max-memory-restart 20M
 ```
 
 ### JSON
@@ -1291,7 +1291,7 @@ Welcome to this PM2 Quick Start! Getting started with PM2 is straightforward, it
 The latest PM2 stable version is installable via NPM:
 
 ```bash
-$ npm install pm2@latest -g
+npm install pm2@latest -g
 ```
 
 ## Usage
@@ -1299,7 +1299,7 @@ $ npm install pm2@latest -g
 The simplest way to start, daemonize and monitor your application is this:
 
 ```bash
-$ pm2 start app.js
+pm2 start app.js
 ```
 
 ## Convenient setup
@@ -1309,7 +1309,7 @@ $ pm2 start app.js
 It will help you autocompleting commands, application name and related:
 
 ```bash
-$ pm2 completion install
+pm2 completion install
 ```
 
 [More information](/docs/usage/auto-completion/)
@@ -1319,7 +1319,7 @@ $ pm2 completion install
 Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this just run this command to generate an active startup script:
 
 ```bash
-$ pm2 startup
+pm2 startup
 ```
 
 [More information](/docs/usage/startup/)
@@ -1345,50 +1345,50 @@ Here are some commands that worth to know. Just try them with a sample applicati
 
 ```bash
 # Fork mode
-$ pm2 start app.js --name my-api # Name process
+pm2 start app.js --name my-api # Name process
 
 # Cluster mode
-$ pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
-$ pm2 start app.js -i max      # Same as above, but deprecated yet.
+pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
+pm2 start app.js -i max      # Same as above, but deprecated yet.
 
 # Listing
 
-$ pm2 list               # Display all processes status
-$ pm2 jlist              # Print process list in raw JSON
-$ pm2 prettylist         # Print process list in beautified JSON
+pm2 list               # Display all processes status
+pm2 jlist              # Print process list in raw JSON
+pm2 prettylist         # Print process list in beautified JSON
 
-$ pm2 describe 0         # Display all informations about a specific process
+pm2 describe 0         # Display all informations about a specific process
 
-$ pm2 monit              # Monitor all processes
+pm2 monit              # Monitor all processes
 
 # Logs
 
-$ pm2 logs [--raw]       # Display all processes logs in streaming
-$ pm2 flush              # Empty all log file
-$ pm2 reloadLogs         # Reload all logs
+pm2 logs [--raw]       # Display all processes logs in streaming
+pm2 flush              # Empty all log file
+pm2 reloadLogs         # Reload all logs
 
 # Actions
 
-$ pm2 stop all           # Stop all processes
-$ pm2 restart all        # Restart all processes
+pm2 stop all           # Stop all processes
+pm2 restart all        # Restart all processes
 
-$ pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
+pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
 
-$ pm2 stop 0             # Stop specific process id
-$ pm2 restart 0          # Restart specific process id
+pm2 stop 0             # Stop specific process id
+pm2 restart 0          # Restart specific process id
 
-$ pm2 delete 0           # Will remove process from pm2 list
-$ pm2 delete all         # Will remove all processes from pm2 list
+pm2 delete 0           # Will remove process from pm2 list
+pm2 delete all         # Will remove all processes from pm2 list
 
 # Misc
 
-$ pm2 reset <process>    # Reset meta data (restarted time...)
-$ pm2 updatePM2          # Update in memory pm2
-$ pm2 ping               # Ensure pm2 daemon has been launched
-$ pm2 sendSignal SIGUSR2 my-app # Send system signal to script
-$ pm2 start app.js --no-daemon
-$ pm2 start app.js --no-vizion
-$ pm2 start app.js --no-autorestart
+pm2 reset <process>    # Reset meta data (restarted time...)
+pm2 updatePM2          # Update in memory pm2
+pm2 ping               # Ensure pm2 daemon has been launched
+pm2 sendSignal SIGUSR2 my-app # Send system signal to script
+pm2 start app.js --no-daemon
+pm2 start app.js --no-vizion
+pm2 start app.js --no-autorestart
 ```
 
 ## 42 ways of starting processes
@@ -1396,37 +1396,37 @@ $ pm2 start app.js --no-autorestart
 *ndlr;* 42 is the answer to life the universe and everything
 
 ```bash
-$ pm2 start app.js           # Start app.js
+pm2 start app.js           # Start app.js
 
-$ pm2 start app.js -- -a 23  # Pass arguments '-a 23' argument to app.js script
+pm2 start app.js -- -a 23  # Pass arguments '-a 23' argument to app.js script
 
-$ pm2 start app.js --name serverone # Start a process an name it as server one
+pm2 start app.js --name serverone # Start a process an name it as server one
                                     # you can now stop the process by doing
                                     # pm2 stop serverone
 
-$ pm2 start app.js --node-args="--debug=7001" # --node-args to pass options to node V8
+pm2 start app.js --node-args="--debug=7001" # --node-args to pass options to node V8
 
-$ pm2 start app.js -i 0             # Start maximum processes depending on available CPUs (cluster mode)
+pm2 start app.js -i 0             # Start maximum processes depending on available CPUs (cluster mode)
 
-$ pm2 start app.js --log-date-format "YYYY-MM-DD HH:mm Z"    # Log will be prefixed with custom time format
+pm2 start app.js --log-date-format "YYYY-MM-DD HH:mm Z"    # Log will be prefixed with custom time format
 
-$ pm2 start app.json                # Start processes with options declared in app.json
+pm2 start app.json                # Start processes with options declared in app.json
                                     # Go to chapter Multi process JSON declaration for more
 
-$ pm2 start app.js -e err.log -o out.log  # Start and specify error and out log
+pm2 start app.js -e err.log -o out.log  # Start and specify error and out log
 
 ```
 
 For scripts in other languages:
 
 ```bash
-$ pm2 start echo.pl --interpreter=perl
+pm2 start echo.pl --interpreter=perl
 
-$ pm2 start echo.coffee
-$ pm2 start echo.php
-$ pm2 start echo.py
-$ pm2 start echo.sh
-$ pm2 start echo.rb
+pm2 start echo.coffee
+pm2 start echo.php
+pm2 start echo.py
+pm2 start echo.sh
+pm2 start echo.rb
 ```
 
 The interpreter is set by default with this equivalence:
@@ -1493,38 +1493,38 @@ Monitor your production applications with [Keymetrics](https://keymetrics.io/)
 Install the latest pm2 version :
 
 ```bash
-$ npm install pm2@latest -g
+npm install pm2@latest -g
 ```
 
 Then update the in-memory PM2 :
 
 ```bash
-$ pm2 update
+pm2 update
 ```
 
 
 Tab-completion for PM2:
 
 ```bash
-$ pm2 completion install
+pm2 completion install
 ```
 
 Or manually append completion script to your ~/.bashrc or ~/.zshrc file:
 
 ```bash
-$ pm2 completion >> ~/.bashrc # or ~/.zshrc
+pm2 completion >> ~/.bashrc # or ~/.zshrc
 ```
 
 Then source your .bashrc or .zshrc file for current session:
 
 ```bash
-$ source ~/.bashrc # or ~/.zshrc
+source ~/.bashrc # or ~/.zshrc
 ```
 
 You can add pm2 completion to your current session this way:
 
 ```bash
-$ . <(pm2 completion)
+. <(pm2 completion)
 ```
 
 
@@ -1575,11 +1575,11 @@ The **SIGKILL** event cannot be intercepted in your application (newer Node.js v
 It’s a general rule that you shouldn’t run node as root, but only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024.
 
 ```bash
-$ sudo apt-get install authbind
-$ sudo touch /etc/authbind/byport/80
-$ sudo chown %user% /etc/authbind/byport/80
-$ sudo chmod 755 /etc/authbind/byport/80
-$ authbind --deep pm2 update
+sudo apt-get install authbind
+sudo touch /etc/authbind/byport/80
+sudo chown %user% /etc/authbind/byport/80
+sudo chmod 755 /etc/authbind/byport/80
+authbind --deep pm2 update
 ```
 
 Now you can start applications with PM2 that can bind to port 80 without being root!
@@ -1597,15 +1597,15 @@ The client and daemon communicates via socket files available in $HOME/.pm2/[pub
 You can start multiple PM2 instances by changing the `PM2_HOME` environmnent variable.
 
 ```bash
-$ PM2_HOME='.pm2' pm2 start echo.js --name="echo-node-1"
-$ PM2_HOME='.pm3' pm2 start echo.js --name="echo-node-2"
+PM2_HOME='.pm2' pm2 start echo.js --name="echo-node-1"
+PM2_HOME='.pm3' pm2 start echo.js --name="echo-node-2"
 ```
 
 This will start two different PM2 instances. To list processes managed by each different instances do:
 
 ```bash
-$ PM2_HOME='.pm2' pm2 list
-$ PM2_HOME='.pm3' pm2 list
+PM2_HOME='.pm2' pm2 list
+PM2_HOME='.pm3' pm2 list
 ```
 
 ## Launch PM2 in no deamon
@@ -1613,13 +1613,13 @@ $ PM2_HOME='.pm3' pm2 list
 Launching PM2 without daemonizing itself:
 
 ```bash
-$ pm2 start app.js --no-daemon
+pm2 start app.js --no-daemon
 ```
 
 Sending a system signal to a process:
 
 ```bash
-$ pm2 sendSignal SIGUSR2 my-app
+pm2 sendSignal SIGUSR2 my-app
 ```
 
 ## Configuration file
@@ -1639,14 +1639,14 @@ PM2_KILL_TIMEOUT
 ## API health endpoint
 
 ```bash
-$ pm2 web
+pm2 web
 ```
 
 ## Enabling Harmony ES6
 
 The `--node-args` option permit to launch script with V8 flags, so to enable harmony for a process just do this:
 ```bash
-$ pm2 start my_app.js --node-args="--harmony"
+pm2 start my_app.js --node-args="--harmony"
 ```
 
 And with JSON declaration:
@@ -1662,7 +1662,7 @@ And with JSON declaration:
 ## CoffeeScript
 
 ```bash
-$ pm2 start server.coffee --interpreter coffee
+pm2 start server.coffee --interpreter coffee
 ```
 
 That's all!
@@ -1759,9 +1759,9 @@ PM2 can **generates startup scripts and configure them** and is also smart enoug
 ## Command
 
 ```bash
-$ pm2 startup
+pm2 startup
 # auto-detect platform
-$ pm2 startup [platform]
+pm2 startup [platform]
 # render startup-script for a specific platform, the [platform] could be one of:
 #   ubuntu|centos|redhat|gentoo|systemd|darwin|amazon
 ```
@@ -1769,7 +1769,7 @@ $ pm2 startup [platform]
 Once you have started the apps and want to keep them on server reboot do:
 
 ```bash
-$ pm2 save
+pm2 save
 ```
 
 **Warning** It's tricky to make this feature work generically, so once PM2 has setup your startup script, reboot your server to make sure that PM2 has launched your apps!
@@ -1799,7 +1799,7 @@ Let's say you want the startup script to be executed under another user.
 Just use the `-u <username>` option !
 
 ```bash
-$ pm2 startup ubuntu -u www
+pm2 startup ubuntu -u www
 ```
 
 ## Override maximum open file descriptor
@@ -1812,7 +1812,7 @@ Add the `MAX_OPEN_FILE` variable in /etc/default/pm2
 Dump all processes status and environment managed by PM2:
 
 ```bash
-$ pm2 [dump|save]
+pm2 [dump|save]
 ```
 
 It populates the file `~/.pm2/dump.pm2` by default.
@@ -1820,7 +1820,7 @@ It populates the file `~/.pm2/dump.pm2` by default.
 To bring back the latest dump:
 
 ```bash
-$ pm2 resurrect
+pm2 resurrect
 ```
 
 
@@ -1927,7 +1927,7 @@ pm2.connect(function() {
 PM2 can automatically restart your app when a file changes in the current directory or its subdirectories:
 
 ```bash
-$ pm2 start app.js --watch
+pm2 start app.js --watch
 ```
 
 If `--watch` is enabled, stopping it won't stop watching:

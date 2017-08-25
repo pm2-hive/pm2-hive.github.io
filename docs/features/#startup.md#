@@ -11,9 +11,9 @@ PM2 is also smart enough to **save all your process list** and to **bring back a
 ## Command
 
 ```bash
-$ pm2 startup
+pm2 startup
 # auto-detect platform
-$ pm2 startup [platform]
+pm2 startup [platform]
 # render startup-script for a specific platform, the [platform] could be one of:
 #   ubuntu|centos|redhat|gentoo|systemd|darwin|amazon
 ```
@@ -21,7 +21,7 @@ $ pm2 startup [platform]
 Once you have started the apps and want to keep them on server reboot do:
 
 ```bash
-$ pm2 save
+pm2 save
 ```
 
 **Warning** It's tricky to make this feature work generically, so once PM2 has setup your startup script, reboot your server to make sure that PM2 has launched your apps!
@@ -49,7 +49,7 @@ Let's say you want the startup script to be executed under another user.
 Just use the `-u <username>` option !
 
 ```bash
-$ pm2 startup ubuntu -u www
+pm2 startup ubuntu -u www
 ```
 
 ## Related commands
@@ -57,7 +57,7 @@ $ pm2 startup ubuntu -u www
 Dump all processes status and environment managed by PM2:
 
 ```bash
-$ pm2 [dump|save]
+pm2 [dump|save]
 ```
 
 It populates the file `~/.pm2/dump.pm2` by default.
@@ -65,5 +65,5 @@ It populates the file `~/.pm2/dump.pm2` by default.
 To bring back the latest dump:
 
 ```bash
-$ pm2 resurrect
+pm2 resurrect
 ```

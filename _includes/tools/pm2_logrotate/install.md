@@ -1,3 +1,3 @@
 ```bash
-$ pm2 install pm2-logrotate
+pm2 install pm2-logrotate
 ```

@@ -12,5 +12,5 @@ PM2 module to automatically monitoring vital signs of your server :
 ## Uninstall
 
 ```bash
-$ pm2 uninstall pm2-server-monit
+pm2 uninstall pm2-server-monit
 ```

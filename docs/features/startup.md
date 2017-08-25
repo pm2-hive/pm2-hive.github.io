@@ -25,12 +25,12 @@ To get the automatically-configured startup script for your machine you need to 
 
 ```bash
 # Detect available init system, generate configuration and enable startup system
-$ pm2 startup
+pm2 startup
 ```
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
-$ pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd | openrc]
+pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd | openrc]
 ```
 
 The output of this command can be a recommendation of the line to copy/paste with all environment variables and options configured for you.
@@ -50,7 +50,7 @@ You simply have to copy/paste the line PM2 give you and the startup script will 
 Once you started all the applications you want to manage, you can save the list across expected/unexpected server restart by typing this command:
 
 ```bash
-$ pm2 save
+pm2 save
 ```
 
 It will save the process list with the corresponding environments into the dump file `$PM2_HOME/.pm2/dump.pm2`.
@@ -60,19 +60,19 @@ It will save the process list with the corresponding environments into the dump 
 This brings back previously saved processes (via pm2 save):
 
 ```bash
-$ pm2 resurrect
+pm2 resurrect
 ```
 
 ## Disabling startup system
 
 ```bash
-$ pm2 unstartup
+pm2 unstartup
 ```
 
 The previous line code let PM2 detect your platform. Alternatively you can use another specified init system youself using:
 
 ```bash
-$ pm2 unstartup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd | openrc] 
+pm2 unstartup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd | openrc] 
 ```
 
 ## User permissions
@@ -82,7 +82,7 @@ Let's say you want the startup script to be executed under another user.
 Just use the `-u <username>` option and the `--hp <user_home>`:
 
 ```bash
-$ pm2 startup ubuntu -u www --hp /home/ubuntu
+pm2 startup ubuntu -u www --hp /home/ubuntu
 ```
 
 ## Update startup script
@@ -90,8 +90,8 @@ $ pm2 startup ubuntu -u www --hp /home/ubuntu
 To update the startup script (in case you changed the Node.js version via NVM for example) run the following commands:
 
 ```bash
-$ pm2 unstartup
-$ pm2 startup
+pm2 unstartup
+pm2 startup
 ```
 
 ## Windows consideration

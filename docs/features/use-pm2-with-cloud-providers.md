@@ -49,7 +49,7 @@ In package.json:
 You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
 
 ```bash
-$ export KEYMETRICS_PUBLIC="XXXX"
-$ export KEYMETRICS_SECRET="YYYY"
-$ pm2 update
+export KEYMETRICS_PUBLIC="XXXX"
+export KEYMETRICS_SECRET="YYYY"
+pm2 update
 ```

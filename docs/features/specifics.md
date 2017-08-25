@@ -7,23 +7,23 @@ permalink: /docs/usage/specifics/
 
 ## Listening on port 80 w/o root
 
-It’s a general rule that you should not run node as root. However only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024.
+It’s a general rule that you should not run node as root. However only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024. Replace `%user%` with the user that will be running `pm2`.
 
-```bash
-$ sudo apt-get install authbind
-$ sudo touch /etc/authbind/byport/80
-$ sudo chown %user% /etc/authbind/byport/80
-$ sudo chmod 755 /etc/authbind/byport/80
-$ authbind --deep pm2 update
+You should also add an alias to the user that runs `pm2` profile, e.g. `~/.bashrc` or `~/.zshrc` (note you will need to run `source ~/.bashrc` or `source ~/.zshrc` immediately after):
+
+```diff
++alias pm2='authbind --deep pm2'
 ```
+
+Finally ensure that `pm2` is updated with `authbind`:
+
+```sh
+authbind --deep pm2 update
+```
+
+Or simply `pm2 update` if you added the alias to your user's profile.
 
 Now you can start applications using PM2 that can bind to port 80 without being root!
-
-It is recommended to put an alias in your .bashrc file:
-
-```bash
-alias pm2='authbind --deep pm2'
-```
 
 ## Multiple PM2 on the same server
 
@@ -32,15 +32,15 @@ The client and daemon communicate via socket files available in $HOME/.pm2/pub.s
 You can start multiple PM2 instances by changing the `PM2_HOME` environment variable.
 
 ```bash
-$ PM2_HOME='.pm2' pm2 start echo.js --name="echo-node-1"
-$ PM2_HOME='.pm3' pm2 start echo.js --name="echo-node-2"
+PM2_HOME='.pm2' pm2 start echo.js --name="echo-node-1"
+PM2_HOME='.pm3' pm2 start echo.js --name="echo-node-2"
 ```
 
 This will start two different PM2 instances. To list processes managed by each different instances do:
 
 ```bash
-$ PM2_HOME='.pm2' pm2 list
-$ PM2_HOME='.pm3' pm2 list
+PM2_HOME='.pm2' pm2 list
+PM2_HOME='.pm3' pm2 list
 ```
 
 ## Launch PM2 in no deamon
@@ -50,7 +50,7 @@ Make sure you kill any PM2 instance before starting PM2 in no deamon mode (`pm2 
 Launching PM2 without daemonizing itself:
 
 ```bash
-$ pm2 start app.js --no-daemon
+pm2 start app.js --no-daemon
 ```
 
 There is also the CLI `pm2-runtime` installed by default at PM2 installation, that is a drop-in replacement of the Node.js binary.
@@ -88,7 +88,7 @@ By default, logs (error and output), pid files, dumps, and PM2 logs are located 
 The `--node-args` option allows the addition of arguments to the node interpreter. To enable harmony for a process type the following command:
 
 ```bash
-$ pm2 start my_app.js --node-args="--harmony"
+pm2 start my_app.js --node-args="--harmony"
 ```
 
 And within a JSON declaration:
@@ -104,7 +104,7 @@ And within a JSON declaration:
 ## CoffeeScript
 
 ```bash
-$ pm2 start server.coffee --interpreter coffee
+pm2 start server.coffee --interpreter coffee
 ```
 
 That's all!

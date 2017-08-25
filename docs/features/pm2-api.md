@@ -16,7 +16,7 @@ This example shows you how to start app.js with some configuration attributes. E
 **NB**: If your script does not exit by itself, make sure you called `pm2.disconnect()` at the end.
 
 ```bash
-$ npm install pm2 --save
+npm install pm2 --save
 ```
 
 ```javascript
