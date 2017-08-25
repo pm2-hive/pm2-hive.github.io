@@ -24,7 +24,7 @@ Now `pm2 reload` will become a gracefulReload.
 Via CLI, this will lengthen the timeout to 3000ms:
 
 ```bash
-$ pm2 start app.js --kill-timeout 3000
+pm2 start app.js --kill-timeout 3000
 ```
 
 Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/):
@@ -59,7 +59,7 @@ var listener = app.listen(0, function() {
 Then start the application:
 
 ```bash
-$ pm2 start app.js --wait-ready
+pm2 start app.js --wait-ready
 ```
 
 ### Configure the ready timeout
@@ -69,7 +69,7 @@ By default, PM2 wait 3000ms for the `ready` signal.
 Via CLI, this will lengthen the timeout to 3000ms:
 
 ```bash
-$ pm2 start app.js --wait-ready --listen-timeout 3000
+pm2 start app.js --wait-ready --listen-timeout 3000
 ```
 
 Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/):

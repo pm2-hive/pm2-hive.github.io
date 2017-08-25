@@ -2,20 +2,20 @@
 
 ```
 # Changer user
-$ pm2 set pm2-webshell:username foo
+pm2 set pm2-webshell:username foo
 
 # Change password
-$ pm2 set pm2-webshell:password bar
+pm2 set pm2-webshell:password bar
 
 # Change port
-$ pm2 set pm2-webshell:port 7890
+pm2 set pm2-webshell:port 7890
 
 # HTTPS
-$ pm2 set pm2-webshell:https true
+pm2 set pm2-webshell:https true
 ````
 
 ## Uninstall
 
 ```bash
-$ pm2 uninstall pm2-webshell
+pm2 uninstall pm2-webshell
 ```

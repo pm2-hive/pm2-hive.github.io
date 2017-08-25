@@ -20,7 +20,7 @@ If you have a different layout, you can force the source map support by starting
 Via CLI:
 
 ```bash
-$ pm2 start app.js --source-map-support
+pm2 start app.js --source-map-support
 ```
 
 Or via JSON file:
@@ -42,7 +42,7 @@ Exceptions are logged into your application error log file.
 To check your logs to detect exceptions, you simply have to type:
 
 ```bash
-$ pm2 logs main
+pm2 logs main
 ```
 
 Else use [keymetrics.io](https://keymetrics.io/) to have a clean listing and notifications of [new alerts happening](http://docs.keymetrics.io/docs/pages/issues/).

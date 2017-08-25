@@ -17,31 +17,31 @@ Managing a module is straightforward:
 
 ```bash
 # Install
-$ pm2 install <module-name>
+pm2 install <module-name>
 
 # Update a module
-$ pm2 install <module-name>
+pm2 install <module-name>
 
 # Install a module from GitHub (username/repository)
-$ pm2 install pm2-hive/pm2-docker
+pm2 install pm2-hive/pm2-docker
 
 # Force module restart
-$ pm2 restart <module-name>
+pm2 restart <module-name>
 
 # Get more informations
-$ pm2 describe <module-name>
+pm2 describe <module-name>
 
 # Install a module in dev mode from local folder
-$ pm2 install .
+pm2 install .
 
 # Generate a module boilerplate
-$ pm2 module:generate <module-name>
+pm2 module:generate <module-name>
 
 # Uninstall module
-$ pm2 uninstall <module-name>
+pm2 uninstall <module-name>
 
 # Publish new module (Inc Semver + Git push + NPM publish)
-$ pm2 publish
+pm2 publish
 ```
 
 ## Creating a module
@@ -49,14 +49,14 @@ $ pm2 publish
 To generate a module sample:
 
 ```bash
-$ pm2 module:generate <module-name>
+pm2 module:generate <module-name>
 ```
 
 Now let's run this module with PM2:
 
 ```bash
-$ cd <module-name>
-$ pm2 install .
+cd <module-name>
+pm2 install .
 ```
 
 You can now edit the source and when you change something, PM2 will automatically restart the module ([watch option activated](http://pm2.keymetrics.io/docs/usage/watch-and-restart/)).
@@ -64,13 +64,13 @@ You can now edit the source and when you change something, PM2 will automaticall
 To display module logs:
 
 ```bash
-$ pm2 logs <module-name>
+pm2 logs <module-name>
 ```
 
 To remove the module:
 
 ```
-$ pm2 uninstall <module-name>
+pm2 uninstall <module-name>
 ```
 
 ## Sugar in Package.json
@@ -194,13 +194,13 @@ var conf = pmx.initModule({[...]}, function(err, conf) {
 Changing the default values of a module is simple, just do:
 
 ```bash
-$ pm2 set module_name:option_name <new_value>
+pm2 set module_name:option_name <new_value>
 ```
 
 Example:
 
 ```bash
-$ pm2 set server-monitoring:days_interval 2
+pm2 set server-monitoring:days_interval 2
 ```
 
 - **NOTE1**: These variables are written in `~/.pm2/module_conf.json`, you can also edit it manually
@@ -213,8 +213,8 @@ $ pm2 set server-monitoring:days_interval 2
 Updating or publishing a module is straightforward. The `pm2 publish` command will increment the minor version of the module, will `git add . ; git commit -m "VERSION"; git push origin master` then it will `npm publish`.
 
 ```bash
-$ cd my-module
-$ pm2 publish
+cd my-module
+pm2 publish
 ```
 
 ## Modules <3 Keymetrics

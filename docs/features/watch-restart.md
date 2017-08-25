@@ -10,7 +10,7 @@ permalink: /docs/usage/watch-and-restart/
 PM2 can automatically restart your application when a file is modified in the current directory or its subdirectories:
 
 ```bash
-$ pm2 start app.js --watch
+pm2 start app.js --watch
 ```
 
 If `--watch` is enabled, stopping it won't stop watching:

@@ -24,5 +24,5 @@ e.g: `pm2 set pm2-logrotate:max_size 1024` (1KB)
 ## Uninstall
 
 ```bash
-$ pm2 uninstall pm2-logrotate
+pm2 uninstall pm2-logrotate
 ```

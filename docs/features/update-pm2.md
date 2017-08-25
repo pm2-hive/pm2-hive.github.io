@@ -16,19 +16,19 @@ Updating PM2 is extremely fast (less than few seconds) and seamless.
 First make sure that you saved correctly all your processes:
 
 ```bash
-$ pm2 save
+pm2 save
 ```
 
 Then install the latest PM2 version from NPM:
 
 ```bash
-$ npm install pm2 -g
+npm install pm2 -g
 ```
 
 And finally update the in-memory PM2 process:
 
 ```bash
-$ pm2 update
+pm2 update
 ```
 
 That's all, you now have a fresh and up-to-date PM2 system!

@@ -14,7 +14,7 @@ The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp serv
 To enable the **cluster mode**, just pass the -i <instances> option:
 
 ```bash
-$ pm2 start app.js -i max
+pm2 start app.js -i max
 ```
 
 *max means that PM2 will auto detect the number of available CPUs and run as many processes as possible in load balanced mode*
@@ -34,7 +34,7 @@ Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-dec
 Then to start the Process File:
 
 ```bash
-$ pm2 start processes.json
+pm2 start processes.json
 ```
 
 The *-i* or *instances* option can be:
@@ -49,14 +49,14 @@ As opposed to `restart`, which kills and restarts the process, `reload` achieves
 To reload an app:
 
 ```bash
-$ pm2 reload <app_name>
+pm2 reload <app_name>
 ```
 
 Or:
 
 ```bash
-$ pm2 reload process.json
-$ pm2 reload process.json --only api
+pm2 reload process.json
+pm2 reload process.json --only api
 ```
 
 If the reload system hasn't managed to reload your application, a timeout will fallback to a classic restart.

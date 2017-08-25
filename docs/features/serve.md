@@ -11,7 +11,7 @@ permalink: /docs/usage/expose/
 Starting pm2 `2.4.0`, you can use pm2 to serve your static files (like a frontend app) over http with a simple command :
 
 ```bash
-$ pm2 serve <path> <port>
+pm2 serve <path> <port>
 ```
 
 The current folder will be used if you don't precise `<path>`, for the port the default one is `8080`.

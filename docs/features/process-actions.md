@@ -12,7 +12,7 @@ By plugging process actions onto your code, you will be able to trigger them via
 First make sure you added the library pmx to your code:
 
 ```bash
-$ npm install pmx --save
+npm install pmx --save
 ```
 
 Then in your code:
@@ -32,7 +32,7 @@ setInterval(function() {
 Start the application with PM2. To trigger process actions, use the command:
 
 ```bash
-$ pm2 trigger <application-name> <action-name>
+pm2 trigger <application-name> <action-name>
 ```
 
 ![process actions](/images/processactions-trigger.png)
@@ -40,7 +40,7 @@ $ pm2 trigger <application-name> <action-name>
 You can also list all available process actions:
 
 ```bash
-$ pm2 show <application-name>
+pm2 show <application-name>
 ```
 
 ![process actions](/images/processactions.png)
@@ -61,5 +61,5 @@ pmx.action('world', function(param, reply) {
 Restart your application and call this process function with PM2:
 
 ```bash
-$ pm2 trigger <application-name> <action-name> [parameter]
+pm2 trigger <application-name> <action-name> [parameter]
 ```

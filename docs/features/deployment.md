@@ -14,7 +14,7 @@ Please read the [Considerations to use PM2 deploy](#considerations).
 1- Generate a sample ecosystem.json file that lists the processes and the deployment environment.
 
 ```bash
-$ pm2 ecosystem
+pm2 ecosystem
 ```
 
 In the current folder a `ecosystem.json` file will be created.
@@ -96,21 +96,21 @@ Edit the file according to your needs.
 2- Be sure that you have the public ssh key on your local machine
 
 ```bash
-$ ssh-keygen -t rsa
-$ ssh-copy-id node@myserver.com
+ssh-keygen -t rsa
+ssh-copy-id node@myserver.com
 ```
 If you encounter any errors, please refer to the troubleshooting section below.
 
 3- Now initialize the remote folder with:
 
 ```bash
-$ pm2 deploy <configuration_file> <environment> setup
+pm2 deploy <configuration_file> <environment> setup
 ```
 
 Example:
 
 ```bash
-$ pm2 deploy ecosystem.json production setup
+pm2 deploy ecosystem.json production setup
 ```
 
 This command will create the folders on your remote server.
@@ -118,7 +118,7 @@ This command will create the folders on your remote server.
 4- Deploy your code
 
 ```bash
-$ pm2 deploy ecosystem.json production
+pm2 deploy ecosystem.json production
 ```
 
 Now your code will be populated, installed and started with PM2.
@@ -128,7 +128,7 @@ Now your code will be populated, installed and started with PM2.
 Display deploy help via `pm2 deploy help`:
 
 ```
-$ pm2 deploy <configuration_file> <environment> <command>
+pm2 deploy <configuration_file> <environment> <command>
 
   Commands:
     setup                run remote setup commands
@@ -150,9 +150,9 @@ Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#sw
 ## Related Commands
 
 ```
-$ pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
-$ pm2 startOrReload all.json             # Invoke reload
-$ pm2 startOrGracefulReload all.json     # Invoke gracefulReload
+pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
+pm2 startOrReload all.json             # Invoke reload
+pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 ```
 
 ## Multi host deployment
@@ -212,7 +212,7 @@ That means that you have changes in your local system that aren't pushed inside 
 If you want to deploy without pushing any data, you can append the `--force` option:
 
 ```bash
-$ pm2 deploy ecosystem.json production --force
+pm2 deploy ecosystem.json production --force
 ```
 
 ## Considerations
@@ -239,7 +239,7 @@ __Step 2__
 By default `ssh-copy-id` copies the default identiy, usually named `id_rsa`. If that is not the appropriate key:
 
 ```bash
-$ ssh-copy-id -i path/to/my/key your_username@server.com
+ssh-copy-id -i path/to/my/key your_username@server.com
 ```
 This adds your public key to the `~/.ssh/authorized_keys` file.
 

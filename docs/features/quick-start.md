@@ -14,7 +14,7 @@ Welcome to the PM2 Quick Start! Getting started with PM2 is straightforward, it 
 The latest PM2 stable version is installable via NPM:
 
 ```bash
-$ npm install pm2@latest -g
+npm install pm2@latest -g
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ $ npm install pm2@latest -g
 The simplest way to start, daemonize and monitor your application is by using this command line:
 
 ```bash
-$ pm2 start app.js
+pm2 start app.js
 ```
 
 ## Application declaration
@@ -47,7 +47,7 @@ apps:
 And start it easily:
 
 ```bash
-$ pm2 start process.yml
+pm2 start process.yml
 ```
 
 Read more about application declaration [here](/docs/usage/application-declaration/).
@@ -57,7 +57,7 @@ Read more about application declaration [here](/docs/usage/application-declarati
 Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this, just run this command to generate an active startup script:
 
 ```bash
-$ pm2 startup
+pm2 startup
 ```
 
 [More information](/docs/usage/startup/)
@@ -83,51 +83,51 @@ Here are some commands that are worth knowing. Just try them with a sample appli
 
 ```bash
 # Fork mode
-$ pm2 start app.js --name my-api # Name process
+pm2 start app.js --name my-api # Name process
 
 # Cluster mode
-$ pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
-$ pm2 start app.js -i max      # Same as above, but deprecated.
+pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
+pm2 start app.js -i max      # Same as above, but deprecated.
 
 # Listing
 
-$ pm2 list               # Display all processes status
-$ pm2 jlist              # Print process list in raw JSON
-$ pm2 prettylist         # Print process list in beautified JSON
+pm2 list               # Display all processes status
+pm2 jlist              # Print process list in raw JSON
+pm2 prettylist         # Print process list in beautified JSON
 
-$ pm2 describe 0         # Display all informations about a specific process
+pm2 describe 0         # Display all informations about a specific process
 
-$ pm2 monit              # Monitor all processes
+pm2 monit              # Monitor all processes
 
 # Logs
 
-$ pm2 logs [--raw]       # Display all processes logs in streaming
-$ pm2 flush              # Empty all log file
-$ pm2 reloadLogs         # Reload all logs
+pm2 logs [--raw]       # Display all processes logs in streaming
+pm2 flush              # Empty all log file
+pm2 reloadLogs         # Reload all logs
 
 # Actions
 
-$ pm2 stop all           # Stop all processes
-$ pm2 restart all        # Restart all processes
+pm2 stop all           # Stop all processes
+pm2 restart all        # Restart all processes
 
-$ pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
-$ pm2 gracefulReload all # Send exit message then reload (for networked apps)
+pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
+pm2 gracefulReload all # Send exit message then reload (for networked apps)
 
-$ pm2 stop 0             # Stop specific process id
-$ pm2 restart 0          # Restart specific process id
+pm2 stop 0             # Stop specific process id
+pm2 restart 0          # Restart specific process id
 
-$ pm2 delete 0           # Will remove process from pm2 list
-$ pm2 delete all         # Will remove all processes from pm2 list
+pm2 delete 0           # Will remove process from pm2 list
+pm2 delete all         # Will remove all processes from pm2 list
 
 # Misc
 
-$ pm2 reset <process>    # Reset meta data (restarted time...)
-$ pm2 updatePM2          # Update in memory pm2
-$ pm2 ping               # Ensure pm2 daemon has been launched
-$ pm2 sendSignal SIGUSR2 my-app # Send system signal to script
-$ pm2 start app.js --no-daemon
-$ pm2 start app.js --no-vizion
-$ pm2 start app.js --no-autorestart
+pm2 reset <process>    # Reset meta data (restarted time...)
+pm2 updatePM2          # Update in memory pm2
+pm2 ping               # Ensure pm2 daemon has been launched
+pm2 sendSignal SIGUSR2 my-app # Send system signal to script
+pm2 start app.js --no-daemon
+pm2 start app.js --no-vizion
+pm2 start app.js --no-autorestart
 ```
 
 ## *42 starts*
@@ -135,37 +135,37 @@ $ pm2 start app.js --no-autorestart
 *ndlr;* 42 is the answer to life, the universe and everything.
 
 ```bash
-$ pm2 start app.js           # Start app.js
+pm2 start app.js           # Start app.js
 
-$ pm2 start app.js -- -a 23  # Pass arguments '-a 23' argument to app.js script
+pm2 start app.js -- -a 23  # Pass arguments '-a 23' argument to app.js script
 
-$ pm2 start app.js --name serverone # Start a process and name it as serverone
+pm2 start app.js --name serverone # Start a process and name it as serverone
                                     # you can now stop the process by doing
                                     # pm2 stop serverone
 
-$ pm2 start app.js --node-args="--debug=7001" # --node-args to pass options to node V8
+pm2 start app.js --node-args="--debug=7001" # --node-args to pass options to node V8
 
-$ pm2 start app.js -i 0             # Start maximum processes depending on available CPUs (cluster mode)
+pm2 start app.js -i 0             # Start maximum processes depending on available CPUs (cluster mode)
 
-$ pm2 start app.js --log-date-format "YYYY-MM-DD HH:mm Z"    # Log will be prefixed with custom time format
+pm2 start app.js --log-date-format "YYYY-MM-DD HH:mm Z"    # Log will be prefixed with custom time format
 
-$ pm2 start app.json                # Start processes with options declared in app.json
+pm2 start app.json                # Start processes with options declared in app.json
                                     # Go to chapter Multi process JSON declaration for more
 
-$ pm2 start app.js -e err.log -o out.log  # Start and specify error and out log
+pm2 start app.js -e err.log -o out.log  # Start and specify error and out log
 
 ```
 
 For scripts in other languages:
 
 ```bash
-$ pm2 start echo.pl --interpreter=perl
+pm2 start echo.pl --interpreter=perl
 
-$ pm2 start echo.coffee
-$ pm2 start echo.php
-$ pm2 start echo.py
-$ pm2 start echo.sh
-$ pm2 start echo.rb
+pm2 start echo.coffee
+pm2 start echo.php
+pm2 start echo.py
+pm2 start echo.sh
+pm2 start echo.rb
 ```
 
 The interpreter is set by default with this equivalence:
@@ -232,11 +232,11 @@ Monitor your production applications with [Keymetrics](https://keymetrics.io/).
 Install the latest pm2 version:
 
 ```bash
-$ npm install pm2@latest -g
+npm install pm2@latest -g
 ```
 
 Then update the in-memory PM2 :
 
 ```bash
-$ pm2 update
+pm2 update
 ```

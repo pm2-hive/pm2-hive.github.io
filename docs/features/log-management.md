@@ -16,28 +16,28 @@ Displaying logs of a specified process or of all processes in real-time:
 
 ```bash
 # Display option for pm2 logs command
-$ pm2 logs -h
+pm2 logs -h
 
 # Display all apps logs
-$ pm2 logs
+pm2 logs
 
 # Display only api app logs
-$ pm2 logs api
+pm2 logs api
 
 # Display X lines of api log file
-$ pm2 logs big-api --lines 1000
+pm2 logs big-api --lines 1000
 ```
 
 Starting with PM2 2.x, you can see logs in JSON format with the `--json` option:
 
 ```bash
-$ pm2 logs --json
+pm2 logs --json
 ```
 
 Starting with PM2 2.x, you can see logs with a special date format, just use the `--format` option:
 
 ```bash
-$ pm2 logs --format
+pm2 logs --format
 ```
 
 ## Directly output json logs
@@ -64,7 +64,7 @@ Note: Timestamp can be formatted using `--format` in CLI and `"date_format": "JJ
 This will empty all current application logs managed by PM2:
 
 ```bash
-$ pm2 flush # Clear all the logs
+pm2 flush # Clear all the logs
 ```
 
 Or you can install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-management/#pm2-logrotate-module) or [enable the log rotate](http://pm2.keymetrics.io/docs/usage/log-management/#setting-up-a-native-logrotate) script to handle the log rotation.
@@ -74,7 +74,7 @@ Or you can install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-manag
 [**pm2-logrotate**](https://github.com/pm2-hive/pm2-logrotate) auto rotate logs of PM2 and applications managed:
 
 ```bash
-$ pm2 install pm2-logrotate
+pm2 install pm2-logrotate
 ```
 
 [Options](https://github.com/pm2-hive/pm2-logrotate#configure)
@@ -86,7 +86,7 @@ You can reload logs by sending `SIGUSR2` to the PM2 process.
 You can also reload all logs via the command line with:
 
 ```bash
-$ pm2 reloadLogs
+pm2 reloadLogs
 ```
 
 ## Log configuration
@@ -96,7 +96,7 @@ $ pm2 reloadLogs
 Example:
 
 ```bash
-$ pm2 start echo.js --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
+pm2 start echo.js --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
 ```
 
 Options:
@@ -165,7 +165,7 @@ Starting PM2 `2.4.0`, you can provide `/dev/null` or `NULL` as output of logs (n
 ### Setting up a native logrotate
 
 ```bash
-$ sudo pm2 logrotate -u user
+sudo pm2 logrotate -u user
 ```
 
 This will write a basic logrotate configuration to `/etc/logrotate.d/pm2-user` that will look like this:

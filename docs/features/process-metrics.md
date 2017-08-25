@@ -12,7 +12,7 @@ By plugging process metrics onto your code, you will be able to monitor in-code 
 First make sure you added the pmx library to your code:
 
 ```bash
-$ npm install pmx --save
+npm install pmx --save
 ```
 
 Then in your code:
@@ -37,7 +37,7 @@ setInterval(function() {
 Start the application with PM2. To consult the process metrics, use the command:
 
 ```bash
-$ pm2 show <application-name>
+pm2 show <application-name>
 ```
 
 ![process metrics](/images/processmetrics.png)

@@ -16,7 +16,7 @@ Configuration format supported are Javascript, JSON and YAML.
 To generate a sample process file you can type this command:
 
 ```
-$ pm2 ecosystem
+pm2 ecosystem
 ```
 
 This will generate a sample, `ecosystem.config.js`.
@@ -98,24 +98,24 @@ Then you can run and manage your processes easily:
 
 ```bash
 # Start all applications
-$ pm2 start ecosystem.config.js
+pm2 start ecosystem.config.js
 
 # Start only the app named worker-app
-$ pm2 start ecosystem.config.js --only worker-app
+pm2 start ecosystem.config.js --only worker-app
 
 # Stop all
-$ pm2 stop ecosystem.config.js
+pm2 stop ecosystem.config.js
 
 # Restart all
-$ pm2 start   ecosystem.config.js
+pm2 start   ecosystem.config.js
 ## Or
-$ pm2 restart ecosystem.config.js
+pm2 restart ecosystem.config.js
 
 # Reload all
-$ pm2 reload ecosystem.config.js
+pm2 reload ecosystem.config.js
 
 # Delete all
-$ pm2 delete ecosystem.config.js
+pm2 delete ecosystem.config.js
 ```
 
 ### Act on a specific process
@@ -123,10 +123,10 @@ $ pm2 delete ecosystem.config.js
 You can also act on a particular application by using its name and the option `--only <app_name>`:
 
 ```bash
-$ pm2 start   ecosystem.config.js --only api-app
-$ pm2 restart ecosystem.config.js --only api-app
-$ pm2 reload  ecosystem.config.js --only api-app
-$ pm2 delete  ecosystem.config.js --only api-app
+pm2 start   ecosystem.config.js --only api-app
+pm2 restart ecosystem.config.js --only api-app
+pm2 reload  ecosystem.config.js --only api-app
+pm2 delete  ecosystem.config.js --only api-app
 ```
 
 ### Updating running conf
@@ -137,8 +137,8 @@ More documentation on [--update-env here](http://pm2.keymetrics.io/docs/usage/en
 Example:
 
 ```bash
-$ pm2 restart ecosystem.config.js --update-env
-$ pm2 startOrReload ecosystem.config.js --update-env
+pm2 restart ecosystem.config.js --update-env
+pm2 startOrReload ecosystem.config.js --update-env
 ```
 
 ### Switching environments
@@ -149,10 +149,10 @@ Example:
 
 ```bash
 # Inject what is declared in env_production
-$ pm2 start process.json --env production
+pm2 start process.json --env production
 
 # Inject what is declared in env_staging
-$ pm2 restart process.json --env staging
+pm2 restart process.json --env staging
 ```
 
 ## Attributes available
@@ -222,7 +222,7 @@ All command line options passed when using the JSON app declaration will be drop
 You can start as many JSON application declarations as you want.
 
 ```bash
-$ cat node-app-1.json
+cat node-app-1.json
 
 {
   "name" : "node-app-1",
@@ -232,8 +232,8 @@ $ cat node-app-1.json
 ```
 
 ```bash
-$ pm2 start node-app-2.json
-$ ps aux | grep node-app
+pm2 start node-app-2.json
+ps aux | grep node-app
 root  14735  5.8  1.1  752476  83932 ? Sl 00:08 0:00 pm2: node-app-1
 root  24271  0.0  0.3  696428  24208 ? Sl 17:36 0:00 pm2: node-app-2
 ```

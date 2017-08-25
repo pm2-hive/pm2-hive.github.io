@@ -15,7 +15,7 @@ PM2 gives you a simple way to monitor the resource usage of your application.
 You can monitor memory and CPU easily and straight from your terminal:
 
 ```bash
-$ pm2 monit
+pm2 monit
 ```
 
 ## Keymetrics monitoring
@@ -35,7 +35,7 @@ Please note that the PM2 internal worker (which checks memory and related), star
 ### CLI
 
 ```bash
-$ pm2 start big-array.js --max-memory-restart 20M
+pm2 start big-array.js --max-memory-restart 20M
 ```
 
 ### JSON

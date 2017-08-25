@@ -128,7 +128,7 @@ Replacing **pm2-docker** with **pm2-dev** will enable the watch and restart feat
 ### Expose health endpoint
 
 ```bash
-$ pm2-docker process.json --web
+pm2-docker process.json --web
 ```
 
 The `--web [port]` option allows to expose all vital signs (docker instance + application) via a JSON API.
@@ -155,7 +155,7 @@ ENV KEYMETRICS_SECRET=XXX
 Or via the Docker run command:
 
 ```
-$ docker run --net host -e "KEYMETRICS_SECRET=YYY" -e "KEYMETRICS_PUBLIC=XXX" <...>
+docker run --net host -e "KEYMETRICS_SECRET=YYY" -e "KEYMETRICS_PUBLIC=XXX" <...>
 ```
 
 ## Official Docker image
