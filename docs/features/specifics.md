@@ -9,6 +9,13 @@ permalink: /docs/usage/specifics/
 
 It’s a general rule that you should not run node as root. However only root can bind to ports less than 1024. This is where authbind comes in. Authbind allows non-root users to bind to ports less than 1024. Replace `%user%` with the user that will be running `pm2`.
 
+```bash
+sudo apt-get install authbind
+sudo touch /etc/authbind/byport/80
+sudo chown %user% /etc/authbind/byport/80
+sudo chmod 755 /etc/authbind/byport/80
+```
+
 You should also add an alias to the user that runs `pm2` profile, e.g. `~/.bashrc` or `~/.zshrc` (note you will need to run `source ~/.bashrc` or `source ~/.zshrc` immediately after):
 
 ```diff
