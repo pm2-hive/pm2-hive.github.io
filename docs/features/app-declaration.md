@@ -193,7 +193,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
 |error_file| (string)| | error file path (default to $HOME/.pm2/logs/XXXerr.log)|
 |out_file| (string) | | output file path (default to $HOME/.pm2/logs/XXXout.log)|
-|combine_logs| boolean | true | if set to true, avoid to suffix logs/pid file with the process id |
+|combine_logs| boolean | true | if set to true, avoid to suffix logs file with the process id |
 |merge_logs| boolean | true | alias to combine_logs |
 |pid_file| (string) | | pid file path (default to $HOME/.pm2/pid/app-pm_id.pid)|
 
