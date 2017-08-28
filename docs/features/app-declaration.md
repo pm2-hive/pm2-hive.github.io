@@ -320,11 +320,11 @@ Then you use `pm2 start ecosystem.json --env production` and it will use the att
 ### Special `ext_type`
 
 - min_uptime
-    Value of `min_uptime` can be:
-      - **Number**
-        e.g. `"min_uptime": 3000` means 3000 milliseconds.
-      - **String**
-        Therefore, we are making it short and easy to configure: `h`, `m` and `s`, e.g.: `"min_uptime": "1h"` means one hour, `"min_uptime": "5m"` means five minutes and `"min_uptime": "10s"` means ten seconds (those will be transformed into milliseconds).
+  Value of `min_uptime` can be:
+    - **Number**
+      e.g. `"min_uptime": 3000` means 3000 milliseconds.
+    - **String**
+      Therefore, we are making it short and easy to configure: `h`, `m` and `s`, e.g.: `"min_uptime": "1h"` means one hour, `"min_uptime": "5m"` means five minutes and `"min_uptime": "10s"` means ten seconds (those will be transformed into milliseconds).
 
 - max_memory_restart
   Value of `max_memory_restart` can be:
