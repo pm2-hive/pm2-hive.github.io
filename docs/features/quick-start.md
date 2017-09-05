@@ -111,7 +111,6 @@ pm2 stop all           # Stop all processes
 pm2 restart all        # Restart all processes
 
 pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
-pm2 gracefulReload all # Send exit message then reload (for networked apps)
 
 pm2 stop 0             # Stop specific process id
 pm2 restart 0          # Restart specific process id
