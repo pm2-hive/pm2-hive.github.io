@@ -152,7 +152,6 @@ Read more [here](http://pm2.keymetrics.io/docs/usage/application-declaration/#sw
 ```
 pm2 startOrRestart all.json            # Invoke restart on all apps in JSON
 pm2 startOrReload all.json             # Invoke reload
-pm2 startOrGracefulReload all.json     # Invoke gracefulReload
 ```
 
 ## Multi host deployment
