@@ -5,7 +5,7 @@ description: Getting started with PM2
 permalink: /docs/usage/quick-start/
 ---
 
-<center><img style="width: 500px; padding : 60px 0;" src="/images/logo_pm2.png" name="logo pm2"/></center>
+<center><img style="width: 500px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
 Welcome to the PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 to boost your application and to make it ready to handle a ton of traffic!
 
