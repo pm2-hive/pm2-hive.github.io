@@ -19,7 +19,7 @@ To enable the **cluster mode**, just pass the -i <instances> option:
 pm2 start app.js -i max
 ```
 
-*max means that PM2 will auto detect the number of available CPUs and run as many processes as possible in load balanced mode*
+`max` means that PM2 will auto detect the number of available CPUs and run as many processes as possible
 
 Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
@@ -28,10 +28,11 @@ Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-dec
   "apps" : [{
     "script"    : "api.js",
     "instances" : "max",
-    "exec_mode" : "cluster"
+    "exec_mode" : "cluster" 
   }]
 }
 ```
+**NOTE**: you need to set the exec_mode to `cluster` so PM2 know you want to load balance between each instances, by default it will not
 
 Then to start the Process File:
 
