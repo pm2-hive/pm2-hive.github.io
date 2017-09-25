@@ -110,8 +110,17 @@ And within a JSON declaration:
 
 ## CoffeeScript
 
+### CoffeeScript v1
+
 ```bash
-pm2 start server.coffee --interpreter coffee
+pm2 install coffee-script 
+pm2 start app.coffee
+```
+
+### CoffeeScript v2
+```bash
+pm2 install coffeescript
+pm2 start app.coffee
 ```
 
 That's all!
