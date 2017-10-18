@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Graceful restart/reload/stop
+title: State Management
 description: How signals are handled in PM2
 permalink: /docs/usage/signals-clean-restart/
 ---
