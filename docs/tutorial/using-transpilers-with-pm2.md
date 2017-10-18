@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Best practices for using transpilers with pm2
+title: Using transpilers with PM2
 description: How to use babel, coffescript, typescript etc. with pm2
 permalink: /docs/tutorials/using-transpilers-with-pm2
 ---
