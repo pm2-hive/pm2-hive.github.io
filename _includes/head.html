@@ -32,6 +32,16 @@
   <meta name="twitter:image:src" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png">
   <meta name="twitter:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
+
+  
+  <meta name="google-site-verification" content="ELR1mLPjKnUWvC62UIAp4fpVUvO4ToECWOK_jb922bI" />
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="{{ "/scripts/bootstrap.min.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <!-- at the end of the HEAD -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
 <!-- at the end of the BODY -->
@@ -43,14 +53,4 @@ inputSelector: '#search-input-algolia',
 debug: false // Set debug to true if you want to inspect the dropdown
 });
 </script>
-  
-  <meta name="google-site-verification" content="ELR1mLPjKnUWvC62UIAp4fpVUvO4ToECWOK_jb922bI" />
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-  <script src="{{ "/scripts/bootstrap.min.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
-  <script>$("html").removeClass("no-js").addClass("js");</script>
-
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
 </head>
