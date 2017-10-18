@@ -25,7 +25,7 @@
             <form action="#" method="get" onsubmit="return false" style="margin-top : 25px">
               <div class="input-group" style="width: 100%">
                 <span class="search-icon fa fa-search"></span>
-                <input type="text" class="form-control search-input-algolia" placeholder="Search..." id="search-input-algolia" name="q" autocomplete="off">
+                <input type="text" class="form-control search-input-algolia" placeholder="Search..." id="searchBox" name="q" autocomplete="off">
               </div>
             </form>
           </div>
@@ -139,7 +139,7 @@
 <script type="text/javascript"> docsearch({
 apiKey: '1d274d1e258b11c96ef6cfc32455be56',
 indexName: 'keymetrics',
-inputSelector: 'search-input-algolia',
+inputSelector: '#searchBox',
 debug: false // Set debug to true if you want to inspect the dropdown
 });
 </script>
