@@ -56,7 +56,7 @@
 - title: Tutorials
   url: /docs/tutorials/capistrano-like-deployments
   subnav:
-      - title: Capistrano-like deployments
+      - title: Capistrano like deployments
         url: /docs/tutorials/capistrano-like-deployments
       - title: Production Setup with Nginx
         url: /docs/tutorials/pm2-nginx-production-setup
