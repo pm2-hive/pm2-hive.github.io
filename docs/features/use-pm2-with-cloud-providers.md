@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: PM2 in Heroku / Azure / Google App Engine
+title: Use PM2 in Cloud Providers
 description: Use PM2 in a cloud environment (without CLI)
 permalink: /docs/usage/use-pm2-with-cloud-providers/
 ---
