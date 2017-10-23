@@ -5,7 +5,7 @@ description: Frequently Asked Questions and Answers
 permalink: /docs/faq/
 ---
 
-##1. I can't seem to connect my local PM2 to the Keymetrics dashboard
+## 1. I can't seem to connect my local PM2 to the Keymetrics dashboard
 
 If you are in this situation, it might be for several reasons.
 
@@ -21,7 +21,7 @@ Make sure you have only one PM2 instance launched `ps -aux | grep PM2`
 
 - Refresh your connection to Keymetrics. `pm2 interact stop` then `pm2 interact start`. Also don't forget to refresh the dashboard itself, it might help sometimes.
 
-##2. The versioning buttons (Rollback/Pull/Upgrade) aren't working
+## 2. The versioning buttons (Rollback/Pull/Upgrade) aren't working
 
 - If the buttons are disabled, make sure that the `Local changes` and `Local commit` indicators are green.
 
