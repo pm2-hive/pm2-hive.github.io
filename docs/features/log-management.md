@@ -21,6 +21,12 @@ pm2 logs -h
 # Display all apps logs
 pm2 logs
 
+# Display only logs about process containing "api" in their name
+pm2 logs /api/
+
+# It's a regex so you can filter with the normal syntax to filter with OR condition
+pm2 logs /server_[12]/
+
 # Display only api app logs
 pm2 logs api
 
