@@ -53,3 +53,14 @@ export KEYMETRICS_PUBLIC="XXXX"
 export KEYMETRICS_SECRET="YYYY"
 pm2 update
 ```
+
+## Set a fixed Server Name
+
+You might want fixed server name so the names are constant in Keymetrics. The default link is the hostname (`$HOST` var) plus a few random characters. If you set the `$MACHINE_NAME`, the name will be fixed and used on the dashboard.
+
+Be careful, in case of duplicate hostnames the dashboard will receive data from both instances and flicker.
+
+
+```bash
+export MACHINE_NAME=$HOST
+```
