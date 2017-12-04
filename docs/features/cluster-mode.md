@@ -27,7 +27,7 @@ Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-dec
 {
   "apps" : [{
     "script"    : "api.js",
-    "instances" : "max",
+    "instances" : "max",
     "exec_mode" : "cluster" 
   }]
 }
