@@ -164,13 +164,14 @@ pm2-call.js:
 
 ```javascript
 pm2.connect(function() {
-  pm2.sendDataToProcessId({
+  pm2.sendDataToProcessId(id, {
     type : 'process:msg',
     data : {
       some : 'data',
       hello : true
     },
     id   : proc1.pm2_env.pm_id
+    topic: 'some topic'
   }, function(err, res) {
   });
 });
