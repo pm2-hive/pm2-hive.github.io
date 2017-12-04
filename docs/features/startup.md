@@ -45,6 +45,8 @@ You simply have to copy/paste the line PM2 give you and the startup script will 
 
 **NOTE** : When updating nodejs, the `pm2` binary path might change (it will necessarily change if you are using nvm). Therefore, we would advise you to run the `startup` command after any update.
 
+**NOTE2**: You can customize the service name via the `--service-name <name>` option ([#3213](https://github.com/Unitech/pm2/pull/3213))
+
 ## Saving current process list
 
 Once you started all the applications you want to manage, you can save the list across expected/unexpected server restart by typing this command:
