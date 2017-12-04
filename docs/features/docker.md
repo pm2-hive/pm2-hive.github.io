@@ -180,24 +180,34 @@ Here is the pm2-docker helper:
 ```
 >>> pm2-docker -h
 
-  Usage:  start <app>
+  Usage: pm2-docker app.js
+
+  pm2-docker is a drop-in replacement node.js binary with some interesting production features
+
+
+  Options:
+
+    -V, --version              output the version number
+    -i --instances <number>    launch [number] of processes automatically load-balanced. Increase overall performances and performance stability.
+    --secret [key]             [MONITORING] keymetrics secret key
+    --public [key]             [MONITORING] keymetrics public key
+    --machine-name [name]      [MONITORING] keymetrics machine name
+    --raw                      raw log output
+    --json                     output logs in json format
+    --format                   output logs formated like key=val
+    --delay <seconds>          delay start of configuration file by <seconds>
+    --web [port]               launch process web api on [port] (default to 9615)
+    --only <application-name>  only act on one application of configuration
+    --no-auto-exit             do not exit if all processes are errored/stopped or 0 apps launched
+    --env [name]               inject env_[name] env variables in process config file
+    --watch                    watch and restart application on file change
+    --error <path>             error log file destination (default disabled)
+    --output <path>            output log file destination (default disabled)
+    -h, --help                 output usage information
+
 
   Commands:
 
     *
-    start [options] <file|json_file>  start json_file or application
-
-  Options:
-
-    -h, --help             output usage information
-    -V, --version          output the version number
-    --raw                  raw log output
-    --json                 output logs in json format
-    --format               output logs formated like key=val
-    --secret [key]         keymetrics secret key
-    --public [key]         keymetrics public key
-    --machine-name [name]  keymetrics machine name
-    --auto-exit            exit if all processes are errored/stopped or 0 apps launched
-    --watch                watch and Restart
-    --env [name]           select env_[name] env variables in process config file
+    start <app.js|json_file>  start an application or json ecosystem file
 ```
