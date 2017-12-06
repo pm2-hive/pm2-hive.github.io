@@ -96,6 +96,31 @@ pm2 unstartup
 pm2 startup
 ```
 
+## SystemD installation checking
+
+```bash
+# Check if pm2-<USER> service has been added
+$ systemctl list-units
+# Check logs
+$ journalctl -u pm2-<USER>
+# Cat systemd configuration file
+$ systemctl cat pm2-<USER>
+# Analyze startup
+$ systemd-analyze plot > output.svg
+```
+
+To wait efficiently that machine is online for PM2 to run:
+
+```
+[Unit]
+Wants=network-online.target
+After=network.target network-online.target
+
+[....]
+
+[Install]
+WantedBy=multi-user.target network-online.target
+```
 ## Windows consideration
 
 There are some external libraries to generate a Windows compatible startup script, please checkout [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) or [pm2-windows-startup](https://www.npmjs.com/package/pm2-windows-startup).
