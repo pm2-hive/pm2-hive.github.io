@@ -11,6 +11,32 @@ PM2 embeds a simple and powerful deployment system with revision tracing. [Anoth
 
 Please read the [Considerations to use PM2 deploy](#considerations).
 
+## Simple deploy
+
+Baically you only need to add a "deploy" attribute to the ecosystem.json. Here is a bare minimum to deploy an application:
+
+```json
+{
+   "apps" : [{
+      name : 'HTTP-API',
+      script : 'http.js'
+   }],
+   "deploy" : {
+     // "production" is the environment name
+     "production" : {
+       "user" : "ubuntu",
+       "host" : ["192.168.0.13"],
+       "ref"  : "origin/master",
+       "repo" : "git@github.com:Username/repository.git",
+       "path" : "/var/www/my-repository",
+       "post-deploy" : "npm install; grunt dist"
+      },
+   }
+}
+```
+
+## Complete tutorial
+
 1- Generate a sample ecosystem.json file that lists the processes and the deployment environment.
 
 ```bash
@@ -179,13 +205,13 @@ To deploy to multiple hosts in the same time, you just have to declare each host
 ```
 
 
-## Using private key
+## Using SSH keys
 
-You just have to add the "key" attribute with path to the private key, see below example :
+You just have to add the "key" attribute with path to the public key, see below example :
 
 ```javascript
     "production" : {
-      "key"  : "/path/to/some.pem", // path to the private key to authenticate
+      "key"  : "/path/to/some.pem", // path to the public key to authenticate
       "user" : "node",              // user used to authenticate
       "host" : "212.83.163.1",      // where to connect
       "ref"  : "origin/master",
