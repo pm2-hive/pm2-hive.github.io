@@ -18,8 +18,8 @@ Baically you only need to add a "deploy" attribute to the ecosystem.json. Here i
 ```json
 {
    "apps" : [{
-      name : 'HTTP-API',
-      script : 'http.js'
+      "name" : "HTTP-API',
+      "script" : "http.js"
    }],
    "deploy" : {
      // "production" is the environment name
