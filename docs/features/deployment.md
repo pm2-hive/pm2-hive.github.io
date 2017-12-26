@@ -15,7 +15,7 @@ Please read the [Considerations to use PM2 deploy](#considerations).
 
 Baically you only need to add a "deploy" attribute to the ecosystem.json. Here is a bare minimum to deploy an application:
 
-```json
+```javascript
 {
    "apps" : [{
       "name" : "HTTP-API',
