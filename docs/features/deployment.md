@@ -15,10 +15,12 @@ Please read the [Considerations to use PM2 deploy](#considerations).
 
 Baically you only need to add a "deploy" attribute to the ecosystem.json. Here is a bare minimum to deploy an application:
 
+process.json:
+
 ```javascript
 {
    "apps" : [{
-      "name" : "HTTP-API',
+      "name" : "HTTP-API",
       "script" : "http.js"
    }],
    "deploy" : {
@@ -33,6 +35,22 @@ Baically you only need to add a "deploy" attribute to the ecosystem.json. Here i
       },
    }
 }
+```
+
+/bin/bash:
+
+```bash
+# Setup deployment at remote location
+$ pm2 deploy production setup
+
+# Update remote version
+$ pm2 deploy production update
+
+# Revert to -1 deployment
+$ pm2 deploy production revert 1
+
+# execute command on remote machines
+$ pm2 deploy production exec "pm2 reload all"
 ```
 
 ## Complete tutorial
