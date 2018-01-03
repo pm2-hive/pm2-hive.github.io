@@ -11,16 +11,16 @@ permalink: /docs/usage/docker-pm2-nodejs/
 
 ## Docker Integration
 
-Starting from PM2 v2.x, a new binary is automatically installed: **pm2-runtime**.
+Using Containers? We got your back. Start today using **pm2-runtime** a perfect companion to get the most out of Node.js in container environment.
 
 The goal of pm2-runtime is to wrap your applications into a proper Node.js production environment. It solves major issues when running Node.js applications inside a container like:
 
 - Second Process Fallback for High Application Reliability
-- Process State Control
-- Automatic Application Monitoring to keep it always sane and high perf
+- Process Flow Control
+- Automatic Application Monitoring to keep it always sane and high performing
 - Automatic Source Map Discovery and Resolving Support 
 
-Further than that, using PM2 as a layer between the container and the application brings PM2 features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/) and other great features to manage your Node.js application in production environment.
+Further than that, using PM2 as a layer between the container and the application brings PM2 powerful features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/) and other great features to manage your Node.js application in production environment.
 
 ## Official Supported Docker Image
 
