@@ -11,15 +11,16 @@ permalink: /docs/usage/docker-pm2-nodejs/
 
 ## Docker Integration
 
-Starting from PM2 v2.x, a new binary is automatically installed: **pm2-docker**.
+Starting from PM2 v2.x, a new binary is automatically installed: **pm2-runtime**.
 
-The goal of pm2-docker is to wrap your applications into a proper Node.js production environment. It solves major issues when running Node.js applications inside a container like:
+The goal of pm2-runtime is to wrap your applications into a proper Node.js production environment. It solves major issues when running Node.js applications inside a container like:
 
-- Correct PID 1 signals Handling & Forwarding
-- Graceful application Start and Shutdown
-- Seamless application clustering to increase performance and reliability
+- Second Process Fallback for High Application Reliability
+- Process State Control
+- Automatic Application Monitoring to keep it always sane and high perf
+- Automatic Source Map Discovery and Resolving Support 
 
-Further than that, using PM2 as a layer between the container and the application brings PM2 features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/), [source map support](/docs/usage/source-map-support/) and other great features to manage your Node.js application in production environment.
+Further than that, using PM2 as a layer between the container and the application brings PM2 features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/) and other great features to manage your Node.js application in production environment.
 
 ## Official Supported Docker Image
 
@@ -27,18 +28,36 @@ You can find the official Docker Image embedding the PM2 runtime here:
 
 [https://hub.docker.com/r/keymetrics/pm2](https://hub.docker.com/r/keymetrics/pm2)
 
-- keymetrics/pm2:`latest` with `node:alpine`
-- keymetrics/pm2:`8` with `node:8-alpine`
-- keymetrics/pm2:`7` with `node:7-alpine`
-- keymetrics/pm2:`6` with `node:6-alpine`
-- keymetrics/pm2:`4` with `node:4-alpine`
-- keymetrics/pm2:`next` with `node:alpine` and `pm2@next`
+**Image Name** | **Operating system** | **Dockerfile**
+---|---|---
+keymetrics/pm2:`latest-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[latest-alpine](tags/latest/alpine/Dockerfile)
+keymetrics/pm2:`8-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[8-alpine](tags/8/alpine/Dockerfile)
+keymetrics/pm2:`6-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[6-alpine](tags/6/alpine/Dockerfile)
+keymetrics/pm2:`4-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[4-alpine](tags/4/alpine/Dockerfile)
+**Image Name** | **Operating system** | **Dockerfile**
+keymetrics/pm2:`latest-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[latest-stretch](tags/latest/debian/stretch/Dockerfile)
+keymetrics/pm2:`8-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[8-stretch](tags/8/debian/stretch/Dockerfile)
+keymetrics/pm2:`6-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[6-stretch](tags/6/debian/stretch/Dockerfile)
+keymetrics/pm2:`4-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[4-stretch](tags/4/debian/stretch/Dockerfile)
+**Image Name** | **Operating system** | **Dockerfile**
+keymetrics/pm2:`latest-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[latest-jessie](tags/latest/debian/jessie/Dockerfile)
+keymetrics/pm2:`8-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[8-jessie](tags/8/debian/jessie/Dockerfile)
+keymetrics/pm2:`6-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[6-jessie](tags/6/debian/jessie/Dockerfile)
+keymetrics/pm2:`4-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[4-jessie](tags/4/debian/jessie/Dockerfile)
+**Image Name** | **Operating system** | **Dockerfile**
+keymetrics/pm2:`latest-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[latest-slim](tags/latest/debian/slim/Dockerfile)
+keymetrics/pm2:`8-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[8-slim](tags/8/debian/slim/Dockerfile)
+keymetrics/pm2:`6-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[6-slim](tags/6/debian/slim/Dockerfile)
+keymetrics/pm2:`4-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[4-slim](tags/4/debian/slim/Dockerfile)
+**Image Name** | **Operating system** | **Dockerfile**
+keymetrics/pm2:`latest-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[latest-wheezy](tags/latest/debian/wheezy/Dockerfile)
+keymetrics/pm2:`8-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[8-wheezy](tags/8/debian/wheezy/Dockerfile)
+keymetrics/pm2:`6-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[6-wheezy](tags/6/debian/wheezy/Dockerfile)
+keymetrics/pm2:`4-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[4-wheezy](tags/4/debian/wheezy/Dockerfile)
 
-## pm2-docker usage
+## Manual pm2-runtime usage
 
-### pm2-docker inside a Dockerfile
-
-At the beginning of your Dockerfile, add this line to install pm2:
+At the beginning of your Dockerfile, add this line to install PM2:
 
 ```
 RUN npm install pm2 -g
@@ -53,7 +72,7 @@ CMD ["node", "app.js"]
 With this one:
 
 ```
-CMD ["pm2-docker", "app.js"]
+CMD ["pm2-runtime", "app.js"]
 ```
 
 *NB: Please note that you have to replace app.js with your application.*
@@ -71,7 +90,7 @@ apps:
   - script   : 'app.js'
     name     : 'APP'
     exec_mode: 'cluster'
-    instances: 4
+    instances: 2
   - script   : 'worker.js'
 ```
 
@@ -80,13 +99,13 @@ All options available are [listed here](/docs/usage/application-declaration/#att
 You can then replace the **CMD** directive by this:
 
 ```
-CMD ["pm2-docker", "process.yml"]
+CMD ["pm2-runtime", "process.yml"]
 ```
 
 To split each processes in his own Docker, you can use the --only [app-name] option:
 
 ```
-CMD ["pm2-docker", "process.yml", "--only", "APP"]
+CMD ["pm2-runtime", "process.yml", "--only", "APP"]
 ```
 
 ### Logging Format option
@@ -97,10 +116,10 @@ If you want to change the log output format you can select one of this options:
 - **--format**: will output logs in = style format
 - **--raw**: will output logs as is
 
-To use one of this flag, you just need to pass them to pm2-docker:
+To use one of this flag, you just need to pass them to pm2-runtime:
 
 ```
-CMD ["pm2-docker", "--json", "process.yml"]
+CMD ["pm2-runtime", "--json", "process.yml"]
 ```
 
 ### Enabling Graceful Shutdown
@@ -123,12 +142,12 @@ By default PM2 will wait 1600ms before sending a final SIGKILL signal. You can m
 
 You may want to tell Developers to program inside a container to keep a consistant environment between develoment, test and production.
 
-Replacing **pm2-docker** with **pm2-dev** will enable the watch and restart features. This is quite interesting in a development container when the host files are exposed to the container as a VOLUME.
+Replacing **pm2-runtime** with **pm2-dev** will enable the watch and restart features. This is quite interesting in a development container when the host files are exposed to the container as a VOLUME.
 
 ### Expose health endpoint
 
 ```bash
-pm2-docker process.json --web
+pm2-runtime process.json --web
 ```
 
 The `--web [port]` option allows to expose all vital signs (docker instance + application) via a JSON API.
@@ -137,12 +156,12 @@ The `--web [port]` option allows to expose all vital signs (docker instance + ap
 
 [Keymetrics.io](https://keymetrics.io/) is a monitoring service built on top of PM2 that allows to monitor and manage applications easily (logs, restart, exceptions monitoring...). Once you created a Bucket on Keymetrics you will get a public and a secret key.
 
-To enable Keymetrics monitoring with **pm2-docker**, you can whether use the CLI option **--public XXX** and **--secret YYY** or you can pass the environment variables **KEYMETRICS_PUBLIC** and **KEYMETRICS_SECRET**.
+To enable Keymetrics monitoring with **pm2-runtime**, you can whether use the CLI option **--public XXX** and **--secret YYY** or you can pass the environment variables **KEYMETRICS_PUBLIC** and **KEYMETRICS_SECRET**.
 
 Example with the CLI options via a Dockerfile:
 
 ```
-CMD ["pm2-docker", "--public", "XXX", "--secret", "YYY", "process.yml"]
+CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "process.yml"]
 ```
 
 Or via environment variables:
@@ -158,32 +177,16 @@ Or via the Docker run command:
 docker run --net host -e "KEYMETRICS_SECRET=YYY" -e "KEYMETRICS_PUBLIC=XXX" <...>
 ```
 
-## Official Docker image
+## pm2-runtime Helper
 
-We built an official image with **pm2-docker** that is well suited for development environment. Host files are exposed as VOLUME inside the container and it's built on top of Alpine Linux.
-
-Image link on the Docker Hub Registry:
-
-[>> pm2-docker-alpine <<](https://hub.docker.com/r/keymetrics/pm2-docker-alpine/)
-
-Images availables are:
-
-- keymetrics/pm2-docker-alpine:latest with the latest version of Node.js
-- keymetrics/pm2-docker-alpine:7 with Node.js 7.4
-- keymetrics/pm2-docker-alpine:6 with Node.js 6.9
-- keymetrics/pm2-docker-alpine:4 with Node.js 4.7
-
-## pm2-docker Helper
-
-Here is the pm2-docker helper:
+Here is the pm2-runtime helper:
 
 ```
->>> pm2-docker -h
+>>> pm2-runtime -h
 
-  Usage: pm2-docker app.js
+  Usage: pm2-runtime app.js
 
-  pm2-docker is a drop-in replacement node.js binary with some interesting production features
-
+  pm2-runtime is a drop-in replacement node.js binary with some interesting production features
 
   Options:
 
