@@ -11,7 +11,7 @@ permalink: /docs/usage/docker-pm2-nodejs/
 
 ## Docker Integration
 
-Using Containers? We got your back. Start today using **pm2-runtime** a perfect companion to get the most out of Node.js in container environment.
+Using Containers? We got your back. Start today using **pm2-runtime**, a perfect companion to get the most out of Node.js in production environment.
 
 The goal of pm2-runtime is to wrap your applications into a proper Node.js production environment. It solves major issues when running Node.js applications inside a container like:
 
