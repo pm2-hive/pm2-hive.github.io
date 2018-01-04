@@ -41,7 +41,7 @@ Example:
       sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v4.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
-You simply have to copy/paste the line PM2 give you and the startup script will be configured for your OS.
+You simply have to copy/paste the line PM2 gives you and the startup script will be configured for your OS.
 
 **NOTE** : When updating nodejs, the `pm2` binary path might change (it will necessarily change if you are using nvm). Therefore, we would advise you to run the `startup` command after any update.
 
