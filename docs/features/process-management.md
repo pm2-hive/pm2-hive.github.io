@@ -65,6 +65,17 @@ To get more details about a specific process:
 pm2 show 0
 ```
 
+### Process sorting
+
+To sort all running processes:
+
+```bash
+pm2 list --sort name:desc
+# Or
+pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
+```
+By default sorting field is "name" and order is "asc".
+
 ## Start any process type
 
 For scripts in other languages:
