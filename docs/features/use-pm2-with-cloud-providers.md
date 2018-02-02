@@ -20,11 +20,10 @@ In package.json:
 ```json
   "scripts": {
     "preinstall": "npm install pm2 -g",
-    "start": "pm2 start app.js -i max --attach"
+    "start": "pm2-runtime app.js -i max"
    },
 ```
 
-* `--attach` Launches the logs of PM2 in the console after starting the app
 * `-i max` will [start your application in cluster mode](http://pm2.keymetrics.io/docs/usage/cluster-mode/), allowing you to get the most performance out of your instance!
 
 For a fine tuned configuration look at [Process Files](http://pm2.keymetrics.io/docs/usage/application-declaration/).
@@ -40,11 +39,11 @@ In package.json:
 
 ```json
   "scripts": {
-    "start": "node ./node_modules/.bin/pm2 start app.js -i max --attach"
+    "start": "node ./node_modules/.bin/pm2-runtime app.js -i max"
   }
 ```
 
-## Link to [Keymetrics](https://keymetrics.io/) via environment variables
+## Link to [Keymetrics](https://keymetrics.io/)
 
 You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
 
