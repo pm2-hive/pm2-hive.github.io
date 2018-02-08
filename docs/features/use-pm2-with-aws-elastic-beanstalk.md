@@ -36,8 +36,8 @@ Then we will need to change the startup scripts. We call PM2 from the node_modul
 
 ```json
 "scripts": {
-  "start": "node ./node_modules/.bin/pm2 start app.js --name yourApp",
-  "poststart":  "node ./node_modules/.bin/pm2 logs"
+  "start": "node ./node_modules/pm2/bin/pm2 start app.js --name yourApp",
+  "poststart":  "node ./node_modules/pm2/bin/pm2 logs"
 }
 ```
 
