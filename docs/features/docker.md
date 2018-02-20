@@ -156,7 +156,7 @@ The `--web [port]` option allows to expose all vital signs (docker instance + ap
 
 [Keymetrics.io](https://keymetrics.io/) is a monitoring service built on top of PM2 that allows to monitor and manage applications easily (logs, restart, exceptions monitoring...). Once you created a Bucket on Keymetrics you will get a public and a secret key.
 
-To enable Keymetrics monitoring with **pm2-runtime**, you can whether use the CLI option **--public XXX** and **--secret YYY** or you can pass the environment variables **KEYMETRICS_PUBLIC** and **KEYMETRICS_SECRET**.
+To enable Keymetrics monitoring with **pm2-runtime**, you can either use the CLI option **--public XXX** and **--secret YYY** or pass the environment variables **KEYMETRICS_PUBLIC** and **KEYMETRICS_SECRET**.
 
 Example with the CLI options via a Dockerfile:
 
