@@ -24,7 +24,7 @@ Each time you edit the code, be sure to kill and restart PM2 to make changes tak
 ## Install PM2 development
 
 ```bash
-npm install git://github.com/Unitech/pm2#development -g
+npm install https://github.com/Unitech/pm2#development -g
 ```
 
 ## Launch the tests
