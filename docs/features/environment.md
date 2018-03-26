@@ -51,7 +51,7 @@ module.exports = {
 
 Here the default environment is in the `env`, but you can decide to use `env_production` by using `pm2 start ecosystem.config.js --env production`.
 
-You can define as many environment as you like, just remember that you must pass the name of the environment (after `env_`) you want to use with `--env`.
+You can define as many environments as you like, just remember that you must pass the name of the environment (after `env_`) you want to use with `--env`.
 
 
 ## While restarting/reloading a process
