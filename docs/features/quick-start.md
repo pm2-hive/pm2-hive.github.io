@@ -88,6 +88,8 @@ pm2 start app.js --name my-api # Name process
 # Cluster mode
 pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
 pm2 start app.js -i max      # Same as above, but deprecated.
+pm2 scale app +3             # Scales `app` up by 3 workers
+pm2 scale app 2              # Scales `app` up or down to 2 workers total
 
 # Listing
 
