@@ -71,7 +71,7 @@ Use `DEBUG=* pm2 reload myapp --update-env`
 ## Specific environment variables
 
 #### NODE_APP_INSTANCE (PM2 2.5 minimum)
-There is the `NODE_APP_INSTANCE` environment variable that is used to make a difference between process, for example you may want to run a cronjob only on one process, you can just check if `process.env.NODE_APP_INSTANCE === 0`. 
+There is the `NODE_APP_INSTANCE` environment variable that is used to make a difference between process, for example you may want to run a cronjob only on one process, you can just check if `process.env.NODE_APP_INSTANCE === '0'`. 
 Two processes can never have the same number, its still true after `pm2 restart` and `pm2 scale` commands. 
 
 You may have problems with [node-config](https://github.com/Unitech/pm2/issues/2045) with the `NODE_APP_INSTANCE` name, so you can rename it with `instance_var` options : 
