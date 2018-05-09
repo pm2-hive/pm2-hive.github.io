@@ -59,13 +59,13 @@ You can define as many environments as you like, just remember that you must pas
 By default we want that PM2 doesn't change process environment while restarting or reloading so they are immutable. 
 If you want to update them, you must use `--update-env` : 
 
-- You want to restart your process and pick-up changes in your `ecosystem.json` ?
+- You want to restart your process and pick-up changes in your `ecosystem.json` ?  
 Use `pm2 reload ecosystem.json --update-env`
 
-- You want to pick-up the `ecosystem.json` changes for only one application ?
+- You want to pick-up the `ecosystem.json` changes for only one application ?  
 Use `pm2 reload ecosystem.json --update-env --only myapp`
 
-- You want to inject a new environment variable to a process (for example `DEBUG`): 
+- You want to inject a new environment variable to a process (for example `DEBUG`):   
 Use `DEBUG=* pm2 reload myapp --update-env`
 
 ## Specific environment variables
