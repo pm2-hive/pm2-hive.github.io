@@ -64,16 +64,217 @@
 <script src="/scripts/search/mustache.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/scripts/search/uri.js" type="text/javascript" charset="utf-8"></script>
 <script src="/scripts/search/date.format.js" type="text/javascript" charset="utf-8"></script>
-<script src="/scripts/search/lunr.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/scripts/search/jquery.lunr.search.js"></script>
 
-<script type="text/javascript">
-    $(function() {
-        $('#search-query').lunrSearch({
-          indexUrl: '/scripts/index.json',   // Url for the .json file containing search index data
-          results : '#search-results',  // selector for containing search results element
-          entries : '.entries',         // selector for search entries containing element (contained within results above)
-          template: '#search-results-template'  // selector for Mustache.js template
-        });
-      });
-    </script>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" id="doc-modal">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span id="close" aria-hidden="true">&times;</span>
+        </button>
+        <div class="container-background"></div>
+      </div>
+      <div class="modal-body">
+        <p id="title">Check out the related section in the new documentation</p>
+        <div class="modal-btn" id="modal-doc-btn">
+          <a href="javascript:void(0);">New PM2 Documentation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="call-to-action-container">
+<div class="icon-new-doc"></div>
+<div class="call-to-action">
+  <a>Check out the related section in the new documentation</a>
+</div>
+</div>
+<script>
+function getNewUrl() {
+  var mapping = {
+    "/": "/process-manager/overview/",
+    "/docs/usage/quick-start/": "/process-manager/quick-start/",
+    "/docs/usage/process-management/": "/process-manager/guide/process-management/",
+    "/docs/usage/cluster-mode/": "/process-manager/guide/load-balancing/",
+    "/docs/usage/application-declaration/": "/process-manager/guide/ecosystem-file/",
+    "/docs/usage/signals-clean-restart/": "/process-manager/best-practices/graceful-shutdown/",
+    "/docs/usage/environment/": "/process-manager/guide/ecosystem-file/",
+    "/docs/usage/log-management/": "/process-manager/guide/log-management/",
+    "/docs/usage/update-pm2/": "/process-manager/guide/installation/",
+    "/docs/usage/deployment/": "/process-manager/guide/easy-deploy-with-ssh/",
+    "/docs/usage/startup/": "/process-manager/guide/startup-hook/",
+    "/docs/usage/docker-pm2-nodejs/": "/process-manager/integration/docker/",
+    "/docs/usage/process-metrics/": "/plus/reference/pmx/",
+    "/docs/usage/process-actions/": "/plus/reference/pmx/",
+    "/docs/usage/watch-and-restart/": "/process-manager/guide/development-tools/",
+    "/docs/usage/monitoring/": "/process-manager/guide/process-management/",
+    "/docs/usage/source-map-support/": "/process-manager/guide/installation/",
+    "/docs/usage/specifics/": "/",
+    "/docs/usage/pm2-api/": "/process-manager/references/pm2-programmatic/",
+    "/docs/usage/use-pm2-with-cloud-providers/": "/process-manager/integration/cloud-providers/",
+    "/docs/usage/expose/": "/process-manager/guide/development-tools/",
+    "/docs/usage/install-as-deb/": "process-manager/guide/installation/",
+    "/docs/usage/contributing/": "/",
+    "/docs/tutorials/capistrano-like-deployments": "/",
+    "/docs/tutorials/pm2-nginx-production-setup": "/",
+    "/docs/tutorials/using-transpilers-with-pm2": "/process-manager/integration/transpilers/",
+    "/docs/tutorials/use-pm2-with-aws-elastic-beanstalk/": "/process-manager/integration/elastic-beanstalk/",
+    "/docs/advanced/pm2-module-system/": "/plus/guide/modules/",
+    "/docs/usage/pm2-development/": "/process-manager/guide/development-tools/",
+    "/hall-of-fame/": "/",
+    "/docs/usage/pm2-doc-single-page/": "/",
+    "/docs/usage/knowledge/": "/",
+    "/docs/usage/auto-completion/": "/process-manager/guide/installation/",
+  }
+  return "https://pm2.io/doc/en" + mapping[document.location.pathname];
+}
+function getCookie(name) {
+  var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return v ? v[2] : null;
+}
+function setCookie(name, value, days) {
+    var d = new Date;
+    d.setTime(d.getTime() + 24*60*60*1000*days);
+    document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+}
+
+var newUrl = getNewUrl();
+document.querySelector('#myModal .modal-body a').href = newUrl;
+document.querySelector('.call-to-action-container a').href = newUrl;
+var alreadyClose = getCookie("close_modal");
+if (alreadyClose === "true") {
+
+} else {
+  setTimeout(function(){ $('#myModal').modal(); }, 1000);
+}
+$("#myModal").on("hidden.bs.modal", function () {
+  // setCookie("close_modal", "true", 1);
+});
+</script>
+<style>
+.call-to-action-container {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+z-index: 1000;
+background-color : white;
+color: #3eb1f3
+padding: 10px 20px;
+border-radius: 4px;
+border-color: #46b8da;
+position: fixed;
+bottom: 25px;
+right: 10px;
+height: 50px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+text-align: center;
+}
+.call-to-action {
+margin-left: 50px;
+padding: 15px;
+}
+.icon-new-doc {
+position: absolute;
+height: 50px;
+width: 50px;
+background-size: 100%;
+background-image: url(/images/Icon@2x.jpg);
+background-repeat: no-repeat;
+}
+.call-to-action-container a:visited {
+  color: #3eb1f3;
+}
+.container-background {
+min-height: 150px;
+background-size: 100%;
+background-image: url(/images/Banner@2x.jpg);
+background-repeat: no-repeat;
+}
+body.modal-open .modal {
+  display: flex !important;
+  height: 100%;
+} 
+
+body.modal-open .modal .modal-dialog {
+  margin: auto;
+}
+.modal-body {
+text-align: center;
+min-height: 200px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+text-align: center;
+}
+.modal-btn {
+display: inline-block;
+vertical-align: bottom;
+text-align: center;
+font-weight: 400;
+font-size: 14px;
+font-size: .7777777777777778rem;
+line-height: 1em;
+background-clip: padding-box;
+text-decoration: none;
+box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+margin: 10px auto;
+}
+.modal-btn a {
+  padding: 15px 24px;
+  width: 129.5px;
+  height: 25px;
+  border-radius: 2em;
+  background-color: #3eb1f3;
+
+}
+.modal-backdrop {
+  z-index: 0;
+}
+.modal-body .modal-btn p {
+width: 161px;
+height: 13px;
+font-family: Blender;
+font-size: 12px;
+font-weight: normal;
+font-style: normal;
+font-stretch: normal;
+line-height: normal;
+letter-spacing: normal;
+text-align: left;
+color: #616161;
+}
+.modal-body .modal-btn a {
+text-decoration: none;
+width: 108.5px;
+height: 11px;
+font-family: Blender;
+font-size: 15px;
+font-weight: 500;
+font-style: normal;
+font-stretch: normal;
+line-height: normal;
+letter-spacing: 0.4px;
+text-align: center;
+color: #ffffff;
+}
+#title {
+color: black;
+}
+#doc-modal {
+padding: 0px;
+}
+#modal-doc-btn{
+border-radius: 3em;
+width: auto;
+}
+#close {
+padding-right: 10px;
+padding-top: 10px;
+z-index: 1000;
+color: white;
+float: right;
+font-size: 20px;
+opacity: 0.5 !important;
+}
+</style>
