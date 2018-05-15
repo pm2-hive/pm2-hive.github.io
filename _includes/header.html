@@ -71,7 +71,7 @@
     <div class="modal-content">
       <div class="modal-header" id="doc-modal">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span id="close" aria-hidden="true">&times;</span>
+          <span id="close" aria-hidden="true">x</span>
         </button>
         <div class="container-background"></div>
       </div>
@@ -154,7 +154,7 @@ $("#myModal").on("hidden.bs.modal", function () {
 </script>
 <style>
 .call-to-action-container {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
 z-index: 1000;
 background-color : white;
 color: #3eb1f3
@@ -163,7 +163,8 @@ border-radius: 4px;
 border-color: #46b8da;
 position: fixed;
 bottom: 25px;
-right: 10px;
+margin: 10px;
+right: 0px;
 height: 50px;
 display: flex;
 justify-content: center;
@@ -232,33 +233,21 @@ margin: 10px auto;
   z-index: 0;
 }
 .modal-body .modal-btn p {
-width: 161px;
-height: 13px;
-font-family: Blender;
 font-size: 12px;
-font-weight: normal;
-font-style: normal;
-font-stretch: normal;
-line-height: normal;
-letter-spacing: normal;
-text-align: left;
+text-align: center;
 color: #616161;
 }
 .modal-body .modal-btn a {
 text-decoration: none;
-width: 108.5px;
-height: 11px;
-font-family: Blender;
 font-size: 15px;
 font-weight: 500;
-font-style: normal;
-font-stretch: normal;
-line-height: normal;
 letter-spacing: 0.4px;
 text-align: center;
 color: #ffffff;
 }
 #title {
+  padding: 15px 25px;
+  margin-bottom: 20px;
 color: black;
 }
 #doc-modal {
@@ -275,6 +264,6 @@ z-index: 1000;
 color: white;
 float: right;
 font-size: 20px;
-opacity: 0.5 !important;
+opacity: 0.8;
 }
 </style>
