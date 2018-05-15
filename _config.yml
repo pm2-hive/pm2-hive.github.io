@@ -28,8 +28,3 @@ redcarpet:
 
 permalink: /blog/:year/:month/:day/:title
 paginate: 1
-
-gems: ['jekyll-lunr-js-search']
-
-lunr_search:
-  js_dir: "../scripts"
