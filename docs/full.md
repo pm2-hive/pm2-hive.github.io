@@ -7,7 +7,7 @@ permalink: /docs/usage/pm2-doc-single-page/
 
 <div align="center">
   <a href="http://pm2.keymetrics.io">
-    <img width=710px src="https://github.com/unitech/pm2/raw/master/pres/pm2.20d3ef.png">
+    <img width=710px src="https://github.com/unitech/pm2/raw/master/pres/pm2.20d3ef.png" />
   </a>
 
 <br/>
