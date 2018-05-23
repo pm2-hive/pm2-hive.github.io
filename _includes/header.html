@@ -127,7 +127,7 @@ function getNewUrl() {
     "/docs/usage/knowledge/": "/",
     "/docs/usage/auto-completion/": "/process-manager/guide/installation/",
   }
-  return "https://pm2.io/doc/en" + mapping[document.location.pathname];
+  return "https://pm2.io/doc/en" + mapping[document.location.pathname + "?utm_source=pm2&utm_medium=website&utm_campaign=rebranding"];
 }
 function getCookie(name) {
   var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
@@ -246,8 +246,8 @@ text-align: center;
 color: #ffffff;
 }
 #title {
-  padding: 15px 25px;
-  margin-bottom: 20px;
+padding: 15px 25px;
+margin-bottom: 20px;
 color: black;
 }
 #doc-modal {
