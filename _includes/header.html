@@ -127,7 +127,7 @@ function getNewUrl() {
     "/docs/usage/knowledge/": "/",
     "/docs/usage/auto-completion/": "/runtime/guide/installation/",
   }
-  return "https://pm2.io/doc/en" + mapping[document.location.pathname + "?utm_source=pm2&utm_medium=website&utm_campaign=rebranding"];
+  return "https://pm2.io/doc/en" + mapping[document.location.pathname] + "?utm_source=pm2&utm_medium=website&utm_campaign=rebranding";
 }
 function getCookie(name) {
   var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
