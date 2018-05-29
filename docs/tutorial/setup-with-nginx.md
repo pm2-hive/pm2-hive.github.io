@@ -7,7 +7,7 @@ permalink: /docs/tutorials/pm2-nginx-production-setup
 
 ## Nginx as a HTTP proxy
 
-This method is the common way of handling a Node.js server in order to make it shows up on the port `80`. Usually, your web server will run on a random port (for example `3001`). The benefits of using Nginx as a HTTP Proxy, is that the Node.js web server will run from a user of your choice instead of root. Nginx will then forward the `80` port to the one of your choice (here `3001`).
+This method is the common way of handling a Node.js server in order to make it show up on the port `80`. Usually, your web server will run on a random port (for example `3001`). The benefits of using Nginx as a HTTP Proxy, is that the Node.js web server will run from a user of your choice instead of root. Nginx will then forward the `80` port to the one of your choice (here `3001`).
 
 Just add a virtual host (best known as "server block" in the Nginx world):
 
@@ -39,4 +39,4 @@ server {
 
 ```
 
-Learn more on these options on the [Nginx docs](http://nginx.org/en/docs/http/websocket.html)! Once you have this, all you will need is a PM2-linked Node.js server running on the port `3001` and you'll have a production-ready HTTP server!
+Learn more on these options on the [Nginx docs](http://nginx.org/en/docs/http/websocket.html)! Once you have this, all you will need is a PM2-linked Node.js server running on port `3001` and you'll have a production-ready HTTP server!
