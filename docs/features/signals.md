@@ -41,7 +41,7 @@ Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declarati
 
 ## Graceful start
 
-Sometimes you might need to wait for your application to have etablished connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
+Sometimes you might need to wait for your application to have established connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
 
 ```javascript
 var http = require('http');
@@ -86,7 +86,7 @@ Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declarati
 
 ### Graceful start using `http.Server.listen`
 
-There is still the default system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automaticaly state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `listen_timeout` entry in process file or `--listen-timeout=XXXX` via CLI.
+There is still the default system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automatically state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `listen_timeout` entry in process file or `--listen-timeout=XXXX` via CLI.
 
 ## Explanation: Signals flow
 
