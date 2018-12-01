@@ -67,10 +67,12 @@ Note: Timestamp can be formatted using `--format` in CLI and `"date_format": "JJ
 
 ## Flushing logs
 
-This will empty all current application logs managed by PM2:
+This will empty the current application logs managed by PM2:
 
 ```bash
 pm2 flush # Clear all the logs
+
+pm2 flush <api> # Clear the logs for the app with name/id matching <api>
 ```
 
 Or you can install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-management/#pm2-logrotate-module) or [enable the log rotate](http://pm2.keymetrics.io/docs/usage/log-management/#setting-up-a-native-logrotate) script to handle the log rotation.
