@@ -150,7 +150,7 @@ If you want out and err combined without using any other file, just use the same
 }
 ```
 
-Note that relative logs paths will be based unpon `cwd`.
+Note that relative logs paths will be based upon `cwd`.
 
 ### Disabling log suffix
 
