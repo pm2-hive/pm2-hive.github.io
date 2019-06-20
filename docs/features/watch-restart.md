@@ -18,27 +18,28 @@ If `--watch` is enabled, stopping it won't stop watching:
 - `pm2 stop 0` will not stop watching
 - `pm2 stop 0 --watch` will stop watching
 
-Restart toggle the `watch` parameter when triggered.
+Restart with `--watch` will toggle the `watch` parameter.
 
-**Note** : **Watching system does not provide any graceful action, pm2 kills and restarts your application without sending SIGINT**
+To watch specific paths, please use a [Ecosystem File](/doc/en/runtime/guide/ecosystem-file/), `watch` can take a string or an array of paths. Default is `true`:
 
-To watch specific paths, please use a [JS/JSON app declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
-
-```json
-{
-  "watch": ["server", "client"],
-  "ignore_watch" : ["node_modules", "client/img"],
-  "watch_options": {
-    "followSymlinks": false
-  }
+```javascript
+module.exports = {
+  apps: [{
+    script: "app.js",
+    watch: ["server", "client"],
+    // Delay between restart
+    watch_delay: 1000,
+    ignore_watch : ["node_modules", "client/img"],
+    watch_options: {
+      "followSymlinks": false
+    }
+  }]
 }
 ```
 
-As specified in the [Schema](http://pm2.keymetrics.io/docs/usage/application-declaration/#declaration-via-js-json-or-json5-file):
+Notes:
 
-- `watch` can be a boolean, an array of paths or a string representing a path. Default to `false`
-- `ignore_watch` can be an array of paths or a string, it will be interpreted by [chokidar](https://github.com/paulmillr/chokidar#path-filtering) as a glob or a regular expression.
-- `watch_options` is an object that will replace options given to chokidar. Please refer to [chokidar documentation](https://github.com/paulmillr/chokidar#api) for the definition.
+`watch_options` is an object that will replace options given to chokidar. Please refer to [chokidar documentation](https://github.com/paulmillr/chokidar#api) for the definition.
 
 PM2 is giving chokidar these Default options:
 
@@ -48,5 +49,3 @@ var watch_options = {
   ignoreInitial : true
 }
 ```
-
-When working with NFS devices you'll need to set `usePolling: true` as stated in [this chokidar issue](https://github.com/paulmillr/chokidar/issues/242).
