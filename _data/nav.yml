@@ -45,8 +45,6 @@
       url: /docs/usage/use-pm2-with-cloud-providers/
     - title: Expose static file over http
       url: /docs/usage/expose/
-    - title: Install as .deb
-      url: /docs/usage/install-as-deb/
     - title: Download as ZIP
       url: https://github.com/Unitech/PM2/releases
       blank: true
