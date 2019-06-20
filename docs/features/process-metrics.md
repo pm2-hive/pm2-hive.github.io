@@ -18,20 +18,20 @@ npm install pmx --save
 Then in your code:
 
 ```javascript
-var Probe = require('pmx').probe();
+var io = require('@pm2/io')
 
-var counter = 0;
+var counter = 0
 
-var metric = Probe.metric({
+var metric = io.metric({
   name    : 'Counter',
   value   : function() {
-    return counter;
+    return counter
   }
-});
+})
 
 setInterval(function() {
-  counter++;
-}, 100);
+  counter++
+}, 100)
 ```
 
 Start the application with PM2. To consult the process metrics, use the command:
@@ -60,63 +60,73 @@ Then you can program your very own metrics to track important informations. 4 di
 This allows to expose values that can be read instantly.
 
 ```javascript
-var probe = pmx.probe();
+var io = require('@pm2/io')
 
 // Here the value function will be called each second to get the value
-var metric = probe.metric({
+var metric = io.metric({
   name    : 'Realtime user',
   value   : function() {
-    return Object.keys(users).length;
+    return Object.keys(users).length
   }
-});
+})
 
 // Here we are going to call valvar.set() to set the new value
-var valvar = probe.metric({
+var valvar = io.metric({
   name    : 'Realtime Value'
-});
+})
 
-valvar.set(23);
+valvar.set(23)
 ```
 
 ### Counter: Sequential value change
 
 Values that increment or decrement.
 
+Exemple to count Active Http Requests:
+
 ```javascript
-var probe = pmx.probe();
+var io = require('@pm2/io')
+var http = require('http')
 
-// The counter will start at 0
-var counter = probe.counter({
-  name : 'Current req processed'
-});
+var counter = io.counter({
+  name : 'Active requests'
+})
 
-http.createServer(function(req, res) {
-  // Increment the counter, counter will eq 1
-  counter.inc();
+http.createServer(function (req, res) {
+  counter.inc()
+
   req.on('end', function() {
-    // Decrement the counter, counter will eq 0
-    counter.dec();
-  });
-});
+    // Decrement the counter, counter will eq 0                                                                                                                                                                      
+    counter.dec()
+  })
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  res.write('Hello World!')
+  res.end()
+}).listen(6001)
 ```
 
 ### Meter: Average calculated values
 
 Values that are measured as events / interval.
 
-```javascript
-var probe = pmx.probe();
+Exemple to count number of queries per minute:
 
-var meter = probe.meter({
+```javascript
+var io = require('@pm2/io')
+var http = require('http')
+
+var meter = io.meter({
   name      : 'req/min',
   samples   : 1,
   timeframe : 60
-});
+})
 
-http.createServer(function(req, res) {
-  meter.mark();
-  res.end({success:true});
-});
+http.createServer(function (req, res) {
+  meter.mark()
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  res.write('Hello World!')
+  res.end()
+}).listen(6001)
 ```
 
 #### Options
@@ -129,80 +139,17 @@ http.createServer(function(req, res) {
 Keeps a resevoir of statistically relevant values biased towards the last 5 minutes to explore their distribution.
 
 ```javascript
-var probe = pmx.probe();
+var io = require('@pm2/io')
 
-var histogram = probe.histogram({
+var histogram = io.histogram({
   name        : 'latency',
   measurement : 'mean'
-});
+})
 
-var latency = 0;
+var latency = 0
 
 setInterval(function() {
-  latency = Math.round(Math.random() * 100);
-  histogram.update(latency);
-}, 100);
+  latency = Math.round(Math.random() * 100)
+  histogram.update(latency)
+}, 100)
 ```
-
-### Common Custom Metrics options
-
-- `name` : The probe name as is will be displayed on the **Keymetrics** dashboard
-- `agg_type` : This param is optionnal, it can be `sum`, `max`, `min`, `avg` (default) or `none`. It will impact the way the probe data are aggregated within the **Keymetrics** backend. Use `none` if this is irrelevant (eg: constant or string value).
-- `alert` : For `Meter` and `Counter` probes. This param is optionnal. Creates an alert object (see below).
-
-## Notification System
-
-A notification system allows you to trigger (email, slack, webhook...) alerts when a monitored value crosses a threshold.
-When setting a threshold value, the color on the dashboard changes from green to red depending on the alert level!
-
-You can either programmatically parameter this limit or do it via the dashboard by clicking on the button "Alert".
-
-Example for a `cpu_usage` var:
-
-```javascript
-var metric = probe.metric({
-  name  : 'CPU usage',
-  value : function() {
-    return cpu_usage;
-  },
-  alert : {
-    mode  : 'threshold',
-    value : 95,
-    msg   : 'Detected over 95% CPU usage', // optional
-    action: function() { //optional
-      console.error('Detected over 95% CPU usage');
-    },
-    cmp   : function(value, threshold) { //optional
-      return (parseFloat(value) > threshold); // default check
-    }
-  }
-});
-```
-
-### Options
-
-- `mode` : `threshold`, `threshold-avg`, `smart`.
-- `value` : Value that will be used for the exception check.
-- `msg` : String used for the exception.
-- `action` :  **optional**. Function triggered when exception reached.
-- `cmp` : **optional**. Function used for exception check taking 2 arguments.
-- `interval` : **optional**, `threshold-avg` mode. Sample length for monitored value (180 seconds default).
-- `timeout` : **optional**, `threshold-avg` mode. Time after which mean comparison starts (30 000 milliseconds default).
-
-### Builtin custom Metrics
-
-When initializing pmx, you can set to true some options:
-
-- `network` option will display inbound and outbound traffic
-- `ports` will display ports your application is using
-
-```javascript
-var pmx = require('pmx').init({
-  network       : true,  // Network monitoring at the application level
-  ports         : true,  // Shows which ports your app is listening on (default: false)
-});
-```
-
-### Read more
-
-[Exposing Node.js process metrics using PM2 and PMX.](http://stackparse.posthaven.com/exposing-node-dot-js-process-metrics-using-pm2-and-pmx)
