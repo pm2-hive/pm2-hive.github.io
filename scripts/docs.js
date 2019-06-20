@@ -15,10 +15,12 @@
         .toLowerCase();
     };
 
-    $('.docs-content').find('h2, h3, h1').each(function() {
-      var anchor = FormatForUrl($(this).text());
-      $(this).wrap('<a class="auto-anchor" href="#' + anchor + '"></a>');
-    });
+    setTimeout(function() {
+      $('.docs-content').find('h2, h3, h1').each(function() {
+        var anchor = FormatForUrl($(this).text());
+        $(this).wrap('<a class="auto-anchor" href="#' + anchor + '"></a>');
+      });
+    }, 1000)
 
     var STRING_DECAMELIZE_REGEXP = (/([a-z\d])([A-Z])/g);
     var STRING_STRIP_HTML_REGEXP = (/(<[^>]*>)/g);
@@ -107,8 +109,10 @@
       var navtop = navigator.offset().top;
 
       $(document).scroll(function() {
-        if (navtop < $(document).scrollTop())
+        if (navtop < $(document).scrollTop()) {
+          navigator.width(navigator.width())
           navigator.addClass('navigator-fixed');
+        }
         else
           navigator.removeClass('navigator-fixed');
       });

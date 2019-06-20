@@ -2,8 +2,6 @@
 body {
   background: #f2f2f2;
   color : #333;
-  font-family: 'Open Sans', sans-serif;
-  font-size : 15px;
   margin-bottom: 250px;
 }
 
@@ -12,16 +10,10 @@ html {
   min-height: 100%;
 }
 
-
-code {
-
-}
-
 .home-page {
   background: #161616 url("../images/pattern.png");
   color : white;
   font-family : 'Blender';
-
 
   .pm2-tick-list {
     a {
@@ -287,7 +279,7 @@ ul.pm2-tick-list li::before {
 //Docs
 
 .docs-content {
-  padding-left : 43px;
+  padding-left : 15px;
   p {
     margin: 0 0 10px;
   }
@@ -297,9 +289,9 @@ ul.pm2-tick-list li::before {
     margin-bottom: 15px;
   }
 
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  line-height: 24px;
+  //font-family: 'Open Sans', sans-serif;
+
+  line-height: 25px;
 
   h2 {
     border-bottom: 1px solid #A0A0A0;
@@ -423,23 +415,6 @@ a:focus {
 }
 .sidebar .nav .nav > .active > a, .sidebar .nav .nav > .active:hover > a, .sidebar .nav .nav > .active:focus > a {
   padding-left: 28px;
-}
-
-h1:target::after, .h1:target::after,
-h2:target::after, .h2:target::after,
-h3:target::after, .h3:target::after,
-h4:target::after, .h4:target::after,
-h5:target::after, .h5:target::after,
-h6:target::after, .h6:target::after
-{
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  height: 1em;
-  width: 10px;
-  background: $blue-logo;
-  margin-left: -20px;
 }
 
 h1:target::before, .h1:target::before,
