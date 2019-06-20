@@ -1,11 +1,11 @@
 ---
 layout: docs
-title: Process File
+title: Ecosystem File
 description: Manage applications via a configuration file
 permalink: /docs/usage/application-declaration/
 ---
 
-## Process File
+## Ecosystem File
 
 PM2 empowers your process management workflow. It allows you to fine-tune the behavior, options, environment variables, logs files of each application via a process file. It's particularly useful for micro-service based applications.
 
@@ -19,11 +19,34 @@ To generate a sample process file you can type this command:
 pm2 ecosystem
 ```
 
-This will generate a sample, `ecosystem.config.js`.
+This will generate a sample `ecosystem.config.js`:
 
-To generate a ecosystem file without any comment just run `pm2 ecosystem simple`.
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./app.js",
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }]
+}
+```
+
+Once edited at your convenience you can start/restart/stop/delete this file via CLI:
+
+```bash
+$ pm2 [start|restart|stop|delete] ecosystem.config.js
+```
+
+Checkout [the section about acting with CLI](#cli) on ecosystem.config.js to know more.
 
 ### Javascript format
+
+You can declare multiple application easily and specify different options for each of them:
 
 ```javascript
 module.exports = {
@@ -48,59 +71,10 @@ module.exports = {
 
 **Note that using a Javascript configuration file requires to end the file name with `.config.js`**
 
-### JSON format
-
-The configuration can also be in JSON format.
-
-```json
-{
-  "apps" : [{
-    "name"        : "worker",
-    "script"      : "./worker.js",
-    "watch"       : true,
-    "env": {
-      "NODE_ENV": "development"
-    },
-    "env_production" : {
-       "NODE_ENV": "production"
-    }
-  },{
-    "name"       : "api-app",
-    "script"     : "./api.js",
-    "instances"  : 4,
-    "exec_mode"  : "cluster"
-  }]
-}
-```
-
-### JSON5 format
-
-Alternatively, JSON5 is also supported
-
-```json5
-{
-  apps: [{
-    name: 'worker',
-    script: './worker.js',
-    watch: true,
-    env: {
-      NODE_ENV: 'development'
-    },
-    env_production: {
-      NODE_ENV: 'production'
-    }
-  }, {
-    name: 'api-app',
-    script: './api.js',
-    instances: 4,
-    exec_mode: 'cluster'
-  }]
-}
-```
-
 ### YAML format
 
-Here is the same example in YAML format (**use JSON format if possible**):
+You can also create a Ecosystem file in YAML format.
+Example:
 
 ```yaml
 apps:
@@ -152,18 +126,6 @@ pm2 start   ecosystem.config.js --only api-app
 pm2 restart ecosystem.config.js --only api-app
 pm2 reload  ecosystem.config.js --only api-app
 pm2 delete  ecosystem.config.js --only api-app
-```
-
-### Updating running conf
-
-Starting PM2 v2.1.X, environments are immutable by default, that means the environment will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Please note that some options will not be updated (options that are listed under `General Attributes` below).
-More documentation on [--update-env here](http://pm2.keymetrics.io/docs/usage/environment/#while-restarting-reloading-a-process)
-
-Example:
-
-```bash
-pm2 restart ecosystem.config.js --update-env
-pm2 startOrReload ecosystem.config.js --update-env
 ```
 
 ### Switching environments
