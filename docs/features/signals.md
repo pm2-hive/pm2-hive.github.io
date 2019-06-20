@@ -27,14 +27,14 @@ Via CLI, this will lengthen the timeout to 3000ms:
 pm2 start app.js --kill-timeout 3000
 ```
 
-Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+Via [Ecosystem File](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
 ```json
-{
-  "apps" : [{
-    "name"         : "api",
-    "script"       : "app.js",
-    "kill_timeout" : 3000
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./app.js",
+    kill_timeout : 3000
   }]
 }
 ```
