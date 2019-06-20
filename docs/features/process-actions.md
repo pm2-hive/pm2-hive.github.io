@@ -12,13 +12,13 @@ By plugging process actions onto your code, you will be able to trigger them via
 First make sure you added the library pmx to your code:
 
 ```bash
-npm install pmx --save
+npm install @pm2/io
 ```
 
 Then in your code:
 
 ```javascript
-var pmx = require('pmx');
+var pmx = require('@pm2/io');
 
 pmx.action('hello', function(reply) {
   reply({ answer : 'world' });
@@ -50,7 +50,7 @@ pm2 show <application-name>
 To pass a parameter to the remote function, just add the `param` attribute to the callback:
 
 ```javascript
-var pmx = require('pmx');
+var pmx = require('@pm2/io');
 
 pmx.action('world', function(param, reply) {
   console.log(param);
