@@ -21,12 +21,12 @@ You can use the same options as a normal application like `--name` or `--watch`.
 
 You can declare in a process file that you want a special dir to be served, to do so :
 
-```json
-{
-  "script": "serve",
-  "env": {
-    "PM2_SERVE_PATH": '.',
-    "PM2_SERVE_PORT": 8080
+```javascript
+module.exports = {
+  script: "serve",
+  env: {
+    PM2_SERVE_PATH: '.',
+    PM2_SERVE_PORT: 8080
   }
 }
 ```
