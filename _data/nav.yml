@@ -52,3 +52,23 @@
       blank: true
     - title: Contributing
       url: /docs/usage/contributing/
+
+- title: Tutorials
+  url: /docs/tutorials/capistrano-like-deployments
+  show: false
+  subnav:
+      - title: Capistrano like deployments
+        url: /docs/tutorials/capistrano-like-deployments
+      - title: Production Setup with Nginx
+        url: /docs/tutorials/pm2-nginx-production-setup
+      - title: Using transpilers with PM2
+        url: /docs/tutorials/using-transpilers-with-pm2
+      - title: PM2 in ElasticBeanstalk
+        url: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
+
+- title: Modules
+  show: false
+  url: /docs/advanced/pm2-module-system/
+  subnav:
+    - title: Module System
+      url: /docs/advanced/pm2-module-system/
