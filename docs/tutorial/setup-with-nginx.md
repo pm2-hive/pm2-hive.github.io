@@ -11,8 +11,7 @@ This method is the common way of handling a Node.js server in order to make it s
 
 Just add a virtual host (best known as "server block" in the Nginx world):
 
-```Nginx
-
+```
 upstream my_nodejs_upstream {
     server 127.0.0.1:3001;
     keepalive 64;
@@ -21,7 +20,6 @@ upstream my_nodejs_upstream {
 server {
     listen 80;
     server_name my_nodejs_server;
-    root /home/www/project_root;
     
     location / {
     	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -36,7 +34,6 @@ server {
     	proxy_read_timeout 240s;
     }
 }
-
 ```
 
 Learn more on these options on the [Nginx docs](http://nginx.org/en/docs/http/websocket.html)! Once you have this, all you will need is a PM2-linked Node.js server running on the port `3001` and you'll have a production-ready HTTP server!
