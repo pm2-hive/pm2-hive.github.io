@@ -5,10 +5,9 @@ description: Auto restart PM2 and processes at server reboot
 permalink: /docs/usage/startup/
 ---
 
+## Startup Script Generator
+
 PM2 can generate startup scripts and configure them in order to keep your process list intact across expected or unexpected machine restarts.
-
-*Make sure you upgrade to PM2 > 2.2.x*
-
 
 ## Init systems supported
 
@@ -19,6 +18,8 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 - **rcd**: FreeBSD
 - **systemv**: Centos 6, Amazon Linux
 
+These init systems are automatically detected by PM2 with the `pm2 startup` command.
+
 ## Generating a startup script
 
 To get the automatically-configured startup script for your machine you need to type this command:
@@ -28,28 +29,27 @@ To get the automatically-configured startup script for your machine you need to 
 pm2 startup
 ```
 
-You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
-```
-pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
-```
-
-The output of this command can be a recommendation of the line to copy/paste with all environment variables and options configured for you.
+**Do not pass sudo to this command! It will print the exact right command you will have to copy/paste into your terminal**
 
 Example:
 ```bash
+$ pm2 startup
 [PM2] You have to run this command as root. Execute the following command:
       sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v4.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
 You simply have to copy/paste the line PM2 gives you and the startup script will be configured for your OS.
 
-**NOTE** : When updating nodejs, the `pm2` binary path might change (it will necessarily change if you are using nvm). Therefore, we would advise you to run the `startup` command after any update.
 
-**NOTE2**: You can customize the service name via the `--service-name <name>` option ([#3213](https://github.com/Unitech/pm2/pull/3213))
+**NOTE 1** : When upgrading to newer Node.js version, update the PM2 startup script! Use `pm2 unstartup` first then `pm2 startup` again
+
+**NOTE 2**: You can customize the service name via the `--service-name <name>` option ([#3213](https://github.com/Unitech/pm2/pull/3213))
 
 ## Saving current process list
 
-Once you started all the applications you want to manage, you can save the list across expected/unexpected server restart by typing this command:
+**Important**
+
+Once you started all the applications you want to manage, you have to save the list you wanna respawn at machine reboot with:
 
 ```bash
 pm2 save
@@ -74,26 +74,36 @@ pm2 unstartup
 The previous line code let PM2 detect your platform. Alternatively you can use another specified init system youself using:
 
 ```bash
-pm2 unstartup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc] 
+pm2 unstartup
+```
+
+## Updating Startup Script
+
+```bash
+pm2 unstartup
+```
+
+Then
+
+```bash
+pm2 startup
 ```
 
 ## User permissions
 
 Let's say you want the startup script to be executed under another user.
 
-Just use the `-u <username>` option and the `--hp <user_home>`:
+Just change the `-u <username>` option and the `--hp <user_home>`:
 
 ```bash
 pm2 startup ubuntu -u www --hp /home/ubuntu
 ```
 
-## Update startup script
+## Specifying the init system
 
-To update the startup script (in case you changed the Node.js version via NVM for example) run the following commands:
-
-```bash
-pm2 unstartup
-pm2 startup
+You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
+```
+pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
 ```
 
 ## SystemD installation checking
@@ -121,6 +131,7 @@ After=network.target network-online.target
 [Install]
 WantedBy=multi-user.target network-online.target
 ```
+
 ## Windows consideration
 
 There are some external libraries to generate a Windows compatible startup script, please checkout [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) or [pm2-windows-startup](https://www.npmjs.com/package/pm2-windows-startup).
