@@ -112,29 +112,7 @@
 
     <script src="{{ "/scripts/docs.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
 
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-51734350-5', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-
-      <!-- at the end of the HEAD -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
-<!-- at the end of the BODY -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
-<script type="text/javascript"> docsearch({
-apiKey: '1d274d1e258b11c96ef6cfc32455be56',
-indexName: 'keymetrics',
-inputSelector: '#searchBox',
-debug: false // Set debug to true if you want to inspect the dropdown
-});
-</script>
-
+    {% include footer.html %}
   </body>
 
 </html>

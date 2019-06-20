@@ -49,6 +49,8 @@
         children: []
       };
 
+      var current
+
       if (heading.tagName.toUpperCase() === 'H2') {
         headings.push(value);
         current = value;
