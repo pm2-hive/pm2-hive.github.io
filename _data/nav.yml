@@ -11,7 +11,7 @@
   subnav:
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
-    - title: Process File
+    - title: Ecosystem File
       url: /docs/usage/application-declaration/
     - title: State Management
       url: /docs/usage/signals-clean-restart/
