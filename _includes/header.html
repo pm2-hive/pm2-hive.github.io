@@ -122,7 +122,6 @@ function setCookie(name, value, days) {
 }
 
 var newUrl = getNewUrl();
-document.querySelector('#myModal .modal-body a').href = newUrl;
 document.querySelector('.call-to-action-container a').href = newUrl;
 var alreadyClose = getCookie("close_modal");
 if (alreadyClose === "true") {
@@ -177,7 +176,7 @@ background-repeat: no-repeat;
 body.modal-open .modal {
   display: flex !important;
   height: 100%;
-} 
+}
 
 body.modal-open .modal .modal-dialog {
   margin: auto;
