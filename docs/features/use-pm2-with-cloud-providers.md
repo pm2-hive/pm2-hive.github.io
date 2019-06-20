@@ -5,7 +5,7 @@ description: Use PM2 in a cloud environment (without CLI)
 permalink: /docs/usage/use-pm2-with-cloud-providers/
 ---
 
-# Using PM2 in Cloud Providers
+## Using PM2 in Cloud Providers
 
 You might find yourself in a situation in which you do not have access to a raw CLI to start your Node.js applications. You have 2 ways to circumvent this:
 * Use the preinstall directive to install PM2 globally and start your application in the start script.
