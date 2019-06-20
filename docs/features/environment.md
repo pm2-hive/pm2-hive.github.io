@@ -7,7 +7,7 @@ permalink: /docs/usage/environment/
 
 ## When starting a new process
 
-PM2 will inject environment in this order when **starting** a new processs :
+PM2 will inject environment in this order when **starting** a new process :
 
 - First the PM2 CLI will use its environment so the current environment of your shell will be injected.
 - PM2 will then inject the environment that you can configure with the ecosystem file :

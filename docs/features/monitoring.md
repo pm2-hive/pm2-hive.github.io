@@ -18,14 +18,14 @@ You can monitor memory and CPU easily and straight from your terminal:
 pm2 monit
 ```
 
-## Keymetrics monitoring
+## Dashboard monitoring
 
-[![Keymetrics Dashboard](https://keymetrics.io/assets/images/application-demo.png)](https://app.keymetrics.io/#/register)
+[![Keymetrics Dashboard](https://pm2.io/_nuxt/img/Personalized_metrics.ba73c4b.png)](https://app.pm2.io/#/register)
 
 If you manage your Node.js application with PM2, we invite you to try Keymetrics. It makes monitoring and managing applications accross servers easier than ever.
 Feel free to try it:
 
-[Discover the monitoring dashboard for PM2](https://app.keymetrics.io/#/register)
+[Discover the monitoring dashboard for PM2](https://app.pm2.io/#/register)
 
 ## Memory threshold
 

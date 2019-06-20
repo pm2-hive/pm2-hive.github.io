@@ -1,35 +1,25 @@
 # Site settings
 title: PM2
-email: your-email@domain.com
+email: contact@pm2.io
 description: > # this means to ignore newlines until "baseurl:"
   Advanced process manager for production Node.js applications. Load balancer, logs facility,
   startup script, micro service management, at a glance.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://pm2.keymetrics.io" # the base hostname & protocol for your site
+baseurl: ""
+url: "http://pm2.keymetrics.io"
 repo_url: "https://github.com/pm2-hive/pm2-hive.github.io"
-twitter_username: jekyllrb
-github_username:  jekyll
 
 sass:
   sass_dir: _sass
 
 markdown: kramdown
 
-kramdown:
-  input: GFM
-  hard_wrap: false
-
-highlighter: rouge
-
 exclude: ['node_modules', 'docs/intro.md']
+
+plugins:
+  - jekyll-paginate
 
 redcarpet:
   extensions: ['tables', 'no_intra_emphasis', 'autolink']
 
 permalink: /blog/:year/:month/:day/:title
 paginate: 1
-
-gems: ['jekyll-lunr-js-search']
-
-lunr_search:
-  js_dir: "../scripts"
