@@ -5,7 +5,7 @@ description: Expose static file over http
 permalink: /docs/usage/expose/
 ---
 
-# Serve static file over http
+## Serve static file over http
 
 PM2 can serve static file very easily with the `pm2 serve` feature.
 
