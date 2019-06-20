@@ -38,7 +38,7 @@ pm2 start big-array.js --max-memory-restart 20M
 
 ### Via Ecosystem File
 
-```json
+```javascript
 module.exports = {
    name: 'max-mem',
    script: 'big-array.js',
