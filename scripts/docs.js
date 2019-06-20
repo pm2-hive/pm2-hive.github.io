@@ -2,6 +2,8 @@
 
   $(document).ready(function() {
 
+    redirectStuff()
+
     function FormatForUrl(str) {
       return str.replace(/_/g, '-')
         .replace(/ /g, '-')
@@ -101,14 +103,16 @@
     $sidebar.find('.auto-nav').html(navContent);
 
     var navigator = $('#navigator');
-    var navtop = navigator.offset().top;
+    if (navigator && navigator.offset()) {
+      var navtop = navigator.offset().top;
 
-    $(document).scroll(function() {
-      if (navtop < $(document).scrollTop())
-        navigator.addClass('navigator-fixed');
-      else
-        navigator.removeClass('navigator-fixed');
-    });
+      $(document).scroll(function() {
+        if (navtop < $(document).scrollTop())
+          navigator.addClass('navigator-fixed');
+        else
+          navigator.removeClass('navigator-fixed');
+      });
+    }
 
     // $sidebar.affix({
     //   offset: {
@@ -134,4 +138,53 @@
 
     //$('td:contains("✓")').addClass('bg-success');
   });
+
+
+  function redirectStuff() {
+    function getNewUrl() {
+      var mapping = {
+        "/": "/runtime/overview/",
+        "/docs/usage/quick-start/": "/runtime/quick-start/",
+        "/docs/faq/": "/plus/faq/",
+        "/docs/usage/process-management/": "/runtime/guide/process-management/",
+        "/docs/usage/cluster-mode/": "/runtime/guide/load-balancing/",
+        "/docs/usage/application-declaration/": "/runtime/guide/ecosystem-file/",
+        "/docs/usage/signals-clean-restart/": "/runtime/best-practices/graceful-shutdown/",
+        "/docs/usage/environment/": "/runtime/guide/ecosystem-file/",
+        "/docs/usage/log-management/": "/runtime/guide/log-management/",
+        "/docs/usage/update-pm2/": "/runtime/guide/installation/",
+        "/docs/usage/deployment/": "/runtime/guide/easy-deploy-with-ssh/",
+        "/docs/usage/startup/": "/runtime/guide/startup-hook/",
+        "/docs/usage/docker-pm2-nodejs/": "/runtime/integration/docker/",
+        "/docs/usage/process-metrics/": "/plus/reference/pmx/",
+        "/docs/usage/process-actions/": "/plus/reference/pmx/",
+        "/docs/usage/watch-and-restart/": "/runtime/guide/development-tools/",
+        "/docs/usage/monitoring/": "/runtime/guide/process-management/",
+        "/docs/usage/source-map-support/": "/runtime/guide/installation/",
+        "/docs/usage/specifics/": "/runtime/overview/",
+        "/docs/usage/pm2-api/": "/runtime/references/pm2-programmatic/",
+        "/docs/usage/use-pm2-with-cloud-providers/": "/runtime/integration/cloud-providers/",
+        "/docs/usage/expose/": "/runtime/guide/development-tools/",
+        "/docs/usage/install-as-deb/": "runtime/guide/installation/",
+        "/docs/usage/contributing/": "/runtime/overview/",
+        "/docs/tutorials/capistrano-like-deployments": "/runtime/overview/",
+        "/docs/tutorials/pm2-nginx-production-setup": "/runtime/overview/",
+        "/docs/tutorials/using-transpilers-with-pm2": "/runtime/integration/transpilers/",
+        "/docs/tutorials/use-pm2-with-aws-elastic-beanstalk/": "/runtime/integration/elastic-beanstalk/",
+        "/docs/advanced/pm2-module-system/": "/plus/guide/modules/",
+        "/docs/usage/pm2-development/": "/runtime/guide/development-tools/",
+        "/hall-of-fame/": "/runtime/overview/",
+        "/docs/usage/pm2-doc-single-page/": "/runtime/overview/",
+        "/docs/usage/knowledge/": "/runtime/overview/",
+        "/docs/usage/auto-completion/": "/runtime/guide/installation/",
+      }
+      return "https://pm2.io/doc/en" + mapping[document.location.pathname] + "?utm_source=pm2&utm_medium=website&utm_campaign=rebranding";
+    }
+
+    var newUrl = getNewUrl();
+    if (document.querySelector('.call-to-action-container a')) {
+      document.querySelector('.call-to-action-container a').href = newUrl;
+    }
+  }
+
 }());

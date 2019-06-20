@@ -6,6 +6,13 @@
   <body class="{% if page.title %}{{ page.title }}{% else %}home-page{% endif %}">
     {% include header.html %}
 
+    <div class="call-to-action-container">
+      <div class="icon-new-doc"></div>
+      <div class="call-to-action">
+        <a target="_blank">Check out the related section in the new documentation</a>
+      </div>
+    </div>
+
     <div class="header-title">
       <div class="container">
         <div class="row">
@@ -109,8 +116,6 @@
 
       </div>
     </div>
-
-    <script src="{{ "/scripts/docs.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
 
     {% include footer.html %}
   </body>
