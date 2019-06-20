@@ -29,7 +29,7 @@ pm2 start app.js --kill-timeout 3000
 
 Via [Ecosystem File](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
-```json
+```javascript
 module.exports = {
   apps : [{
     name: "app",
