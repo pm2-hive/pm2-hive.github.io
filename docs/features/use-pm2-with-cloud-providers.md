@@ -43,13 +43,13 @@ In package.json:
   }
 ```
 
-## Link to [Keymetrics](https://keymetrics.io/)
+## Link to [PM2.io](https://pm2.io/)
 
-You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
+You can set PM2_PUBLIC_KEY and PM2_SECRET_KEY in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
 
 ```bash
-export KEYMETRICS_PUBLIC="XXXX"
-export KEYMETRICS_SECRET="YYYY"
+export PM2_PUBLIC_KEY="XXXX"
+export PM2_SECRET_KEY="YYYY"
 pm2 update
 ```
 
