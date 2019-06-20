@@ -25,23 +25,33 @@ The simplest way to start, daemonize and monitor your application is by using th
 pm2 start app.js
 ```
 
-## Application declaration
+## Ecosystem File
 
-You can also create a configuration file to manage multiple applications:
+You can also create a configuration file, called Ecosystem File, to manage multiple applications.
+To generate an Ecosystem file:
 
-process.yml:
+```bash
+pm2 ecosystem
+```
 
-```yaml
-apps:
-  - script   : app.js
-    instances: 4
-    exec_mode: cluster
-  - script : worker.js
-    watch  : true
-    env    :
-      NODE_ENV: development
-    env_production:
-      NODE_ENV: production
+That will generate:
+
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./app.js",
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }, {
+     name: 'worker',
+     script: 'worker.js'
+  }]
+}
 ```
 
 And start it easily:
