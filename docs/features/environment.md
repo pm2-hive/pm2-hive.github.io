@@ -61,10 +61,8 @@ If you want to update them, you must use `--update-env` :
 
 - You want to restart your process and pick-up changes in your `ecosystem.json` ?
 Use `pm2 reload ecosystem.json --update-env`
-
 - You want to pick-up the `ecosystem.json` changes for only one application ?
 Use `pm2 reload ecosystem.json --update-env --only myapp`
-
 - You want to inject a new environment variable to a process (for example `DEBUG`): 
 Use `DEBUG=* pm2 reload myapp --update-env`
 
