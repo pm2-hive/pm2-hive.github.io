@@ -55,7 +55,7 @@
         headings.push(value);
         current = value;
       } else {
-        current.children.push(value);
+        //current.children.push(value);
       }
     });
 
