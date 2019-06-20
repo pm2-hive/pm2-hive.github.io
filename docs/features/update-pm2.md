@@ -33,4 +33,13 @@ pm2 update
 
 That's all, you now have a fresh and up-to-date PM2 system!
 
+## Updating Startup Script
+
+When you upgrade your Node.js version, the node binary path will change. To update the PM2 startup script run:
+
+```bash
+$ pm2 unstartup
+$ pm2 startup
+```
+
 
