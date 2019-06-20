@@ -200,6 +200,22 @@ Application behavior and configuration can be fine-tuned with the following attr
 | post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard |
 | force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2 |
 
+### Deployment 
+
+Entry name|Description|Type|Default
+---|---|---|---
+key|SSH key path|String|$HOME/.ssh
+user|SSH user|String|
+host|SSH host|[String]|
+ssh_options|SSH options with no command-line flag, see 'man ssh'|String or [String]|
+ref|GIT remote/branch|String|
+repo|GIT remote|String|
+path|path in the server|String|
+pre-setup| Pre-setup command or path to a script on your local machine|String|
+post-setup|Post-setup commands or path to a script on the host machine|String
+pre-deploy-local|pre-deploy action|String|
+post-deploy|post-deploy action|String|
+
 ## Considerations
 
 All command line options passed when using the JSON app declaration will be dropped i.e.
@@ -209,23 +225,33 @@ All command line options passed when using the JSON app declaration will be drop
 You can start as many JSON application declarations as you want.
 
 ```bash
-cat node-app-1.json
-
+$ cat node-app-1.json
 {
   "name" : "node-app-1",
   "script" : "app.js",
   "cwd" : "/srv/node-app-1/current"
 }
+
+$ cat node-app-2.json
+{
+  "name" : "node-app-2",
+  "script" : "app2.js",
+  "cwd" : "/srv/node-app-2/current"
+}
 ```
 
 ```bash
+pm2 start node-app-1.json
 pm2 start node-app-2.json
+```
+
+Will result in two apps launched:
+
+```
 ps aux | grep node-app
 root  14735  5.8  1.1  752476  83932 ? Sl 00:08 0:00 pm2: node-app-1
 root  24271  0.0  0.3  696428  24208 ? Sl 17:36 0:00 pm2: node-app-2
 ```
-
-*Note* that if you execute `pm2 start node-app-2` again, it will spawn an additional instance node-app-2.
 
 ### CWD
 
@@ -270,7 +296,7 @@ but not
 ### Disabling logs
 
 You can pass `/dev/null` to error_file or out_file to disable logs saving.
-Note : starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
+Note: starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
 
 ### Logs suffix
 
