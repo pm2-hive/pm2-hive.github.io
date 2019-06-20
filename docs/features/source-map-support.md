@@ -25,13 +25,11 @@ pm2 start app.js --source-map-support
 
 Or via JSON file:
 
-```json
-{
-  "apps" : [{
-    "name"              : "my-app",
-    "script"            : "script.js",
-    "source_map_support": true
-  }]
+```javascript
+module.exports = {
+   name: 'babel-app',
+   script: 'app.js',
+   source_map_support: true
 }
 ```
 
