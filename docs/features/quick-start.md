@@ -7,7 +7,7 @@ permalink: /docs/usage/quick-start/
 
 <center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
-## Welcome
+## Welcome!
 
 Welcome to the PM2 Quick Start!
 PM2 is daemon process manager that will help you manage and keep your application online.
