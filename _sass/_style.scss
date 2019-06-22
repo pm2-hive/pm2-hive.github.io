@@ -47,6 +47,19 @@ pre {
   font-size : 13px;
 }
 
+.edit-this-page {
+  position: absolute;
+  right: 14px;
+  top: 3px;
+  color: #333 !important;
+  margin-top: 17px;
+  font-size: 14px;
+}
+
+a[target="_blank"]:after {
+  font-family: 'FontAwesome';
+  content: " \f08e";
+}
 //logos
 
 .logo {

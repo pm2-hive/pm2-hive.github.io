@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Log Management
+title: Logs
 description: Log management with PM2
 permalink: /docs/usage/log-management/
 ---

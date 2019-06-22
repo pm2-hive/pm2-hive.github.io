@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Memory Threshold Auto Reload
+title: Memory Limit Reload
 description: Set memory threshold and trigger soft restarts
 permalink: /docs/usage/memory-limit/
 ---

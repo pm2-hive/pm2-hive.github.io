@@ -48,8 +48,6 @@
     - title: Download as ZIP
       url: https://github.com/Unitech/PM2/releases
       blank: true
-    - title: Contributing
-      url: /docs/usage/contributing/
 
 - title: Integrations
   url: /docs/usage/use-pm2-with-cloud-providers/

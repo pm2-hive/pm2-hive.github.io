@@ -100,23 +100,23 @@
 
     var navContent = renderHeadings(headings);
 
-    var $sidebar = $('.sidebar');
+    // var $sidebar = $('.sidebar');
 
-    $sidebar.find('.auto-nav').html(navContent);
+    // $sidebar.find('.auto-nav').html(navContent);
 
-    var navigator = $('#navigator');
-    if (navigator && navigator.offset()) {
-      var navtop = navigator.offset().top;
+    // var navigator = $('#navigator');
+    // if (navigator && navigator.offset()) {
+    //   var navtop = navigator.offset().top;
 
-      $(document).scroll(function() {
-        if (navtop < $(document).scrollTop()) {
-          navigator.width(navigator.width())
-          navigator.addClass('navigator-fixed');
-        }
-        else
-          navigator.removeClass('navigator-fixed');
-      });
-    }
+      // $(document).scroll(function() {
+      //   if (navtop < $(document).scrollTop()) {
+      //     navigator.width(navigator.width())
+      //     navigator.addClass('navigator-fixed');
+      //   }
+      //   else
+      //     navigator.removeClass('navigator-fixed');
+      // });
+    //}
 
     // $sidebar.affix({
     //   offset: {
@@ -133,12 +133,12 @@
     //   }
     // });
 
-    var $body = $(document.body);
+    //var $body = $(document.body);
 
-    $body.scrollspy({
-      target: '.sidebar',
-      offset: 100
-    });
+    // $body.scrollspy({
+    //   target: '.sidebar',
+    //   offset: 100
+    // });
 
     //$('td:contains("✓")').addClass('bg-success');
   });

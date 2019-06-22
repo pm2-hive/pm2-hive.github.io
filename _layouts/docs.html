@@ -78,14 +78,14 @@
             </ul>
 
             {% endfor %}
-            <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}" title="Edit Page">
-              <button style="min-width : 130px"  class="btn btn-success">Edit this Page</button>
-            </a>
           </div>
         </div>
 
 
         <div class="col-md-9 docs-content">
+          <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}" class="edit-this-page" title="Edit Page">
+            Improve this Page
+          </a>
           {{ content }}
 
           <br/>

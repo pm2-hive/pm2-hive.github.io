@@ -1,13 +1,13 @@
 ---
 layout: docs
-title: State Management
+title: Graceful Start/Shutdown
 description: How signals are handled in PM2
 permalink: /docs/usage/signals-clean-restart/
 ---
 
 ## Graceful Stop
 
-To allow graceful restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit. 
+To allow graceful restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit.
 
 ```javascript
 process.on('SIGINT', function() {
