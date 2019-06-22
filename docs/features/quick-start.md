@@ -137,7 +137,7 @@ You can also create a configuration file, called Ecosystem File, to manage multi
 To generate an Ecosystem file:
 
 ```bash
-pm2 ecosystem
+$ pm2 ecosystem
 ```
 
 This will generate and ecosystem.config.js file:
@@ -182,6 +182,33 @@ And to freeze a process list for automatic respawn:
 $ pm2 save
 ```
 Read more about startup script generator [here](/docs/usage/startup/).
+
+## Restart application on changes
+
+It's pretty easy with the `--watch` option:
+
+```
+$ cd /path/to/my/app
+$ pm2 start env.js --watch --ignore-watch="node_modules"
+```
+
+This will watch & restart the app on any file change from the current directory + all subfolders and it will ignore any changes in the node_modules folder `--ignore-watch="node_modules"`. 
+
+You can then use `pm2 logs` to check for restarted app logs.
+
+## Updating PM2
+
+We made it simple, there is no breaking change between releases and the procedure is straightforward:
+
+```bash
+npm install pm2@latest -g
+```
+
+Then update the in-memory PM2 :
+
+```bash
+pm2 update
+```
 
 ## CheatSheet
 
