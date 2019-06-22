@@ -37,6 +37,8 @@ $ pm2 start app.js
 
 Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with [pm2.io](https://pm2.io).
 
+### Application Listing
+
 List the status of all application managed by PM2:
 
 ```bash
@@ -45,11 +47,15 @@ $ pm2 [list|ls|status]
 
 ![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
 
+### Application Logs
+
 Logs of all applications:
 
 ```bash
 $ pm2 logs
 ```
+
+### Terminal based dashboard
 
 Terminal based real-time dashboard:
 
@@ -58,6 +64,8 @@ $ pm2 monit
 ```
 
 ![https://i.imgur.com/xo0LDb7.png](https://i.imgur.com/xo0LDb7.png)
+
+### pm2.io: Monitoring & Diagnostic Web Interface
 
 Web based dashboard, cross servers with diagnostic system:
 
