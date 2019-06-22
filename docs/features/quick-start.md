@@ -7,23 +7,89 @@ permalink: /docs/usage/quick-start/
 
 <center><img style="width: 500px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
-Welcome to the PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 to boost your application and to make it ready to handle a ton of traffic!
+## Welcome
+
+Welcome to the PM2 Quick Start! 
+PM2 is daemon process manager that will help you manage and keep your application online. 
+Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
+
+![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
 
 ## Installation
 
-The latest PM2 stable version is installable via NPM:
+The latest PM2 stable version is installable via NPM or Yarn:
 
 ```bash
-npm install pm2@latest -g
+$ npm install pm2@latest -g
+# or
+$ yarn global add pm2
 ```
 
-## Usage
+## Start an app
 
 The simplest way to start, daemonize and monitor your application is by using this command line:
 
 ```bash
-pm2 start app.js
+$ pm2 start app.js
 ```
+
+## Check status, logs, metrics
+
+Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with [pm2.io](https://pm2.io).
+
+List the status of all application managed by PM2:
+
+```bash
+$ pm2 [list|ls|status]
+```
+
+![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
+
+Logs of all applications:
+
+```bash
+$ pm2 logs
+```
+
+Terminal based real-time dashboard:
+
+```bash
+$ pm2 monit
+```
+
+![https://i.imgur.com/xo0LDb7.png](https://i.imgur.com/xo0LDb7.png)
+
+Web based dashboard, cross servers with diagnostic system:
+
+```bash
+$ pm2 plus
+```
+
+![https://i.imgur.com/sigMHli.png](https://i.imgur.com/sigMHli.png)
+
+## Manage process
+
+Simple command to manage application state:
+
+```bash
+$ pm2 restart app
+$ pm2 reload app
+$ pm2 stop app
+$ pm2 delete app
+```
+
+## Cluster mode
+
+For Node.js applications, PM2 includes an automatic load balancer that will share all HTTP[s]/Websocket/TCP/UDP connections between each spawned processes.
+
+To start an application in Cluster mode:
+
+```
+$ pm2 start app.js -i max
+```
+
+http://pm2.keymetrics.io/docs/usage/cluster-mode/
+
 
 ## Ecosystem File
 
@@ -57,7 +123,7 @@ module.exports = {
 And start it easily:
 
 ```bash
-pm2 start process.yml
+$ pm2 start process.yml
 ```
 
 Read more about application declaration [here](/docs/usage/application-declaration/).
@@ -67,9 +133,14 @@ Read more about application declaration [here](/docs/usage/application-declarati
 Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this, just run this command to generate an active startup script:
 
 ```bash
-pm2 startup
+$ pm2 startup
 ```
 
+And to freeze a process list for automatic respawn:
+
+```bash
+$ pm2 save
+```
 [More information](/docs/usage/startup/)
 
 ## Folder structure
