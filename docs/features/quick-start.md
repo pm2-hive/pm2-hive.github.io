@@ -140,7 +140,7 @@ To generate an Ecosystem file:
 pm2 ecosystem
 ```
 
-That will generate:
+This will generate and ecosystem.config.js file:
 
 ```javascript
 module.exports = {
