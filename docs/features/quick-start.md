@@ -25,6 +25,8 @@ $ npm install pm2@latest -g
 $ yarn global add pm2
 ```
 
+To install Node.js and NPM you can use [NVM](https://yoember.com/nodejs/the-best-way-to-install-node-js/)
+
 ## Start an app
 
 The simplest way to start, daemonize and monitor your application is by using this command line:
