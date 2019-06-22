@@ -279,28 +279,30 @@ ul.pm2-tick-list li::before {
 //Docs
 
 .docs-content {
-  padding-left : 15px;
   p {
     margin: 0 0 10px;
   }
-  h3, .h3 {
-    font-size: 23px;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-
-  //font-family: 'Open Sans', sans-serif;
 
   line-height: 25px;
 
   h2 {
     border-bottom: 1px solid #A0A0A0;
-    margin: 20px 0 20px;
-    padding-bottom: 9px;
+    margin-top: 22px;
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    font-size: 25px;
   }
 
   h2:first {
     margin-top : 10px;
+  }
+
+
+  h3, .h3 {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 30px;
   }
 
   .step-wizard .step-install, .step-wizard .step-setup,

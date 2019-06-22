@@ -6,6 +6,9 @@ pre {
   margin-bottom: 18px;
 }
 
+pre > code {
+  font-size: 15px;
+}
 
 code.highlighter-rouge {
   padding: 2px 4px;

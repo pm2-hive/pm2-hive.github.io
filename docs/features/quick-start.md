@@ -5,12 +5,12 @@ description: Getting started with PM2
 permalink: /docs/usage/quick-start/
 ---
 
-<center><img style="width: 500px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
+<center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
 ## Welcome
 
-Welcome to the PM2 Quick Start! 
-PM2 is daemon process manager that will help you manage and keep your application online. 
+Welcome to the PM2 Quick Start!
+PM2 is daemon process manager that will help you manage and keep your application online.
 Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
 
 ![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
@@ -33,10 +33,41 @@ The simplest way to start, daemonize and monitor your application is by using th
 $ pm2 start app.js
 ```
 
+Some options you can pass to the CLI:
+
+```bash
+# Specify an app name
+--name <app_name>
+
+# Watch and Restart app when files change
+--watch
+
+# Set memory threshold for app reload
+--max-memory-restart <200MB>
+
+# Specify log file
+--log <log_path>
+
+# Specify delay between automatic restarts
+--restart-delay <delay in ms>
+
+# Prefix all logs with standard date
+--time
+
+# Do not auto restart app
+--no-autorestart
+
+# Specify cron for forced restart
+--cron <cron_pattern>
+
+# Attach to application log
+--no-daemon
+```
+
 ## Check status, logs, metrics
 
 Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with [pm2.io](https://pm2.io).
-<br/>
+
 ### Application Listing
 
 List the status of all application managed by PM2:
@@ -46,7 +77,7 @@ $ pm2 [list|ls|status]
 ```
 
 ![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
-<br/>
+
 ### Application Logs
 
 Logs of all applications:
@@ -54,7 +85,7 @@ Logs of all applications:
 ```bash
 $ pm2 logs
 ```
-<br/>
+
 ### Terminal based dashboard
 
 Terminal based real-time dashboard:
@@ -64,8 +95,6 @@ $ pm2 monit
 ```
 
 ![https://i.imgur.com/xo0LDb7.png](https://i.imgur.com/xo0LDb7.png)
-
-<br/>
 
 ### pm2.io: Monitoring & Diagnostic Web Interface
 
@@ -98,8 +127,7 @@ To start an application in Cluster mode:
 $ pm2 start app.js -i max
 ```
 
-http://pm2.keymetrics.io/docs/usage/cluster-mode/
-
+Read more about cluster mode [here](/docs/usage/cluster-mode/).
 
 ## Ecosystem File
 
@@ -151,22 +179,7 @@ And to freeze a process list for automatic respawn:
 ```bash
 $ pm2 save
 ```
-[More information](/docs/usage/startup/)
-
-## Folder structure
-
-Once PM2 is started, it will automatically create these folders:
-
-- `$HOME/.pm2` will contain all PM2 related files
-- `$HOME/.pm2/logs` will contain all applications logs
-- `$HOME/.pm2/pids` will contain all applications pids
-- `$HOME/.pm2/pm2.log` PM2 logs
-- `$HOME/.pm2/pm2.pid` PM2 pid
-- `$HOME/.pm2/rpc.sock` Socket file for remote commands
-- `$HOME/.pm2/pub.sock` Socket file for publishable events
-- `$HOME/.pm2/conf.js` PM2 Configuration
-
-In Windows, the $HOME environment variable can be $HOMEDRIVE + $HOMEPATH ([link](https://github.com/Unitech/pm2/blob/master/constants.js#L16))
+Read more about startup script generator [here](/docs/usage/startup/).
 
 ## CheatSheet
 
