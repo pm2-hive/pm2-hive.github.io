@@ -1203,7 +1203,36 @@ sudo apt-get install pm2
 PM2 allows you to easily manage your application's logs. You can display the logs coming from all your applications in real-time, flush them, and reload them.
 There are also different ways to configure how PM2 will handle your logs (separated in different files, merged, with timestamp...) without modifying anything in your code.
 
-## Displaying logs in real-time
+## Application log options
+
+### CLI
+
+When running `pm2 start app.js [OPTIONS]` you can pass any of this options to the CLI:
+
+```bash
+-l --log [path]              specify filepath to output both out and error logs
+-o --output <path>           specify out log file
+-e --error <path>            specify error log file
+--time                       prefix logs with standard formated timestamp
+--log-date-format <format>   prefix logs with custom formated timestamp
+--merge-logs                 when running mutiple process with same app name, do not split file by id
+```
+
+### Ecosystem
+
+Via [Ecosystem files](/docs/usage/application-declaration/) you can pass all the same options:
+
+```
+modules.exports = [{
+  script: 'echo.js',
+  error_file: 'err.log',
+  out_file: 'out.log',
+  log_file: 'combined.log',
+  time: true
+}]
+```
+
+## Displaying logs
 
 Displaying logs of a specified process or of all processes in real-time:
 
@@ -1214,38 +1243,27 @@ pm2 logs -h
 # Display all apps logs
 pm2 logs
 
-# Display only logs about process containing "api" in their name
-pm2 logs /api/
-
-# It's a regex so you can filter with the normal syntax to filter with OR condition
-pm2 logs /server_[12]/
-
-# Display only api app logs
+# Display only `api` application logs
 pm2 logs api
 
 # Display X lines of api log file
 pm2 logs big-api --lines 1000
 ```
 
-Starting with PM2 2.x, you can see logs in JSON format with the `--json` option:
+## Logs output
+
+You can also display the logs in different format:
+
+### JSON output
+
+Output logs in json format with:
 
 ```bash
 pm2 logs --json
 ```
 
-Starting with PM2 2.x, you can see logs with a special date format, just use the `--format` option:
+For each application line this metadata will be printed:
 
-```bash
-pm2 logs --format
-```
-
-## Directly output json logs
-
-Starting PM2 `2.4.0`, you can directly ask pm2 to output logs in json using :
-  - CLI : `--log-type json`
-  - Process file : `"log_type": "json"`
-  
-This will output logs as json object into `err` and `out` files, see an example of json object:
 ```json
 {
    "message": "echo\n",                     // the actual message that has been `console.log`
@@ -1256,27 +1274,46 @@ This will output logs as json object into `err` and `out` files, see an example 
 }
 ```
 
-Note: Timestamp can be formatted using `--format` in CLI and `"date_format": "JJ-MM-YYYY"` in process file, the formatting is done with `moment` so you can use every format that are accepted by it.
+
+### Formatted output
+
+This is another way of printing the logs:
+
+```bash
+pm2 logs --format
+```
+
+This will output:
+
+```
+timestamp=2019-06-21-19:03:58-0700 app=stdout id=9 type=out message=ooo
+timestamp=2019-06-21-19:03:58-0700 app=stdout id=9 type=out message=ooo
+timestamp=2019-06-21-19:03:58-0700 app=stdout id=9 type=out message=ooo
+timestamp=2019-06-21-19:03:58-0700 app=stdout id=9 type=out message=ooo
+timestamp=2019-06-21-19:03:58-0700 app=log id=10 type=out message=out
+timestamp=2019-06-21-19:03:58-0700 app=log id=10 type=error message=err
+```
 
 ## Flushing logs
 
 This will empty all current application logs managed by PM2:
 
 ```bash
-pm2 flush # Clear all the logs
+pm2 flush
 ```
 
-Or you can install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-management/#pm2-logrotate-module) or [enable the log rotate](http://pm2.keymetrics.io/docs/usage/log-management/#setting-up-a-native-logrotate) script to handle the log rotation.
+## Size limited log rotation
 
-## Rotating Logs
+You can also install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-management/#pm2-logrotate-module) to automatically rotate and keep all the logs file using a limited space on disk.
 
-[**pm2-logrotate**](https://github.com/pm2-hive/pm2-logrotate) auto rotate logs of PM2 and applications managed:
+To install it:
 
 ```bash
 pm2 install pm2-logrotate
 ```
 
-[Options](https://github.com/pm2-hive/pm2-logrotate#configure)
+Read more about pm2-logrotate [here](https://github.com/pm2-hive/pm2-logrotate#configure)
+
 
 ## Reloading all logs
 
@@ -1287,63 +1324,6 @@ You can also reload all logs via the command line with:
 ```bash
 pm2 reloadLogs
 ```
-
-## Log configuration
-
-### CLI
-
-Example:
-
-```bash
-pm2 start echo.js --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
-```
-
-Options:
-
-```bash
---merge-logs                 do not postfix log file with process id
---log-date-format <format>   prefix logs with formated timestamp
--l --log [path]              specify entire log file (error and out are both included)
--o --output <path>           specify out log file
--e --error <path>            specify error log file
-```
-
-### JSON way
-
-```
-{
-  "script"          : "echo.js",
-  "error_file"      : "err.log",
-  "out_file"        : "out.log",
-  "merge_logs"      : true,
-  "log_date_format" : "YYYY-MM-DD HH:mm Z"
-}
-```
-
-### Combine out and err logs
-
-To combine all logs into the same file, set the same value for `error_file`, `out_file` or use an additional `log_file`.
-
-For example, this keeps `out` and `err` separated but adds a combined file:
-
-```
-{
-  "log_file": "combined.outerr.log",
-  "out_file": "out.log",
-  "error_file": "err.log"
-}
-```
-
-If you want out and err combined without using any other file, just use the same log file:
-
-```
-{
-  "out_file": "combined.log",
-  "error_file": "combined.log"
-}
-```
-
-Note that relative logs paths will be based unpon `cwd`.
 
 ### Disabling log suffix
 
@@ -1358,8 +1338,7 @@ Use the `--merge-logs` option to disable automatic log file suffixing.
 }
 ```
 
-Starting PM2 `2.4.0`, you can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are harcoded string).
-**NOTE:** Take care that the merged log file will be still active, these values are only used for `error` and `out` files.
+You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are harcoded string).
 
 ### Setting up a native logrotate
 
@@ -1380,6 +1359,31 @@ This will write a basic logrotate configuration to `/etc/logrotate.d/pm2-user` t
         create 0640 user user
 }
 ```
+
+
+## Max Memory Threshold Auto Reload
+
+PM2 allows to reload (auto fallback to restart if not in cluster) an application based on a memory limit/ Please note that the PM2 internal worker (which checks memory), starts every 30 seconds, so you may have to wait a bit before your process gets restarted automatically after reaching the memory threshold.
+
+CLI:
+
+```bash
+pm2 start api.js --max-memory-restart 300M
+```
+
+Config file (ecosystem.config.js):
+
+```bash
+module.exports = {
+  apps: [{
+    name: 'api',
+    script: 'api.js',
+    max_memory_restart: '300M'
+  }]
+}
+```
+
+*Note:* Units can be K(ilobyte), M(egabyte), G(igabyte).
 
 
 ## Monitoring CPU/Memory
@@ -1890,32 +1894,51 @@ Units can be K(ilobyte), M(egabyte), G(igabyte).
 
 By plugging process metrics onto your code, you will be able to monitor in-code values, in realtime.
 
-First make sure you added the pmx library to your code:
+## Install
+
+Install the `@pm2/io` library to your application with:
 
 ```bash
-npm install pmx --save
+npm install @pm2/io --save
 ```
 
-Then in your code:
+For more information about the `@pm2/io` module checkout [the repo documentation](https://github.com/keymetrics/pm2-io-apm#table-of-contents)
+
+## Using @pm2/io for metrics
+
+Here is a basic example on how to use the @pm2/io library to create a *requests per minute* metric:
 
 ```javascript
 var io = require('@pm2/io')
+var http = require('http')
 
-var counter = 0
-
-var metric = io.metric({
-  name    : 'Counter',
-  value   : function() {
-    return counter
-  }
+var meter = io.meter({
+  name      : 'req/min',
+  samples   : 1,
+  timeframe : 60
 })
 
-setInterval(function() {
-  counter++
-}, 100)
+http.createServer(function (req, res) {
+  meter.mark()
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  res.write('Hello World!')
+  res.end()
+}).listen(6001)
 ```
 
-Start the application with PM2. To consult the process metrics, use the command:
+## Monitoring metrics
+
+Once you have started the application with `pm2 start app.js`, to display the `req/min` metric you can use:
+
+```
+pm2 monit
+```
+
+And check the box called "Custom Metrics":
+
+<img src="https://i.imgur.com/WHDEvHg.png" title="custom metrics" width="300"/>
+
+**Or** you can check the metrics with the:
 
 ```bash
 pm2 show <application-name>
@@ -2036,25 +2059,129 @@ setInterval(function() {
 ```
 
 
-<center><img style="width: 500px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
+<center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
-Welcome to the PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 to boost your application and to make it ready to handle a ton of traffic!
+## Welcome
+
+Welcome to the PM2 Quick Start!
+PM2 is daemon process manager that will help you manage and keep your application online.
+Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
+
+![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
 
 ## Installation
 
-The latest PM2 stable version is installable via NPM:
+The latest PM2 stable version is installable via NPM or Yarn:
 
 ```bash
-npm install pm2@latest -g
+$ npm install pm2@latest -g
+# or
+$ yarn global add pm2
 ```
 
-## Usage
+## Start an app
 
 The simplest way to start, daemonize and monitor your application is by using this command line:
 
 ```bash
-pm2 start app.js
+$ pm2 start app.js
 ```
+
+Some options you can pass to the CLI:
+
+```bash
+# Specify an app name
+--name <app_name>
+
+# Watch and Restart app when files change
+--watch
+
+# Set memory threshold for app reload
+--max-memory-restart <200MB>
+
+# Specify log file
+--log <log_path>
+
+# Specify delay between automatic restarts
+--restart-delay <delay in ms>
+
+# Prefix all logs with standard date
+--time
+
+# Do not auto restart app
+--no-autorestart
+
+# Specify cron for forced restart
+--cron <cron_pattern>
+
+# Attach to application log
+--no-daemon
+```
+
+## Check status, logs, metrics
+
+Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with [pm2.io](https://pm2.io).
+
+### Application Listing
+
+List the status of all application managed by PM2:
+
+```bash
+$ pm2 [list|ls|status]
+```
+
+![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
+
+### Application Logs
+
+Logs of all applications:
+
+```bash
+$ pm2 logs
+```
+
+### Terminal based dashboard
+
+Terminal based real-time dashboard:
+
+```bash
+$ pm2 monit
+```
+
+![https://i.imgur.com/xo0LDb7.png](https://i.imgur.com/xo0LDb7.png)
+
+### pm2.io: Monitoring & Diagnostic Web Interface
+
+Web based dashboard, cross servers with diagnostic system:
+
+```bash
+$ pm2 plus
+```
+
+![https://i.imgur.com/sigMHli.png](https://i.imgur.com/sigMHli.png)
+
+## Manage process
+
+Simple command to manage application state:
+
+```bash
+$ pm2 restart app
+$ pm2 reload app
+$ pm2 stop app
+$ pm2 delete app
+```
+
+## Cluster mode
+
+For Node.js applications, PM2 includes an automatic load balancer that will share all HTTP[s]/Websocket/TCP/UDP connections between each spawned processes.
+
+To start an application in Cluster mode:
+
+```
+$ pm2 start app.js -i max
+```
+
+Read more about cluster mode [here](/docs/usage/cluster-mode/).
 
 ## Ecosystem File
 
@@ -2088,7 +2215,7 @@ module.exports = {
 And start it easily:
 
 ```bash
-pm2 start process.yml
+$ pm2 start process.yml
 ```
 
 Read more about application declaration [here](/docs/usage/application-declaration/).
@@ -2098,25 +2225,15 @@ Read more about application declaration [here](/docs/usage/application-declarati
 Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this, just run this command to generate an active startup script:
 
 ```bash
-pm2 startup
+$ pm2 startup
 ```
 
-[More information](/docs/usage/startup/)
+And to freeze a process list for automatic respawn:
 
-## Folder structure
-
-Once PM2 is started, it will automatically create these folders:
-
-- `$HOME/.pm2` will contain all PM2 related files
-- `$HOME/.pm2/logs` will contain all applications logs
-- `$HOME/.pm2/pids` will contain all applications pids
-- `$HOME/.pm2/pm2.log` PM2 logs
-- `$HOME/.pm2/pm2.pid` PM2 pid
-- `$HOME/.pm2/rpc.sock` Socket file for remote commands
-- `$HOME/.pm2/pub.sock` Socket file for publishable events
-- `$HOME/.pm2/conf.js` PM2 Configuration
-
-In Windows, the $HOME environment variable can be $HOMEDRIVE + $HOMEPATH ([link](https://github.com/Unitech/pm2/blob/master/constants.js#L16))
+```bash
+$ pm2 save
+```
+Read more about startup script generator [here](/docs/usage/startup/).
 
 ## CheatSheet
 
@@ -2281,6 +2398,82 @@ Then update the in-memory PM2 :
 
 ```bash
 pm2 update
+```
+
+
+## Exponential Backoff Restart Delay
+
+*Available in PM2 >= 3.2*
+
+A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementaly the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
+
+CLI:
+```bash
+$ pm2 start app.js --exp-backoff-restart-delay=100
+```
+
+Or via ecosystem.config.js file:
+```javascript
+module.exports = [{
+  script: 'app.js',
+  exp_backoff_restart_delay: 100
+}]
+```
+
+When an application crash unexpectedly and the option `--exp-backoff-restart-delay` is activated, you will be able to see a new application status **waiting restart**.
+
+By running `pm2 logs` you will also see the restart delay being incremented:
+```
+PM2      | App [throw:0] will restart in 100ms
+PM2      | App [throw:0] exited with code [1] via signal [SIGINT]
+PM2      | App [throw:0] will restart in 150ms
+PM2      | App [throw:0] exited with code [1] via signal [SIGINT]
+PM2      | App [throw:0] will restart in 225ms
+```
+
+As you can see the restart delay between restarts will increase in an exponential moving average, till reaching the maximum of 15000ms between restarts.
+
+When the application will then get back to a stable mode (uptime without restarts of more than 30 seconds), the restart delay will automatically reset to 0ms.
+
+## Fixed Restart Delay
+
+*Available in PM2 >= 0.9*
+
+You can also use the `restart_delay` to set a fixed timing between restarts:
+
+CLI:
+```bash
+$ pm2 start app.js --restart-delay=3000
+```
+
+Or via ecosystem.config.js file:
+```javascript
+module.exports = [{
+  script: 'app.js',
+  restart_delay: 3000
+}]
+```
+
+## Memory based reload strategy
+
+Checkout [https://pm2.io/doc/en/runtime/features/memory-limit/](https://pm2.io/doc/en/runtime/features/memory-limit/)
+
+## 0 second Downtime Reload
+
+Checkout the cluster mode to get [this behavior](/doc/en/runtime/guide/load-balancing/#0-seconds-downtime-reload)
+
+## No Auto Restart
+
+This is useful in case we wish to run 1-time scripts and don't want the process manager to restart our script in case it's completed running.
+
+Simply running these scripts from bash would terminate the script in case the ssh-session is terminated and the script should not get restarted when it completes execution.
+
+PM2 is perfect for such cases, providing robust monitoring and logging
+
+CLI:
+
+```bash
+$ pm2 start app.js --no-autorestart
 ```
 
 
