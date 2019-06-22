@@ -19,10 +19,10 @@
       url: /docs/usage/environment/
     - title: Logs
       url: /docs/usage/log-management/
-    - page: Restart Strategies
-      url: /doc/usage/restart-strategies/
-    - page: Memory Limit Reload
-      url: /doc/usage/memory-limit/
+    - title: Restart Strategies
+      url: /docs/usage/restart-strategies/
+    - title: Memory Limit Reload
+      url: /docs/usage/memory-limit/
     - title: Update PM2
       url: /docs/usage/update-pm2/
     - title: Deployment
