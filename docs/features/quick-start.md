@@ -68,7 +68,7 @@ Some options you can pass to the CLI:
 
 ## Check status, logs, metrics
 
-Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with [pm2.io](https://pm2.io).
+Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
 
 ### Application Listing
 

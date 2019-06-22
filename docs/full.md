@@ -2061,7 +2061,7 @@ setInterval(function() {
 
 <center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
-## Welcome
+## Welcome!
 
 Welcome to the PM2 Quick Start!
 PM2 is daemon process manager that will help you manage and keep your application online.
@@ -2122,7 +2122,7 @@ Some options you can pass to the CLI:
 
 ## Check status, logs, metrics
 
-Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with [pm2.io](https://pm2.io).
+Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
 
 ### Application Listing
 
