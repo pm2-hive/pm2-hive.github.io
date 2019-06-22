@@ -83,8 +83,9 @@ In this case the variable will have the same behavior but will be in `process.en
 
 #### increment_var (PM2 2.5 minimum)
 
-There is an option to ask PM2 to increment a environment variable for each instance launched, for example : 
-```javascript=
+There is an option to ask PM2 to increment a environment variable for each instance launched, for example:
+
+```javascript
 module.exports = {
   apps : [
       {
