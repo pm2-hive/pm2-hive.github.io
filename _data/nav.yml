@@ -61,6 +61,8 @@
   subnav:
       - title: Capistrano like deployments
         url: /docs/tutorials/capistrano-like-deployments
+      - title: Heroku Integration
+        url: /docs/integrations/heroku/
       - title: Production Setup with Nginx
         url: /docs/tutorials/pm2-nginx-production-setup
       - title: Using transpilers with PM2
