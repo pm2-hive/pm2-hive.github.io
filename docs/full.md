@@ -2061,13 +2061,14 @@ setInterval(function() {
 
 <center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
+![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
+
 ## Welcome!
 
 Welcome to the PM2 Quick Start!
-PM2 is daemon process manager that will help you manage and keep your application online.
-Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
 
-![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
+PM2 is daemon process manager that will help you manage and keep your application online. Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
+
 
 ## Installation
 
@@ -2191,7 +2192,7 @@ You can also create a configuration file, called Ecosystem File, to manage multi
 To generate an Ecosystem file:
 
 ```bash
-pm2 ecosystem
+$ pm2 ecosystem
 ```
 
 This will generate and ecosystem.config.js file:
@@ -2236,6 +2237,33 @@ And to freeze a process list for automatic respawn:
 $ pm2 save
 ```
 Read more about startup script generator [here](/docs/usage/startup/).
+
+## Restart application on changes
+
+It's pretty easy with the `--watch` option:
+
+```
+$ cd /path/to/my/app
+$ pm2 start env.js --watch --ignore-watch="node_modules"
+```
+
+This will watch & restart the app on any file change from the current directory + all subfolders and it will ignore any changes in the node_modules folder `--ignore-watch="node_modules"`. 
+
+You can then use `pm2 logs` to check for restarted app logs.
+
+## Updating PM2
+
+We made it simple, there is no breaking change between releases and the procedure is straightforward:
+
+```bash
+npm install pm2@latest -g
+```
+
+Then update the in-memory PM2 :
+
+```bash
+pm2 update
+```
 
 ## CheatSheet
 
@@ -3120,64 +3148,73 @@ We need to pass two variables to PM2 from the environment to link it with Keymet
 Then follow-up the pm2 integration procedure, and pm2 will auto-link the application at start.
 
 
-## Using PM2 in Cloud Providers
+## Using PM2 on Cloud Providers
 
-You might find yourself in a situation in which you do not have access to a raw CLI to start your Node.js applications. You have 2 ways to circumvent this:
-* Use the preinstall directive to install PM2 globally and start your application in the start script.
-* Require PM2 as a dependency and call the module via the start script.
+You might find yourself in a situation in which you do not have access to the CLI to start your Node.js applications.
 
-## Method 1: Pre install PM2 globally
+In such a situation, pm2 must be added as a dependency and must be called with the start script.
 
-The easiest way is to install pm2 globally via the preinstall scripts and start your application via pm2.
+## Prepare your app
 
-In package.json:
+### Set your ecosystem file
 
-```json
-  "scripts": {
-    "preinstall": "npm install pm2 -g",
-    "start": "pm2-runtime app.js -i max"
-   },
+Generate an `ecosystem.config.js` template with:
+
+```bash
+pm2 init
 ```
 
-* `-i max` will [start your application in cluster mode](http://pm2.keymetrics.io/docs/usage/cluster-mode/), allowing you to get the most performance out of your instance!
+Modify the ecosystem file to match your needs:
 
-For a fine tuned configuration look at [Process Files](http://pm2.keymetrics.io/docs/usage/application-declaration/).
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./app.js",
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }]
+}
+```
 
-## Method 2: Require PM2 as a module
+ Learn more about ecosystem file [here](/docs/usage/application-declaration/).
+{: .tip}
 
-Depending on your cloud provider, the `preinstall` script might not be supported or pm2 might not be installed globally.
-To solve this we can require pm2 from the `node_module` folder:
+### Add PM2 as a module
 
-Install pm2 in your projet using `npm install --save pm2`
+Add pm2 as a dependency to your projet.
 
-In package.json:
+With npm:
+
+```bash
+npm install pm2
+```
+
+With yarn:
+
+```bash
+yarn add pm2
+```
+
+### Start script in package.json
+
+In your `package.json`, modify your `start` script like the following:
 
 ```json
+{
   "scripts": {
-    "start": "node ./node_modules/.bin/pm2-runtime app.js -i max"
+    "start": "pm2-runtime start ecosystem.config.js --env production"
   }
+}
 ```
 
-## Link to [PM2.io](https://pm2.io/)
+## Deploy your app
 
-You can set PM2_PUBLIC_KEY and PM2_SECRET_KEY in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
-
-```bash
-export PM2_PUBLIC_KEY="XXXX"
-export PM2_SECRET_KEY="YYYY"
-pm2 update
-```
-
-## Set a fixed Server Name
-
-You might want fixed server name so the names are constant in Keymetrics. The default link is the hostname (`$HOST` var) plus a few random characters. If you set the `$PM2_MACHINE_NAME`, the name will be fixed and used on the dashboard.
-
-Be careful, in case of duplicate hostnames the dashboard will receive data from both instances and flicker.
-
-
-```bash
-export PM2_MACHINE_NAME=$HOST
-```
+You can now deploy your application in your cloud providers like you would have done for a regular node.js app.
 
 
 ## Auto restart apps on file change

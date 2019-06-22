@@ -480,8 +480,8 @@ h6:target::before, .h6:target::before
 
 .nav-left {
   list-style-type : none;
-  margin-top : 12px;
   margin-left : 0px;
+  margin-top: 2px;
   .main-active {
     color : #333;
     font-weight : bold;
@@ -489,6 +489,7 @@ h6:target::before, .h6:target::before
 
   & > li {
     padding : 3px 0px;
+    margin-left: 10px;
   }
   & > li > a {
     color: #5D5E5A;
