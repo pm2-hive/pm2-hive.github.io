@@ -9,32 +9,51 @@ permalink: /docs/usage/process-metrics/
 
 By plugging process metrics onto your code, you will be able to monitor in-code values, in realtime.
 
-First make sure you added the pmx library to your code:
+## Install
+
+Install the `@pm2/io` library to your application with:
 
 ```bash
-npm install pmx --save
+npm install @pm2/io --save
 ```
 
-Then in your code:
+For more information about the `@pm2/io` module checkout [the repo documentation](https://github.com/keymetrics/pm2-io-apm#table-of-contents)
+
+## Using @pm2/io for metrics
+
+Here is a basic example on how to use the @pm2/io library to create a *requests per minute* metric:
 
 ```javascript
 var io = require('@pm2/io')
+var http = require('http')
 
-var counter = 0
-
-var metric = io.metric({
-  name    : 'Counter',
-  value   : function() {
-    return counter
-  }
+var meter = io.meter({
+  name      : 'req/min',
+  samples   : 1,
+  timeframe : 60
 })
 
-setInterval(function() {
-  counter++
-}, 100)
+http.createServer(function (req, res) {
+  meter.mark()
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  res.write('Hello World!')
+  res.end()
+}).listen(6001)
 ```
 
-Start the application with PM2. To consult the process metrics, use the command:
+## Monitoring metrics
+
+Once you have started the application with `pm2 start app.js`, to display the `req/min` metric you can use:
+
+```
+pm2 monit
+```
+
+And check the box called "Custom Metrics":
+
+<img src="https://i.imgur.com/WHDEvHg.png" title="custom metrics" width="300"/>
+
+**Or** you can check the metrics with the:
 
 ```bash
 pm2 show <application-name>
