@@ -1089,7 +1089,7 @@ module.exports = {
 }
 ```
 
-Here you can see that PM2 will override the current environment to add `NODE_ENV=development`. But you can also define different environments like this : 
+Here you can see that PM2 will override the current environment to add `NODE_ENV=development`. But you can also define different environments like this :
 
 ```javascript
 module.exports = {
@@ -1119,10 +1119,10 @@ You can define as many environments as you like, just remember that you must pas
 
 ### NODE_APP_INSTANCE (PM2 2.5 minimum)
 
-There is the `NODE_APP_INSTANCE` environment variable that is used to make a difference between process, for example you may want to run a cronjob only on one process, you can just check if `process.env.NODE_APP_INSTANCE === '0'`. 
-Two processes can never have the same number, its still true after `pm2 restart` and `pm2 scale` commands. 
+There is the `NODE_APP_INSTANCE` environment variable that is used to make a difference between process, for example you may want to run a cronjob only on one process, you can just check if `process.env.NODE_APP_INSTANCE === '0'`.
+Two processes can never have the same number, its still true after `pm2 restart` and `pm2 scale` commands.
 
-You may have problems with [node-config](https://github.com/Unitech/pm2/issues/2045) with the `NODE_APP_INSTANCE` name, so you can rename it with `instance_var` options : 
+You may have problems with [node-config](https://github.com/Unitech/pm2/issues/2045) with the `NODE_APP_INSTANCE` name, so you can rename it with `instance_var` options :
 
 ```javascript
 module.exports = {
@@ -1145,8 +1145,9 @@ In this case the variable will have the same behavior but will be in `process.en
 
 #### increment_var (PM2 2.5 minimum)
 
-There is an option to ask PM2 to increment a environment variable for each instance launched, for example : 
-```javascript=
+There is an option to ask PM2 to increment a environment variable for each instance launched, for example:
+
+```javascript
 module.exports = {
   apps : [
       {
@@ -1165,13 +1166,12 @@ module.exports = {
 }
 ```
 
-In this example, if i run `pm2 start ecosystem.config.js` : 
+In this example, if i run `pm2 start ecosystem.config.js` :
  - PM2 will see that i want to increment the `PORT` variable for each instance
  - It will see that i have defined the default to `3000`
  - The first instance will have `process.env.PORT = 3000` and the second `process.env.PORT = 3001`
 
 **NOTE** : It will increment also when scaling using `pm2 scale myapp 4`, both new instances will have `3002` and `3003` as `PORT` variable.
-
 
 
 If you just want a fresh install of PM2 without setting up Node.Js, pm2 is avalaible as a `.deb` package!
@@ -2584,7 +2584,7 @@ You can add pm2 completion to your current session this way:
 
 ## Graceful Stop
 
-To allow graceful restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit. 
+To allow graceful restart/reload/stop processes, make sure you intercept the **SIGINT** signal and clear everything needed (like database connections, processing jobs...) before letting your application exit.
 
 ```javascript
 process.on('SIGINT', function() {
