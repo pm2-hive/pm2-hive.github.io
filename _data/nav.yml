@@ -43,6 +43,8 @@
       url: /docs/usage/specifics/
     - title: PM2 API
       url: /docs/usage/pm2-api/
+    - title: Module System
+      url: /docs/advanced/pm2-module-system/
     - title: Expose static file over http
       url: /docs/usage/expose/
     - title: Download as ZIP
@@ -66,11 +68,3 @@
         url: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
       - title: Capistrano like deployments
         url: /docs/tutorials/capistrano-like-deployments
-
-
-- title: Modules
-  show: false
-  url: /docs/advanced/pm2-module-system/
-  subnav:
-    - title: Module System
-      url: /docs/advanced/pm2-module-system/
