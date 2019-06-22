@@ -13,12 +13,16 @@
       url: /docs/usage/cluster-mode
     - title: Ecosystem File
       url: /docs/usage/application-declaration/
-    - title: State Management
+    - title: Graceful Start/Shutdown
       url: /docs/usage/signals-clean-restart/
-    - title: Environment management
+    - title: Environment Variables
       url: /docs/usage/environment/
-    - title: Log Management
+    - title: Logs
       url: /docs/usage/log-management/
+    - page: Restart Strategies
+      url: /doc/usage/restart-strategies/
+    - page: Memory Limit Reload
+      url: /doc/usage/memory-limit/
     - title: Update PM2
       url: /docs/usage/update-pm2/
     - title: Deployment
