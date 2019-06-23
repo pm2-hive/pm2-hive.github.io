@@ -2090,6 +2090,14 @@ The simplest way to start, daemonize and monitor your application is by using th
 $ pm2 start app.js
 ```
 
+Or start any other application easily:
+
+```bash
+$ pm2 start bashscript.sh
+$ pm2 start python-app.py --watch
+$ pm2 start binary-file -- --port 1520
+```
+
 Some options you can pass to the CLI:
 
 ```bash
@@ -2105,10 +2113,13 @@ Some options you can pass to the CLI:
 # Specify log file
 --log <log_path>
 
-# Specify delay between automatic restarts
+# Pass extra arguments to the script
+-- arg1 arg2 arg3
+
+# Delay between automatic restarts
 --restart-delay <delay in ms>
 
-# Prefix all logs with standard date
+# Prefix logs with time
 --time
 
 # Do not auto restart app
@@ -2121,11 +2132,13 @@ Some options you can pass to the CLI:
 --no-daemon
 ```
 
+As you can see many options are available to manage your application with PM2. You will discover them depending on your use case.
+
 ## Check status, logs, metrics
 
 Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
 
-### Application Listing
+### List managed applications
 
 List the status of all application managed by PM2:
 
@@ -2135,17 +2148,23 @@ $ pm2 [list|ls|status]
 
 ![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
 
-### Application Logs
+### Display logs
 
-Logs of all applications:
+To display logs in realtime:
 
 ```bash
 $ pm2 logs
 ```
 
-### Terminal based dashboard
+To dig in older logs:
 
-Terminal based real-time dashboard:
+```bash
+$ pm2 logs --lines 200
+```
+
+### Terminal Based Dashboard
+
+Here is a realtime dashboard that fits directly into your terminal:
 
 ```bash
 $ pm2 monit
@@ -2242,7 +2261,7 @@ Read more about startup script generator [here](/docs/usage/startup/).
 
 It's pretty easy with the `--watch` option:
 
-```
+```bash
 $ cd /path/to/my/app
 $ pm2 start env.js --watch --ignore-watch="node_modules"
 ```
@@ -2317,93 +2336,6 @@ pm2 sendSignal SIGUSR2 my-app # Send system signal to script
 pm2 start app.js --no-daemon
 pm2 start app.js --no-vizion
 pm2 start app.js --no-autorestart
-```
-
-## *42 starts*
-
-*ndlr;* 42 is the answer to life, the universe and everything.
-
-```bash
-pm2 start app.js           # Start app.js
-
-pm2 start app.js -- -a 23  # Pass arguments '-a 23' argument to app.js script
-
-pm2 start app.js --name serverone # Start a process and name it as serverone
-                                    # you can now stop the process by doing
-                                    # pm2 stop serverone
-
-pm2 start app.js --node-args="--debug=7001" # --node-args to pass options to node V8
-
-pm2 start app.js -i 0             # Start maximum processes depending on available CPUs (cluster mode)
-
-pm2 start app.js --log-date-format "YYYY-MM-DD HH:mm Z"    # Log will be prefixed with custom time format
-
-pm2 start app.json                # Start processes with options declared in app.json
-                                    # Go to chapter Multi process JSON declaration for more
-
-pm2 start app.js -e err.log -o out.log  # Start and specify error and out log
-
-```
-
-For scripts in other languages:
-
-```bash
-pm2 start echo.pl --interpreter=perl
-
-pm2 start echo.coffee
-pm2 start echo.php
-pm2 start echo.py
-pm2 start echo.sh
-pm2 start echo.rb
-```
-
-The interpreter is set by default with this equivalence:
-
-```json
-{
-  ".sh": "bash",
-  ".py": "python",
-  ".rb": "ruby",
-  ".coffee" : "coffee",
-  ".php": "php",
-  ".pl" : "perl",
-  ".js" : "node"
-}
-```
-
-## Options
-
-```
-Options:
-
-   -h, --help                           output usage information
-   -V, --version                        output the version number
-   -v --version                         get version
-   -s --silent                          hide all messages
-   -m --mini-list                       display a compacted list without formatting
-   -f --force                           force actions
-   -n --name <name>                     set a <name> for script
-   -i --instances <number>              launch [number] instances (for networked app)(load balanced)
-   -l --log [path]                      specify entire log file (error and out are both included)
-   -o --output <path>                   specify out log file
-   -e --error <path>                    specify error log file
-   -p --pid <pid>                       specify pid file
-   --max-memory-restart <memory>        specify max memory amount used to autorestart (in megaoctets)
-   --env <environment_name>             specify environment to get specific env variables (for JSON declaration)
-   -x --execute-command                 execute a program using fork system
-   -u --user <username>                 define user when generating startup script
-   -c --cron <cron_pattern>             restart a running process based on a cron pattern
-   -w --write                           write configuration in local folder
-   --interpreter <interpreter>          the interpreter pm2 should use for executing app (bash, python...)
-   --log-date-format <momentjs format>  add custom prefix timestamp to logs
-   --no-daemon                          run pm2 daemon in the foreground if it doesn't exist already
-   --merge-logs                         merge logs from different instances but keep error and out separated
-   --watch                              watch application folder for changes
-   --ignore-watch <folders|files>       folder/files to be ignored watching, chould be a specific name or regex - e.g. --ignore-watch="test node_modules "some scripts""
-   --node-args <node_args>              space delimited arguments to pass to node in cluster mode - e.g. --node-args="--debug=7001 --trace-deprecation"
-   --no-color                           skip colors
-   --no-vizion                          skip vizion features (versioning control)
-   --no-autorestart                     do not automatically restart apps
 ```
 
 ## What's next?
