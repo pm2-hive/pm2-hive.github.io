@@ -102,7 +102,7 @@ $ pm2 logs --lines 200
 
 ### Terminal Based Dashboard
 
-Terminal based real-time dashboard:
+Here is a realtime dashboard that fits directly into your terminal:
 
 ```bash
 $ pm2 monit
