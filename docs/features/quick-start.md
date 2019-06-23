@@ -40,7 +40,7 @@ Or start any other application easily:
 
 ```bash
 $ pm2 start bashscript.sh
-$ pm2 start python-app.py
+$ pm2 start python-app.py --watch
 $ pm2 start binary-file -- --port 1520
 ```
 
@@ -62,10 +62,10 @@ Some options you can pass to the CLI:
 # Pass extra arguments to the script
 -- arg1 arg2 arg3
 
-# Specify delay between automatic restarts
+# Delay between automatic restarts
 --restart-delay <delay in ms>
 
-# Prefix all logs with standard date
+# Prefix logs with time
 --time
 
 # Do not auto restart app
