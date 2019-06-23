@@ -51,6 +51,9 @@ Some options you can pass to the CLI:
 # Specify log file
 --log <log_path>
 
+# Pass extra arguments to the script
+-- arg1 arg2 arg3
+
 # Specify delay between automatic restarts
 --restart-delay <delay in ms>
 
@@ -67,11 +70,13 @@ Some options you can pass to the CLI:
 --no-daemon
 ```
 
+As you can see many options are available to manage your application with PM2. You will discover them depending on your use case.
+
 ## Check status, logs, metrics
 
 Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
 
-### Application Listing
+### List managed applications
 
 List the status of all application managed by PM2:
 
@@ -81,15 +86,21 @@ $ pm2 [list|ls|status]
 
 ![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
 
-### Application Logs
+### Display logs
 
-Logs of all applications:
+To display logs in realtime:
 
 ```bash
 $ pm2 logs
 ```
 
-### Terminal based dashboard
+To dig in older logs:
+
+```bash
+$ pm2 logs --lines 200
+```
+
+### Terminal Based Dashboard
 
 Terminal based real-time dashboard:
 
