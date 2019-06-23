@@ -199,7 +199,7 @@ Read more about startup script generator [here](/docs/usage/startup/).
 
 It's pretty easy with the `--watch` option:
 
-```
+```bash
 $ cd /path/to/my/app
 $ pm2 start env.js --watch --ignore-watch="node_modules"
 ```
