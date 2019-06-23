@@ -39,9 +39,9 @@ $ pm2 start app.js
 Or start any other application easily:
 
 ```bash
-pm2 start bashscript.sh
-pm2 start python-app.py
-pm2 start binary-file -- --port 1520
+$ pm2 start bashscript.sh
+$ pm2 start python-app.py
+$ pm2 start binary-file -- --port 1520
 ```
 
 Some options you can pass to the CLI:
