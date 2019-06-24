@@ -7,8 +7,10 @@
       url: /docs/usage/process-management/
 
 - title: Documentation
-  url: /docs/usage/cluster-mode/
+  url: /docs/usage/pm2-doc-single-page/
   subnav:
+    - title: Single Page Doc
+      url: /docs/usage/pm2-doc-single-page/
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
     - title: Ecosystem File
