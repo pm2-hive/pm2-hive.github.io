@@ -18,7 +18,7 @@ PM2 is daemon process manager that will help you manage and keep your applicatio
 
 ## Installation
 
-The latest PM2 stable version is installable via NPM or Yarn:
+The latest PM2 version is installable with NPM or Yarn:
 
 ```bash
 $ npm install pm2@latest -g
@@ -80,6 +80,21 @@ Some options you can pass to the CLI:
 
 As you can see many options are available to manage your application with PM2. You will discover them depending on your use case.
 
+## Managing processes
+
+Managing application state is simple here are the commands:
+
+```bash
+$ pm2 restart app_name
+$ pm2 reload app_name
+$ pm2 stop app_name
+$ pm2 delete app_name
+```
+
+Instead of `app_name` you can pass:
+- `all` to act on all processes
+- `id` to act on a specific process id
+
 ## Check status, logs, metrics
 
 Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
@@ -127,17 +142,6 @@ $ pm2 plus
 ```
 
 ![https://i.imgur.com/sigMHli.png](https://i.imgur.com/sigMHli.png)
-
-## Manage process
-
-Simple command to manage application state:
-
-```bash
-$ pm2 restart app
-$ pm2 reload app
-$ pm2 stop app
-$ pm2 delete app
-```
 
 ## Cluster mode
 
