@@ -5,7 +5,7 @@ description: How to use babel, coffescript, typescript etc. with pm2
 permalink: /docs/tutorials/using-transpilers-with-pm2
 ---
 
-# Using transpilers with PM2
+## Using transpilers with PM2
 
 ## The production way
 

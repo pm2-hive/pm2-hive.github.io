@@ -5,7 +5,7 @@ description: How to deploy with pm2, symlinks and a correct working directory
 permalink: /docs/tutorials/capistrano-like-deployments
 ---
 
-# Capistrano like deployments
+## Capistrano like deployments
 
 ## The main issue
 

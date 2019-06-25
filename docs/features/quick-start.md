@@ -5,49 +5,189 @@ description: Getting started with PM2
 permalink: /docs/usage/quick-start/
 ---
 
-<center><img style="width: 500px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
+<center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
 
-Welcome to the PM2 Quick Start! Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM. Just start your application with PM2 to boost your application and to make it ready to handle a ton of traffic!
+![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
+
+## Welcome!
+
+Welcome to the PM2 Quick Start!
+
+PM2 is daemon process manager that will help you manage and keep your application online. Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
+
 
 ## Installation
 
-The latest PM2 stable version is installable via NPM:
+The latest PM2 version is installable with NPM or Yarn:
 
 ```bash
-npm install pm2@latest -g
+$ npm install pm2@latest -g
+# or
+$ yarn global add pm2
 ```
 
-## Usage
+To install Node.js and NPM you can use [NVM](https://yoember.com/nodejs/the-best-way-to-install-node-js/)
+
+## Start an app
 
 The simplest way to start, daemonize and monitor your application is by using this command line:
 
 ```bash
-pm2 start app.js
+$ pm2 start app.js
 ```
 
-## Application declaration
+Or start any other application easily:
 
-You can also create a configuration file to manage multiple applications:
+```bash
+$ pm2 start bashscript.sh
+$ pm2 start python-app.py --watch
+$ pm2 start binary-file -- --port 1520
+```
 
-process.yml:
+Some options you can pass to the CLI:
 
-```yaml
-apps:
-  - script   : app.js
-    instances: 4
-    exec_mode: cluster
-  - script : worker.js
-    watch  : true
-    env    :
-      NODE_ENV: development
-    env_production:
-      NODE_ENV: production
+```bash
+# Specify an app name
+--name <app_name>
+
+# Watch and Restart app when files change
+--watch
+
+# Set memory threshold for app reload
+--max-memory-restart <200MB>
+
+# Specify log file
+--log <log_path>
+
+# Pass extra arguments to the script
+-- arg1 arg2 arg3
+
+# Delay between automatic restarts
+--restart-delay <delay in ms>
+
+# Prefix logs with time
+--time
+
+# Do not auto restart app
+--no-autorestart
+
+# Specify cron for forced restart
+--cron <cron_pattern>
+
+# Attach to application log
+--no-daemon
+```
+
+As you can see many options are available to manage your application with PM2. You will discover them depending on your use case.
+
+## Managing processes
+
+Managing application state is simple here are the commands:
+
+```bash
+$ pm2 restart app_name
+$ pm2 reload app_name
+$ pm2 stop app_name
+$ pm2 delete app_name
+```
+
+Instead of `app_name` you can pass:
+- `all` to act on all processes
+- `id` to act on a specific process id
+
+## Check status, logs, metrics
+
+Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
+
+### List managed applications
+
+List the status of all application managed by PM2:
+
+```bash
+$ pm2 [list|ls|status]
+```
+
+![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
+
+### Display logs
+
+To display logs in realtime:
+
+```bash
+$ pm2 logs
+```
+
+To dig in older logs:
+
+```bash
+$ pm2 logs --lines 200
+```
+
+### Terminal Based Dashboard
+
+Here is a realtime dashboard that fits directly into your terminal:
+
+```bash
+$ pm2 monit
+```
+
+![https://i.imgur.com/xo0LDb7.png](https://i.imgur.com/xo0LDb7.png)
+
+### pm2.io: Monitoring & Diagnostic Web Interface
+
+Web based dashboard, cross servers with diagnostic system:
+
+```bash
+$ pm2 plus
+```
+
+![https://i.imgur.com/sigMHli.png](https://i.imgur.com/sigMHli.png)
+
+## Cluster mode
+
+For Node.js applications, PM2 includes an automatic load balancer that will share all HTTP[s]/Websocket/TCP/UDP connections between each spawned processes.
+
+To start an application in Cluster mode:
+
+```
+$ pm2 start app.js -i max
+```
+
+Read more about cluster mode [here](/docs/usage/cluster-mode/).
+
+## Ecosystem File
+
+You can also create a configuration file, called Ecosystem File, to manage multiple applications.
+To generate an Ecosystem file:
+
+```bash
+$ pm2 ecosystem
+```
+
+This will generate and ecosystem.config.js file:
+
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./app.js",
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }, {
+     name: 'worker',
+     script: 'worker.js'
+  }]
+}
 ```
 
 And start it easily:
 
 ```bash
-pm2 start process.yml
+$ pm2 start process.yml
 ```
 
 Read more about application declaration [here](/docs/usage/application-declaration/).
@@ -57,25 +197,42 @@ Read more about application declaration [here](/docs/usage/application-declarati
 Restarting PM2 with the processes you manage on server boot/reboot is critical. To solve this, just run this command to generate an active startup script:
 
 ```bash
-pm2 startup
+$ pm2 startup
 ```
 
-[More information](/docs/usage/startup/)
+And to freeze a process list for automatic respawn:
 
-## Folder structure
+```bash
+$ pm2 save
+```
+Read more about startup script generator [here](/docs/usage/startup/).
 
-Once PM2 is started, it will automatically create these folders:
+## Restart application on changes
 
-- `$HOME/.pm2` will contain all PM2 related files
-- `$HOME/.pm2/logs` will contain all applications logs
-- `$HOME/.pm2/pids` will contain all applications pids
-- `$HOME/.pm2/pm2.log` PM2 logs
-- `$HOME/.pm2/pm2.pid` PM2 pid
-- `$HOME/.pm2/rpc.sock` Socket file for remote commands
-- `$HOME/.pm2/pub.sock` Socket file for publishable events
-- `$HOME/.pm2/conf.js` PM2 Configuration
+It's pretty easy with the `--watch` option:
 
-In Windows, the $HOME environment variable can be $HOMEDRIVE + $HOMEPATH ([link](https://github.com/Unitech/pm2/blob/master/constants.js#L16))
+```bash
+$ cd /path/to/my/app
+$ pm2 start env.js --watch --ignore-watch="node_modules"
+```
+
+This will watch & restart the app on any file change from the current directory + all subfolders and it will ignore any changes in the node_modules folder `--ignore-watch="node_modules"`. 
+
+You can then use `pm2 logs` to check for restarted app logs.
+
+## Updating PM2
+
+We made it simple, there is no breaking change between releases and the procedure is straightforward:
+
+```bash
+npm install pm2@latest -g
+```
+
+Then update the in-memory PM2 :
+
+```bash
+pm2 update
+```
 
 ## CheatSheet
 
@@ -129,93 +286,6 @@ pm2 sendSignal SIGUSR2 my-app # Send system signal to script
 pm2 start app.js --no-daemon
 pm2 start app.js --no-vizion
 pm2 start app.js --no-autorestart
-```
-
-## *42 starts*
-
-*ndlr;* 42 is the answer to life, the universe and everything.
-
-```bash
-pm2 start app.js           # Start app.js
-
-pm2 start app.js -- -a 23  # Pass arguments '-a 23' argument to app.js script
-
-pm2 start app.js --name serverone # Start a process and name it as serverone
-                                    # you can now stop the process by doing
-                                    # pm2 stop serverone
-
-pm2 start app.js --node-args="--debug=7001" # --node-args to pass options to node V8
-
-pm2 start app.js -i 0             # Start maximum processes depending on available CPUs (cluster mode)
-
-pm2 start app.js --log-date-format "YYYY-MM-DD HH:mm Z"    # Log will be prefixed with custom time format
-
-pm2 start app.json                # Start processes with options declared in app.json
-                                    # Go to chapter Multi process JSON declaration for more
-
-pm2 start app.js -e err.log -o out.log  # Start and specify error and out log
-
-```
-
-For scripts in other languages:
-
-```bash
-pm2 start echo.pl --interpreter=perl
-
-pm2 start echo.coffee
-pm2 start echo.php
-pm2 start echo.py
-pm2 start echo.sh
-pm2 start echo.rb
-```
-
-The interpreter is set by default with this equivalence:
-
-```json
-{
-  ".sh": "bash",
-  ".py": "python",
-  ".rb": "ruby",
-  ".coffee" : "coffee",
-  ".php": "php",
-  ".pl" : "perl",
-  ".js" : "node"
-}
-```
-
-## Options
-
-```
-Options:
-
-   -h, --help                           output usage information
-   -V, --version                        output the version number
-   -v --version                         get version
-   -s --silent                          hide all messages
-   -m --mini-list                       display a compacted list without formatting
-   -f --force                           force actions
-   -n --name <name>                     set a <name> for script
-   -i --instances <number>              launch [number] instances (for networked app)(load balanced)
-   -l --log [path]                      specify entire log file (error and out are both included)
-   -o --output <path>                   specify out log file
-   -e --error <path>                    specify error log file
-   -p --pid <pid>                       specify pid file
-   --max-memory-restart <memory>        specify max memory amount used to autorestart (in megaoctets)
-   --env <environment_name>             specify environment to get specific env variables (for JSON declaration)
-   -x --execute-command                 execute a program using fork system
-   -u --user <username>                 define user when generating startup script
-   -c --cron <cron_pattern>             restart a running process based on a cron pattern
-   -w --write                           write configuration in local folder
-   --interpreter <interpreter>          the interpreter pm2 should use for executing app (bash, python...)
-   --log-date-format <momentjs format>  add custom prefix timestamp to logs
-   --no-daemon                          run pm2 daemon in the foreground if it doesn't exist already
-   --merge-logs                         merge logs from different instances but keep error and out separated
-   --watch                              watch application folder for changes
-   --ignore-watch <folders|files>       folder/files to be ignored watching, chould be a specific name or regex - e.g. --ignore-watch="test node_modules "some scripts""
-   --node-args <node_args>              space delimited arguments to pass to node in cluster mode - e.g. --node-args="--debug=7001 --trace-deprecation"
-   --no-color                           skip colors
-   --no-vizion                          skip vizion features (versioning control)
-   --no-autorestart                     do not automatically restart apps
 ```
 
 ## What's next?

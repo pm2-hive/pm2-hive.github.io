@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" {% if page.fullscreen %}class="babel-fullscreen"{% endif %} class="no-js">
+<html lang="en">
 
   {% include head.html %}
 
   <body class="{% if page.title %}{{ page.title }}{% else %}home-page{% endif %}">
     {% include header.html %}
+
+    <div class="call-to-action-container">
+      <div class="icon-new-doc"></div>
+      <div class="call-to-action">
+        <a target="_blank">Check out the related section in the new documentation</a>
+      </div>
+    </div>
 
     <div class="header-title">
       <div class="container">
@@ -19,7 +26,6 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3" style="position : relative">
-
 
           <div id="search">
             <form action="#" method="get" onsubmit="return false" style="margin-top : 25px">
@@ -72,16 +78,12 @@
             </ul>
 
             {% endfor %}
-            <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}" title="Edit Page">
-              <button style="min-width : 130px"  class="btn btn-success">Edit this Page</button>
-            </a>
           </div>
         </div>
 
 
         <div class="col-md-9 docs-content">
           {{ content }}
-
           <br/>
           <center>
             <a target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}"
@@ -91,6 +93,7 @@
                 <span style="line-height:30px;display:inline-block;">Contribute to this page</span></button>
             </a>
           </center>
+
           <br/><br/><br/>
           <div id="disqus_thread"></div>
           <script type="text/javascript">
@@ -110,40 +113,19 @@
       </div>
     </div>
 
-    <script src="{{ "/scripts/docs.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
-
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-51734350-5', 'auto');
-      ga('send', 'pageview');
-
+    <!-- at the end of the HEAD -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+    <!-- at the end of the BODY -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+      apiKey: '1d274d1e258b11c96ef6cfc32455be56',
+      indexName: 'keymetrics',
+      inputSelector: '#searchBox',
+      debug: false // Set debug to true if you want to inspect the dropdown
+      });
     </script>
 
-    <script type="text/javascript">
-      (function(d,s,i,r) {
-        if (d.getElementById(i)){return;}
-        var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-        n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/2454038.js';
-        e.parentNode.insertBefore(n, e);
-      })(document,"script","hs-analytics",300000);
-    </script>
-    
-      <!-- at the end of the HEAD -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
-<!-- at the end of the BODY -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
-<script type="text/javascript"> docsearch({
-apiKey: '1d274d1e258b11c96ef6cfc32455be56',
-indexName: 'keymetrics',
-inputSelector: '#searchBox',
-debug: false // Set debug to true if you want to inspect the dropdown
-});
-</script>
-
+    {% include footer.html %}
   </body>
 
 </html>

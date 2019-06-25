@@ -20,12 +20,12 @@ process.json:
 ```javascript
 {
    "apps" : [{
-      "name" : "HTTP-API",
-      "script" : "http.js"
-   }],
+      "name" : "HTTP-API",
+      "script" : "http.js"
+   }],
    "deploy" : {
-     // "production" is the environment name
-     "production" : {
+     // "production" is the environment name
+     "production" : {
        "user" : "ubuntu",
        "host" : ["192.168.0.13"],
        "ref"  : "origin/master",
@@ -97,10 +97,10 @@ It contains this:
       "path" : "/var/www/production",
       // Can be used to give options in the format used in the configura-
       // tion file.  This is useful for specifying options for which there
-      // is no separate command-line flag, see 'man ssh' 
+      // is no separate command-line flag, see 'man ssh'
       // can be either a single string or an array of strings
       "ssh_options": "StrictHostKeyChecking=no",
-      // To prepare the host by installing required software (eg: git) 
+      // To prepare the host by installing required software (eg: git)
       // even before the setup process starts
       // can be multiple commands separated by the character ";"
       // or path to a script on your local machine
@@ -312,7 +312,7 @@ Host alias
     HostName myserver.com
     User username
     IdentityFile ~/.ssh/mykey
-# Usage: `ssh alias` 
+# Usage: `ssh alias`
 # Alternative: `ssh -i ~/.ssh/mykey username@myserver.com`
 
 Host deployment
@@ -320,7 +320,7 @@ Host deployment
     User username
     IdentityFile ~/.ssh/github_rsa
 # Usage:
-# git@deployment:username/anyrepo.git 
+# git@deployment:username/anyrepo.git
 # This is for cloning any repo that uses that IdentityFile. This is a good way to make sure that your remote cloning commands use the appropriate key
 ```
 

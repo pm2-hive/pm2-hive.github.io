@@ -23,15 +23,16 @@ pm2 start app.js -i max
 
 Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
 
-```json
-{
-  "apps" : [{
-    "script"    : "api.js",
-    "instances" : "max",
-    "exec_mode" : "cluster" 
+```javascript
+module.exports = {
+  apps : [{
+    script    : "api.js",
+    instances : "max",
+    exec_mode : "cluster"
   }]
 }
 ```
+
 **NOTE**: you need to set the exec_mode to `cluster` so PM2 know you want to load balance between each instances, by default it will not
 
 Then to start the Process File:
@@ -85,4 +86,3 @@ process.on('SIGINT', function() {
 Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that no local data is stored in the process, for example sessions/websocket connections, session-memory and related. Use Redis, Mongo or other databases to share states between processes.
 
 Another resource on how to write efficient, production ready stateless application is [The Twelve Factor Application manifesto](https://12factor.net/).
-

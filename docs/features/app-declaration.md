@@ -1,11 +1,11 @@
 ---
 layout: docs
-title: Process File
+title: Ecosystem File
 description: Manage applications via a configuration file
 permalink: /docs/usage/application-declaration/
 ---
 
-## Process File
+## Ecosystem File
 
 PM2 empowers your process management workflow. It allows you to fine-tune the behavior, options, environment variables, logs files of each application via a process file. It's particularly useful for micro-service based applications.
 
@@ -19,11 +19,34 @@ To generate a sample process file you can type this command:
 pm2 ecosystem
 ```
 
-This will generate a sample, `ecosystem.config.js`.
+This will generate a sample `ecosystem.config.js`:
 
-To generate a ecosystem file without any comment just run `pm2 ecosystem simple`.
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./app.js",
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }]
+}
+```
+
+Once edited at your convenience you can start/restart/stop/delete this file via CLI:
+
+```bash
+$ pm2 [start|restart|stop|delete] ecosystem.config.js
+```
+
+Checkout [the section about acting with CLI](#cli) on ecosystem.config.js to know more.
 
 ### Javascript format
+
+You can declare multiple application easily and specify different options for each of them:
 
 ```javascript
 module.exports = {
@@ -48,59 +71,10 @@ module.exports = {
 
 **Note that using a Javascript configuration file requires to end the file name with `.config.js`**
 
-### JSON format
-
-The configuration can also be in JSON format.
-
-```json
-{
-  "apps" : [{
-    "name"        : "worker",
-    "script"      : "./worker.js",
-    "watch"       : true,
-    "env": {
-      "NODE_ENV": "development"
-    },
-    "env_production" : {
-       "NODE_ENV": "production"
-    }
-  },{
-    "name"       : "api-app",
-    "script"     : "./api.js",
-    "instances"  : 4,
-    "exec_mode"  : "cluster"
-  }]
-}
-```
-
-### JSON5 format
-
-Alternatively, JSON5 is also supported
-
-```json5
-{
-  apps: [{
-    name: 'worker',
-    script: './worker.js',
-    watch: true,
-    env: {
-      NODE_ENV: 'development'
-    },
-    env_production: {
-      NODE_ENV: 'production'
-    }
-  }, {
-    name: 'api-app',
-    script: './api.js',
-    instances: 4,
-    exec_mode: 'cluster'
-  }]
-}
-```
-
 ### YAML format
 
-Here is the same example in YAML format (**use JSON format if possible**):
+You can also create a Ecosystem file in YAML format.
+Example:
 
 ```yaml
 apps:
@@ -152,18 +126,6 @@ pm2 start   ecosystem.config.js --only api-app
 pm2 restart ecosystem.config.js --only api-app
 pm2 reload  ecosystem.config.js --only api-app
 pm2 delete  ecosystem.config.js --only api-app
-```
-
-### Updating running conf
-
-Starting PM2 v2.1.X, environments are immutable by default, that means the environment will never be updated unless you tell PM2 to do so, to update configurations, you will need to use `--update-env` options. Please note that some options will not be updated (options that are listed under `General Attributes` below).
-More documentation on [--update-env here](http://pm2.keymetrics.io/docs/usage/environment/#while-restarting-reloading-a-process)
-
-Example:
-
-```bash
-pm2 restart ecosystem.config.js --update-env
-pm2 startOrReload ecosystem.config.js --update-env
 ```
 
 ### Switching environments
@@ -238,6 +200,22 @@ Application behavior and configuration can be fine-tuned with the following attr
 | post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard |
 | force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2 |
 
+### Deployment 
+
+Entry name|Description|Type|Default
+---|---|---|---
+key|SSH key path|String|$HOME/.ssh
+user|SSH user|String|
+host|SSH host|[String]|
+ssh_options|SSH options with no command-line flag, see 'man ssh'|String or [String]|
+ref|GIT remote/branch|String|
+repo|GIT remote|String|
+path|path in the server|String|
+pre-setup| Pre-setup command or path to a script on your local machine|String|
+post-setup|Post-setup commands or path to a script on the host machine|String
+pre-deploy-local|pre-deploy action|String|
+post-deploy|post-deploy action|String|
+
 ## Considerations
 
 All command line options passed when using the JSON app declaration will be dropped i.e.
@@ -247,23 +225,33 @@ All command line options passed when using the JSON app declaration will be drop
 You can start as many JSON application declarations as you want.
 
 ```bash
-cat node-app-1.json
-
+$ cat node-app-1.json
 {
   "name" : "node-app-1",
   "script" : "app.js",
   "cwd" : "/srv/node-app-1/current"
 }
+
+$ cat node-app-2.json
+{
+  "name" : "node-app-2",
+  "script" : "app2.js",
+  "cwd" : "/srv/node-app-2/current"
+}
 ```
 
 ```bash
+pm2 start node-app-1.json
 pm2 start node-app-2.json
+```
+
+Will result in two apps launched:
+
+```
 ps aux | grep node-app
 root  14735  5.8  1.1  752476  83932 ? Sl 00:08 0:00 pm2: node-app-1
 root  24271  0.0  0.3  696428  24208 ? Sl 17:36 0:00 pm2: node-app-2
 ```
-
-*Note* that if you execute `pm2 start node-app-2` again, it will spawn an additional instance node-app-2.
 
 ### CWD
 
@@ -308,7 +296,7 @@ but not
 ### Disabling logs
 
 You can pass `/dev/null` to error_file or out_file to disable logs saving.
-Note : starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
+Note: starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
 
 ### Logs suffix
 

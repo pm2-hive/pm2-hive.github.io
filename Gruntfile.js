@@ -40,6 +40,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['docs/intro.md',
+              'docs/features/quick-start.md',
               'docs/features/*'],
         dest: 'docs/full.md'
       }

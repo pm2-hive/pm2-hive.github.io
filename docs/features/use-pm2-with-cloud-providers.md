@@ -5,61 +5,70 @@ description: Use PM2 in a cloud environment (without CLI)
 permalink: /docs/usage/use-pm2-with-cloud-providers/
 ---
 
-# Using PM2 in Cloud Providers
+## Using PM2 on Cloud Providers
 
-You might find yourself in a situation in which you do not have access to a raw CLI to start your Node.js applications. You have 2 ways to circumvent this:
-* Use the preinstall directive to install PM2 globally and start your application in the start script.
-* Require PM2 as a dependency and call the module via the start script.
+You might find yourself in a situation in which you do not have access to the CLI to start your Node.js applications.
 
-## Method 1: Pre install PM2 globally
+In such a situation, pm2 must be added as a dependency and must be called with the start script.
 
-The easiest way is to install pm2 globally via the preinstall scripts and start your application via pm2.
+## Prepare your app
 
-In package.json:
+### Set your ecosystem file
 
-```json
-  "scripts": {
-    "preinstall": "npm install pm2 -g",
-    "start": "pm2-runtime app.js -i max"
-   },
+Generate an `ecosystem.config.js` template with:
+
+```bash
+pm2 init
 ```
 
-* `-i max` will [start your application in cluster mode](http://pm2.keymetrics.io/docs/usage/cluster-mode/), allowing you to get the most performance out of your instance!
+Modify the ecosystem file to match your needs:
 
-For a fine tuned configuration look at [Process Files](http://pm2.keymetrics.io/docs/usage/application-declaration/).
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./app.js",
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }]
+}
+```
 
-## Method 2: Require PM2 as a module
+ Learn more about ecosystem file [here](/docs/usage/application-declaration/).
+{: .tip}
 
-Depending on your cloud provider, the `preinstall` script might not be supported or pm2 might not be installed globally.
-To solve this we can require pm2 from the `node_module` folder:
+### Add PM2 as a module
 
-Install pm2 in your projet using `npm install --save pm2`
+Add pm2 as a dependency to your projet.
 
-In package.json:
+With npm:
+
+```bash
+npm install pm2
+```
+
+With yarn:
+
+```bash
+yarn add pm2
+```
+
+### Start script in package.json
+
+In your `package.json`, modify your `start` script like the following:
 
 ```json
+{
   "scripts": {
-    "start": "node ./node_modules/.bin/pm2-runtime app.js -i max"
+    "start": "pm2-runtime start ecosystem.config.js --env production"
   }
+}
 ```
 
-## Link to [Keymetrics](https://keymetrics.io/)
+## Deploy your app
 
-You can set KEYMETRICS_PUBLIC and KEYMETRICS_SECRET in the environment variables so that once PM2 starts, it will automatically connect to Keymetrics. Or in bash mode:
-
-```bash
-export KEYMETRICS_PUBLIC="XXXX"
-export KEYMETRICS_SECRET="YYYY"
-pm2 update
-```
-
-## Set a fixed Server Name
-
-You might want fixed server name so the names are constant in Keymetrics. The default link is the hostname (`$HOST` var) plus a few random characters. If you set the `$PM2_MACHINE_NAME`, the name will be fixed and used on the dashboard.
-
-Be careful, in case of duplicate hostnames the dashboard will receive data from both instances and flicker.
-
-
-```bash
-export PM2_MACHINE_NAME=$HOST
-```
+You can now deploy your application in your cloud providers like you would have done for a regular node.js app.

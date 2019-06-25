@@ -9,11 +9,11 @@
   "devDependencies": {
     "bootstrap-sass": "*"
   },
-  "dependencies" : {
-    "grunt" : "*",
-    "grunt-contrib-concat" : "*",
-    "grunt-readme" : "*",
-    "strip-yaml-header" : "*"
+  "dependencies": {
+    "grunt": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-readme": "*",
+    "strip-yaml-header": "*"
   },
   "directories": {
     "doc": "docs"

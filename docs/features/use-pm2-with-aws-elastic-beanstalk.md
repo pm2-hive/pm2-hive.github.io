@@ -5,7 +5,7 @@ description: Use PM2 in a AWS Elastic Beanstalk
 permalink: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
 ---
 
-# Using PM2/Keymetrics in AWS Elastic Beanstalk
+## Using PM2/Keymetrics in AWS Elastic Beanstalk
 
 This page will guide you step by step through the PM2/Keymetrics integration in a Beanstalk environment. We recommend using the [eb cli](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) for easier deployment.
 
@@ -36,7 +36,7 @@ Then we will need to change the startup scripts. We call PM2 from the node_modul
 
 ```json
 "scripts": {
-  "start": "node ./node_modules/pm2/bin/pm2 start app.js --name yourApp",
+  "start": "./node_modules/pm2/bin/pm2-runtime app.js",
   "poststart":  "node ./node_modules/pm2/bin/pm2 logs"
 }
 ```
