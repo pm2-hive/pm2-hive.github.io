@@ -22,76 +22,44 @@ The goal of pm2-runtime is to wrap your applications into a proper Node.js produ
 
 Further than that, using PM2 as a layer between the container and the application brings PM2 powerful features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/) and other great features to manage your Node.js application in production environment.
 
-## Official Supported Docker Image
+## Use PM2 inside Containers
 
-You can find the official Docker Image embedding the PM2 runtime here:
-
-[https://hub.docker.com/r/keymetrics/pm2](https://hub.docker.com/r/keymetrics/pm2)
-
-**Image Name** | **Operating system** | **Dockerfile**
----|---|---
-keymetrics/pm2:`latest-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[latest-alpine](tags/latest/alpine/Dockerfile)
-keymetrics/pm2:`8-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[8-alpine](tags/8/alpine/Dockerfile)
-keymetrics/pm2:`6-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[6-alpine](tags/6/alpine/Dockerfile)
-keymetrics/pm2:`4-alpine`|[Alpine](https://www.alpinelinux.org/about/)|[4-alpine](tags/4/alpine/Dockerfile)
-**Image Name** | **Operating system** | **Dockerfile**
-keymetrics/pm2:`latest-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[latest-stretch](tags/latest/debian/stretch/Dockerfile)
-keymetrics/pm2:`8-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[8-stretch](tags/8/debian/stretch/Dockerfile)
-keymetrics/pm2:`6-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[6-stretch](tags/6/debian/stretch/Dockerfile)
-keymetrics/pm2:`4-stretch`|[Debian Stretch](https://wiki.debian.org/DebianStretch)|[4-stretch](tags/4/debian/stretch/Dockerfile)
-**Image Name** | **Operating system** | **Dockerfile**
-keymetrics/pm2:`latest-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[latest-jessie](tags/latest/debian/jessie/Dockerfile)
-keymetrics/pm2:`8-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[8-jessie](tags/8/debian/jessie/Dockerfile)
-keymetrics/pm2:`6-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[6-jessie](tags/6/debian/jessie/Dockerfile)
-keymetrics/pm2:`4-jessie`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[4-jessie](tags/4/debian/jessie/Dockerfile)
-**Image Name** | **Operating system** | **Dockerfile**
-keymetrics/pm2:`latest-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[latest-slim](tags/latest/debian/slim/Dockerfile)
-keymetrics/pm2:`8-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[8-slim](tags/8/debian/slim/Dockerfile)
-keymetrics/pm2:`6-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[6-slim](tags/6/debian/slim/Dockerfile)
-keymetrics/pm2:`4-slim`|[Debian Jessie](https://wiki.debian.org/DebianJessie)|[4-slim](tags/4/debian/slim/Dockerfile)
-**Image Name** | **Operating system** | **Dockerfile**
-keymetrics/pm2:`latest-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[latest-wheezy](tags/latest/debian/wheezy/Dockerfile)
-keymetrics/pm2:`8-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[8-wheezy](tags/8/debian/wheezy/Dockerfile)
-keymetrics/pm2:`6-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[6-wheezy](tags/6/debian/wheezy/Dockerfile)
-keymetrics/pm2:`4-wheezy`|[Debian Wheezy](https://wiki.debian.org/DebianWheezy)|[4-wheezy](tags/4/debian/wheezy/Dockerfile)
-
-## Manual pm2-runtime usage
-
-At the beginning of your Dockerfile, add this line to install PM2:
+In your Dockerfile add this line to install PM2:
 
 ```
 RUN npm install pm2 -g
 ```
 
-Then replace the CMD directive:
+Then replace the `node` binary with `pm2-runtime` 
 
 ```
 CMD ["node", "app.js"]
 ```
 
-With this one:
+to:
 
 ```
 CMD ["pm2-runtime", "app.js"]
 ```
 
-*NB: Please note that you have to replace app.js with your application.*
-
-**You are now set!** Your Node.js application is now wrapped into a proper Node.js production environment.
+**You are now all set!** Your Node.js application is now wrapped into a proper Node.js production environment.
 
 ### Starting a configuration file
 
 Instead of running your raw Node.js application with PM2, you can declare it into a configuration file (or process file) and set some configuration variables, like enabling the cluster mode.
 
-Let's create a process.yml file with this content:
+Let's create a ecosystem.config.js file with this content:
 
-```yaml
-apps:
-  - script   : 'app.js'
-    name     : 'APP'
-    exec_mode: 'cluster'
-    instances: 2
-  - script   : 'worker.js'
+```javascript
+module.exports = [{
+  script: 'app.js',
+  name: 'app',
+  exec_mode: 'cluster',
+  instances: 2
+}, {
+  script: 'worker.js',
+  name: 'worker'
+}]
 ```
 
 All options available are [listed here](/docs/usage/application-declaration/#attributes-available).
@@ -138,21 +106,15 @@ process.on('SIGINT', function() {
 
 By default PM2 will wait 1600ms before sending a final SIGKILL signal. You can modify this delay by setting the `kill_timeout` option inside your application configuration file.
 
+Read more about application state management [here](http://localhost:4000/docs/usage/signals-clean-restart/)
+
 ### Development environment
 
 You may want to tell Developers to program inside a container to keep a consistant environment between develoment, test and production.
 
 Replacing **pm2-runtime** with **pm2-dev** will enable the watch and restart features. This is quite interesting in a development container when the host files are exposed to the container as a VOLUME.
 
-### Expose health endpoint
-
-```bash
-pm2-runtime process.json --web
-```
-
-The `--web [port]` option allows to expose all vital signs (docker instance + application) via a JSON API.
-
-### Using Keymetrics.io
+### Using PM2.io
 
 [Keymetrics.io](https://keymetrics.io/) is a monitoring service built on top of PM2 that allows to monitor and manage applications easily (logs, restart, exceptions monitoring...). Once you created a Bucket on Keymetrics you will get a public and a secret key.
 
@@ -167,14 +129,14 @@ CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "process.yml"]
 Or via environment variables:
 
 ```
-ENV KEYMETRICS_PUBLIC=XXX
-ENV KEYMETRICS_SECRET=XXX
+ENV PM2_PUBLIC_KEY=XXX
+ENV PM2_SECRET_KEY=YYY
 ```
 
 Or via the Docker run command:
 
 ```
-docker run --net host -e "KEYMETRICS_SECRET=YYY" -e "KEYMETRICS_PUBLIC=XXX" <...>
+docker run --net host -e "PM2_PUBLIC_KEY=XXX" -e "PM2_SECRET_KEY=XXX" <...>
 ```
 
 ## pm2-runtime Helper

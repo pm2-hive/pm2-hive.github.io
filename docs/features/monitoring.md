@@ -18,13 +18,11 @@ You can monitor memory and CPU easily and straight from your terminal:
 pm2 monit
 ```
 
-## Dashboard monitoring
+## PM2.io
 
-[![Keymetrics Dashboard](https://pm2.io/_nuxt/img/Personalized_metrics.ba73c4b.png)](https://app.pm2.io/#/register)
+If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications accross servers easier than ever.
 
-If you manage your Node.js application with PM2, we invite you to try Keymetrics. It makes monitoring and managing applications accross servers easier than ever.
 Feel free to try it:
-
 [Discover the monitoring dashboard for PM2](https://app.pm2.io/#/register)
 
 ## Memory threshold
@@ -38,13 +36,13 @@ Please note that the PM2 internal worker (which checks memory and related), star
 pm2 start big-array.js --max-memory-restart 20M
 ```
 
-### JSON
+### Via Ecosystem File
 
-```json
-{
-  "name"   : "max_mem",
-  "script" : "big-array.js",
-  "max_memory_restart" : "20M"
+```javascript
+module.exports = {
+   name: 'max-mem',
+   script: 'big-array.js',
+   max_memory_restart: '100M'
 }
 ```
 
