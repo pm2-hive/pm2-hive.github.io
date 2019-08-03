@@ -7,13 +7,13 @@ permalink: /docs/usage/deployment/
 
 ## Getting started
 
-PM2 embeds a simple and powerful deployment system with revision tracing. [Another step by step tutorial here](https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/).
+PM2 embeds a simple and powerful deployment system with revision tracing.
 
 Please read the [Considerations to use PM2 deploy](#considerations).
 
 ## Simple deploy
 
-Baically you only need to add a "deploy" attribute to the ecosystem.json. Here is a bare minimum to deploy an application:
+You only need to add a "deploy" attribute to the ecosystem.json file. Here is a bare minimum to deploy an application:
 
 process.json:
 
