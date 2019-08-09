@@ -13,7 +13,7 @@ sass:
 
 markdown: kramdown
 
-exclude: ['node_modules', 'docs/intro.md']
+exclude: ['node_modules', 'docs/intro.md', 'scripts', 'Gemfile', 'Gemfile.lock', 'README.md']
 
 plugins:
   - jekyll-paginate
@@ -23,3 +23,4 @@ redcarpet:
 
 permalink: /blog/:year/:month/:day/:title
 paginate: 1
+register_url: https://id.keymetrics.io/api/oauth/register
