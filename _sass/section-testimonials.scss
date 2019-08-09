@@ -1,0 +1,110 @@
+
+@mixin fade-out($selector, $opacity: 0.6) {
+  transition: opacity 0.5s;
+  &#{$selector} {
+    opacity: $opacity;
+  }
+}
+$testimonial-width: 24rem;
+
+.section-testimonials {
+  .section-wrapper {
+    margin-top: 187px;
+    margin-bottom: 280px;
+
+    @media #{$mobile} {
+      margin-top: 120px;
+      margin-bottom: 95px;
+    }
+  }
+
+  @media #{$mobile} {
+    .card-right {
+      width: $testimonial-width;
+      justify-self: center;
+    }
+  }
+
+  .testimonials {
+    overflow: hidden;
+    min-width: min-content;
+
+    .testimonials-wrapper {
+      display: flex;
+      transition: transform 0.5s;
+
+      .testimonial {
+        min-width: $testimonial-width;
+        padding: 36px 30px;
+        margin-right: 40px;
+        box-sizing: border-box;
+        @include fade-out(":not(.focus)");
+        cursor: pointer;
+
+        p {
+          margin: 0;
+        }
+
+        .testimonial-content {
+          min-height: 125px;
+          margin-bottom: 30px;
+        }
+
+        .testimonial-author {
+          color: #019cf6;
+          font-weight: 500;
+          font-size: 0.9em;
+
+          &::before {
+            content: "- ";
+          }
+        }
+      }
+    }
+
+    .testimonials-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 40px;
+      width: $testimonial-width;
+
+      .next,
+      .previous {
+        display: inline-block;
+        background: url(./arrow.png) no-repeat center center;
+        width: 19px;
+        height: 15px;
+        padding: 6px;
+        @include fade-out(".disabled", 0.3);
+        &:not(.disabled) {
+          cursor: pointer;
+        }
+      }
+
+      .previous {
+        transform: rotate(180deg);
+        margin-right: 10px;
+      }
+
+      .testimonials-icons {
+        display: flex;
+
+        .testimonial-icon {
+          padding: 6px;
+          @include fade-out(":not(.focus)", 0.3);
+          cursor: pointer;
+
+          &:before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            background-color: #806fe7;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

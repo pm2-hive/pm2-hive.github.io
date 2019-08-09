@@ -1,8 +1,8 @@
 <header id="menu">
   <div class="section-wrapper">
-    <nav>
+    <nav class="main-nav">
       <a href="{{ site.url }}" title="Go to home page" class="logo-link">
-        <img alt="PM2 logo" src="./assets/logo.png" />
+        <img alt="PM2 logo" src="{{ site.url }}/assets/logo.png" />
       </a>
       <div class="menu">
         <a
@@ -15,18 +15,24 @@
         <a class="menu-overlay" href="#" title="Close the menu"></a>
         <div class="menu-content">
           <div class="doc-links">
-            <a href="/docs/usage/quick-start/" title="Go to Quick start">
+            <a
+              href="{{ site.url }}/docs/usage/quick-start/"
+              title="Go to Quick start"
+              class="{% if page.url == '/docs/usage/quick-start/' %}current{% endif %}"
+            >
               Quick start
             </a>
             <a
-              href="/docs/usage/pm2-doc-single-page/"
+              href="{{ site.url }}/docs/usage/pm2-doc-single-page/"
               title="Go to Documentation"
+              class="{% if page.url == '/docs/usage/pm2-doc-single-page/' %}current{% endif %}"
             >
               Documentation
             </a>
             <a
-              href="/docs/usage/use-pm2-with-cloud-providers/"
+              href="{{ site.url }}/docs/usage/use-pm2-with-cloud-providers/"
               title="Go to Integrations"
+              class="{% if page.url == '/docs/usage/use-pm2-with-cloud-providers/' %}current{% endif %}"
             >
               Integrations
             </a>

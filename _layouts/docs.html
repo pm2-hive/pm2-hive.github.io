@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  </head>
+  <body>
+    {% include header.html %}
+    <main>
+      <section class="section-doc">
+        <div class="section-background">
+          <div class="section-wrapper">
+            <div class="hexagon hexagon-1"></div>
+            <div class="hexagon hexagon-2"></div>
+            <div class="hexagon hexagon-3"></div>
+            <div class="hexagon hexagon-4"></div>
+          </div>
+        </div>
+        <div class="section-wrapper">
+          <h1>{{ page.title }}</h1>
+          <div class="doc-nav-and-content">
+            <nav>
+              <div class="search-field">
+                <input type="text" placeholder="Search" />
+                <i class="fa fa-search"></i>
+              </div>
+              <ul>
+                {% for item in site.data.nav %}
+                <li class="nav-section {% if page.url contains item.url %}active{% endif %}">
+
+                  <a class="nav-section-title" href="{{item.url | escape}}">{{ item.title | escape }}</a>
+
+                  <ul class="nav-section-content">
+                    {% for item in item.subnav %}
+                    <li class="nav-section-entry {% if page.url contains item.url %}active{% endif %}">
+                      <a
+                        href="{% unless item.url contains '://' %}{{ site.url }}{% endunless %}{{ item.url }}"
+                        {% if item.blank == true %}
+                        target="_blank"
+                        {% endif %}
+                      >
+                        {{ item.title }}
+                      </a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul>
+            </nav>
+            <article class="doc-content">
+
+            {{ content }}
+
+            <a class="edit-page-button" target="_blank" href="{{site.repo_url}}/tree/master/{{page.path}}" title="Edit Page">
+              <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+              Contribute to this page
+            </a>
+
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+              /* * * CONFIGURATION VARIABLES * * */
+              var disqus_shortname = 'pm2';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    {% include footer.html %}
+
+    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script>
+      docsearch({
+        apiKey: '1d274d1e258b11c96ef6cfc32455be56',
+        indexName: 'keymetrics',
+        inputSelector: '.search-field input',
+      });
+    </script>
+    <script src="{{ site.url }}/assets/mobile-doc-nav.js"></script>
+  </body>
+</html>
