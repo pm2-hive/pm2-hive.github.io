@@ -422,6 +422,10 @@ section {
   @media #{$mobile} {
     .menu-button {
       display: block;
+      position: fixed;
+      top: 40px;
+      right: 16px;
+      // background-color: #0f044e;
     }
 
     .menu-icon {
