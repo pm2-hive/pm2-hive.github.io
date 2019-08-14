@@ -70,7 +70,7 @@ pm2.connect(function(err) {
   * `logDateFormat` - The display format for log timestamps (eg "YYYY-MM-DD HH:mm Z"). The format is a [moment display format](http://momentjs.com/docs/#/displaying/).
   * `pid` - (Default: `"~/.pm2/pids/app_name-id.pid"`) The path to a file to write the pid of the started process. The file will be overwritten. Note that the file is not used in any way by pm2 and so the user is free to manipulate or remove that file at any time. The file will be deleted when the process is stopped or the daemon killed.
   * `minUptime` - The minimum uptime of the script before it's considered successfully started. 
-  * `maxRestarts` - The maximum number of times in a row a script will be restarted if it exits in less than `min_uptime`.
+  * `maxRestarts` - The maximum number of times in a row a script will be restarted if it exits in less than `minUptime`.
   * `maxMemoryRestart` - If sets and `script`'s memory usage goes about the configured number, pm2 restarts the `script`. Uses human-friendly suffixes: 'K' for kilobytes, 'M' for megabytes, 'G' for gigabytes', etc. Eg "150M".
   * `killTimeout` - (Default: `1600`) The number of milliseconds to wait after a `stop` or `restart` command issues a `SIGINT` signal to kill the script forceably with a `SIGKILL` signal. 
   * `restartDelay` - (Default: `0`) Number of millseconds to wait before restarting a script that has exited.  
