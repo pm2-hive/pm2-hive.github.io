@@ -424,8 +424,12 @@ section {
       display: block;
       position: fixed;
       top: 40px;
-      right: 16px;
-      // background-color: #0f044e;
+      right: 32px;
+      background-color: rgba(72, 2, 169, 0.7);
+
+      @media #{$small-mobile} {
+        right: 16px;
+      }
     }
 
     .menu-icon {

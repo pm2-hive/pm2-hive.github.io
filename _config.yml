@@ -13,7 +13,7 @@ sass:
 
 markdown: kramdown
 
-exclude: ['node_modules', 'docs/intro.md', 'scripts', 'Gemfile', 'Gemfile.lock', 'README.md']
+exclude: ['node_modules', 'scripts', 'Gemfile', 'Gemfile.lock', 'README.md']
 
 plugins:
   - jekyll-paginate
