@@ -1,119 +1,315 @@
 ---
 layout: default
+title: Home
 ---
-
-<div class="container index-page">
-  <div class="row index-box text-center">
-    <img src="https://raw.githubusercontent.com/pm2-hive/pm2-hive.github.io/6aacedb6e023cc494c66864c9963c4446b58d64e/images/pm2-logo-update.png" title="Pm2" style="width: 650px; padding: 60px 0;" alt="pm2 logo"/>
-    <br/>
-    <h1>Advanced, production process manager for Node.js</h1>
-  </div>
-  <div class="row index-box text-center">
-    <div class="col-md-4 col-md-offset-4">
-      <pre class="pre-home" style="text-align : center">npm install pm2 -g <span class="blinking-cursor">|</span></pre>
+<section class="section-intro">
+  <div class="section-background">
+    <div class="section-wrapper">
+      <div class="hexagon hexagon-1"></div>
+      <div class="hexagon hexagon-2"></div>
+      <div class="hexagon hexagon-3"></div>
+      <div class="hexagon hexagon-4"></div>
     </div>
   </div>
-
-  <hr class="index-divider">
-
-  <div class="row index-box">
-    <div class="col-md-6 box-desc">
-      <h2>Features</h2>
-      <p>A Complete feature set for production environment, built with a worldwide community of developers and enterprises</p>
-
-      <pre class="pre-home">pm2 start app.js</pre>
-    </div>
-
-    <div class="col-md-6">
-      <div class="col-md-6 col-xs-6">
-        <ul class="pm2-tick-list">
-          <li><a title="Behavior configuration" href="/docs/usage/application-declaration/">Behavior configuration</a></li>
-          <li><a href="/docs/usage/source-map-support" title="Source map support for BabelJS/Typescript">Source map support</a></li>
-          <li><a href="/docs/usage/docker-pm2-nodejs/" title="PM2 Docker Container Integration">Container Integration</a></li>
-          <li><a href="/docs/usage/watch-and-restart/" title="Watch and Reload">Watch & Reload</a></li>
-          <li><a href="/docs/usage/log-management/" title="Log management">Log management</a></li>
-          <li><a href="/docs/usage/monitoring/" title="Monitoring PM2 and Node.js">Monitoring</a></li>
-          <li><a href="/docs/advanced/pm2-module-system/" title="Module system in PM2">Module System</a></li>
-          <li><a href="/docs/usage/monitoring/#max-memory-restart" title="Max Memory Reload">Max memory reload</a></li>
-        </ul>
+  <div class="section-wrapper">
+    <div class="card">
+      <div class="card-left">
+        <h1>Advanced, production process manager for&nbsp;Node.JS</h1>
+        <p>
+          PM2 is a daemon process manager that will help you manage and keep
+          your application online
+        </p>
+        <div class="code-and-button">
+          <code class="dim-border">npm install pm2 -g</code
+          ><!--
+          --><a
+            href="#TODO"
+            title="Learn more"
+            class="button big accent-border border-corners inner-shadows"
+          >
+            Learn more
+          </a>
+        </div>
       </div>
-
-      <div class="col-md-6 col-xs-6">
-        <ul class="pm2-tick-list">
-          <li><a href="/docs/usage/cluster-mode/" title="Node.js PM2 Cluster mode">Cluster Mode</a></li>
-          <li><a href="/docs/usage/cluster-mode/#reload-without-downtime" title="Hot Reload">Hot reload</a></li>
-          <li><a href="/docs/usage/pm2-development/" title="PM2 in development">Development workflow</a></li>
-          <li><a href="/docs/usage/startup/" title="Startup Script Generation">Startup Scripts</a></li>
-          <li><a href="/docs/usage/deployment/" title="Deployment Workflow">Deployment workflow</a></li>
-          <li><a href="/docs/usage/use-pm2-with-cloud-providers/" title="PM2 on Heroku / Azure / Google App Engine">PaaS Compatible</a></li>
-          <li><a href="/docs/usage/monitoring/#keymetrics-monitoring" title="Keymetrics monitoring">Keymetrics monitoring</a></li>
-          <li><a href="/docs/usage/pm2-api/" title="PM2 API">API</a></li>
-        </ul>
+      <div class="card-right">
+        <img alt="Header graphic" src="{{ site.url }}/assets/header-graphic.png" />
       </div>
     </div>
   </div>
+</section>
 
-  <hr class="index-divider">
-
-  <div class="row index-box">
-    <div class="col-md-6">
-      <img src="/images/pm2-monit.png" alt="PM2 Monit" title="PM2 Monit"/>
-    </div>
-    <div class="col-md-6 box-desc">
-      <h2>Monitoring</h2>
-      <p>Monitoring all processes launched:</p>
-      <div class="highlight-index">
-        <pre class="pre-home">pm2 monit</pre>
+<section class="section-features">
+  <div class="section-background">
+    <div class="section-wrapper"><div class="hexagon hexagon-5"></div></div>
+  </div>
+  <div class="section-wrapper">
+    <div class="card">
+      <div class="card-left">
+        <h1>Features</h1>
+        <p>
+          A Complete feature set for production environment, built with a
+          worldwide community of developers and enterprises.
+        </p>
+      </div>
+      <div class="card-right">
+        <div
+          class="feature-lists accent-border border-corners big-corners big-inner-shadows"
+        >
+          <ul>
+            <li>
+              <a
+                title="Behavior configuration"
+                href="{{ site.url }}/docs/usage/application-declaration/"
+              >
+                Behavior configuration
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/source-map-support"
+                title="Source map support for BabelJS/Typescript"
+              >
+                Source map support
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/docker-pm2-nodejs/"
+                title="PM2 Docker Container Integration"
+              >
+                Container Integration
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/watch-and-restart/"
+                title="Watch and Reload"
+              >
+                Watch &amp; Reload
+              </a>
+            </li>
+            <li>
+              <a href="{{ site.url }}/docs/usage/log-management/" title="Log management">
+                Log management
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/monitoring/"
+                title="Monitoring PM2 and Node.js"
+              >
+                Monitoring
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/advanced/pm2-module-system/"
+                title="Module system in PM2"
+              >
+                Module System
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/monitoring/#max-memory-restart"
+                title="Max Memory Reload"
+              >
+                Max memory reload
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/cluster-mode/"
+                title="Node.js PM2 Cluster mode"
+              >
+                Cluster Mode
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/cluster-mode/#reload-without-downtime"
+                title="Hot Reload"
+              >
+                Hot reload
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/pm2-development/"
+                title="PM2 in development"
+              >
+                Development workflow
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/startup/"
+                title="Startup Script Generation"
+              >
+                Startup Scripts
+              </a>
+            </li>
+            <li>
+              <a href="{{ site.url }}/docs/usage/deployment/" title="Deployment Workflow">
+                Deployment workflow
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/use-pm2-with-cloud-providers/"
+                title="PM2 on Heroku / Azure / Google App Engine"
+              >
+                PaaS Compatible
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{ site.url }}/docs/usage/monitoring/#keymetrics-monitoring"
+                title="Keymetrics monitoring"
+              >
+                Keymetrics monitoring
+              </a>
+            </li>
+            <li><a href="{{ site.url }}/docs/usage/pm2-api/" title="PM2 API">API</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-left">
+        <div class="code-and-button">
+          <code class="dim-border">pm2 start app.js</code
+          ><!--
+           --><a
+            href="#TODO"
+            title="Get started"
+            class="button big dim-border dim-inner-shadows"
+          >
+            Get started
+          </a>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <hr class="index-divider">
-
-  <div class="row index-box">
-    <div class="col-md-6 box-desc">
-      <h2>Microservice</h2>
-      <p>List all processes:</p>
-      <pre class="pre-home">pm2 list</pre>
-      <p>Act on them:</p>
-      <pre class="pre-home">pm2 stop    <app_name|id|all>
-pm2 restart <app_name|id|all>
-pm2 delete  <app_name|id|all></pre>
-    </div>
-    <div class="col-md-6">
-      <img src="/images/pm2-list.png" alt="PM2 list"/>
-    </div>
+<section class="section-monitoring">
+  <div class="section-background">
+    <div class="section-wrapper"><div class="hexagon hexagon-6"></div></div>
   </div>
-
-  <hr class="index-divider">
-
-  <div class="text-center">
-    <div class="btn-wrapper">
-      <a title="PM2 Quickstart" href="/docs/usage/quick-start/" class="btn btn-featured">QuickStart</a>
-      <a title="PM2 features" href="/docs/usage/cluster-mode" class="btn btn-featured">Features</a>
-    </div>
-  </div>
-  <hr class="index-divider">
-
-  <div class="index-box">
-    <div class="row">
-      <h2 class="text-center">Client Testimonial</h2>
-      <div class="col-md-3 col-md-offset-1 oval-quotes">
-        <p>Guys just installed pm2 on my live server and hooked up to Keymetrics.
-          Very impressed. Its all seamless and awesome!</p>
-        <p><strong>Adam Robinson</strong></p>
+  <div class="section-wrapper">
+    <div class="card">
+      <div class="card-left">
+        <h1>Monitoring</h1>
+        <p>Monitoring all processes launched:</p>
       </div>
-      <div class="col-md-3 col-md-offset-1 oval-quotes">
-        <p>I made my Node.js application performance increase by a factor up to 5 without any code change!</p>
-        <p><strong>Frank Lonas</strong></p>
+      <div
+        class="card-right border-corners accent-border big-corners big-inner-shadows"
+      >
+      <img alt="PM2 monit example" src="{{ site.url }}/assets/pm2-monit.png" />
       </div>
-      <div class="col-md-3 col-md-offset-1 oval-quotes">
-        <p>Recently switched to pm2 from forever.. not looking back!</p>
-        <p><strong>Samuel Brown</strong></p>
+      <div class="card-left">
+        <div class="code-and-button">
+          <code class="accent-border">pm2 monit</code
+          ><!--
+           --><a
+            href="#TODO"
+            title="Learn more"
+            class="button big accent-border dim-inner-shadows"
+          >
+            Learn more
+          </a>
+        </div>
       </div>
     </div>
-    <br/>
-    <br/>
   </div>
+</section>
 
-</div>
+<section class="section-microservice">
+  <div class="section-background">
+    <div class="section-wrapper"><div class="hexagon hexagon-7"></div></div>
+  </div>
+  <div class="section-wrapper">
+    <div class="card">
+      <div class="card-left">
+        <h1>Microservice</h1>
+        <p>List all processes:</p>
+        <code class="code-block dim-border">pm2 list</code>
+      </div>
+      <div
+        class="card-right border-corners accent-border big-corners big-inner-shadows"
+      >
+      <img alt="PM2 list example" src="{{ site.url }}/assets/pm2-list.png" />
+      </div>
+      <div class="card-left">
+        <p>Act on them:</p>
+        <code class="code-block dim-border">
+          pm2 stop<br />pm2 restart<br />pm2 delete
+        </code>
+        <p>
+          <a
+            href="#TODO"
+            title="Learn more"
+            class="button big dim-border dim-inner-shadows"
+          >
+            Learn more
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-testimonials">
+  <div class="section-background">
+    <div class="section-wrapper">
+      <div class="hexagon hexagon-8"></div>
+      <div class="hexagon hexagon-9"></div>
+    </div>
+  </div>
+  <div class="section-wrapper">
+    <div class="card">
+      <div class="card-left">
+        <h1>Testimonials</h1>
+        <p>Hear what others have to say about PM2.</p>
+      </div>
+      <div class="card-right">
+        <div class="testimonials">
+          <div class="testimonials-wrapper">
+            <div class="testimonial accent-border focus big-inner-shadows">
+              <p class="testimonial-content">
+                Guys just installed pm2 on my live server and hooked up to
+                Keymetrics. Very impressed. Its all seamless and awesome!
+              </p>
+              <p class="testimonial-author">Adam Robinson</p>
+            </div>
+            <div class="testimonial accent-border big-inner-shadows">
+              <p class="testimonial-content">
+                I made my Node.js application performance increase by a factor
+                up to 5 without any code change!
+              </p>
+              <p class="testimonial-author">Frank Lonas</p>
+            </div>
+            <div class="testimonial accent-border big-inner-shadows">
+              <p class="testimonial-content">
+                Recently switched to pm2 from forever.. not looking back!
+              </p>
+              <p class="testimonial-author">Samuel Brown</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-left">
+        <p>
+          <a
+            href="#TODO"
+            title="Get started"
+            class="button big accent-border border-corners dim-inner-shadows"
+          >
+            Get started
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

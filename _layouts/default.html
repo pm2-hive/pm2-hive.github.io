@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-{% include head.html %}
-
-<body class="{% if page.title %}{{ page.title }}{% else %}home-page{% endif %}">
-
-{% include header.html %}
-
-{{ content }}
-
-{% include footer.html %}
-
-</body>
-
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    {% include header.html %}
+    <main>
+      {{ content }}
+    </main>
+    {% include footer.html %}
+    <script src="{{ site.url }}/assets/testimonials.js"></script>
+    <script src="{{ site.url }}/assets/menu.js"></script>
+  </body>
 </html>

@@ -1,61 +1,51 @@
-<nav id="header" class="navbar navbar-default navbar-pm2" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" data-target="#navigation" data-toggle="collapse" type="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <a href="{{ site.baseurl }}/" alt="Home">
-        <img src="https://raw.githubusercontent.com/pm2-hive/pm2-hive.github.io/6aacedb6e023cc494c66864c9963c4446b58d64e/images/pm2-logo-update.png" style="width: 162px;margin-top: 11px;margin-right: 20px;">
+<header id="menu">
+  <div class="section-wrapper">
+    <nav class="main-nav">
+      <a href="{{ site.url }}" title="Go to home page" class="logo-link">
+        <img alt="PM2 logo" src="{{ site.url }}/assets/logo.png" />
       </a>
-
-    </div>
-    <div id="navigation" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        {% for item in site.data.nav %}
-          {% if item.subnav %}
-            <li class="dropdown {% if page.url contains item.url %}active{% endif %}">
-
-              <a class="nav-fullscreen" href="{{item.url}}" role="button" aria-expanded="false">{{ item.title }}</a>
-
-              <a href="#" class="nav-min-screen dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ item.title }} <span class="caret"></span></a>
-
-              <ul class="dropdown-menu" role="menu">
-                {% for item in item.subnav %}
-                <li {% if page.url contains item.url %} class="active"{% endif %}>
-                  <a {% if item.blank == true %} target="_blank" {% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a>
-                </li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% else %}
-            <li {% if page.url contains item.url %} class="active" {% endif %} >
-              <a {% if page.blank == true %} target="_blank"{% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <!-- <li> -->
-        <!--   <a href="http://slack.pm2.io" title="PM2 slack"> -->
-        <!--     <img src="http://slack.pm2.io/badge.svg"> -->
-        <!--   </a> -->
-        <!-- </li> -->
-        <li class="li-github">
-          <a href="https://github.com/Unitech/PM2" style="color:white">
-            <iframe src="https://ghbtns.com/github-btn.html?user=Unitech&repo=PM2&type=star&count=true&size=medium" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-            <!-- <i class="fa fa-github fa-2"></i> -->
+      <div class="menu">
+        <a
+          title="Open menu"
+          href="#menu"
+          class="button accent-border border-corners inner-shadows menu-button"
+        >
+          <div class="menu-icon"></div>
+        </a>
+        <a class="menu-overlay" href="#" title="Close the menu"></a>
+        <div class="menu-content">
+          <div class="doc-links">
+            <a
+              href="{{ site.url }}/docs/usage/quick-start/"
+              title="Go to Quick start"
+              class="{% if page.url == '/docs/usage/quick-start/' %}current{% endif %}"
+            >
+              Quick start
+            </a>
+            <a
+              href="{{ site.url }}/docs/usage/pm2-doc-single-page/"
+              title="Go to Documentation"
+              class="{% if page.url == '/docs/usage/pm2-doc-single-page/' %}current{% endif %}"
+            >
+              Documentation
+            </a>
+            <a
+              href="{{ site.url }}/docs/usage/use-pm2-with-cloud-providers/"
+              title="Go to Integrations"
+              class="{% if page.url == '/docs/usage/use-pm2-with-cloud-providers/' %}current{% endif %}"
+            >
+              Integrations
+            </a>
+          </div>
+          <a
+            href="{{ site.register_url }}"
+            title="Get started"
+            class="button accent-border border-corners inner-shadows"
+          >
+            Get started
           </a>
-        </li>
-        <li>
-          <a class="btn-monit" title="Monitor PM2" href="https://id.keymetrics.io/api/oauth/register">
-            <button class="btn btn-info" type="button">Monitor PM2</button>
-          </a>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </div>
+    </nav>
   </div>
-</nav>
+</header>
