@@ -196,22 +196,12 @@
     box-shadow: 0 40px 40px rgba(0, 0, 0, 0.3);
 
     h2 {
-      display: inline-block;
-      padding: 11px 0;
-      border-bottom: 1px solid currentColor;
       font-size: 1.7rem;
+      border-bottom: 1px solid #e2e6eb;
 
       &:not(:first-child) {
         margin-top: 40px;
       }
-      // &::after {
-      //   content: "";
-      //   position: absolute;
-      //   display: block;
-      //   left: 0;
-      //   right: 0;
-      //   border-bottom: 1px solid #e2e6eb;
-      // }
     }
 
     h3 {
@@ -220,6 +210,30 @@
 
     h4 {
       font-size: 1.3rem;
+    }
+    h2,
+    h3,
+    h4 {
+      a {
+        display: inline-block;
+        padding: 11px 0;
+        border-bottom: 1px solid currentColor;
+        margin-bottom: -1px;
+        &:hover {
+          text-decoration: none;
+          &::before {
+            opacity: 1;
+          }
+        }
+        &::before {
+          content: "¶";
+          width: 0.8em;
+          display: inline-block;
+          margin-left: -0.8em;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+      }
     }
 
     a,
