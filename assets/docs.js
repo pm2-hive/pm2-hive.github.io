@@ -1,4 +1,16 @@
 (() => {
+  function __hPopulate(el, child) {
+    if (!child) return;
+    if (typeof child === "string") {
+      el.appendChild(document.createTextNode(child));
+    } else if (!child.nodeType && typeof child.length === "number") {
+      for (let i = 0; i < child.length; i += 1) {
+        __hPopulate(el, child[i]);
+      }
+    } else {
+      el.appendChild(child);
+    }
+  }
   function h(tag, props, ...children) {
     const el = document.createElement(tag);
     if (props) {
@@ -13,15 +25,14 @@
       }
     }
     for (const child of children) {
-      if (typeof child === "string") {
-        el.appendChild(document.createTextNode(child));
-      } else {
-        el.appendChild(child);
-      }
+      __hPopulate(el, child);
     }
     return el;
   }
 
+  /**
+   * Setup responsive navigation
+   */
   const SMALL_MOBILE_WIDTH = 750;
   const root = document.querySelector(".doc-nav-and-content nav");
   if (!root) return;
@@ -73,7 +84,7 @@
         navToplevel.style.height = "0px";
       });
     }
-    scheduleTransitionEnd()
+    scheduleTransitionEnd();
   }
 
   function uncollapse() {
@@ -81,7 +92,7 @@
     const scrollHeight = navToplevel.scrollHeight;
     root.classList.remove("collapsed");
     navToplevel.style.height = scrollHeight + "px";
-    scheduleTransitionEnd()
+    scheduleTransitionEnd();
   }
 
   function adaptNav(transition) {
@@ -102,4 +113,15 @@
 
   addEventListener("resize", adaptNav);
   adaptNav(false);
+
+  /**
+   * Wrap each title in a link
+   */
+  document
+    .querySelectorAll(".doc-content h1[id], h2[id], h3[id], h4[id]")
+    .forEach(element => {
+      element.appendChild(
+        h("a", { href: "#" + element.id }, element.childNodes)
+      );
+    });
 })();
