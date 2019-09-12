@@ -103,10 +103,12 @@ timestamp=2019-06-21-19:03:58-0700 app=log id=10 type=error message=err
 
 ## Flushing logs
 
-This will empty all current application logs managed by PM2:
+This will empty the current application logs managed by PM2:
 
 ```bash
 pm2 flush
+
+pm2 flush <api> # Clear the logs for the app with name/id matching <api>
 ```
 
 ## Size limited log rotation
