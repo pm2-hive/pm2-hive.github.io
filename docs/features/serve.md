@@ -8,6 +8,7 @@ permalink: /docs/usage/expose/
 ## Serve static file over http
 
 PM2 can serve static file very easily with the `pm2 serve` feature.
+It support serving raw files from a specified folder or you can serve a SPA (Single Page Application) with it.
 
 ## CLI
 
@@ -44,6 +45,20 @@ To automatically redirect all queries to the index.html use the `--spa` option:
 pm2 serve --spa
 ```
 
+Via a process file:
+
+```javascript
+module.exports = {
+  script: "serve",
+  env: {
+    PM2_SERVE_PATH: '.',
+    PM2_SERVE_PORT: 8080,
+    PM2_SERVE_SPA: 'true',
+    PM2_SERVE_HOMEPAGE: './index.html'
+  }
+}
+```
+
 ### Protect access with password
 
 To basic protect the access to the exposed files you can use the `--basic-auth-username` and `--basic-auth-password`:
@@ -51,3 +66,19 @@ To basic protect the access to the exposed files you can use the `--basic-auth-u
 ```bash
 pm2 serve --basic-auth-username <username> --basic-auth-password <password>
 ```
+
+Via a process file:
+
+```javascript
+module.exports = {
+  script: "serve",
+  env: {
+    PM2_SERVE_PATH: '.',
+    PM2_SERVE_PORT: 8080,
+    PM2_SERVE_BASIC_AUTH: 'true',
+    PM2_SERVE_BASIC_AUTH_USERNAME: 'example-login',
+    PM2_SERVE_BASIC_AUTH_PASSWORD: 'example-password'
+  }
+}
+```
+
