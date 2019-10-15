@@ -5,10 +5,6 @@ description: Getting started with PM2
 permalink: /docs/usage/quick-start/
 ---
 
-<center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
-
-![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
-
 ## Welcome!
 
 Welcome to the PM2 Quick Start!

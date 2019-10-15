@@ -1,16 +1,54 @@
-
-<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-
-<script src="{{ "/scripts/docs.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
-<script src="/scripts/search/uri.js" type="text/javascript" charset="utf-8"></script>
-<script src="/scripts/search/date.format.js" type="text/javascript" charset="utf-8"></script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-51734350-5', 'auto');
-  ga('require', 'linkid');
-  ga('send', 'pageview');
-</script>
+<footer>
+  <div class="section-background">
+    <div class="section-wrapper">
+      <div class="hexagon hexagon-10"></div>
+      <div class="hexagon hexagon-11"></div>
+    </div>
+  </div>
+  <div class="section-wrapper">
+    <nav class="main-nav">
+      <a href="{{ site.url }}" title="Go to home page" class="logo-link">
+        <img alt="PM2 logo" src="{{ site.url }}/assets/logo.png" />
+      </a>
+      <div class="doc-links">
+        <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+          Quick start
+        </a>
+        <a href="{{ site.url }}/docs/usage/pm2-doc-single-page/" title="Go to Documentation">
+          Documentation
+        </a>
+        <a
+          href="{{ site.url }}/docs/usage/use-pm2-with-cloud-providers/"
+          title="Go to Integrations"
+        >
+          Integrations
+        </a>
+      </div>
+      <div class="button-border">
+        <a
+          href="{{ site.register_url }}"
+          title="Get started"
+          class="button accent-border border-corners big inner-shadows"
+        >
+          Get started
+        </a>
+      </div>
+    </nav>
+    <div class="below-nav">
+      <div class="copyright">© 2019 PM2. All Rights Reserved.</div>
+      <div>
+        <a
+          href="{{ site.url }}/assets/terms_conditions.pdf"
+          title="Open Terms of Use"
+          >Terms of Use</a
+        >
+        //
+        <a
+          href="{{ site.url }}/assets/privacy_policy.pdf"
+          title="Open Privacy Policy"
+          >Privacy Policy</a
+        >
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+
+.section-microservice {
+  .section-wrapper {
+    margin-top: 210px;
+    margin-bottom: 132px;
+    @media #{$mobile} {
+      margin-top: 110px;
+      margin-bottom: 180px;
+    }
+  }
+
+  p {
+    margin: 17px 0;
+  }
+
+  code {
+    max-width: 26rem;
+    @media #{$mobile} {
+      margin: 0 auto;
+    }
+  }
+
+  .card-right {
+    padding: 10px;
+    @media #{$mobile} {
+      margin-top: 20px;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
