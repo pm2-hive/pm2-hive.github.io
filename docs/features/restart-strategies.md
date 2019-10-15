@@ -7,8 +7,6 @@ permalink: /docs/usage/restart-strategies/
 
 ## Exponential Backoff Restart Delay
 
-*Available in PM2 >= 3.2*
-
 A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementaly the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
 
 CLI:
@@ -60,11 +58,11 @@ module.exports = [{
 
 ## Memory based reload strategy
 
-Checkout [https://pm2.io/doc/en/runtime/features/memory-limit/](https://pm2.io/doc/en/runtime/features/memory-limit/)
+Checkout [/docs/usage/memory-limit/](/docs/usage/memory-limit/)
 
 ## 0 second Downtime Reload
 
-Checkout the cluster mode to get [this behavior](/doc/en/runtime/guide/load-balancing/#0-seconds-downtime-reload)
+Checkout the cluster mode to get [this behavior](/docs/usage/cluster-mode/#reload)
 
 ## No Auto Restart
 
