@@ -13,7 +13,7 @@ Once these source map files are generated, PM2 will automatically detects them a
 
 Since the version 1.0.2, PM2 embeds a mecanism to support javascript source map.
 
-**PM2 automatically detects javascript source map files** if the file you start (let's say app.js) has his map equivalence (e.g app.js.map).
+**PM2 automatically detects javascript source map files** if you start app.js, it will expect app.js.map to exist as well.
 
 If you have a different layout, you can force the source map support by starting your application:
 

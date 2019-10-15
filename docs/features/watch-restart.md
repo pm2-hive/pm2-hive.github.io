@@ -20,7 +20,7 @@ If `--watch` is enabled, stopping it won't stop watching:
 
 Restart with `--watch` will toggle the `watch` parameter.
 
-To watch specific paths, please use a [Ecosystem File](/doc/en/runtime/guide/ecosystem-file/), `watch` can take a string or an array of paths. Default is `true`:
+To watch specific paths, please use a [Ecosystem File](/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
 
 ```javascript
 module.exports = {

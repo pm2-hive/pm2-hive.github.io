@@ -106,7 +106,7 @@ process.on('SIGINT', function() {
 
 By default PM2 will wait 1600ms before sending a final SIGKILL signal. You can modify this delay by setting the `kill_timeout` option inside your application configuration file.
 
-Read more about application state management [here](http://localhost:4000/docs/usage/signals-clean-restart/)
+Read more about application state management [here](/docs/usage/signals-clean-restart/)
 
 ### Development environment
 

@@ -50,9 +50,15 @@ section {
     padding: 16px 16px;
   }
 
-  .section-wrapper {
+  .header-wrapper {
     margin: 0 auto;
     max-width: $desktop-max-width;
+    position: relative;
+  }
+
+  .section-wrapper {
+    margin: 0 auto;
+    max-width: $desktop-max-width + 200;
     position: relative;
   }
 }
@@ -507,6 +513,25 @@ section {
         margin-top: 16px;
       }
     }
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    background: #111033;
+    color: white;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background: #efefef;
   }
 }
 

@@ -128,6 +128,12 @@ pm2 reload  ecosystem.config.js --only api-app
 pm2 delete  ecosystem.config.js --only api-app
 ```
 
+For multiple processes use:
+
+```bash
+pm2 start ecosystem.config.js --only "api-app,worker-app"
+```
+
 ### Switching environments
 
 You may have noticed that you can declare environment-specific variables with the attribute `env_*` (e.g. env_production, env_staging...). They can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
