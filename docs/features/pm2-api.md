@@ -93,7 +93,6 @@ pm2.connect(function(err) {
 **`pm2.restart(process, errback)`** - Stops and restarts the process.  
 **`pm2.delete(process, errback)`** - Stops the process and removes it from pm2's list. The process will no longer be accessible by its `name`.  
 **`pm2.reload(process, errback)`** - Zero-downtime rolling restart. At least one process will be kept running at all times as each instance is restarted individually. *Only works for scripts started in cluster mode. [See here for more details](http://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#reload-without-downtime).*  
-**`pm2.gracefulReload(process, options, errback)`** - Sends the process a shutdown message before initiating `reload`. [See here for more details](http://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#graceful-reload).
 
 * `process` - Can either be the `name` as given in the `pm2.start` `options`, a process id, or the string "all" to indicate that all scripts should be restarted.
 * `options` - (Optional) An object with the following options:
