@@ -1443,6 +1443,7 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 -e --error <path>            specify error log file
 --time                       prefix logs with standard formated timestamp
 --log-date-format <format>   prefix logs with custom formated timestamp
+--log-type <type>            specify log output style (raw by default, or json)
 --merge-logs                 when running mutiple process with same app name, do not split file by id
 ```
 
