@@ -36,8 +36,9 @@
 <link rel="icon" type="image/x-icon" href="{{ site.url }}/favicon.ico" />
 
 <script>
-if (window.location.protocol != "http:")
-    window.location.protocol = "http:";
+if (location.protocol != 'http:') {
+ location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
+}
 </script>
 
 <title>{{ title | strip | escape }}</title>
