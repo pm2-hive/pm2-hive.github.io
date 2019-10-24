@@ -36,6 +36,7 @@
                     <li class="nav-section-entry {% if page.url contains item.url %}active{% endif %}">
                       <a
                         href="{% unless item.url contains '://' %}{{ site.url }}{% endunless %}{{ item.url }}"
+                        title="{{item.title}}"
                         {% if item.blank == true %}
                         target="_blank"
                         {% endif %}
