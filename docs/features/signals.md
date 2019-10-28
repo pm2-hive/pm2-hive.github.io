@@ -45,10 +45,12 @@ Sometimes you might need to wait for your application to have etablished connect
 
 ```javascript
 var http = require('http');
+
 var app = http.createServer(function(req, res) {
   res.writeHead(200);
   res.end('hey');
 })
+
 var listener = app.listen(0, function() {
   console.log('Listening on port ' + listener.address().port);
   // Here we send the ready signal to PM2
@@ -84,7 +86,7 @@ Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declarati
 }
 ```
 
-### Graceful start using `http.Server.listen`
+### Graceful start using http.Server.listen
 
 There is still the default system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automatically state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `listen_timeout` entry in process file or `--listen-timeout=XXXX` via CLI.
 
