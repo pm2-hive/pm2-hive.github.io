@@ -101,7 +101,7 @@ valvar.set(23)
 
 Values that increment or decrement.
 
-Exemple to count Active Http Requests:
+Example to count Active Http Requests:
 
 ```javascript
 var io = require('@pm2/io')
@@ -128,7 +128,7 @@ http.createServer(function (req, res) {
 
 Values that are measured as events / interval.
 
-Exemple to count number of queries per minute:
+Example to count number of queries per minute:
 
 ```javascript
 var io = require('@pm2/io')
