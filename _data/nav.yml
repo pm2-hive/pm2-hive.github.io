@@ -31,7 +31,7 @@
       url: /docs/usage/deployment/
     - title: Startup Script
       url: /docs/usage/startup/
-    - title: Process Metrics
+    - title: Custom Metrics
       url: /docs/usage/process-metrics/
     - title: Process Actions
       url: /docs/usage/process-actions/
