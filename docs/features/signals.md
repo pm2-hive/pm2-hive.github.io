@@ -98,8 +98,25 @@ First a **SIGINT** a signal is sent to your processes, signal you can catch to k
 
 ## Windows graceful stop
 
-When signals are not available your process gets killed. In that case, you need to listen for `shutdown` events:
+When signals are not available your process gets killed. In that case you have to use `--shutdown-with-message` via CLI or `shutdown_with_message` in Ecosystem File and listen for `shutdown` events.
 
+Via CLI:
+```bash
+pm2 start app.js --shutdown-with-message
+```
+
+Via [Ecosystem File](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+```json
+{
+  "apps" : [{
+    "name"         : "api",
+    "script"       : "app.js",
+    "shutdown_with_message" : true
+  }]
+}
+```
+
+Listen for `shutdown` events
 ```javascript
 process.on('message', function(msg) {
   if (msg == 'shutdown') {
