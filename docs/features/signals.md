@@ -96,6 +96,8 @@ When a process is stopped/restarted by PM2, some system signals are sent to your
 
 First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *([customizable](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#customize-exit-delay))* it will receive a **SIGKILL** signal to force the process exit.
 
+The signal **SIGINT** can be replaced on any other signal (e.g. **SIGTERM**) by setting environment variable **PM2_KILL_SIGNAL**.
+
 ## Windows graceful stop
 
 When signals are not available your process gets killed. In that case you have to use `--shutdown-with-message` via CLI or `shutdown_with_message` in Ecosystem File and listen for `shutdown` events.
