@@ -104,7 +104,7 @@ pm2.connect(function(err) {
 **`pm2.describe(process,errback)`** - Returns various information about a process: eg what stdout/stderr and pid files are used.
 
 * `errback(err, processDescription)`
-* `processDescription` - An object with information about the process. Contains the properties:
+* `processDescription` - An array of objects with information about the process. Each object contains the properties:
   * `name` - The name given in the original `start` command. 
   * `pid` - The pid of the process.
   * `pm_id` - The pid for the `pm2` God daemon process.
