@@ -16,30 +16,32 @@
         <div class="menu-content">
           <div class="doc-links">
             <a
-              href="https://github.com/Unitech/pm2"
-              title="Github Source Code">
-              Github
+              href="{{ site.url }}/pricing"
+              title="Go to Pricing"
+              class="{% if page.url == '/pricing' %}current{% endif %}"
+              >
+              Pricing
+            </a>
+            <a
+              href="{{ site.url }}/blog"
+              title="Go to Blog"
+              class="{% if page.url == '/blog' %}current{% endif %}"
+            >
+              Blog
+            </a>
+            <a
+              href="{{ site.url }}/contact/"
+              title="Go to Contact"
+              class="{% if page.url == '/contact' %}current{% endif %}"
+            >
+              Contact
             </a>
             <a
               href="{{ site.url }}/docs/usage/quick-start/"
-              title="Go to Quick start"
+              title="Go to Documentation"
               class="{% if page.url == '/docs/usage/quick-start/' %}current{% endif %}"
             >
-              Quick start
-            </a>
-            <a
-              href="{{ site.url }}/docs/usage/pm2-doc-single-page/"
-              title="Go to Documentation"
-              class="{% if page.url == '/docs/usage/pm2-doc-single-page/' %}current{% endif %}"
-            >
-              Documentation
-            </a>
-            <a
-              href="{{ site.url }}/docs/usage/use-pm2-with-cloud-providers/"
-              title="Go to Integrations"
-              class="{% if page.url == '/docs/usage/use-pm2-with-cloud-providers/' %}current{% endif %}"
-            >
-              Integrations
+              Docs
             </a>
           </div>
           <a
@@ -47,7 +49,7 @@
             title="Get started"
             class="button accent-border border-corners inner-shadows"
           >
-            Monitor PM2
+            Login
           </a>
         </div>
       </div>

@@ -496,7 +496,6 @@ Application behavior and configuration can be fine-tuned with the following attr
 |min_uptime| (string) | | min uptime of the app to be considered started |
 | listen_timeout | number | 8000 | time in ms before forcing a reload if app not listening |
 | kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#cleaning-states-and-jobs) |
-| shutdown_with_message | boolean | false | shutdown an application with process.send('shutdown') instead of process.kill(pid, SIGINT) |
 | wait_ready | boolean | false | Instead of reload waiting for listen event, wait for process.send('ready') |
 | max_restarts| number | 10 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted|
 | restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
@@ -2531,25 +2530,8 @@ First a **SIGINT** a signal is sent to your processes, signal you can catch to k
 
 ## Windows graceful stop
 
-When signals are not available your process gets killed. In that case you have to use `--shutdown-with-message` via CLI or `shutdown_with_message` in Ecosystem File and listen for `shutdown` events.
+When signals are not available your process gets killed. In that case, you need to listen for `shutdown` events:
 
-Via CLI:
-```bash
-pm2 start app.js --shutdown-with-message
-```
-
-Via [Ecosystem File](http://pm2.keymetrics.io/docs/usage/application-declaration/):
-```json
-{
-  "apps" : [{
-    "name"         : "api",
-    "script"       : "app.js",
-    "shutdown_with_message" : true
-  }]
-}
-```
-
-Listen for `shutdown` events
 ```javascript
 process.on('message', function(msg) {
   if (msg == 'shutdown') {

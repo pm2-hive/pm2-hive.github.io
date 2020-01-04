@@ -1,0 +1,101 @@
+---
+layout: sub-page
+title: Blog
+className: blog
+---
+
+<section>
+  <div class="section-background">
+    <div class="section-wrapper"></div>
+  </div>
+  <div class="section-wrapper">
+      <div class="recent-articles">
+        <div class="grid-two">
+          {% for post in site.posts limit:1 %}
+            <div class="article-card">
+              <img alt="Header graphic" src="{{ site.url }}/{{post.img}}" />
+              <div class="text-part">
+                <div class="post-date">{{ post.date | date: '%B %d, %Y'}}</div>
+                <a href={{ post.url }}>
+                  <div class="post-title">{{ post.title }}</div>
+                </a>
+                <div class="post-description">{{ post.description }}</div>
+                <div class="code-and-button">
+                  <a
+                    href={{ post.url }}
+                    title="Register Now"
+                    class="button big accent-border border-corners inner-shadows"
+                  >
+                    Read more
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          
+          <div>
+            <p>RECENT ARTICLES</p>
+            {% for post in site.posts limit:6 %}
+              {% if forloop.index !=1 %}
+                <div class="text-card">
+                  <a href={{ post.url }}>
+                    <div class="post-title">{{ post.title }}</div>
+                  </a>
+                  <div class="post-date">{{ post.date | date: '%B %d, %Y' }}</div>
+                </div>
+              {% endif %}
+            {% endfor %}  
+          </div>
+          
+        </div>
+      </div>
+      {% assign my_array = "" | split: ',' %}
+
+      {% for post in site.posts %}
+        {% if forloop.index > 6 %}
+          {% assign my_array = my_array | push: post %}
+        {% endif %}
+      {% endfor %}
+
+
+      <div class="article-grid blogBox">
+        {% for post in my_array %}
+          {% if forloop.index < 3 %}
+            <div class="article-card blogBox moreBox">
+          {% else %}
+            <div class="article-card blogBox moreBox" style="display: none">
+          {% endif %}
+              <img alt="Header graphic" src="{{ site.url }}/{{post.img}}" />
+              <div class="text-part">
+                <div class="post-date">{{ post.date | date: '%B %d, %Y' }}</div>
+                <a href={{ post.url }}>
+                  <div class="post-title">{{ post.title }}</div>
+                </a>
+                <div class="post-description">{{ post.description }}</div>
+                <div class="code-and-button">
+                  <a
+                    href={{ post.url }}
+                    title="Register Now"
+                    class="button big accent-border border-corners inner-shadows"
+                  >
+                    Read more
+                  </a>
+                </div>
+              </div>
+            </div>
+
+        {% endfor %}  
+      </div>
+      
+      <div class="code-and-button" id="loadMore">
+        <a
+          
+          class="button big accent-border border-corners inner-shadows"
+        >
+          Load more
+        </a>
+      </div>
+     
+   
+  </div>
+</section>

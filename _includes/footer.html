@@ -2,54 +2,80 @@
   <div class="section-background">
     <div class="section-wrapper">
       <div class="hexagon hexagon-10"></div>
-      <div class="hexagon hexagon-11"></div>
     </div>
   </div>
   <div class="section-wrapper">
     <nav class="main-nav">
-      <a href="{{ site.url }}" title="Go to home page" class="logo-link">
-        <img alt="PM2 logo" src="{{ site.url }}/assets/logo.png" />
-      </a>
-      <div class="doc-links">
-        <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
-          Quick start
+      <div>
+        <a href="{{ site.url }}" title="Go to home page" class="logo-link">
+          <img alt="PM2 logo" src="{{ site.url }}/assets/logo.png" />
         </a>
-        <a href="{{ site.url }}/docs/usage/pm2-doc-single-page/" title="Go to Documentation">
-          Documentation
-        </a>
-        <a
-          href="{{ site.url }}/docs/usage/use-pm2-with-cloud-providers/"
-          title="Go to Integrations"
-        >
-          Integrations
-        </a>
+        <div class="social-links">
+          <a href="https://github.com"><img src="{{ site.url }}/assets/github-icon.png"></a>
+          <a href="https://facebook.com"><img src="{{ site.url }}/assets/facebook-icon.png"></a>
+          <a href="https://twitter.com"><img src="{{ site.url }}/assets/twitter-icon.png"></a>
+          <a href="https://linkedin.com"><img src="{{ site.url }}/assets/linkedin-icon.png"></a>
+        </div>
+        <p>© 2019 Keymetrics</p>
       </div>
-      <div class="button-border">
-        <a
-          href="{{ site.register_url }}"
-          title="Get started"
-          class="button accent-border border-corners big inner-shadows"
-        >
-          Get started
-        </a>
+      <div class="doc-links">
+        <div>
+          <div class="items-header">
+            PM2.IO
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              Pricing
+            </a>
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              Contact
+            </a>
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              Blog
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="items-header">
+            Documentations
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              PM2 Runtime
+            </a>
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              PM2 Plus
+            </a>
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              PM2 Enterprise
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="items-header">
+            Legal
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              Terms & Conditions
+            </a>
+          </div>
+          <div>
+            <a href="{{ site.url }}/docs/usage/quick-start/" title="Go to Quick start">
+              Privacy Policy
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
-    <div class="below-nav">
-      <div class="copyright">© 2019 PM2. All Rights Reserved.</div>
-      <div>
-        <a
-          href="{{ site.url }}/assets/terms_conditions.pdf"
-          title="Open Terms of Use"
-          >Terms of Use</a
-        >
-        //
-        <a
-          href="{{ site.url }}/assets/privacy_policy.pdf"
-          title="Open Privacy Policy"
-          >Privacy Policy</a
-        >
-      </div>
-    </div>
   </div>
 </footer>
 
@@ -61,4 +87,38 @@
   ga('create', 'UA-51734350-5', 'auto');
   ga('require', 'linkid');
   ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="{{ site.url }}/assets/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $( document ).ready(function () {
+    $(".moreBox").slice(0, 3).show();
+      if ($(".blogBox:hidden").length != 0) {
+        $("#loadMore").show();
+      }   
+      $("#loadMore").on('click', function (e) {
+        e.preventDefault();
+        $(".moreBox:hidden").slice(0, 3).slideDown();
+        if ($(".moreBox:hidden").length == 0) {
+          $("#loadMore").fadeOut('slow');
+        }
+      });
+    });
+</script>
+
+<script>
+  window.onscroll = function() {myFunction()};
+
+  var header = document.getElementById("list-header");
+  var sticky = header.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset > 500 && window.pageYOffset < 1400) {
+      header.classList.add("sticky");
+      header.style.display = "inline-flex";
+    } else {
+      header.classList.remove("sticky");
+      header.style.display = "none";
+    }
+  }
 </script>
