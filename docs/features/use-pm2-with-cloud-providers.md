@@ -43,7 +43,7 @@ module.exports = {
 
 ### Add PM2 as a module
 
-Add pm2 as a dependency to your projet.
+Add pm2 as a dependency to your project.
 
 With npm:
 
