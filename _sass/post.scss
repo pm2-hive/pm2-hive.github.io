@@ -1,0 +1,124 @@
+.post {
+  section:nth-child(7n + 2) {
+  	.section-background {
+    	background: linear-gradient(to bottom, #1b154a, #448ccb) !important;
+    }
+
+    .section-wrapper {
+      padding-bottom: 500px;
+    }
+    
+    .content {
+    	max-width: 1200px;
+	    margin: auto;
+	    margin-top: -400px;
+	    background: #f6f6f6;
+    	padding-top: 50px;
+
+    	.container {
+    		padding: 0 50px;
+    	}
+
+    	.left-padding-container {
+    		padding: 50px 0;
+    		padding-left: 50px;
+    		background: #f4f8f9;
+    	}
+
+    	.right-padding-container {
+    		padding: 50px 0;
+    		padding-right: 50px;
+    	}
+
+    	h1 {
+    		font-size: 42px;
+    		strong {
+    			font-size: 65px;
+    			font-weight: 800;
+    			color: #4974f1;
+    			vertical-align: top;
+    		}
+    		span {
+    			font-size: 28px;
+    			font-weight: 800;
+    			color: #4974f1;
+    			vertical-align: text-bottom;
+    		}
+    	}
+
+    	h1, h2, h3, h4, h5 {
+    		color: #2c4c99;
+    		text-transform: uppercase;
+    	}
+
+    	strong {
+    		text-transform: uppercase;
+    		color: #252525;
+    	}
+
+    	p {
+    		color: #464646;
+    		font-size: 18px;
+    	}
+
+    	img {
+    		width: 100%;
+    	}
+
+    	.three-columns {
+    		margin: 80px 0;
+    		display: grid;
+    		grid-template-columns: repeat(3, 1fr);
+    		grid-column-gap: 10%;
+    	}
+
+    	.two-columns {
+    		display: grid;
+    		align-items: center;
+    		grid-template-columns: repeat(2, 1fr);
+    		grid-column-gap: 10%;
+    	}
+
+      @media #{$small-mobile} {
+      	.container {
+    		padding: 50px 10px 0px;
+    	}
+    	.left-padding-container {
+    		padding: 50px 10px;
+    		text-align: center;
+    	}
+
+    	.right-padding-container {
+    		padding: 50px 10px;
+    		text-align: center;
+    	}
+      	.three-columns {
+        	grid-template-columns: 1fr;
+        	grid-template-rows: auto;
+        	grid-row-gap: 50px;
+        }
+
+        .two-columns {
+        	grid-template-columns: 1fr;
+        	grid-template-rows: auto;
+        	grid-row-gap: 50px;
+        }
+      }
+    }
+  }
+  section:nth-child(7n + 3) {
+
+  	.section-wrapper {
+      margin-top: -400px;
+    }
+    
+  	.section-background {
+    	background: linear-gradient(to bottom, #172b54, #111f35) !important;
+    }
+
+    .article-grid {
+    	margin-bottom: 150px;
+    }
+
+  }
+}

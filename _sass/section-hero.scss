@@ -1,0 +1,27 @@
+.section-hero {
+  .section-wrapper {
+    margin: 80px auto 450px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 800;
+  }
+
+  p {
+    color: #a0c8f0;
+    text-align: center;
+  }
+
+  @media #{$mobile} {
+    h1 {
+      margin-top: 54px;
+    }
+    p {
+      margin-top: 20px;
+      margin-bottom: 60px;
+    }
+  }
+}
+

@@ -1,11 +1,12 @@
-.section-features {
+.section-trackerrors {
   .section-wrapper {
-    margin-top: 50px;
+    margin-top: 150px;
     margin-bottom: 150px;
     @media #{$mobile} {
       margin-top: 90px;
       margin-bottom: 171px;
     }
+
     .card {
       max-width: 1200px;
       margin: auto;

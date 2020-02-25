@@ -93,7 +93,7 @@ Instead of `app_name` you can pass:
 
 ## Check status, logs, metrics
 
-Now that you have started this application, you can check its status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
+Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
 
 ### List managed applications
 

@@ -1,6 +1,8 @@
 
 footer {
   .section-wrapper {
+    max-width: 1200px;
+    margin: auto;
     margin-top: 154px;
     @media #{$mobile} {
       margin-top: 104px;
@@ -8,15 +10,44 @@ footer {
   }
 
   .doc-links {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    grid-column-gap: 5%;
+
+    .items-header {
+      font-size: 17px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    a {
+      padding-left: 0px !important;
+    }
 
     a:hover {
       color: rgba(255, 255, 255, 1);
     }
 
     @media #{$mobile} {
+      width: 100%;
       margin: 60px 0;
     }
+  }
+
+  .social-links {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 25px 0;
+    padding: 15px 0 10px 0;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+    align-items: center;
   }
 
   @media #{$not-mobile} {
@@ -28,7 +59,6 @@ footer {
   }
 
   .main-nav {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     padding-bottom: 40px;
 
     @media #{$mobile} {
@@ -43,31 +73,5 @@ footer {
     }
   }
 
-  .below-nav {
-    display: flex;
-    font-size: 0.9rem;
-    justify-content: space-between;
-    margin: 40px 0 24px 0;
-    color: rgba(255, 255, 255, 0.6);
-
-    @media #{$mobile} {
-      flex-direction: column;
-      align-items: center;
-      height: 70px;
-    }
-
-    a {
-      transition: color 0.4s;
-      &:hover {
-        color: rgba(255, 255, 255, 1);
-      }
-      &:first-child {
-        margin-right: 16px;
-      }
-      &:last-child {
-        margin-left: 16px;
-      }
-    }
-  }
 }
 
