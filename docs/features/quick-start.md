@@ -5,10 +5,6 @@ description: Getting started with PM2
 permalink: /docs/usage/quick-start/
 ---
 
-<center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
-
-![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
-
 ## Welcome!
 
 Welcome to the PM2 Quick Start!
@@ -97,7 +93,7 @@ Instead of `app_name` you can pass:
 
 ## Check status, logs, metrics
 
-Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
+Now that you have started this application, you can check its status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
 
 ### List managed applications
 

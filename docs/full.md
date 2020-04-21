@@ -6,10 +6,6 @@ permalink: /docs/usage/pm2-doc-single-page/
 ---
 
 
-<center><img style="max-width: 700px; padding : 60px 0;" src="https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v3.png" name="logo pm2"/></center>
-
-![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
-
 ## Welcome!
 
 Welcome to the PM2 Quick Start!
@@ -19,7 +15,7 @@ PM2 is daemon process manager that will help you manage and keep your applicatio
 
 ## Installation
 
-The latest PM2 stable version is installable via NPM or Yarn:
+The latest PM2 version is installable with NPM or Yarn:
 
 ```bash
 $ npm install pm2@latest -g
@@ -81,6 +77,21 @@ Some options you can pass to the CLI:
 
 As you can see many options are available to manage your application with PM2. You will discover them depending on your use case.
 
+## Managing processes
+
+Managing application state is simple here are the commands:
+
+```bash
+$ pm2 restart app_name
+$ pm2 reload app_name
+$ pm2 stop app_name
+$ pm2 delete app_name
+```
+
+Instead of `app_name` you can pass:
+- `all` to act on all processes
+- `id` to act on a specific process id
+
 ## Check status, logs, metrics
 
 Now that you have started this application, you can check his status, logs, metrics and even get the online dashboard with <a href="https://pm2.io" target="_blank">pm2.io</a>.
@@ -128,17 +139,6 @@ $ pm2 plus
 ```
 
 ![https://i.imgur.com/sigMHli.png](https://i.imgur.com/sigMHli.png)
-
-## Manage process
-
-Simple command to manage application state:
-
-```bash
-$ pm2 restart app
-$ pm2 reload app
-$ pm2 stop app
-$ pm2 delete app
-```
 
 ## Cluster mode
 
@@ -496,6 +496,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |min_uptime| (string) | | min uptime of the app to be considered started |
 | listen_timeout | number | 8000 | time in ms before forcing a reload if app not listening |
 | kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#cleaning-states-and-jobs) |
+| shutdown_with_message | boolean | false | shutdown an application with process.send('shutdown') instead of process.kill(pid, SIGINT) |
 | wait_ready | boolean | false | Instead of reload waiting for listen event, wait for process.send('ready') |
 | max_restarts| number | 10 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted|
 | restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
@@ -1443,6 +1444,7 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 -e --error <path>            specify error log file
 --time                       prefix logs with standard formated timestamp
 --log-date-format <format>   prefix logs with custom formated timestamp
+--log-type <type>            specify log output style (raw by default, or json)
 --merge-logs                 when running mutiple process with same app name, do not split file by id
 ```
 
@@ -2529,8 +2531,25 @@ First a **SIGINT** a signal is sent to your processes, signal you can catch to k
 
 ## Windows graceful stop
 
-When signals are not available your process gets killed. In that case, you need to listen for `shutdown` events:
+When signals are not available your process gets killed. In that case you have to use `--shutdown-with-message` via CLI or `shutdown_with_message` in Ecosystem File and listen for `shutdown` events.
 
+Via CLI:
+```bash
+pm2 start app.js --shutdown-with-message
+```
+
+Via [Ecosystem File](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+```json
+{
+  "apps" : [{
+    "name"         : "api",
+    "script"       : "app.js",
+    "shutdown_with_message" : true
+  }]
+}
+```
+
+Listen for `shutdown` events
 ```javascript
 process.on('message', function(msg) {
   if (msg == 'shutdown') {

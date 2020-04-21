@@ -1,0 +1,15 @@
+.section-404 {
+  .card-right {
+    text-align: center;
+    img {
+      margin-bottom: -20px;
+      max-width: 100%;
+      @media #{$mobile} {
+        margin-bottom: -80px;
+      }
+      @media #{$small-mobile} {
+        margin-bottom: -40px;
+      }
+    }
+  }
+}

@@ -1,43 +1,36 @@
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="copyright" content="Keymetrics Inc.">
-  <link rel="canonical" href="http://pm2.keymetrics.io/" />
+{% capture title %}
+  {% if page.title %}{{ site.title }} - {{ page.title }}{% else %}{{ site.title }} - Advanced Node.js process manager{% endif %}
+{% endcapture %}
+{% capture description %}
+  {% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}
+{% endcapture %}
+{% capture url %}
+  {{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}
+{% endcapture %}
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="copyright" content="Keymetrics Inc." />
+<meta name="description" content="{{ description | strip | escape }}">
 
-  <title>{% if page.title %}{{ site.title }} - {{ page.title }}{% else %}{{ site.title }} - Advanced Node.js process manager{% endif %}</title>
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:url" content="{{ url | strip | escape }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ title | strip | escape }}" />
+<meta property="og:description" content="{{ description | strip | escape }}" />
+<meta property="og:image" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png" />
+<meta name="google-site-verification" content="ELR1mLPjKnUWvC62UIAp4fpVUvO4ToECWOK_jb922bI" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@keymetrics_io" />
+<meta name="twitter:title" content="{{ title | strip | escape }}" />
+<meta name="twitter:description" content="{{ description | strip | escape }}" />
+<meta name="twitter:image:src" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png" />
+<meta name="twitter:url" content="{{ url | strip | escape }}" />
+<link rel="canonical" href="{{ url | strip | escape }}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo:300,500,800|Roboto&display=swap">
+<link rel="stylesheet" href="{{ site.url }}/assets/main.css" />
+<link rel="icon" type="image/png" href="{{ site.url }}/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="{{ site.url }}/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="{{ site.url }}/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/x-icon" href="{{ site.url }}/favicon.ico" />
 
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-
-  <link rel="author" href="https://plus.google.com/+AlexandreStrzelewicz"/>
-
-  <link rel="icon" type="image/png" href="{{ "/favicon-96x96.png" | prepend: site.baseurl }}" sizes="96x96">
-  <link rel="icon" type="image/png" href="{{ "/favicon-16x16.png" | prepend: site.baseurl }}" sizes="16x16">
-  <link rel="icon" type="image/png" href="{{ "/favicon-32x32.png" | prepend: site.baseurl }}" sizes="32x32">
-  <link rel="shortcut icon" href="/favicon.ico?v=2" />
-
-  <meta property="og:url" content="https://pm2.keymetrics.io/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }} · {{ site.tagline }}{% endif %}">
-  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <meta property="og:image" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@keymetrics_io">
-  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }} · {{ site.tagline }}{% endif %}">
-  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <meta name="twitter:image:src" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png">
-  <meta name="twitter:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-
-
-
-  <meta name="google-site-verification" content="ELR1mLPjKnUWvC62UIAp4fpVUvO4ToECWOK_jb922bI" />
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-  <script src="{{ "/scripts/bootstrap.min.js" | prepend: site.baseurl }}?t={{ site.time | date_to_xmlschema }}"></script>
-  <script>$("html").removeClass("no-js").addClass("js");</script>
-</head>
+<title>{{ title | strip | escape }}</title>

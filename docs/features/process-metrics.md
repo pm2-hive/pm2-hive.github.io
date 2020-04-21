@@ -1,13 +1,13 @@
 ---
 layout: docs
-title: Process Metrics
+title: Custom Metrics
 description: Monitor in-code values
 permalink: /docs/usage/process-metrics/
 ---
 
-## Process Metrics
+## Custom Metrics
 
-By plugging process metrics onto your code, you will be able to monitor in-code values, in realtime.
+By plugging custom metrics onto your code, you will be able to monitor in-code values, in realtime.
 
 ## Install
 
@@ -21,7 +21,7 @@ For more information about the `@pm2/io` module checkout [the repo documentation
 
 ## Using @pm2/io for metrics
 
-Here is a basic example on how to use the @pm2/io library to create a *requests per minute* metric:
+Here is a basic example on how to use the @pm2/io library to create a *requests per minute* custom metric:
 
 ```javascript
 var io = require('@pm2/io')
@@ -101,7 +101,7 @@ valvar.set(23)
 
 Values that increment or decrement.
 
-Exemple to count Active Http Requests:
+Example to count Active Http Requests:
 
 ```javascript
 var io = require('@pm2/io')
@@ -128,7 +128,7 @@ http.createServer(function (req, res) {
 
 Values that are measured as events / interval.
 
-Exemple to count number of queries per minute:
+Example to count number of queries per minute:
 
 ```javascript
 var io = require('@pm2/io')

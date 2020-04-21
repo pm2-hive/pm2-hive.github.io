@@ -5,7 +5,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Advanced process manager for production Node.js applications. Load balancer, logs facility,
   startup script, micro service management, at a glance.
 baseurl: ""
-url: "http://pm2.keymetrics.io"
+url: "https://pm2.keymetrics.io"
 repo_url: "https://github.com/pm2-hive/pm2-hive.github.io"
 
 sass:
@@ -13,7 +13,7 @@ sass:
 
 markdown: kramdown
 
-exclude: ['node_modules', 'docs/intro.md']
+exclude: ['node_modules', 'scripts', 'Gemfile', 'Gemfile.lock', 'README.md']
 
 plugins:
   - jekyll-paginate
@@ -23,3 +23,4 @@ redcarpet:
 
 permalink: /blog/:year/:month/:day/:title
 paginate: 1
+register_url: https://id.keymetrics.io/api/oauth/register

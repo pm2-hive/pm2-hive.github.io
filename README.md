@@ -9,6 +9,3 @@ If you see any typo, have any recommendation, advice, feel free to open a [Pull 
 
 Thanks
 
-# License
-
-MIT

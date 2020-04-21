@@ -71,7 +71,7 @@ project_root # in this example absolute path is /home/www/project_root
 
 And, what's more important than this is to define the PM2 ecosystem to match this structure:
 
-```json
+```js
 # ecosystem.json
 {
   "apps": [{
@@ -101,7 +101,7 @@ When working in continuous integration world, you'll rather have the `logs` and 
 
 In this case, the `ecosystem.json` can be like this:
 
-```json
+```js
 # ecosystem.json
 {
   "apps": [{

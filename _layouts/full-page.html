@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  {% include head.html %}
-
-  <body style="margin-bottom: -2px; background-color : black">
-
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
     {% include header.html %}
-
-    {{ content }}
-
+    <main>
+      {{ content }}
+    </main>
+    <script src="{{ site.url }}/assets/menu.js"></script>
   </body>
-
 </html>

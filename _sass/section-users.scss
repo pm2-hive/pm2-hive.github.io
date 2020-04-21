@@ -1,0 +1,52 @@
+.section-users {
+  .section-wrapper {
+    margin-bottom: 200px;
+  }
+
+  h1 {
+    margin-bottom: 48px;
+  }
+
+  .users {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: calc(-1 * var(--margin));
+
+    --margin: 32px;
+
+    .user-filler,
+    .user {
+      max-width: 600px;
+      min-width: 300px;
+      flex: 1;
+      margin-right: var(--margin);
+    }
+
+    .user {
+      background-color: #fff;
+      position: relative;
+      margin-bottom: var(--margin);
+
+      .user-ratio {
+        padding-top: 56%;
+      }
+
+      .user-image {
+        position: absolute;
+        top: var(--margin);
+        bottom: var(--margin);
+        left: var(--margin);
+        right: var(--margin);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+  }
+}

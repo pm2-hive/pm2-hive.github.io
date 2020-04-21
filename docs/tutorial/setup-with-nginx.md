@@ -10,7 +10,7 @@ permalink: /docs/tutorials/pm2-nginx-production-setup
 This is a common method to use NGINX as a HTTP proxy front of PM2.
 NGINX will allow to serve static files rapidly, manage the SSL protocol and redirect the traffic to your Node.js application.
 
-Here is an example for a Node.js application listening on port 3001 and NGINX forwarding the traffic from port 80 to 3001. This sample also handle Websocket connections.
+Here is an example for a Node.js application listening on port 3001 and NGINX forwarding the traffic from port 80 to 3001. This sample will also handle Websocket connections.
 
 nginx.conf:
 
