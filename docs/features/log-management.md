@@ -23,6 +23,7 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 --time                       prefix logs with standard formated timestamp
 --log-date-format <format>   prefix logs with custom formated timestamp
 --merge-logs                 when running mutiple process with same app name, do not split file by id
+--log_type                   specify the format in which pm2 logs will be saved
 ```
 
 ### Ecosystem
@@ -35,6 +36,7 @@ modules.exports = [{
   error_file: 'err.log',
   out_file: 'out.log',
   log_file: 'combined.log',
+  log_type : 'json',
   time: true
 }]
 ```
