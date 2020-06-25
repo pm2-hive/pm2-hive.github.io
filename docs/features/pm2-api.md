@@ -9,9 +9,7 @@ PM2 can be used programmatically, meaning that you can embed a process manager d
 
 It's also useful when you deploy a Node.js application [in any kind of Cloud Provider / PaaS](/docs/usage/use-pm2-with-cloud-providers/).
 
-## Simple example
-
-This example shows you how to start app.js with some configuration attributes. Elements passed to start are the same than those you can declare in a [JS/JSON configuration](/docs/usage/application-declaration/) file:
+## Quickstart
 
 **NB**: If your script does not exit by itself, make sure you called `pm2.disconnect()` at the end.
 
@@ -27,6 +25,16 @@ pm2.connect(function(err) {
     console.error(err);
     process.exit(2);
   }
+  
+  pm2.list((err, list) => {
+    console.log(err, list)
+  })
+  
+  pm2.stop('app-name', (err, proc) => {
+  })
+
+  pm2.restart('app-name', (err, proc) => {
+  })
   
   pm2.start({
     script    : 'app.js',         // Script to be run
