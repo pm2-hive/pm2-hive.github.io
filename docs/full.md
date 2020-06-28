@@ -2779,22 +2779,13 @@ Refer to [Using transpilers with PM2](http://pm2.keymetrics.io/docs/tutorials/us
 - [How To Set Up a Node.js Application for Production on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
 - [Tutorial: Creating and managing a Node.js server on AWS, part 2](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea95f8a1)
 - [Goodbye node-forever, hello pm2](http://devo.ps/blog/goodbye-node-forever-hello-pm2/)
-- [https://www.howtoforge.com/tutorial/how-to-deploy-nodejs-applications-with-pm2-and-nginx-on-ubuntu/](https://www.howtoforge.com/tutorial/how-to-deploy-nodejs-applications-with-pm2-and-nginx-on-ubuntu/)
-- [https://serversforhackers.com/editions/2014/11/04/pm2/](https://serversforhackers.com/editions/2014/11/04/pm2/)
-- [http://www.allaboutghost.com/keep-ghost-running-with-pm2/](http://www.allaboutghost.com/keep-ghost-running-with-pm2/)
-- http://blog.ponyfoo.com/2013/09/19/deploying-node-apps-to-aws-using-grunt
-- http://www.allaboutghost.com/keep-ghost-running-with-pm2/
-- http://bioselemental.com/keeping-ghost-alive-with-pm2/
-- http://blog.chyld.net/installing-ghost-on-ubuntu-13-10-aws-ec2-instance-with-pm2/
-- http://blog.marvinroger.fr/gerer-ses-applications-node-en-production-pm2/
-- https://www.codersgrid.com/2013/06/29/pm2-process-manager-for-node-js/
-- http://www.z-car.com/blog/programming/how-to-rotate-logs-using-pm2-process-manager-for-node-js
-- http://yosoftware.com/blog/7-tips-for-a-node-js/
-- https://www.exponential.io/blog/nodeday-2014-moving-a-large-developer-workforce-to-nodejs
-- http://blog.rapsli.ch/posts/2013/2013-10-17-node-monitor-pm2.html
-- https://coderwall.com/p/igdqyw
-- http://revdancatt.com/2013/09/17/node-day-1-getting-the-server-installing-node-and-pm2/
-- https://medium.com/tech-talk/e7c0b0e5ce3c
+- [How to deploy Node.js Applications with pm2 and Nginx on Ubuntu](https://www.howtoforge.com/tutorial/how-to-deploy-nodejs-applications-with-pm2-and-nginx-on-ubuntu/)
+- [Deploying Node apps to AWS using Grunt](http://blog.ponyfoo.com/2013/09/19/deploying-node-apps-to-aws-using-grunt)
+- [Keep Ghost Running with pm2](http://www.allaboutghost.com/keep-ghost-running-with-pm2/)
+- [How to Rotate Logs using PM2 Process Manager for Node.js](http://www.z-car.com/blog/programming/how-to-rotate-logs-using-pm2-process-manager-for-node-js)
+- [Node.js Monitor PM2](http://blog.rapsli.ch/posts/2013/2013-10-17-node-monitor-pm2.html)
+- [Better Node.js monitoring and clustering with PM2](https://coderwall.com/p/igdqyw)
+- [7 tips for a Node.js padawan](https://medium.com/tech-talk/e7c0b0e5ce3c)
 
 
 ## Startup Script Generator
