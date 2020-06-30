@@ -12,7 +12,8 @@ PM2 is a process manager. It manages your applications states, so you can start,
 Start a process:
 
 ```bash
-pm2 start app.js --name "my-api"
+pm2 start app.js
+# Or set an application name with --name
 pm2 start web.js --name "web-interface"
 ```
 
