@@ -30,7 +30,11 @@ To restart it just do:
 pm2 restart web-interface
 ```
 
-**NB: starting PM2 2.1.x, restarts are immutable, meaning that environment changes will not change your process, see [--update-env](http://pm2.keymetrics.io/docs/usage/environment/#while-restarting-reloading-a-process)**
+If you want to update environment variables of your application, do not forget to add the option `--update-env`
+
+```bash
+NODE_ENV=production pm2 restart web-interface --update-env
+```
 
 Now you want to **delete** the app from the PM2 process list.
 You just have to enter the following commands:
@@ -38,14 +42,6 @@ You just have to enter the following commands:
 ```bash
 pm2 delete web-interface
 ```
-
-Since PM2 `2.4.0`, you can also restart/delete/stop/reload applications via regex (this one will only restart `http-1` and `http-2` but not `http-3`):
-
-```bash
-pm2 restart /http-[1,2]/
-```
-
-*Note : Regex are defined by leading and ending '/' and they are tested against applications name only (not the process id).*
 
 [You can declare options via configuration file too](/docs/usage/application-declaration/).
 
@@ -63,6 +59,12 @@ To get more details about a specific process:
 
 ```bash
 pm2 show 0
+```
+
+### Reset restart count
+
+```bash
+pm2 reset all
 ```
 
 ### Process sorting
