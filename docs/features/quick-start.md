@@ -183,7 +183,7 @@ module.exports = {
 And start it easily:
 
 ```bash
-$ pm2 start process.yml
+$ pm2 start ecosystem.config.js
 ```
 
 Read more about application declaration [here](/docs/usage/application-declaration/).
