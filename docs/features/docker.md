@@ -70,7 +70,7 @@ You can then replace the **CMD** directive by this:
 CMD ["pm2-runtime", "process.yml"]
 ```
 
-To split each processes in his own Docker, you can use the --only [app-name] option:
+To split each processes in its own Docker, you can use the --only [app-name] option:
 
 ```
 CMD ["pm2-runtime", "process.yml", "--only", "APP"]
