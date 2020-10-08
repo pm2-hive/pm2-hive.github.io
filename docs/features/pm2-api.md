@@ -183,7 +183,7 @@ pm2.connect(function() {
   });
 });
 
-pm2.launchBus(function(err, bus) {
+pm2.launchBus(function(err, pm2_bus) {
   pm2_bus.on('process:msg', function(packet) {
     packet.data.success.should.eql(true);
     packet.process.pm_id.should.eql(proc1.pm2_env.pm_id);
