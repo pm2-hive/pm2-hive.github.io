@@ -9,8 +9,10 @@ permalink: /docs/faq/
 
 If you are in this situation, it might be for several reasons.
 
-- You are behind a company proxy or firewall.
-Make sure that the ports 80 and 43554 are open.
+- You are behind a company proxy or firewall. 
+
+Make sure the 443 port is opened and/or set the proxy config:
+`PM2_PROXY=<proxy-address> pm2 link <secret> <public>`
 
 - You are using an old version of Node.js or PM2.
 Make sure you are using at least Node.js v0.11.x or higher (node v0.12.x or iojs v.2.x is recommended).
