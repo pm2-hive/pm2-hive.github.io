@@ -5,7 +5,7 @@ description: Frequently Asked Questions and Answers
 permalink: /docs/faq/
 ---
 
-## 1. I can't seem to connect my local PM2 to the PM2.io dashboard
+## 1. I can't connect my local PM2 to the PM2.io dashboard
 
 If you are in this situation, it might be for several reasons.
 
@@ -14,14 +14,12 @@ If you are in this situation, it might be for several reasons.
 Make sure the 443 port is opened and/or set the proxy config:
 `PM2_PROXY=<proxy-address> pm2 link <secret> <public>`
 
-- You are using an old version of Node.js or PM2.
-Make sure you are using at least Node.js v0.11.x or higher (node v0.12.x or iojs v.2.x is recommended).
-Make sure you are using the latest version of PM2 https://github.com/Unitech/PM2/releases.
+- You are using a old PM2 version. Update PM2 to latest: `npm install pm2@latest -g`
 
 - You have concurrent PM2 sending data to the same bucket with an identical server name.
 Make sure you have only one PM2 instance launched `ps -aux | grep PM2`
 
-- Refresh your connection to Keymetrics. `pm2 interact stop` then `pm2 interact start`. Also don't forget to refresh the dashboard itself, it might help sometimes.
+- Refresh your connection to Keymetrics. `pm2 link stop` then `pm2 link start`. Also don't forget to refresh the dashboard itself, it might help sometimes.
 
 ## 2. The versioning buttons (Rollback/Pull/Upgrade) aren't working
 
