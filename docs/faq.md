@@ -5,7 +5,7 @@ description: Frequently Asked Questions and Answers
 permalink: /docs/faq/
 ---
 
-## 1. I can't seem to connect my local PM2 to the Keymetrics dashboard
+## 1. I can't seem to connect my local PM2 to the PM2.io dashboard
 
 If you are in this situation, it might be for several reasons.
 
