@@ -70,7 +70,7 @@ pm2.connect(function(err) {
 * `options` - An object with the following options (additional descriptions of these options are [here](http://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#graceful-reload)):
   * `name` - An arbitrary name that can be used to interact with (e.g. restart) the process later in other commands. Defaults to the script name without its extension (eg `"testScript"` for `"testScript.js"`).
   * `script` - The path of the script to run.
-  * `args` - A string or array of strings composed of arguments to pass to the script.
+  * `scriptArgs` - A string or array of strings composed of arguments to pass to the script.
   * `interpreterArgs` - A string or array of strings composed of arguments to call the interpreter process with. Eg "--harmony" or ["--harmony","--debug"]. Only applies if `interpreter` is something other than "none" (its "node" by default).
   * `cwd` - The working directory to start the process with.
   * `output` - (Default: `"~/.pm2/logs/app_name-out.log"`) The path to a file to append stdout output to. Can be the same file as `error`.
