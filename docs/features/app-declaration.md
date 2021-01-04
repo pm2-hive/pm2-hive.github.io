@@ -51,7 +51,7 @@ You can declare multiple application easily and specify different options for ea
 ```javascript
 module.exports = {
   apps : [{
-    name        : "worker",
+    name        : "worker-app",
     script      : "./worker.js",
     watch       : true,
     env: {
@@ -83,7 +83,7 @@ apps:
     instances: 4
     exec_mode: cluster
   - script : ./worker.js
-    name   : 'worker'
+    name   : 'worker-app'
     watch  : true
     env    :
       NODE_ENV: development
@@ -283,7 +283,7 @@ $pm2 start test.js --node-args "port=3001 sitename='first pm2 app'"
 
 The `nodeArgs` argument will be parsed as
 
-```JSON
+```json
 [
   "port=3001",
   "sitename=first pm2 app"
@@ -292,7 +292,7 @@ The `nodeArgs` argument will be parsed as
 
 but not
 
-```JSON
+```json
 [
   "port=3001",
   "sitename='first",
@@ -317,7 +317,7 @@ You'll need to use `--env <envname>` to tell pm2 to use specific environment def
 ```json
 {
   "apps" : [{
-    "name"        : "worker",
+    "name"        : "worker-app",
     "script"      : "./worker.js",
     "watch"       : true,
     "env": {
