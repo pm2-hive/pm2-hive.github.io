@@ -113,7 +113,7 @@ pm2 flush <api> # Clear the logs for the app with name/id matching <api>
 
 ## Size limited log rotation
 
-You can also install [pm2-logrotate](http://pm2.keymetrics.io/docs/usage/log-management/#pm2-logrotate-module) to automatically rotate and keep all the logs file using a limited space on disk.
+You can also install [pm2-logrotate](https://github.com/keymetrics/pm2-logrotate) to automatically rotate and keep all the logs file using a limited space on disk.
 
 To install it:
 
