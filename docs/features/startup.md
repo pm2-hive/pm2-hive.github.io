@@ -134,6 +134,6 @@ WantedBy=multi-user.target network-online.target
 
 ## Windows consideration
 
-To generate a Windows compatbile startup script have a look to the excellent [pm2-installer](https://github.com/jessety/pm2-installer)
+To generate a Windows compatible startup script have a look to the excellent [pm2-installer](https://github.com/jessety/pm2-installer)
 
 
