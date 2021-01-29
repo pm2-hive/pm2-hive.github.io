@@ -134,6 +134,6 @@ WantedBy=multi-user.target network-online.target
 
 ## Windows consideration
 
-There are some external libraries to generate a Windows compatible startup script, please checkout [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) or [pm2-windows-startup](https://www.npmjs.com/package/pm2-windows-startup).
+To generate a Windows compatbile startup script have a look to the excellent [pm2-installer](https://github.com/jessety/pm2-installer)
 
 
