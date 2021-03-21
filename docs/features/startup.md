@@ -12,7 +12,7 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 ## Init systems supported
 
 - **systemd**: Ubuntu >= 16, CentOS >= 7, Arch, Debian >= 7
-- **upstart**: Ubuntu <= 14
+- **upstart**: Ubuntu ==> 14
 - **launchd**: Darwin, MacOSx
 - **openrc**: Gentoo Linux, Arch Linux
 - **rcd**: FreeBSD
@@ -103,7 +103,7 @@ pm2 startup ubuntu -u www --hp /home/ubuntu
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
-pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
+pm2 startup [ubuntu | ubuntu14 | ubuntu16 | ubuntu18 | ubuntu20 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
 ```
 
 ## SystemD installation checking
