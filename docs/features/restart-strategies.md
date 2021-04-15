@@ -77,3 +77,23 @@ CLI:
 ```bash
 $ pm2 start app.js --no-autorestart
 ```
+
+## Skip Auto Restart For Specific Exit Codes
+
+Sometimes you might want the application to automatically restart in case of failure (i.e. non-zero exit code),
+while not wanting the process manager to restart it when it shuts down properly (i.e. exit code equal to 0).
+
+In this case, you can still use PM2 just fine with a `stop_exit_codes` option set to exit codes that should skip auto restart:
+
+CLI:
+```bash
+$ pm2 start app.js --stop-exit-codes 0
+```
+
+Or via ecosystem.config.js file:
+```javascript
+module.exports = [{
+  script: 'app.js',
+  stop_exit_codes: [0]
+}]
+```
