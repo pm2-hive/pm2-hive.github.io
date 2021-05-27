@@ -49,7 +49,7 @@ We recommend to use the cluster mode with Heroku, as each dyno has multi-core CP
 
 ### Add PM2 as a module
 
-Add pm2 as a dependency to your projet.
+Add pm2 as a dependency to your project.
 
 With npm:
 
