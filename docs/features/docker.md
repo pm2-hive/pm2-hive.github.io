@@ -76,6 +76,25 @@ To split each processes in its own Docker, you can use the --only [app-name] opt
 CMD ["pm2-runtime", "process.yml", "--only", "APP"]
 ```
 
+### Using exec_mode cluster together with nuxtjs
+
+When running pm2 in cluster mode, `ecosystem.config.js` will be appended to your cwd path due to how nuxtjs parses its rootDir, to fix that you have to specify the config path in your args section:
+
+```javascript
+module.exports = {
+  apps: [
+    {
+      name: 'my-nuxtjs-app',
+      exec_mode: 'cluster',
+      instances: 2,
+      cwd: '/var/www',
+      script: './node_modules/nuxt-start/bin/nuxt-start.js',
+      args: '-c /var/www/nuxt.config.js'
+    }
+  ]
+}
+```
+
 ### Logging Format option
 
 If you want to change the log output format you can select one of this options:
