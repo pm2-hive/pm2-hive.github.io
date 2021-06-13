@@ -21,14 +21,14 @@ For more information about the `@pm2/io` module checkout [the repo documentation
 
 ## Using @pm2/io for metrics
 
-Here is a basic example on how to use the @pm2/io library to create a *requests per minute* custom metric:
+Here is a basic example on how to use the @pm2/io library to create a *requests per second* custom metric:
 
 ```javascript
 var io = require('@pm2/io')
 var http = require('http')
 
 var meter = io.meter({
-  name      : 'req/min',
+  name      : 'req/sec',
   samples   : 1,
   timeframe : 60
 })
@@ -128,14 +128,14 @@ http.createServer(function (req, res) {
 
 Values that are measured as events / interval.
 
-Example to count number of queries per minute:
+Example to count number of queries per second:
 
 ```javascript
 var io = require('@pm2/io')
 var http = require('http')
 
 var meter = io.meter({
-  name      : 'req/min',
+  name      : 'req/sec',
   samples   : 1,
   timeframe : 60
 })
