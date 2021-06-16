@@ -63,7 +63,7 @@ pm2 show <application-name>
 
 ## Metrics helper available
 
-Then you can program your very own metrics to track important informations. 4 differents probes are available:
+Then you can program your very own metrics to track important information. 4 different probes are available:
 
 - **Simple metrics**: Values that can be read instantly
     - eg. Monitor variable value
@@ -71,7 +71,7 @@ Then you can program your very own metrics to track important informations. 4 di
     - eg. Downloads being processed, user connected
 - **Meter**: Things that are measured as events / interval
     - eg. Request per minute for a http server
-- **Histogram**: Keeps a resevoir of statistically relevant values biased towards the last 5 minutes to explore their distribution
+- **Histogram**: Keeps a reservoir of statistically relevant values biased towards the last 5 minutes to explore their distribution
     - eg. Monitor the mean of execution of a query into database
 
 ### Simple Metric: Simple value reporting
@@ -155,7 +155,7 @@ http.createServer(function (req, res) {
 
 ### Histogram
 
-Keeps a resevoir of statistically relevant values biased towards the last 5 minutes to explore their distribution.
+Keeps a reservoir of statistically relevant values biased towards the last 5 minutes to explore their distribution.
 
 ```javascript
 var io = require('@pm2/io')
