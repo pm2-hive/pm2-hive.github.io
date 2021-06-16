@@ -279,7 +279,7 @@ __Step 1__
 If you are certain your keys are correctly working, first try running `git clone your_repo.git` on the target server. If it succeeds, move onto the next steps. If it failed, make sure your keys are stored both on the server and on your git account.
 
 __Step 2__
-By default `ssh-copy-id` copies the default identiy, usually named `id_rsa`. If that is not the appropriate key:
+By default `ssh-copy-id` copies the default identity, usually named `id_rsa`. If that is not the appropriate key:
 
 ```bash
 ssh-copy-id -i path/to/my/key your_username@server.com
