@@ -7,7 +7,7 @@ permalink: /docs/usage/restart-strategies/
 
 ## Exponential Backoff Restart Delay
 
-A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementaly the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
+A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementally the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
 
 CLI:
 ```bash
