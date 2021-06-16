@@ -20,7 +20,7 @@ pm2 monit
 
 ## PM2.io
 
-If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications accross servers easier than ever.
+If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications across servers easier than ever.
 
 Feel free to try it:
 [Discover the monitoring dashboard for PM2](https://app.pm2.io/#/register)
