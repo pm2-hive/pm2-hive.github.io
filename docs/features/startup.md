@@ -49,7 +49,7 @@ You simply have to copy/paste the line PM2 gives you and the startup script will
 
 **Important**
 
-Once you started all the applications you want to manage, you have to save the list you wanna respawn at machine reboot with:
+Once you started all the applications you want to manage, you have to save the list you want to respawn at machine reboot with:
 
 ```bash
 pm2 save

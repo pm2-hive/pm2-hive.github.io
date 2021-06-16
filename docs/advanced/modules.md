@@ -285,7 +285,7 @@ var conf    = pmx.initModule({
 
 In the main Keymetrics dashboard, the modules will have a button called "Configure". Once you click on it you will be able to access or/and modify all configuration variables exposed on the package.json!
 
-## Wanna share your module?
+## Want to share your module?
 
 If you built a module, please send us an email, we will promote your module and add it to Keymetrics: [https://keymetrics.io/contact/](https://keymetrics.io/contact/)
 
