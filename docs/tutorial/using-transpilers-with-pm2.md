@@ -54,7 +54,7 @@ Remember that those commands will only work in `fork_mode`. If you want to run a
 
 ### Require hook
 
-This is my favorite option. It will run as standard Javascript by registering the transpiler inside the code. Most of those will actually change the node internal's `require`, or tweak the `module` so that the required script gets transpiled before it is interpreted (example [babel](https://github.com/babel/babel/blob/93e5c0e64b1a14f3b138a01c55082225084f47b4/packages/babel-register/src/node.js#L104) or [coffee](https://github.com/jashkenas/coffeescript/blob/master/lib/coffee-script/register.js#L16)).
+This is my favorite option. It will run as standard Javascript by registering the transpiler inside the code. Most of those will actually change the node internals `require`, or tweak the `module` so that the required script gets transpiled before it is interpreted (example [babel](https://github.com/babel/babel/blob/93e5c0e64b1a14f3b138a01c55082225084f47b4/packages/babel-register/src/node.js#L104) or [coffee](https://github.com/jashkenas/coffeescript/blob/master/lib/coffee-script/register.js#L16)).
 
 *This workaround could be considered more as a hack than an actual solution. Keep in mind that it will slow down the script startup.*
 
