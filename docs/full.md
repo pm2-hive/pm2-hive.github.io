@@ -251,7 +251,7 @@ pm2 list               # Display all processes status
 pm2 jlist              # Print process list in raw JSON
 pm2 prettylist         # Print process list in beautified JSON
 
-pm2 describe 0         # Display all informations about a specific process
+pm2 describe 0         # Display all information about a specific process
 
 pm2 monit              # Monitor all processes
 
@@ -502,7 +502,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 | restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
 | autorestart | boolean |  false  |  true by default. if false, PM2 will not restart your app if it crashes or ends peacefully  |
 | cron_restart    |  string |                "1 0 * * *"                |                                      a cron pattern to restart your app. Application must be running for cron feature to work  |
-| vizion       | boolean |                   false                   |  true by default. if false, PM2 will start without vizion features (versioning control metadatas) |
+| vizion       | boolean |                   false                   |  true by default. if false, PM2 will start without vizion features (versioning control metadata) |
 | post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard |
 | force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2 |
 
@@ -606,7 +606,7 @@ Note: starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of 
 
 ### Logs suffix
 
-You can disable automatic ID suffixs on logs (e.g. `app-name-ID.log`) by passing enabling the option `merge_logs: true`
+You can disable automatic ID suffixes on logs (e.g. `app-name-ID.log`) by passing enabling the option `merge_logs: true`
 
 ### Environment definition
 
@@ -663,7 +663,7 @@ Then you use `pm2 start ecosystem.json --env production` and it will use the att
 
 ## Cluster Mode
 
-The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled accross all CPUs available, without any code modifications. This greatly increases the performance and reliability of your applications, depending on the number of CPUs available.  Under the hood, this uses the Node.js [cluster module](https://nodejs.org/api/cluster.html) such that the scaled application's child processes can automatically share server ports. To learn more, see [How It Works](https://nodejs.org/api/cluster.html#cluster_how_it_works) in the official Node.js documentation on the cluster module.
+The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled across all CPUs available, without any code modifications. This greatly increases the performance and reliability of your applications, depending on the number of CPUs available.  Under the hood, this uses the Node.js [cluster module](https://nodejs.org/api/cluster.html) such that the scaled application's child processes can automatically share server ports. To learn more, see [How It Works](https://nodejs.org/api/cluster.html#cluster_how_it_works) in the official Node.js documentation on the cluster module.
 
 ![http://i.imgur.com/kTAowsL.png](http://i.imgur.com/kTAowsL.png)
 
@@ -802,7 +802,7 @@ Please read the [Considerations to use PM2 deploy](#considerations).
 
 ## Simple deploy
 
-Baically you only need to add a "deploy" attribute to the ecosystem.json. Here is a bare minimum to deploy an application:
+Basically you only need to add a "deploy" attribute to the ecosystem.json. Here is a bare minimum to deploy an application:
 
 process.json:
 
@@ -1068,7 +1068,7 @@ __Step 1__
 If you are certain your keys are correctly working, first try running `git clone your_repo.git` on the target server. If it succeeds, move onto the next steps. If it failed, make sure your keys are stored both on the server and on your git account.
 
 __Step 2__
-By default `ssh-copy-id` copies the default identiy, usually named `id_rsa`. If that is not the appropriate key:
+By default `ssh-copy-id` copies the default identity, usually named `id_rsa`. If that is not the appropriate key:
 
 ```bash
 ssh-copy-id -i path/to/my/key your_username@server.com
@@ -1210,7 +1210,7 @@ CMD ["pm2-runtime", "--json", "process.yml"]
 
 ### Enabling Graceful Shutdown
 
-When the Container receives a shutdown signal, PM2 forwards this signal to your application allowing to close all the database connections, wait that all queries have been processed or that any other final processing has been completed before a successfull graceful shutdown.
+When the Container receives a shutdown signal, PM2 forwards this signal to your application allowing to close all the database connections, wait that all queries have been processed or that any other final processing has been completed before a successful graceful shutdown.
 
 Catching a shutdown signal is straightforward. You need to add a listener in your Node.js applications and execute anything needed before stopping the app:
 
@@ -1228,7 +1228,7 @@ Read more about application state management [here](http://localhost:4000/docs/u
 
 ### Development environment
 
-You may want to tell Developers to program inside a container to keep a consistant environment between develoment, test and production.
+You may want to tell Developers to program inside a container to keep a consistent environment between development, test and production.
 
 Replacing **pm2-runtime** with **pm2-dev** will enable the watch and restart features. This is quite interesting in a development container when the host files are exposed to the container as a VOLUME.
 
@@ -1277,7 +1277,7 @@ Here is the pm2-runtime helper:
     --machine-name [name]      [MONITORING] keymetrics machine name
     --raw                      raw log output
     --json                     output logs in json format
-    --format                   output logs formated like key=val
+    --format                   output logs formatted like key=val
     --delay <seconds>          delay start of configuration file by <seconds>
     --web [port]               launch process web api on [port] (default to 9615)
     --only <application-name>  only act on one application of configuration
@@ -1403,9 +1403,9 @@ In this example, if i run `pm2 start ecosystem.config.js` :
 **NOTE** : It will increment also when scaling using `pm2 scale myapp 4`, both new instances will have `3002` and `3003` as `PORT` variable.
 
 
-If you just want a fresh install of PM2 without setting up Node.Js, pm2 is avalaible as a `.deb` package!
+If you just want a fresh install of PM2 without setting up Node.Js, pm2 is available as a `.deb` package!
 
-It is built to work with the lastest Long Term Support release of ubuntu.
+It is built to work with the latest Long Term Support release of ubuntu.
 
 ## Installation
 
@@ -1442,10 +1442,10 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 -l --log [path]              specify filepath to output both out and error logs
 -o --output <path>           specify out log file
 -e --error <path>            specify error log file
---time                       prefix logs with standard formated timestamp
---log-date-format <format>   prefix logs with custom formated timestamp
+--time                       prefix logs with standard formatted timestamp
+--log-date-format <format>   prefix logs with custom formatted timestamp
 --log-type <type>            specify log output style (raw by default, or json)
---merge-logs                 when running mutiple process with same app name, do not split file by id
+--merge-logs                 when running multiple process with same app name, do not split file by id
 ```
 
 ### Ecosystem
@@ -1497,7 +1497,7 @@ For each application line this metadata will be printed:
 ```json
 {
    "message": "echo\n",                     // the actual message that has been `console.log`
-   "timestamp": "2017-02-06T14:51:38.896Z", // timestamp of the message, can be formated
+   "timestamp": "2017-02-06T14:51:38.896Z", // timestamp of the message, can be formatted
    "type": "out",                           // the type of logs, can be `err`, `out` or `PM2`
    "process_id": 0,                         // the process id used by PM2
    "app_name": "one-echo"                   // the application name
@@ -1568,7 +1568,7 @@ Use the `--merge-logs` option to disable automatic log file suffixing.
 }
 ```
 
-You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are harcoded string).
+You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are hardcoded string).
 
 ### Setting up a native logrotate
 
@@ -1631,7 +1631,7 @@ pm2 monit
 
 ## PM2.io
 
-If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications accross servers easier than ever.
+If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications across servers easier than ever.
 
 Feel free to try it:
 [Discover the monitoring dashboard for PM2](https://app.pm2.io/#/register)
@@ -1747,8 +1747,8 @@ pm2.connect(function(err) {
   * `minUptime` - The minimum uptime of the script before it's considered successfully started. 
   * `maxRestarts` - The maximum number of times in a row a script will be restarted if it exits in less than `min_uptime`.
   * `maxMemoryRestart` - If sets and `script`'s memory usage goes about the configured number, pm2 restarts the `script`. Uses human-friendly suffixes: 'K' for kilobytes, 'M' for megabytes, 'G' for gigabytes', etc. Eg "150M".
-  * `killTimeout` - (Default: `1600`) The number of milliseconds to wait after a `stop` or `restart` command issues a `SIGINT` signal to kill the script forceably with a `SIGKILL` signal. 
-  * `restartDelay` - (Default: `0`) Number of millseconds to wait before restarting a script that has exited.  
+  * `killTimeout` - (Default: `1600`) The number of milliseconds to wait after a `stop` or `restart` command issues a `SIGINT` signal to kill the script forcibly with a `SIGKILL` signal. 
+  * `restartDelay` - (Default: `0`) Number of milliseconds to wait before restarting a script that has exited.  
   * `interpreter` - (Default: `'node'`) The interpreter for your script (eg "python", "ruby", "bash", etc). The value "none" will execute the 'script' as a binary executable.
   * `execMode` - (Default: `'fork'`) If sets to 'cluster', will enable clustering (running multiple instances of the `script`). [See here for more details](http://pm2.keymetrics.io/docs/usage/cluster-mode/).
   * `instances` - (*Default: `1`*) How many instances of `script` to create. Only relevant in `exec_mode` 'cluster'.
@@ -1845,7 +1845,7 @@ pm2.connect(function() {
       some : 'data',
       hello : true
     },
-    id   : 0, // id of procces from "pm2 list" command or from pm2.list(errback) method
+    id   : 0, // id of process from "pm2 list" command or from pm2.list(errback) method
     topic: 'some topic'
   }, function(err, res) {
   });
@@ -2178,7 +2178,7 @@ pm2 show <application-name>
 
 ## Metrics helper available
 
-Then you can program your very own metrics to track important informations. 4 differents probes are available:
+Then you can program your very own metrics to track important information. 4 different probes are available:
 
 - **Simple metrics**: Values that can be read instantly
     - eg. Monitor variable value
@@ -2186,7 +2186,7 @@ Then you can program your very own metrics to track important informations. 4 di
     - eg. Downloads being processed, user connected
 - **Meter**: Things that are measured as events / interval
     - eg. Request per minute for a http server
-- **Histogram**: Keeps a resevoir of statistically relevant values biased towards the last 5 minutes to explore their distribution
+- **Histogram**: Keeps a reservoir of statistically relevant values biased towards the last 5 minutes to explore their distribution
     - eg. Monitor the mean of execution of a query into database
 
 ### Simple Metric: Simple value reporting
@@ -2216,7 +2216,7 @@ valvar.set(23)
 
 Values that increment or decrement.
 
-Exemple to count Active Http Requests:
+Example to count Active Http Requests:
 
 ```javascript
 var io = require('@pm2/io')
@@ -2243,7 +2243,7 @@ http.createServer(function (req, res) {
 
 Values that are measured as events / interval.
 
-Exemple to count number of queries per minute:
+Example to count number of queries per minute:
 
 ```javascript
 var io = require('@pm2/io')
@@ -2270,7 +2270,7 @@ http.createServer(function (req, res) {
 
 ### Histogram
 
-Keeps a resevoir of statistically relevant values biased towards the last 5 minutes to explore their distribution.
+Keeps a reservoir of statistically relevant values biased towards the last 5 minutes to explore their distribution.
 
 ```javascript
 var io = require('@pm2/io')
@@ -2293,7 +2293,7 @@ setInterval(function() {
 
 *Available in PM2 >= 3.2*
 
-A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementaly the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
+A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementally the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
 
 CLI:
 ```bash
@@ -2476,7 +2476,7 @@ module.exports = {
 
 ## Graceful start
 
-Sometimes you might need to wait for your application to have etablished connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
+Sometimes you might need to wait for your application to have established connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
 
 ```javascript
 var http = require('http');
@@ -2521,7 +2521,7 @@ Via [JSON declaration](http://pm2.keymetrics.io/docs/usage/application-declarati
 
 ### Graceful start using `http.Server.listen`
 
-There is still the default system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automaticaly state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `listen_timeout` entry in process file or `--listen-timeout=XXXX` via CLI.
+There is still the default system that hooks into `http.Server.listen` method. When your http server accepts a connection, it will automatically state your application as ready. You can increase the PM2 waiting time the listen using the same variable as `--wait-ready` graceful start : `listen_timeout` entry in process file or `--listen-timeout=XXXX` via CLI.
 
 ## Explanation: Signals flow
 
@@ -2563,13 +2563,13 @@ process.on('message', function(msg) {
 ```
 
 
-If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get interesting informations you need to generate [source map files](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
+If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get interesting information you need to generate [source map files](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
 
 Once these source map files are generated, PM2 will automatically detects them and will help you inspect errors.
 
 ## Source map
 
-Since the version 1.0.2, PM2 embeds a mecanism to support javascript source map.
+Since the version 1.0.2, PM2 embeds a mechanism to support javascript source map.
 
 **PM2 automatically detects javascript source map files** if the file you start (let's say app.js) has his map equivalence (e.g app.js.map).
 
@@ -2655,9 +2655,9 @@ PM2_HOME='.pm2' pm2 list
 PM2_HOME='.pm3' pm2 list
 ```
 
-## Launch PM2 in no deamon
+## Launch PM2 in no daemon
 
-Make sure you kill any PM2 instance before starting PM2 in no deamon mode (`pm2 kill`).
+Make sure you kill any PM2 instance before starting PM2 in no daemon mode (`pm2 kill`).
 
 Launching PM2 without daemonizing itself:
 
@@ -2671,7 +2671,7 @@ There is also the CLI `pm2-runtime` installed by default at PM2 installation, th
 
 It is a general rule that your production application should be stateless. Every data, states, websocket session, session data, must be shared via any kind of database or PUB/SUB system.
 
-If not, your application will be painfull to scale on the same server and accross multiple servers.
+If not, your application will be painful to scale on the same server and across multiple servers.
 
 For example you could use [connect-redis](https://github.com/visionmedia/connect-redis) to share sessions.
 
@@ -2863,7 +2863,7 @@ pm2 resurrect
 pm2 unstartup
 ```
 
-The previous line code let PM2 detect your platform. Alternatively you can use another specified init system youself using:
+The previous line code let PM2 detect your platform. Alternatively you can use another specified init system yourself using:
 
 ```bash
 pm2 unstartup
@@ -3008,7 +3008,7 @@ Then we will need to change the startup scripts. We call PM2 from the node_modul
 ```
 
  * Customize the `"start"` script to fit your needs.
- * The `"poststart"` script is optionnal, but allows simple log checking directly on the AWS dashboard.
+ * The `"poststart"` script is optional, but allows simple log checking directly on the AWS dashboard.
 
 That's all! Run `eb deploy` to get a PM2 instance on your ElasticBeanstalk instances with minimal overhead.
 
@@ -3061,7 +3061,7 @@ module.exports = {
 
 ### Add PM2 as a module
 
-Add pm2 as a dependency to your projet.
+Add pm2 as a dependency to your project.
 
 With npm:
 
