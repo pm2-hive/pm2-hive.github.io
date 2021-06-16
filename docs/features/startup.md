@@ -71,7 +71,7 @@ pm2 resurrect
 pm2 unstartup
 ```
 
-The previous line code let PM2 detect your platform. Alternatively you can use another specified init system youself using:
+The previous line code let PM2 detect your platform. Alternatively you can use another specified init system yourself using:
 
 ```bash
 pm2 unstartup
