@@ -250,7 +250,7 @@ pm2 list               # Display all processes status
 pm2 jlist              # Print process list in raw JSON
 pm2 prettylist         # Print process list in beautified JSON
 
-pm2 describe 0         # Display all informations about a specific process
+pm2 describe 0         # Display all information about a specific process
 
 pm2 monit              # Monitor all processes
 
