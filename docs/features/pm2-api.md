@@ -80,8 +80,8 @@ pm2.connect(function(err) {
   * `minUptime` - The minimum uptime of the script before it's considered successfully started. 
   * `maxRestarts` - The maximum number of times in a row a script will be restarted if it exits in less than `minUptime`.
   * `maxMemoryRestart` - If sets and `script`'s memory usage goes about the configured number, pm2 restarts the `script`. Uses human-friendly suffixes: 'K' for kilobytes, 'M' for megabytes, 'G' for gigabytes', etc. Eg "150M".
-  * `killTimeout` - (Default: `1600`) The number of milliseconds to wait after a `stop` or `restart` command issues a `SIGINT` signal to kill the script forceably with a `SIGKILL` signal. 
-  * `restartDelay` - (Default: `0`) Number of millseconds to wait before restarting a script that has exited.  
+  * `killTimeout` - (Default: `1600`) The number of milliseconds to wait after a `stop` or `restart` command issues a `SIGINT` signal to kill the script forcibly with a `SIGKILL` signal. 
+  * `restartDelay` - (Default: `0`) Number of milliseconds to wait before restarting a script that has exited.  
   * `interpreter` - (Default: `'node'`) The interpreter for your script (eg "python", "ruby", "bash", etc). The value "none" will execute the 'script' as a binary executable.
   * `execMode` - (Default: `'fork'`) If sets to 'cluster', will enable clustering (running multiple instances of the `script`). [See here for more details](http://pm2.keymetrics.io/docs/usage/cluster-mode/).
   * `instances` - (*Default: `1`*) How many instances of `script` to create. Only relevant in `exec_mode` 'cluster'.
@@ -177,7 +177,7 @@ pm2.connect(function() {
       some : 'data',
       hello : true
     },
-    id   : 0, // id of procces from "pm2 list" command or from pm2.list(errback) method
+    id   : 0, // id of process from "pm2 list" command or from pm2.list(errback) method
     topic: 'some topic'
   }, function(err, res) {
   });
