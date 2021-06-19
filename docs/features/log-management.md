@@ -25,6 +25,8 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 --merge-logs                 when running mutiple process with same app name, do not split file by id
 ```
 
+- The option `--log-date-format` accepts [Moment.js format](https://momentjs.com/docs/#/displaying/format/)
+
 ### Ecosystem
 
 Via [Ecosystem files](/docs/usage/application-declaration/) you can pass all the same options:
@@ -35,6 +37,7 @@ modules.exports = [{
   error_file: 'err.log',
   out_file: 'out.log',
   log_file: 'combined.log',
+  log_date_format: 'YYYY-MM-DD HH:mm Z', 
   time: true
 }]
 ```
@@ -80,7 +83,6 @@ For each application line this metadata will be printed:
    "app_name": "one-echo"                   // the application name
 }
 ```
-
 
 ### Formatted output
 
