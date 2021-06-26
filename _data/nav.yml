@@ -19,11 +19,9 @@
       url: /docs/usage/application-declaration/
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
-    - title: Graceful Start/Shutdown
-      url: /docs/usage/signals-clean-restart/
     - title: PM2 as a Static Server
       url: /docs/usage/expose/
-    - title: Deploying application
+    - title: Deployment System
       url: /docs/usage/deployment/      
     - title: Environment Variables
       url: /docs/usage/environment/
@@ -33,6 +31,8 @@
 - title: Advanced
   url: /docs/usage/process-actions/
   subnav:
+    - title: Graceful Start/Shutdown
+      url: /docs/usage/signals-clean-restart/
     - title: Exposing RPC function 
       url: /docs/usage/process-actions/
     - title: Exposing Metrics
