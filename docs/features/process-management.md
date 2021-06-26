@@ -17,6 +17,10 @@ To start an application:
 $ pm2 start api.js
 ```
 
+![image](https://user-images.githubusercontent.com/757747/123512784-b0341900-d689-11eb-93d4-69510ee2be27.png)
+
+#### Configuration File
+
 When managing multiple application at the same time, you can use a [configuration file](/docs/usage/application-declaration/).
 
 You can also start any kind of application like bash commands, script, binaries:
