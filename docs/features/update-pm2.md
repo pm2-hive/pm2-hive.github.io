@@ -5,37 +5,29 @@ description: Upgrade PM2 to the latest version
 permalink: /docs/usage/update-pm2/
 ---
 
-To get the most out of PM2 and [PM2.io](https://pm2.io), please make sure your PM2 version is up-to-date.
-
-You can find the changelog here: [https://github.com/Unitech/pm2/releases](https://github.com/Unitech/pm2/releases).
-
 ## Updating PM2
 
 Updating PM2 is extremely fast (less than few seconds) and seamless.
 
-First make sure that you saved correctly all your processes:
+### Process to update PM2
 
-```bash
-pm2 save
-```
-
-Then install the latest PM2 version from NPM:
+Install the latest PM2 version:
 
 ```bash
 npm install pm2 -g
 ```
 
-And finally update the in-memory PM2 process:
+You can now update the in-memory PM2 daemon via command:
 
 ```bash
 pm2 update
 ```
 
-That's all, you now have a fresh and up-to-date PM2 system!
+### Node.js version upgrade
 
-## Updating Startup Script
+When you upgrade your Node.js installation, make sure to also update Node.js version starting PM2.
 
-When you upgrade your Node.js version, the node binary path will change. To update the PM2 startup script run:
+To update the PM2 startup script run:
 
 ```bash
 $ pm2 unstartup
