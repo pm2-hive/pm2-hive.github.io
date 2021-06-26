@@ -51,7 +51,7 @@ module.exports = {
 
 **Note**: make sure the application configuration file in the local folder is named either ecosystem.config.js or pm2.config.js, so you don't need to type the configuration filename for each command.
 
-#### Provision remote server
+### Provision remote server
 
 Before provisioning remote server verify that:
 
@@ -66,7 +66,7 @@ $ pm2 deploy production setup
 
 **Note**: as the app configuration file is named ecosystem.config.js or pm2.config.js in the local folder, you do not need to specify the filename each time
 
-#### Deploy application
+### Deploy application
 
 Once the remote server have been provisioned you can now deploy the application:
 
@@ -76,7 +76,7 @@ $ pm2 deploy production
 
 **Note**: if git report an error that there are local changes but still want to push what is on the remote GIT, you can use the `--force` option to force deployment. 
 
-#### Rollback to previous deployment
+### Rollback to previous deployment
 
 If you need to rollback to previous deployment you can use the `revert` option:
 
@@ -85,7 +85,7 @@ If you need to rollback to previous deployment you can use the `revert` option:
 $ pm2 deploy production revert 1
 ```
 
-#### Execute a command on each server
+### Execute a command on each server
 
 To execute a one-time running command you can use the `exec` option:
 
