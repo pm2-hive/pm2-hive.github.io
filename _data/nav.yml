@@ -41,7 +41,7 @@
       url: /docs/usage/pm2-api/
     - title: Monitoring
       url: /docs/usage/monitoring/
-    - title: Specifics: No daemon, Multiple PM2
+    - title: "No daemon, Multiple PM2"
       url: /docs/usage/specifics/
     - title: Module System
       url: /docs/advanced/pm2-module-system/
