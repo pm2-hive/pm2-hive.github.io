@@ -5,18 +5,16 @@ description: Manage applications via a configuration file
 permalink: /docs/usage/application-declaration/
 ---
 
-## Ecosystem File
+## Configuration File
 
-PM2 empowers your process management workflow. It allows you to fine-tune the behavior, options, environment variables, logs files of each application via a process file. It's particularly useful for micro-service based applications.
+When managing multiple applications with PM2, use a JS configuration file to organize them.
 
-Configuration format supported are Javascript, JSON and YAML.
+### Generate configuration
 
-## Generate configuration
+To generate a sample configuration file you can type this command:
 
-To generate a sample process file you can type this command:
-
-```
-pm2 ecosystem
+```bash
+$ pm2 init simple
 ```
 
 This will generate a sample `ecosystem.config.js`:
@@ -24,90 +22,26 @@ This will generate a sample `ecosystem.config.js`:
 ```javascript
 module.exports = {
   apps : [{
-    name: "app",
-    script: "./app.js",
-    env: {
-      NODE_ENV: "development",
-    },
-    env_production: {
-      NODE_ENV: "production",
-    }
+    name   : "app1",
+    script : "./app.js"
   }]
 }
 ```
 
-Once edited at your convenience you can start/restart/stop/delete this file via CLI:
+If you are creating your own configuration file, make sure it ends with `.config.js` so PM2 is able to recognize it as a configuration file.
 
-```bash
-$ pm2 [start|restart|stop|delete] ecosystem.config.js
-```
+### Acting on Configuration File
 
-Checkout [the section about acting with CLI](#cli) on ecosystem.config.js to know more.
-
-### Javascript format
-
-You can declare multiple application easily and specify different options for each of them:
-
-```javascript
-module.exports = {
-  apps : [{
-    name        : "worker-app",
-    script      : "./worker.js",
-    watch       : true,
-    env: {
-      "NODE_ENV": "development",
-    },
-    env_production : {
-       "NODE_ENV": "production"
-    }
-  },{
-    name       : "api-app",
-    script     : "./api.js",
-    instances  : 4,
-    exec_mode  : "cluster"
-  }]
-}
-```
-
-**Note that using a Javascript configuration file requires to end the file name with `.config.js`**
-
-### YAML format
-
-You can also create a Ecosystem file in YAML format.
-Example:
-
-```yaml
-apps:
-  - script   : ./api.js
-    name     : 'api-app'
-    instances: 4
-    exec_mode: cluster
-  - script : ./worker.js
-    name   : 'worker-app'
-    watch  : true
-    env    :
-      NODE_ENV: development
-    env_production:
-      NODE_ENV: production
-```
-
-### CLI
-
-Then you can run and manage your processes easily:
+Seamlessly than acting on an app you can start/stop/restart/delete all apps contained in a configuration file:
 
 ```bash
 # Start all applications
 pm2 start ecosystem.config.js
 
-# Start only the app named worker-app
-pm2 start ecosystem.config.js --only worker-app
-
 # Stop all
 pm2 stop ecosystem.config.js
 
 # Restart all
-pm2 start   ecosystem.config.js
-## Or
 pm2 restart ecosystem.config.js
 
 # Reload all
@@ -117,18 +51,17 @@ pm2 reload ecosystem.config.js
 pm2 delete ecosystem.config.js
 ```
 
-### Act on a specific process
+#### Act on a specific process
 
 You can also act on a particular application by using its name and the option `--only <app_name>`:
 
 ```bash
 pm2 start   ecosystem.config.js --only api-app
-pm2 restart ecosystem.config.js --only api-app
-pm2 reload  ecosystem.config.js --only api-app
-pm2 delete  ecosystem.config.js --only api-app
 ```
 
-For multiple processes use:
+*Note*: the `--only` option works for start/restart/stop/delete as well
+
+You can even specify multiple apps to be acted on by specifying each app name separated by a comma:
 
 ```bash
 pm2 start ecosystem.config.js --only "api-app,worker-app"
@@ -136,16 +69,30 @@ pm2 start ecosystem.config.js --only "api-app,worker-app"
 
 ### Switching environments
 
-You may have noticed that you can declare environment-specific variables with the attribute `env_*` (e.g. env_production, env_staging...). They can be switched easily. You just need to specify the `--env <environment_name>` when acting on the application declaration.
+You can specify different environment variable set via the `env_*` option.
 
 Example:
 
-```bash
-# Inject what is declared in env_production
-pm2 start process.json --env production
+```javascript
+module.exports = {
+  apps : [{
+    name   : "app1",
+    script : "./app.js",
+    env_production: {
+       NODE_ENV: "production"
+    },
+    env_development: {
+       NODE_ENV: "development"
+    }
+  }]
+}
+```
 
-# Inject what is declared in env_staging
-pm2 restart process.json --env staging
+Now to switch between variables in different environment, specify the `--env [env name]` option:
+
+```bash
+pm2 start process.json --env production
+pm2 restart process.json --env development
 ```
 
 ## Attributes available
@@ -224,116 +171,10 @@ post-setup|Post-setup commands or path to a script on the host machine|String
 pre-deploy-local|pre-deploy action|String|
 post-deploy|post-deploy action|String|
 
-## Considerations
+### Considerations
 
 All command line options passed when using the JSON app declaration will be dropped i.e.
 
-### Multiple JSON
-
-You can start as many JSON application declarations as you want.
-
-```bash
-$ cat node-app-1.json
-{
-  "name" : "node-app-1",
-  "script" : "app.js",
-  "cwd" : "/srv/node-app-1/current"
-}
-
-$ cat node-app-2.json
-{
-  "name" : "node-app-2",
-  "script" : "app2.js",
-  "cwd" : "/srv/node-app-2/current"
-}
-```
-
-```bash
-pm2 start node-app-1.json
-pm2 start node-app-2.json
-```
-
-Will result in two apps launched:
-
-```
-ps aux | grep node-app
-root  14735  5.8  1.1  752476  83932 ? Sl 00:08 0:00 pm2: node-app-1
-root  24271  0.0  0.3  696428  24208 ? Sl 17:36 0:00 pm2: node-app-2
-```
-
-### CWD
+#### CWD
 
 **cwd:** your JSON declaration does not need to reside with your script.  If you wish to maintain the JSON(s) in a location other than your script (say, `/etc/pm2/conf.d/node-app.json`) you will need to use the `cwd` feature (Note, this can be really helpful for capistrano style directory structures that uses symlinks). Files can be either relative to the `cwd` directory, or absolute (see example below).
-
-### CLI/JSON options
-
-All the keys can be used in a JSON configured file, but will remain almost the same on the command line e.g.:
-
-```
-exec_mode         -> --execute-command
-max_restarts      -> --max-restarts
-force             -> --force
-```
-
-Using quotes to make an ESC, e.g.:
-
-```bash
-$pm2 start test.js --node-args "port=3001 sitename='first pm2 app'"
-```
-
-The `nodeArgs` argument will be parsed as
-
-```json
-[
-  "port=3001",
-  "sitename=first pm2 app"
-]
-```
-
-but not
-
-```json
-[
-  "port=3001",
-  "sitename='first",
-  "pm2",
-  "app'"
-]
-```
-
-### Disabling logs
-
-You can pass `/dev/null` to error_file or out_file to disable logs saving.
-Note: starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
-
-### Logs suffix
-
-You can disable automatic ID suffixs on logs (e.g. `app-name-ID.log`) by passing enabling the option `merge_logs: true`
-
-### Environment definition
-
-You'll need to use `--env <envname>` to tell pm2 to use specific environment defined inside a process file :
-
-```json
-{
-  "apps" : [{
-    "name"        : "worker-app",
-    "script"      : "./worker.js",
-    "watch"       : true,
-    "env": {
-      "NODE_ENV": "development"
-    },
-    "env_production" : {
-       "NODE_ENV": "production"
-    }
-  },{
-    "name"       : "api-app",
-    "script"     : "./api.js",
-    "instances"  : 4,
-    "exec_mode"  : "cluster"
-  }]
-}
-```
-
-In this example, you will run `pm2 start ecosystem.json` and it will start your application with the default environment (in development so).
-Then you use `pm2 start ecosystem.json --env production` and it will use the attribute `env_<name>` where name is `production` here, so it will start your app with `NODE_ENV=production`.
