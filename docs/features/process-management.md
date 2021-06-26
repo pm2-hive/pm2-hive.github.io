@@ -85,8 +85,7 @@ To display metadata about an application:
 pm2 show api
 ```
 
-![image](https://user-images.githubusercontent.com/757747/123510635-fafb6400-d67c-11eb-8534-0ce6106979b2.png)
-
+<img src="https://user-images.githubusercontent.com/757747/123510635-fafb6400-d67c-11eb-8534-0ce6106979b2.png" alt="drawing" width="600"/>
 
 ### Reset restart count
 
