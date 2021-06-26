@@ -3,14 +3,12 @@
   subnav:
     - title: Quick Start
       url: /docs/usage/quick-start/
-    - title: Process Management
-      url: /docs/usage/process-management/
 
 - title: Documentation
   url: /docs/usage/pm2-doc-single-page/
   subnav:
-    - title: Managing Applications
-      url: /docs/usage/process-actions/
+    - title: Process Management
+      url: /docs/usage/process-management/
     - title: Restart Strategies
       url: /docs/usage/restart-strategies/
     - title: Logs 
@@ -23,33 +21,29 @@
       url: /docs/usage/cluster-mode
     - title: Graceful Start/Shutdown
       url: /docs/usage/signals-clean-restart/
-    - title: PM2 Javascript API
-      url: /docs/usage/pm2-api/
     - title: PM2 as a Static Server
       url: /docs/usage/expose/
     - title: Deploying application
       url: /docs/usage/deployment/      
     - title: Environment Variables
       url: /docs/usage/environment/
-
-
     - title: Update PM2
       url: /docs/usage/update-pm2/
 
-    - title: Custom Metrics
+- title: Advanced
+    subnav:
+    - title: Exposing RPC function 
+      url: /docs/usage/process-actions/
+    - title: Exposing Metrics
       url: /docs/usage/process-metrics/
+    - title: PM2 Javascript API
+      url: /docs/usage/pm2-api/
     - title: Monitoring
       url: /docs/usage/monitoring/
-    - title: Specifics
+    - title: Specifics: No daemon, Multiple PM2
       url: /docs/usage/specifics/
     - title: Module System
       url: /docs/advanced/pm2-module-system/
-
-    - title: Download as ZIP
-      url: https://github.com/Unitech/PM2/releases
-      blank: true
-    - title: Single Page Doc
-      url: /docs/usage/pm2-doc-single-page/
 
 - title: Integrations
   url: /docs/usage/use-pm2-with-cloud-providers/
