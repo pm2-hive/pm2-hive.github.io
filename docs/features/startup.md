@@ -5,11 +5,11 @@ description: Auto restart PM2 and processes at server reboot
 permalink: /docs/usage/startup/
 ---
 
-## Startup Script Generator
+## Persistent applications: Startup Script Generator
 
 PM2 can generate startup scripts and configure them in order to keep your process list intact across expected or unexpected machine restarts.
 
-### Generating a startup script
+### Generating a Startup Script
 
 To automatically generate and configuration a startup script just type the command (without sudo):
 
