@@ -5,14 +5,11 @@ description: Getting started with PM2
 permalink: /docs/usage/quick-start/
 ---
 
-## Welcome!
-
-Welcome to the PM2 Quick Start!
+## PM2 Process Management Quick Start
 
 PM2 is a daemon process manager that will help you manage and keep your application online. Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
 
-
-## Installation
+### Installation
 
 The latest PM2 version is installable with NPM or Yarn:
 
@@ -24,7 +21,7 @@ $ yarn global add pm2
 
 To install Node.js and NPM you can use [NVM](https://yoember.com/nodejs/the-best-way-to-install-node-js/)
 
-## Start an app
+### Start an app
 
 The simplest way to start, daemonize and monitor your application is by using this command line:
 
