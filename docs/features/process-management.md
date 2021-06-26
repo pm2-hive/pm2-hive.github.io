@@ -14,7 +14,7 @@ With PM2 you can easily start/restart/reload/stop/list applications in backgroun
 To start an application:
 
 ```bash
-pm2 start api.js
+$ pm2 start api.js
 ```
 
 When managing multiple application at the same time, you can use a [configuration file](/docs/usage/application-declaration/).
@@ -22,10 +22,20 @@ When managing multiple application at the same time, you can use a [configuratio
 You can also start any kind of application like bash commands, script, binaries:
 
 ```bash
-pm2 start "npm run start"
-pm2 start "ls -la"
-pm2 start app.py
+$ pm2 start "npm run start"
+$ pm2 start "ls -la"
+$ pm2 start app.py
 ```
+
+#### Start and display log stream
+
+To start an app and check logs stream use the `--attach` option:
+
+```bash
+$ pm2 start api.js --attach
+```
+
+When quitting via Ctrl-C, the app will still run in background.
 
 ### Restart
 
