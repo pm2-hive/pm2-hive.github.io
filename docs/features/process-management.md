@@ -11,13 +11,21 @@ With PM2 you can easily start/restart/reload/stop/list applications in backgroun
 
 ### Start
   
-Start an application
+To start an application:
 
 ```bash
 pm2 start api.js
 ```
 
 When managing multiple application at the same time, you can use a [configuration file](/docs/usage/application-declaration/).
+
+You can also start any kind of application like bash commands, script, binaries:
+
+```bash
+pm2 start "npm run start"
+pm2 start "ls -la"
+pm2 start app.py
+```
 
 ### Restart
 
@@ -27,7 +35,7 @@ To restart an application:
 pm2 restart api
 ```
 
-If you want to update environment variables of your application, do not forget to add the option `--update-env`
+To update environment variables, use the `--update-env` CLI option:
 
 ```bash
 NODE_ENV=production pm2 restart web-interface --update-env
@@ -41,7 +49,7 @@ To stop a specified application:
 pm2 stop api
 ```
 
-Note: this will not delete the application from PM2 application list. See next section to delete a an application.
+Note: this will not delete the application from PM2 application list. See next section to delete an application.
 
 ### Delete 
 
