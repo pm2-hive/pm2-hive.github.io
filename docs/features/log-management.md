@@ -8,6 +8,7 @@ permalink: /docs/usage/log-management/
 ## Application Logs
 
 Once an application is started with PM2 you can consult and manage logs easily.
+
 Log files are located in the folder `$HOME/.pm2/logs`.
 
 ### Log Views
