@@ -9,8 +9,6 @@
 - title: Documentation
   url: /docs/usage/pm2-doc-single-page/
   subnav:
-    - title: Single Page Doc
-      url: /docs/usage/pm2-doc-single-page/
     - title: Cluster Mode
       url: /docs/usage/cluster-mode
     - title: Ecosystem File
@@ -50,6 +48,8 @@
     - title: Download as ZIP
       url: https://github.com/Unitech/PM2/releases
       blank: true
+    - title: Single Page Doc
+      url: /docs/usage/pm2-doc-single-page/
 
 - title: Integrations
   url: /docs/usage/use-pm2-with-cloud-providers/
