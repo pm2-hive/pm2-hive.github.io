@@ -54,17 +54,11 @@
 - title: Integrations
   url: /docs/usage/use-pm2-with-cloud-providers/
   subnav:
-    - title: Use PM2 in Cloud Providers
-      url: /docs/usage/use-pm2-with-cloud-providers/
     - title: Docker Integration
       url: /docs/usage/docker-pm2-nodejs/
-    - title: Heroku Integration
-      url: /docs/integrations/heroku/
+    - title: Use PM2 in Cloud Providers
+      url: /docs/usage/use-pm2-with-cloud-providers/
     - title: Production Setup with Nginx
       url: /docs/tutorials/pm2-nginx-production-setup
     - title: Using transpilers with PM2
       url: /docs/tutorials/using-transpilers-with-pm2
-    - title: PM2 in ElasticBeanstalk
-      url: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
-    - title: Capistrano like deployments
-      url: /docs/tutorials/capistrano-like-deployments
