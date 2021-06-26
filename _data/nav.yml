@@ -5,7 +5,7 @@
       url: /docs/usage/quick-start/
 
 - title: General
-  url: /docs/usage/pm2-doc-single-page/
+  url: /docs/usage/process-management/
   subnav:
     - title: Process Management
       url: /docs/usage/process-management/
@@ -31,7 +31,8 @@
       url: /docs/usage/update-pm2/
 
 - title: Advanced
-    subnav:
+  url: /docs/usage/process-actions/
+  subnav:
     - title: Exposing RPC function 
       url: /docs/usage/process-actions/
     - title: Exposing Metrics
