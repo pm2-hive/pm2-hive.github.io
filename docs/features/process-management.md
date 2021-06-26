@@ -69,6 +69,9 @@ pm2 list
 pm2 [list|ls|l|status]
 ```
 
+![image](https://user-images.githubusercontent.com/757747/123511260-a3f78e00-d680-11eb-8907-3f1017ef7dc8.png)
+
+
 To specify which order you want the application to be listed:
 
 ```bash
