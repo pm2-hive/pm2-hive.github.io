@@ -11,7 +11,7 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 
 ### Generating a Startup Script
 
-To automatically generate and configuration a startup script just type the command (without sudo):
+To automatically generate and configuration a startup script just type the command (without sudo) `pm2 startup`:
 
 ```bash
 $ pm2 startup
@@ -31,7 +31,7 @@ Now PM2 will automatically restart at boot.
 
 ### Saving the app list to be restored at reboot
 
-Once you have started all desired application, save the app list so it will respawn after reboot:
+Once you have started all desired apps, save the app list so it will respawn after reboot:
 
 ```bash
 pm2 save
