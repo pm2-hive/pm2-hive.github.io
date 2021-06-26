@@ -53,7 +53,10 @@ module.exports = {
 
 #### Provision remote server
 
-Before provisioning remote server, make sure that they permissions have been granted to clone the GIT repository. 
+Before provisioning remote server verify that:
+
+- Remote servers have PM2 installed
+- Remote servers have granted permissions to GIT clone the target repository
 
 Once remote servers have been configured you can start provisioning them:
 
