@@ -23,8 +23,6 @@
       url: /docs/usage/log-management/
     - title: Restart Strategies
       url: /docs/usage/restart-strategies/
-    - title: Memory Limit Reload
-      url: /docs/usage/memory-limit/
     - title: Update PM2
       url: /docs/usage/update-pm2/
     - title: Deployment
