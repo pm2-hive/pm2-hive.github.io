@@ -5,7 +5,10 @@ description: Handle application restart properly
 permalink: /docs/usage/restart-strategies/
 ---
 
-When starting and managing applications with PM2, you can specify different restart strategies like:
+## Restart strategies
+
+When starting application with PM2, application are automatically restarted on auto exit, event loop empty (node.js) or when application crash.
+But you can also configure extra restart strategies like:
 
 - Restart app at a specified CRON time
 - Restart when app reach a memory threshold
