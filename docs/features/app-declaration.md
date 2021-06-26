@@ -337,27 +337,3 @@ You'll need to use `--env <envname>` to tell pm2 to use specific environment def
 
 In this example, you will run `pm2 start ecosystem.json` and it will start your application with the default environment (in development so).
 Then you use `pm2 start ecosystem.json --env production` and it will use the attribute `env_<name>` where name is `production` here, so it will start your app with `NODE_ENV=production`.
-
-### Special `ext_type`
-
-- min_uptime
-  Value of `min_uptime` can be:
-    - **Number**
-      e.g. `"min_uptime": 3000` means 3000 milliseconds.
-    - **String**
-      Therefore, we are making it short and easy to configure: `h`, `m` and `s`, e.g.: `"min_uptime": "1h"` means one hour, `"min_uptime": "5m"` means five minutes and `"min_uptime": "10s"` means ten seconds (those will be transformed into milliseconds).
-
-- max_memory_restart
-  Value of `max_memory_restart` can be:
-    - **Number**
-        e.g. `"max_memory_restart": 1024` means 1024 bytes (**NOT BITS**).
-    - **String**
-        Therefore, we are making it short and easy to configure: `G`, `M` and `K`, e.g.: `"max_memory_restart": "1G"` means one gigabyte, `"max_memory_restart": "5M"` means five megabytes and `"max_memory_restart": "10K"` means ten kilobytes (those will be transformed into byte(s)).
-
-- Optional values
-  For example `exec_mode` can take `cluster` (`cluster_mode`) or `fork` (`fork_mode`) as possible values.
-
-- Things to know
-  - `"instances": 0` means that PM2 will launch the maximum processes possible according to the numbers of CPUs (cluster mode)
-  - array
-  `args`, `node_args` and `ignore_watch` could be type of `Array` (e.g.: `"args": ["--toto=heya coco", "-d", "1"]`) or `string` (e.g.: `"args": "--to='heya coco' -d 1"`)
