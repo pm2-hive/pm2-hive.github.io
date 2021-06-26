@@ -54,7 +54,13 @@ $ pm2 start api.js -- arg1 arg2
 To restart an application:
 
 ```bash
-pm2 restart api
+$ pm2 restart api
+```
+
+To restart all applications:
+
+```bash
+$ pm2 restart all
 ```
 
 #### Updating environment variables and options
@@ -62,7 +68,7 @@ pm2 restart api
 To update environment variables or PM2 options, specify the `--update-env` CLI option:
 
 ```bash
-NODE_ENV=production pm2 restart web-interface --update-env
+$ NODE_ENV=production pm2 restart web-interface --update-env
 ```
 
 ### Stop
@@ -70,7 +76,14 @@ NODE_ENV=production pm2 restart web-interface --update-env
 To stop a specified application:
 
 ```bash
-pm2 stop api
+$ pm2 stop api
+$ pm2 stop [process_id]
+```
+
+To stop them all:
+
+```bash
+$ pm2 stop all
 ```
 
 Note: this will not delete the application from PM2 application list. See next section to delete an application.
@@ -80,7 +93,13 @@ Note: this will not delete the application from PM2 application list. See next s
 To stop and delete an application:
 
 ```bash
-pm2 delete api
+$ pm2 delete api
+```
+
+To delete them all:
+
+```bash
+$ pm2 delete all
 ```
 
 ## Listing Applications
@@ -88,9 +107,9 @@ pm2 delete api
 To list all running applications:
 
 ```bash
-pm2 list
+$ pm2 list
 # Or
-pm2 [list|ls|l|status]
+$ pm2 [list|ls|l|status]
 ```
 
 ![image](https://user-images.githubusercontent.com/757747/123511260-a3f78e00-d680-11eb-8907-3f1017ef7dc8.png)
@@ -99,9 +118,9 @@ pm2 [list|ls|l|status]
 To specify which order you want the application to be listed:
 
 ```bash
-pm2 list --sort name:desc
+$ pm2 list --sort name:desc
 # Or
-pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
+$ pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
 ```
 
 ### Showing application metadata
@@ -109,7 +128,7 @@ pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
 To display metadata about an application:
 
 ```bash
-pm2 show api
+$ pm2 show api
 ```
 
 <img src="https://user-images.githubusercontent.com/757747/123510635-fafb6400-d67c-11eb-8534-0ce6106979b2.png" alt="drawing" width="600"/>
@@ -119,5 +138,5 @@ pm2 show api
 To reset the restart counter:
 
 ```bash
-pm2 reset all
+$ pm2 reset all
 ```
