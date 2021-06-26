@@ -5,6 +5,14 @@ description: Handle application restart properly
 permalink: /docs/usage/restart-strategies/
 ---
 
+When starting and managing applications with PM2, you can specify different restart strategies like:
+
+- Restart app at a specified CRON time
+- Restart when app reach a memory threshold
+- Delay a start and automatic restart
+- Disable auto restart (app are always restarted with PM2) when crashing or exiting by default)
+- Restart application automatically at a specific exponential increasing time
+
 ## Restart at cron time
 
 Via CLI:
