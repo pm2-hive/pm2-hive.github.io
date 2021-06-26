@@ -37,6 +37,14 @@ $ pm2 start api.js --attach
 
 When quitting via Ctrl-C, the app will still run in background.
 
+#### Passing arguments
+
+All option passed after `--` will be passed as argument to the app:
+
+```bash
+$ pm2 start api.js -- arg1 arg2
+```
+
 ### Restart
 
 To restart an application:
@@ -45,7 +53,9 @@ To restart an application:
 pm2 restart api
 ```
 
-To update environment variables, use the `--update-env` CLI option:
+#### Updating environment variables and options
+
+To update environment variables or PM2 options, specify the `--update-env` CLI option:
 
 ```bash
 NODE_ENV=production pm2 restart web-interface --update-env
