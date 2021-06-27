@@ -19,16 +19,38 @@ $ pm2 start api.js
 
 ![image](https://user-images.githubusercontent.com/757747/123512784-b0341900-d689-11eb-93d4-69510ee2be27.png)
 
-#### Configuration File
-
-When managing multiple application at the same time, you can use a [configuration file](/docs/usage/application-declaration/).
-
 You can also start any kind of application like bash commands, script, binaries:
 
 ```bash
 $ pm2 start "npm run start"
 $ pm2 start "ls -la"
 $ pm2 start app.py
+```
+
+#### Configuration File
+
+When managing multiple application at the same time, you can use a [configuration file](/docs/usage/application-declaration/).
+
+Example with this ecosystem.config.js file:
+
+```javascript
+module.exports = {
+  apps : [{
+    name   : "limit worker",
+    script : "./worker.js",
+    args   : "limit"
+  },{
+    name   : "rotate worker",
+    script : "./worker.js",
+    args   : "rotate"
+  }]
+}
+```
+
+Then to start both apps:
+
+```bash
+$ pm2 start ecosystem.config.js
 ```
 
 #### Start and display log stream
