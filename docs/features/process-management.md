@@ -27,10 +27,26 @@ $ pm2 start "ls -la"
 $ pm2 start app.py
 ```
 
+#### Start and display log stream
+
+To start an app and check logs stream use the `--attach` option:
+
+```bash
+$ pm2 start api.js --attach
+```
+
+When quitting via Ctrl-C, the app will still run in background.
+
+#### Passing arguments
+
+All option passed after `--` will be passed as argument to the app:
+
+```bash
+$ pm2 start api.js -- arg1 arg2
+```
 #### Configuration File
 
-When managing multiple application at the same time, you can use a [configuration file](/docs/usage/application-declaration/).
-
+When managing multiple application at the same time or having to specify multiple options, you can use a configuration file.
 Example with this ecosystem.config.js file:
 
 ```javascript
@@ -53,23 +69,7 @@ Then to start both apps:
 $ pm2 start ecosystem.config.js
 ```
 
-#### Start and display log stream
-
-To start an app and check logs stream use the `--attach` option:
-
-```bash
-$ pm2 start api.js --attach
-```
-
-When quitting via Ctrl-C, the app will still run in background.
-
-#### Passing arguments
-
-All option passed after `--` will be passed as argument to the app:
-
-```bash
-$ pm2 start api.js -- arg1 arg2
-```
+Read more about [configuration file](/docs/usage/application-declaration/).
 
 ### Restart
 
