@@ -5,35 +5,31 @@ description: Monitor in-code values
 permalink: /docs/usage/process-metrics/
 ---
 
-## Custom Metrics
+## Expose Metrics
 
 By plugging custom metrics onto your code, you will be able to monitor in-code values, in realtime.
 
-## Install
+### Quick Start
 
-Install the `@pm2/io` library to your application with:
+First install [tx2](https://github.com/pm2/tx2) module:
 
 ```bash
-npm install @pm2/io --save
+$ npm install tx2
 ```
 
-For more information about the `@pm2/io` module checkout [the repo documentation](https://github.com/keymetrics/pm2-io-apm#table-of-contents)
-
-## Using @pm2/io for metrics
-
-Here is a basic example on how to use the @pm2/io library to create a *requests per second* custom metric:
+Then create and app called monit.js:
 
 ```javascript
-var io = require('@pm2/io')
-var http = require('http')
+const tx2 = require('tx2')
+const http = require('http')
 
-var meter = io.meter({
+let meter = tx2.meter({
   name      : 'req/sec',
   samples   : 1,
   timeframe : 60
 })
 
-http.createServer(function (req, res) {
+http.createServer((req, res) => {
   meter.mark()
   res.writeHead(200, {'Content-Type': 'text/plain'})
   res.write('Hello World!')
@@ -41,25 +37,31 @@ http.createServer(function (req, res) {
 }).listen(6001)
 ```
 
-## Monitoring metrics
-
-Once you have started the application with `pm2 start app.js`, to display the `req/min` metric you can use:
-
-```
-pm2 monit
-```
-
-And check the box called "Custom Metrics":
-
-<img src="https://i.imgur.com/WHDEvHg.png" title="custom metrics" width="300"/>
-
-**Or** you can check the metrics with the:
+And start it with PM2:
 
 ```bash
-pm2 show <application-name>
+$ pm2 start monit.js
 ```
 
-![process metrics](/images/processmetrics.png)
+Now show the metrics with the command:
+
+```bash
+$ pm2 show [app]
+# pm2 show monit
+```
+
+*Note*: metrics are in the section "Custom Metrics".
+
+<img src="/images/processmetrics.png" title="custom metrics" width="600"/>
+
+
+or you can use the Terminal based interface:
+
+```bash
+$ pm2 monit
+```
+
+<img src="https://i.imgur.com/WHDEvHg.png" title="custom metrics" width="300"/>
 
 ## Metrics helper available
 
@@ -74,15 +76,22 @@ Then you can program your very own metrics to track important informations. 4 di
 - **Histogram**: Keeps a resevoir of statistically relevant values biased towards the last 5 minutes to explore their distribution
     - eg. Monitor the mean of execution of a query into database
 
-### Simple Metric: Simple value reporting
+
+### API Documentation
+
+**Note**: Refer to the [TX2 API Documentation](https://github.com/pm2/tx2/blob/main/API.md)
+
+### Examples
+
+#### Simple Metric: Simple value reporting
 
 This allows to expose values that can be read instantly.
 
 ```javascript
-var io = require('@pm2/io')
+const tx2 = require('tx2')
 
 // Here the value function will be called each second to get the value
-var metric = io.metric({
+var metric = tx2.metric({
   name    : 'Realtime user',
   value   : function() {
     return Object.keys(users).length
@@ -90,24 +99,24 @@ var metric = io.metric({
 })
 
 // Here we are going to call valvar.set() to set the new value
-var valvar = io.metric({
+var valvar = tx2.metric({
   name    : 'Realtime Value'
 })
 
 valvar.set(23)
 ```
 
-### Counter: Sequential value change
+#### Counter: Sequential value change
 
 Values that increment or decrement.
 
 Example to count Active Http Requests:
 
 ```javascript
-var io = require('@pm2/io')
+const tx2 = require('tx2')
 var http = require('http')
 
-var counter = io.counter({
+var counter = tx2.counter({
   name : 'Active requests'
 })
 
@@ -115,7 +124,7 @@ http.createServer(function (req, res) {
   counter.inc()
 
   req.on('end', function() {
-    // Decrement the counter, counter will eq 0                                                                                                                                                                      
+    // Decrement the counter, counter will eq 0
     counter.dec()
   })
   res.writeHead(200, {'Content-Type': 'text/plain'})
@@ -124,17 +133,17 @@ http.createServer(function (req, res) {
 }).listen(6001)
 ```
 
-### Meter: Average calculated values
+#### Meter: Average calculated values
 
 Values that are measured as events / interval.
 
 Example to count number of queries per second:
 
 ```javascript
-var io = require('@pm2/io')
+const tx2 = require('tx2')
 var http = require('http')
 
-var meter = io.meter({
+var meter = tx2.meter({
   name      : 'req/sec',
   samples   : 1,
   timeframe : 60
@@ -148,19 +157,19 @@ http.createServer(function (req, res) {
 }).listen(6001)
 ```
 
-#### Options
+##### Options
 
 **samples** option is the rate unit. Defaults to **1** sec.
 **timeframe** option is the timeframe over which events will be analyzed. Defaults to **60** sec.
 
-### Histogram
+#### Histogram
 
 Keeps a resevoir of statistically relevant values biased towards the last 5 minutes to explore their distribution.
 
 ```javascript
-var io = require('@pm2/io')
+const tx2 = require('tx2')
 
-var histogram = io.histogram({
+var histogram = tx2.histogram({
   name        : 'latency',
   measurement : 'mean'
 })

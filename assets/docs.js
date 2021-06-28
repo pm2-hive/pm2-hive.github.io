@@ -35,6 +35,7 @@
    */
   const SMALL_MOBILE_WIDTH = 750;
   const root = document.querySelector(".doc-nav-and-content nav");
+  return
   if (!root) return;
   const navToplevel = root.querySelector("ul");
   const activeSection = navToplevel.querySelector(".nav-section-entry.active");

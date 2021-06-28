@@ -209,7 +209,7 @@ $ cd /path/to/my/app
 $ pm2 start env.js --watch --ignore-watch="node_modules"
 ```
 
-This will watch & restart the app on any file change from the current directory + all subfolders and it will ignore any changes in the node_modules folder `--ignore-watch="node_modules"`. 
+This will watch & restart the app on any file change from the current directory + all subfolders and it will ignore any changes in the node_modules folder `--ignore-watch="node_modules"`.
 
 You can then use `pm2 logs` to check for restarted app logs.
 
@@ -289,7 +289,7 @@ Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/sig
 
 Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/).
 
-Monitor your production applications with [Keymetrics](https://keymetrics.io/).
+Monitor your production applications with [PM2.io](https://app.pm2.io/).
 
 ## How to update PM2
 

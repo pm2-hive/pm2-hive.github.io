@@ -10,7 +10,7 @@ permalink: /docs/usage/process-management/
 With PM2 you can easily start/restart/reload/stop/list applications in background.
 
 ### Start
-  
+
 To start an application:
 
 ```bash
@@ -110,7 +110,7 @@ $ pm2 stop all
 
 Note: this will not delete the application from PM2 application list. See next section to delete an application.
 
-### Delete 
+### Delete
 
 To stop and delete an application:
 
@@ -144,6 +144,20 @@ $ pm2 list --sort name:desc
 # Or
 $ pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
 ```
+
+### Terminal Dashboard
+
+PM2 gives you a simple way to monitor the resource usage of your application.
+You can monitor memory and CPU easily and straight from your terminal with:
+
+```bash
+pm2 monit
+```
+
+<center>
+<img src="/images/pm2-monit.png" title="PM2 Monit"/>
+</center>
+
 
 ### Showing application metadata
 
