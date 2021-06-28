@@ -97,6 +97,16 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 --merge-logs                 when running mutiple process with same app name, do not split file by id
 ```
 
+#### Auto prefixing logs with Date
+
+To easily prefix logs of apps you can pass the option `--time`:
+
+```bash
+$ pm2 start app.js --time
+# Or a running app
+$ pm2 restart app --time
+```
+
 ### Configuration file
 
 Via configuration file you can pass the options:
