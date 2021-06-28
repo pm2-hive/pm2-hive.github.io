@@ -85,6 +85,12 @@ To restart all applications:
 $ pm2 restart all
 ```
 
+To restart multiple apps at once:
+
+```bash
+$ pm2 restart app1 app3 app4
+```
+
 #### Updating environment variables and options
 
 To update environment variables or PM2 options, specify the `--update-env` CLI option:
@@ -106,6 +112,12 @@ To stop them all:
 
 ```bash
 $ pm2 stop all
+```
+
+To stop multiple apps at once:
+
+```bash
+$ pm2 stop app1 app3 app4
 ```
 
 Note: this will not delete the application from PM2 application list. See next section to delete an application.
