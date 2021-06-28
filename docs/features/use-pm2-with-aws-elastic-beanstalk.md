@@ -15,15 +15,12 @@ We created a repository for easy testing: [pm2-ebs-demo](https://github.com/keym
 
 Go to your application directory and use `eb init` to setup Beanstalk.
 
-We need to make sure Beanstalk will try to launch your application by using `npm start`. To do so, add a configuration file that sets the Node Command to "npm start" in the .ebextension folder:
+We need to make sure Beanstalk will try to launch your application by using `npm start`. To do so, add a file called Procfile at the root of your source bundle to specify the command that starts your application.
 
-./.ebextensions/nodecommand.config
+./Procfile
 
 ```
-option_settings:
-  - namespace: aws:elasticbeanstalk:container:nodejs
-    option_name: NodeCommand
-    value: "npm start"
+web: npm start
 ```
 
 ## Integrate PM2
