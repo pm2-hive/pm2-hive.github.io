@@ -2624,7 +2624,7 @@ sudo chmod 755 /etc/authbind/byport/80
 You should also add an alias to the user that runs `pm2` profile, e.g. `~/.bashrc` or `~/.zshrc` (note you will need to run `source ~/.bashrc` or `source ~/.zshrc` immediately after):
 
 ```diff
-+alias pm2='authbind --deep pm2'
+alias pm2='authbind --deep pm2'
 ```
 
 Finally ensure that `pm2` is updated with `authbind`:
