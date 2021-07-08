@@ -65,7 +65,7 @@ Connect to local PM2 or spawn a new PM2 instance.
 
 |    Param |   Type  | Default |   Description|
 |:----------|:-------:|:---------:|:------------------|
-|[no_daemon_mode]    | boolean   | false | if true, it will run an independant PM2 that will auto exit at end|
+|[no_daemon_mode]    | boolean   | false | if true, it will run an independent PM2 that will auto exit at end|
 |fn    | function   | | Callback|
 
 * noDaemonMode: If true is passed for the first argument, pm2 will not be run as a daemon and will die when the related script exits. By default, pm2 stays alive after your script exits. If pm2 is already running, your script will link to the existing daemon but will die once your process exits.
@@ -238,7 +238,7 @@ const pm2 = require('pm2')
 
 pm2.connect(function() {
   pm2.sendDataToProcessId({
-    // id of procces from "pm2 list" command or from pm2.list(errback) method
+    // id of process from "pm2 list" command or from pm2.list(errback) method
     id   : 1,
 
     // process:msg will be send as 'message' on target process
