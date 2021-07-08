@@ -16,7 +16,13 @@ Log files are located in the folder `$HOME/.pm2/logs`.
 To display application's log you can use the command `pm2 logs`
 
 ```bash
-❯ pm2 logs -h
+-l --log [path]              specify filepath to output both out and error logs
+-o --output <path>           specify out log file
+-e --error <path>            specify error log file
+--time                       prefix logs with standard formatted timestamp
+--log-date-format <format>   prefix logs with custom formatted timestamp
+--merge-logs                 when running multiple process with same app name, do not split file by id
+```
 
   Usage: logs [options] [id|name|namespace]
 
@@ -58,7 +64,17 @@ You can also check logs with the CLI dashboard:
 pm2 monit
 ```
 
-## Log size limit
+For each application line this metadata will be printed:
+
+```json
+{
+   "message": "echo\n",                     // the actual message that has been `console.log`
+   "timestamp": "2017-02-06T14:51:38.896Z", // timestamp of the message, can be formatted
+   "type": "out",                           // the type of logs, can be `err`, `out` or `PM2`
+   "process_id": 0,                         // the process id used by PM2
+   "app_name": "one-echo"                   // the application name
+}
+```
 
 The module [pm2-logrotate](https://github.com/keymetrics/pm2-logrotate) automatically rotate and keep all the logs file using a limited space on disk.
 
@@ -142,7 +158,7 @@ module.exports = {
 }
 ```
 
-You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are a hardcoded string).
+You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are hardcoded string).
 
 ### Setting up a native logrotate
 

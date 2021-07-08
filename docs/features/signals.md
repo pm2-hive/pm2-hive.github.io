@@ -41,7 +41,7 @@ module.exports = {
 
 ## Graceful start
 
-Sometimes you might need to wait for your application to have established connections with your DBs/caches/workers/whatever. PM2 needs to wait, before considering your application as `online`. To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready')` when you want your application to be considered as ready.
+Sometimes you might need to wait for your application to have established connections with your DBs/caches/workers/whatever. PM2 needs to wait before considering your application as `online`. To do this, you need to provide `--wait-ready` to the CLI or provide `wait_ready: true` in a process file. This will make PM2 listen for that event. In your application you will need to add `process.send('ready');` when you want your application to be considered as ready.
 
 ```javascript
 var http = require('http')
