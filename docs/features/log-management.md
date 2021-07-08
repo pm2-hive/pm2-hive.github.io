@@ -25,13 +25,13 @@ To display application's log you can use the command `pm2 logs`
   Options:
 
     --json                json log output
-    --format              formated log output
+    --format              formatted log output
     --raw                 raw output
     --err                 only shows error output
     --out                 only shows standard output
     --lines <n>           output the last N lines, instead of the last 15 by default
     --timestamp [format]  add timestamps (default format YYYY-MM-DD-HH:mm:ss)
-    --nostream            print logs without lauching the log stream
+    --nostream            print logs without launching the log stream
     --highlight [value]   highlights the given value
     -h, --help            output usage information
 ```
@@ -92,9 +92,9 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 -l --log [path]              specify filepath to output both out and error logs
 -o --output <path>           specify out log file
 -e --error <path>            specify error log file
---time                       prefix logs with standard formated timestamp
---log-date-format <format>   prefix logs with custom formated timestamp
---merge-logs                 when running mutiple process with same app name, do not split file by id
+--time                       prefix logs with standard formatted timestamp
+--log-date-format <format>   prefix logs with custom formatted timestamp
+--merge-logs                 when running multiple process with same app name, do not split file by id
 ```
 
 #### Auto prefixing logs with Date
@@ -142,7 +142,7 @@ module.exports = {
 }
 ```
 
-You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are harcoded string).
+You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are a hardcoded string).
 
 ### Setting up a native logrotate
 
