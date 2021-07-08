@@ -1247,7 +1247,7 @@ module.exports = {
 }
 ```
 
-You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are hardcoded string).
+You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are a hardcoded string).
 
 ### Setting up a native logrotate
 
