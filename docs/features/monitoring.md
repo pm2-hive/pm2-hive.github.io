@@ -24,7 +24,7 @@ pm2 monit
 <img src="/images/pm2-io.png" title="PM2.io"/>
 </center>
 
-If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications accross servers easier than ever.
+If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications across servers easier than ever.
 
 ```bash
 pm2 monitor
