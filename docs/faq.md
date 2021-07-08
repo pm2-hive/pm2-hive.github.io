@@ -27,6 +27,6 @@ Make sure you have only one PM2 instance launched `ps -aux | grep PM2`
 
 - If you get a warning `Not authorized` when trying to perform such actions, it means you have not the admin privileges in this bucket.
 
-- If none of the above happens, but the precedure just hangs, make sure you have a recent version of Node.js as well as the latest version of PM2.
+- If none of the above happens, but the procedure just hangs, make sure you have a recent version of Node.js as well as the latest version of PM2.
 
 - Also, your repository should not ask for a password input (it means you must clone it via ssh), try typing `git remote update` manually in the folder and see if it asks for a password or not.

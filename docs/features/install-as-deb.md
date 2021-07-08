@@ -5,9 +5,9 @@ description: Install PM2 as .deb via apt-get on Ubuntu LTS
 permalink: /docs/usage/install-as-deb/
 ---
 
-If you just want a fresh install of PM2 without setting up Node.Js, pm2 is avalaible as a `.deb` package!
+If you just want a fresh install of PM2 without setting up Node.Js, pm2 is available as a `.deb` package!
 
-It is built to work with the lastest Long Term Support release of ubuntu.
+It is built to work with the latest Long Term Support release of ubuntu.
 
 ## Installation
 

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Module System
-description: Standalone Node.JS applications runned by PM2
+description: Standalone Node.JS applications ran by PM2
 permalink: /docs/advanced/pm2-module-system/
 ---
 
@@ -28,7 +28,7 @@ pm2 install pm2-hive/pm2-docker
 # Force module restart
 pm2 restart <module-name>
 
-# Get more informations
+# Get more information
 pm2 describe <module-name>
 
 # Install a module in dev mode from local folder
@@ -75,7 +75,7 @@ pm2 uninstall <module-name>
 
 ## Sugar in Package.json
 
-Complementary informations can be added to the **package.json** file.
+Complementary information can be added to the **package.json** file.
 
 You can define configuration values under the `config` attribute and the module behavior like a common [pm2 managed process](http://pm2.keymetrics.io/docs/usage/application-declaration/).
 
@@ -90,7 +90,7 @@ Example:
     "pmx": "latest"
   },
   "config": {              // Default configuration values
-                           // These values can be overriden with `pm2 set <module-name>:<attr> <val>`
+                           // These values can be overridden with `pm2 set <module-name>:<attr> <val>`
      "days_interval" : 7,  // These value is returned once you call pmx.initModule()
      "max_size" : 5242880
   },

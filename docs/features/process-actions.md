@@ -9,7 +9,7 @@ permalink: /docs/usage/process-actions/
 
 Exposing RPC Methods will allow you to interact in real-time with a running process.
 
-This is usefull for:
+This is useful for:
 - Changing behavior (e.g. switching log to debug)
 - Retrieving data structure
 - Triggering actions
@@ -80,7 +80,7 @@ pm2 trigger <application-name> <action-name> [parameter]
 
 ### Triggering from Web Dashboard
 
-All RPC methods exposed from your application, once connected to [pm2.io](https://app.pm2.io) will be displayed and actionnable from a web interface.
+All RPC methods exposed from your application, once connected to [pm2.io](https://app.pm2.io) will be displayed and actionable from a web interface.
 
 ## TX2 API Documentation
 
