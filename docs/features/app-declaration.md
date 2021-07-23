@@ -142,7 +142,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
-|min_uptime| (string) | | min uptime of the app to be considered started |
+|min_uptime| (number) | | min uptime of the app to be considered started |
 | listen_timeout | number | 8000 | time in ms before forcing a reload if app not listening |
 | kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#cleaning-states-and-jobs) |
 | shutdown_with_message | boolean | false | shutdown an application with process.send('shutdown') instead of process.kill(pid, SIGINT) |
