@@ -46,6 +46,12 @@ module.exports = {
 }
 ```
 
+To disable cron restart:
+
+```bash
+pm2 restart app --cron-restart 0
+```
+
 ## Restart on file change
 
 PM2 can automatically restart your application when a file is modified in the current directory or its subdirectories:
