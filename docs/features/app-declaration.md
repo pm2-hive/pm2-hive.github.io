@@ -137,6 +137,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |combine_logs| boolean | true | if set to true, avoid to suffix logs file with the process id |
 |merge_logs| boolean | true | alias to combine_logs |
 |pid_file| (string) | | pid file path (default to $HOME/.pm2/pid/app-pm_id.pid)|
+|time| boolean | false | false by default. If true auto prefixes logs with Date|
 
 ### Control flow
 
