@@ -131,7 +131,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
-|log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
+|log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see [log section](http://pm2.keymetrics.io/docs/usage/log-management/))|
 |error_file| (string)| | error file path (default to $HOME/.pm2/logs/XXXerr.log)|
 |out_file| (string) | | output file path (default to $HOME/.pm2/logs/XXXout.log)|
 |combine_logs| boolean | true | if set to true, avoid to suffix logs file with the process id |
