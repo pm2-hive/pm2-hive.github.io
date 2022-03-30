@@ -67,13 +67,13 @@ All options available are [listed here](/docs/usage/application-declaration/#att
 You can then replace the **CMD** directive by this:
 
 ```
-CMD ["pm2-runtime", "process.yml"]
+CMD ["pm2-runtime", "ecosystem.config.js"]
 ```
 
 To split each processes in its own Docker, you can use the --only [app-name] option:
 
 ```
-CMD ["pm2-runtime", "process.yml", "--only", "APP"]
+CMD ["pm2-runtime", "ecosystem.config.js", "--only", "APP"]
 ```
 
 ### Using exec_mode cluster together with nuxtjs
@@ -106,7 +106,7 @@ If you want to change the log output format you can select one of this options:
 To use one of this flag, you just need to pass them to pm2-runtime:
 
 ```
-CMD ["pm2-runtime", "--json", "process.yml"]
+CMD ["pm2-runtime", "--json", "ecosystem.config.js"]
 ```
 
 ### Enabling Graceful Shutdown
@@ -142,7 +142,7 @@ To enable Keymetrics monitoring with **pm2-runtime**, you can either use the CLI
 Example with the CLI options via a Dockerfile:
 
 ```
-CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "process.yml"]
+CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "ecosystem.config.js"]
 ```
 
 Or via environment variables:
