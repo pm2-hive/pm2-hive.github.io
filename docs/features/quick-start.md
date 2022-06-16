@@ -290,17 +290,3 @@ Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/sig
 Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/).
 
 Monitor your production applications with [PM2.io](https://app.pm2.io/).
-
-## How to update PM2
-
-Install the latest pm2 version:
-
-```bash
-npm install pm2@latest -g
-```
-
-Then update the in-memory PM2 :
-
-```bash
-pm2 update
-```
