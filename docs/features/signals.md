@@ -109,7 +109,7 @@ Via CLI:
 pm2 start app.js --shutdown-with-message
 ```
 
-Via [application declaration](/docs/usage/application-declaration/) use the `listen_timeout` and `wait_ready` attribute:
+Via [application declaration](/docs/usage/application-declaration/) use the `shutdown_with_message` attribute:
 
 ```javascript
 module.exports = {
