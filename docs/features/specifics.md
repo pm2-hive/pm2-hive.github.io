@@ -152,7 +152,7 @@ echo $my_json | pm2 start -
 
 ## Process title
 
-You can specify the env variable `PROCESS_FILE` when start an application with PM2, it will be set a process title. It pretty useful when trying to get specific data from the process, for example you can use `ps -fC name`.
+You can specify the env variable `PROCESS_TITLE` when start an application with PM2, it will be set a process title. It pretty useful when trying to get specific data from the process, for example you can use `ps -fC name`.
 
 ## Transpilers
 
