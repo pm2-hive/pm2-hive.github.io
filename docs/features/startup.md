@@ -9,6 +9,15 @@ permalink: /docs/usage/startup/
 
 PM2 can generate startup scripts and configure them in order to keep your process list intact across expected or unexpected machine restarts.
 
+- **systemd**: Ubuntu >= 16, CentOS >= 7, Arch, Debian >= 7
+- **upstart**: Ubuntu ==> 14
+- **launchd**: Darwin, MacOSx
+- **openrc**: Gentoo Linux, Arch Linux
+- **rcd**: FreeBSD
+- **systemv**: Centos 6, Amazon Linux
+
+These init systems are automatically detected by PM2 with the `pm2 startup` command.
+
 ### Generating a Startup Script
 
 To automatically generate and configuration a startup script just type the command (without sudo) `pm2 startup`:
@@ -85,7 +94,7 @@ pm2 startup ubuntu -u www --hp /home/ubuntu
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
-pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
+pm2 startup [ubuntu | ubuntu14 | ubuntu16 | ubuntu18 | ubuntu20 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
 ```
 
 #### SystemD installation checking
