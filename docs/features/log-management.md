@@ -113,9 +113,10 @@ Via configuration file you can pass the options:
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
-|error_file| (string)| | error file path (default to $HOME/.pm2/logs/XXXerr.log)|
-|out_file| (string) | | output file path (default to $HOME/.pm2/logs/XXXout.log)|
-|pid_file| (string) | | pid file path (default to $HOME/.pm2/pid/app-pm_id.pid)|
+|error_file| (string)| | error file path (default to $HOME/.pm2/logs/&lt;app name&gt;-error-&lt;pid&gt;.log)|
+|out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out-&lt;pid&gt;.log)|
+|log_file| (string) | | file path for both output and error logs (disabled by default)|
+|pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pid&gt;.pid)|
 |merge_logs| boolean | true | if set to true, avoid to suffix logs file with the process id  |
 |log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
 
