@@ -153,7 +153,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 | restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
 | autorestart | boolean |  false  |  true by default. if false, PM2 will not restart your app if it crashes or ends peacefully  |
 | cron_restart    |  string |                "1 0 * * *"                |                                      a cron pattern to restart your app. Application must be running for cron feature to work  |
-| vizion       | boolean |                   false                   |  true by default. if false, PM2 will start without vizion features (versioning control metadatas) |
+| vizion       | boolean |                   false                   |  true by default. if false, PM2 will start without vizion features (versioning control metadata) |
 | post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard |
 | force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2 |
 
@@ -180,3 +180,100 @@ All command line options passed when using the JSON app declaration will be drop
 #### CWD
 
 **cwd:** your JSON declaration does not need to reside with your script.  If you wish to maintain the JSON(s) in a location other than your script (say, `/etc/pm2/conf.d/node-app.json`) you will need to use the `cwd` feature (Note, this can be really helpful for capistrano style directory structures that uses symlinks). Files can be either relative to the `cwd` directory, or absolute (see example below).
+
+### CLI/JSON options
+
+All the keys can be used in a JSON configured file, but will remain almost the same on the command line e.g.:
+
+```
+exec_mode         -> --execute-command
+max_restarts      -> --max-restarts
+force             -> --force
+```
+
+Using quotes to make an ESC, e.g.:
+
+```bash
+$pm2 start test.js --node-args "port=3001 sitename='first pm2 app'"
+```
+
+The `nodeArgs` argument will be parsed as
+
+```json
+[
+  "port=3001",
+  "sitename=first pm2 app"
+]
+```
+
+but not
+
+```json
+[
+  "port=3001",
+  "sitename='first",
+  "pm2",
+  "app'"
+]
+```
+
+### Disabling logs
+
+You can pass `/dev/null` to error_file or out_file to disable logs saving.
+Note: starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
+
+### Logs suffix
+
+You can disable automatic ID suffixes on logs (e.g. `app-name-ID.log`) by passing enabling the option `merge_logs: true`
+
+### Environment definition
+
+You'll need to use `--env <envname>` to tell pm2 to use specific environment defined inside a process file :
+
+```json
+{
+  "apps" : [{
+    "name"        : "worker-app",
+    "script"      : "./worker.js",
+    "watch"       : true,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    }
+  },{
+    "name"       : "api-app",
+    "script"     : "./api.js",
+    "instances"  : 4,
+    "exec_mode"  : "cluster"
+  }]
+}
+```
+
+In this example, you will run `pm2 start ecosystem.json` and it will start your application with the default environment (in development so).
+Then you use `pm2 start ecosystem.json --env production` and it will use the attribute `env_<name>` where name is `production` here, so it will start your app with `NODE_ENV=production`.
+
+### Special `ext_type`
+
+- min_uptime
+  Value of `min_uptime` can be:
+    - **Number**
+      e.g. `"min_uptime": 3000` means 3000 milliseconds.
+    - **String**
+      Therefore, we are making it short and easy to configure: `h`, `m` and `s`, e.g.: `"min_uptime": "1h"` means one hour, `"min_uptime": "5m"` means five minutes and `"min_uptime": "10s"` means ten seconds (those will be transformed into milliseconds).
+
+- max_memory_restart
+  Value of `max_memory_restart` can be:
+    - **Number**
+        e.g. `"max_memory_restart": 1024` means 1024 bytes (**NOT BITS**).
+    - **String**
+        Therefore, we are making it short and easy to configure: `G`, `M` and `K`, e.g.: `"max_memory_restart": "1G"` means one gigabyte, `"max_memory_restart": "5M"` means five megabytes and `"max_memory_restart": "10K"` means ten kilobytes (those will be transformed into byte(s)).
+
+- Optional values
+  For example `exec_mode` can take `cluster` (`cluster_mode`) or `fork` (`fork_mode`) as possible values.
+
+- Things to know
+  - `"instances": 0` means that PM2 will launch the maximum processes possible according to the numbers of CPUs (cluster mode)
+  - array
+  `args`, `node_args` and `ignore_watch` could be type of `Array` (e.g.: `"args": ["--toto=heya coco", "-d", "1"]`) or `string` (e.g.: `"args": "--to='heya coco' -d 1"`)

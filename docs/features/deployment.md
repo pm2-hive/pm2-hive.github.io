@@ -7,7 +7,7 @@ permalink: /docs/usage/deployment/
 
 ## Deployment System
 
-PM2 features a simple but powerful deployment system that allows to provision and update applications in production environment. This is great when you want to deploy applications on baremetal server in one or many servers at once. 
+PM2 features a simple but powerful deployment system that allows to provision and update applications in production environment. This is great when you want to deploy applications on a baremetal server in one or many servers at once. 
 
 ```bash
 > pm2 deploy <configuration_file> <environment> <command>
@@ -95,7 +95,7 @@ $ pm2 deploy production exec "pm2 reload all"
 
 ### Specifics
 
-#### Deployment Lifecyle
+#### Deployment Lifecycle
 
 When deploying with PM2, you can specify what do before/after setup and before/after update:
 
@@ -141,7 +141,7 @@ __Step 1__
 If you are certain your keys are correctly working, first try running `git clone your_repo.git` on the target server. If it succeeds, move onto the next steps. If it failed, make sure your keys are stored both on the server and on your git account.
 
 __Step 2__
-By default `ssh-copy-id` copies the default identiy, usually named `id_rsa`. If that is not the appropriate key:
+By default `ssh-copy-id` copies the default identity, usually named `id_rsa`. If that is not the appropriate key:
 
 ```bash
 ssh-copy-id -i path/to/my/key your_username@server.com

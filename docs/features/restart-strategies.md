@@ -7,19 +7,7 @@ permalink: /docs/usage/restart-strategies/
 
 ## Restart strategies
 
-When starting application with PM2, application are automatically restarted on auto exit, event loop empty (node.js) or when application crash.
-But you can also configure extra restart strategies like:
-
-- Restart app at a specified CRON time
-- Restart app when files have changed
-- Restart when app reach a memory threshold
-- Delay a start and automatic restart
-- Disable auto restart (app are always restarted with PM2) when crashing or exiting by default)
-- Restart application automatically at a specific exponential increasing time
-
-## Restart at cron time
-
-Via CLI:
+A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementally the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
 
 ```bash
 $ pm2 start app.js --cron-restart="0 0 * * *"
@@ -171,7 +159,7 @@ module.exports = [{
 
 ## Exponential Backoff Restart Delay
 
-A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementaly the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
+A new restart mode has been implemented on PM2 Runtime, making your application restarts in a smarter way. Instead of restarting your application like crazy when exceptions happens (e.g. database is down), the *exponential backoff restart* will increase incrementally the time between restarts, reducing the pressure on your DB or your external provider... Pretty easy to use:
 
 CLI:
 

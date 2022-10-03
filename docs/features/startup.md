@@ -53,7 +53,7 @@ To disable and remove the current startup configuration:
 pm2 unstartup
 ```
 
-### Specifics to know
+The previous line code let PM2 detect your platform. Alternatively you can use another specified init system yourself using:
 
 #### Updating startup script after Node.js version upgrade
 
