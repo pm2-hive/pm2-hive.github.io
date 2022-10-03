@@ -85,7 +85,7 @@ And, what's more important than this is to define the PM2 ecosystem to match thi
 }
 ```
 
-*You don't like absolute paths in this configuration? Use the `PWD` environement variable instead!*
+*You don't like absolute paths in this configuration? Use the `PWD` environment variable instead!*
 
 Now, the `ecosystem.json` is usually inside your project, or repository. To start it properly you'll have to start PM2 from the `project_root` directory:
 
