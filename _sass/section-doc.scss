@@ -51,7 +51,7 @@
 
     @media #{$not-small-mobile} {
       align-self: flex-start;
-      max-width: 355px;
+      max-width: 290px;
       min-width: 200px;
       flex: 1;
       --lateral-gutter: 1.5rem;
@@ -63,7 +63,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 
     .search-field {
-      height: 90px;
+      height: 55px;
       background-image: linear-gradient(to right, #7401fe, #cb00d6);
       position: relative;
 
@@ -176,7 +176,7 @@
       font-size: 0.85rem;
       a {
         display: block;
-        padding: 9px var(--lateral-gutter);
+        padding: 6px var(--lateral-gutter);
       }
       &.active a {
         background-color: rgba(0, 0, 0, 0.05);
@@ -189,6 +189,7 @@
 
   .doc-content {
     flex: 1.5;
+    font-size: 15px;
     background-color: #f2f2f2;
     min-width: 0;
     padding: 0.9rem var(--lateral-gutter);
@@ -197,27 +198,24 @@
 
     h2 {
       font-size: 1.7rem;
-      border-bottom: 1px solid #e2e6eb;
-
+      border-bottom: 1px solid currentColor;
       &:not(:first-child) {
-        margin-top: 40px;
+        margin-top: 30px;
       }
     }
 
     h3 {
       font-size: 1.5rem;
+      border-bottom: 1px solid #b2c1d3;
     }
 
-    h4 {
-      font-size: 1.3rem;
-    }
+
     h2,
     h3,
     h4 {
       a {
         display: inline-block;
         padding: 11px 0;
-        border-bottom: 1px solid currentColor;
         margin-bottom: -1px;
         &:hover {
           text-decoration: none;
@@ -236,6 +234,14 @@
       }
     }
 
+    h4 {
+      font-size: 1.3rem;
+      margin: 0;
+      a { 
+        padding: 11px 0 0 0;
+      }
+
+    }
     a,
     h2,
     h3,
@@ -253,13 +259,13 @@
     h4,
     p,
     div.highlighter-rouge {
-      margin: 0 0 25px;
+      margin: 0 0 10px;
     }
 
     :not(pre) > code {
       // color: #2160a4;
       background-color: #111033;
-      color: #d0d0d0;
+      color: white;
       padding: 3px 8px;
     }
 
@@ -270,7 +276,7 @@
     img:only-child,
     div.highlighter-rouge,
     .edit-page-button {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+     
     }
 
     .edit-page-button {
@@ -299,6 +305,7 @@
     line-height: 1.8;
     background-color: #111033;
     overflow: auto;
+    font-size: 14px;
   }
 }
 .highlight table td {
@@ -309,7 +316,7 @@
 }
 .highlight,
 .highlight .w {
-  color: #d0d0d0;
+  color: white;
 }
 .highlight .err {
   color: #151515;

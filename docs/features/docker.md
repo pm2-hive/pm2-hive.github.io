@@ -76,6 +76,25 @@ To split each processes in its own Docker, you can use the --only [app-name] opt
 CMD ["pm2-runtime", "process.yml", "--only", "APP"]
 ```
 
+### Using exec_mode cluster together with nuxtjs
+
+When running pm2 in cluster mode, `ecosystem.config.js` will be appended to your cwd path due to how nuxtjs parses its rootDir, to fix that you have to specify the config path in your args section:
+
+```javascript
+module.exports = {
+  apps: [
+    {
+      name: 'my-nuxtjs-app',
+      exec_mode: 'cluster',
+      instances: 2,
+      cwd: '/var/www',
+      script: './node_modules/nuxt-start/bin/nuxt-start.js',
+      args: '-c /var/www/nuxt.config.js'
+    }
+  ]
+}
+```
+
 ### Logging Format option
 
 If you want to change the log output format you can select one of this options:
@@ -92,7 +111,7 @@ CMD ["pm2-runtime", "--json", "process.yml"]
 
 ### Enabling Graceful Shutdown
 
-When the Container receives a shutdown signal, PM2 forwards this signal to your application allowing to close all the database connections, wait that all queries have been processed or that any other final processing has been completed before a successfull graceful shutdown.
+When the Container receives a shutdown signal, PM2 forwards this signal to your application allowing to close all the database connections, wait that all queries have been processed or that any other final processing has been completed before a successful graceful shutdown.
 
 Catching a shutdown signal is straightforward. You need to add a listener in your Node.js applications and execute anything needed before stopping the app:
 
@@ -110,7 +129,7 @@ Read more about application state management [here](/docs/usage/signals-clean-re
 
 ### Development environment
 
-You may want to tell Developers to program inside a container to keep a consistant environment between develoment, test and production.
+You may want to tell Developers to program inside a container to keep a consistent environment between development, test and production.
 
 Replacing **pm2-runtime** with **pm2-dev** will enable the watch and restart features. This is quite interesting in a development container when the host files are exposed to the container as a VOLUME.
 
@@ -159,7 +178,7 @@ Here is the pm2-runtime helper:
     --machine-name [name]      [MONITORING] keymetrics machine name
     --raw                      raw log output
     --json                     output logs in json format
-    --format                   output logs formated like key=val
+    --format                   output logs formatted like key=val
     --delay <seconds>          delay start of configuration file by <seconds>
     --web [port]               launch process web api on [port] (default to 9615)
     --only <application-name>  only act on one application of configuration

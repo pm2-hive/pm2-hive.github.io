@@ -50,9 +50,9 @@ PM2_HOME='.pm2' pm2 list
 PM2_HOME='.pm3' pm2 list
 ```
 
-## Launch PM2 in no deamon
+## Launch PM2 in no daemon
 
-Make sure you kill any PM2 instance before starting PM2 in no deamon mode (`pm2 kill`).
+Make sure you kill any PM2 instance before starting PM2 in no daemon mode (`pm2 kill`).
 
 Launching PM2 without daemonizing itself:
 
@@ -66,7 +66,7 @@ There is also the CLI `pm2-runtime` installed by default at PM2 installation, th
 
 It is a general rule that your production application should be stateless. Every data, states, websocket session, session data, must be shared via any kind of database or PUB/SUB system.
 
-If not, your application will be painfull to scale on the same server and accross multiple servers.
+If not, your application will be painful to scale on the same server and across multiple servers.
 
 For example you could use [connect-redis](https://github.com/visionmedia/connect-redis) to share sessions.
 
@@ -152,7 +152,7 @@ echo $my_json | pm2 start -
 
 ## Process title
 
-You can specify the env variable `PROCESS_FILE` when start an application with PM2, it will be set a process title. It pretty useful when trying to get specific data from the process, for example you can use `ps -fC name`.
+You can specify the env variable `PROCESS_TITLE` when start an application with PM2, it will be set a process title. It pretty useful when trying to get specific data from the process, for example you can use `ps -fC name`.
 
 ## Transpilers
 

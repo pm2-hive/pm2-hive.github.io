@@ -5,14 +5,11 @@ description: Getting started with PM2
 permalink: /docs/usage/quick-start/
 ---
 
-## Welcome!
-
-Welcome to the PM2 Quick Start!
+## PM2 Process Management Quick Start
 
 PM2 is a daemon process manager that will help you manage and keep your application online. Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.
 
-
-## Installation
+### Installation
 
 The latest PM2 version is installable with NPM or Yarn:
 
@@ -24,7 +21,7 @@ $ yarn global add pm2
 
 To install Node.js and NPM you can use [NVM](https://yoember.com/nodejs/the-best-way-to-install-node-js/)
 
-## Start an app
+### Start an app
 
 The simplest way to start, daemonize and monitor your application is by using this command line:
 
@@ -160,7 +157,7 @@ To generate an Ecosystem file:
 $ pm2 ecosystem
 ```
 
-This will generate and ecosystem.config.js file:
+This will generate an ecosystem.config.js file:
 
 ```javascript
 module.exports = {
@@ -183,7 +180,7 @@ module.exports = {
 And start it easily:
 
 ```bash
-$ pm2 start process.yml
+$ pm2 start ecosystem.config.js
 ```
 
 Read more about application declaration [here](/docs/usage/application-declaration/).
@@ -212,7 +209,7 @@ $ cd /path/to/my/app
 $ pm2 start env.js --watch --ignore-watch="node_modules"
 ```
 
-This will watch & restart the app on any file change from the current directory + all subfolders and it will ignore any changes in the node_modules folder `--ignore-watch="node_modules"`. 
+This will watch & restart the app on any file change from the current directory + all subfolders and it will ignore any changes in the node_modules folder `--ignore-watch="node_modules"`.
 
 You can then use `pm2 logs` to check for restarted app logs.
 
@@ -250,7 +247,7 @@ pm2 list               # Display all processes status
 pm2 jlist              # Print process list in raw JSON
 pm2 prettylist         # Print process list in beautified JSON
 
-pm2 describe 0         # Display all informations about a specific process
+pm2 describe 0         # Display all information about a specific process
 
 pm2 monit              # Monitor all processes
 
@@ -292,7 +289,7 @@ Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/sig
 
 Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/).
 
-Monitor your production applications with [Keymetrics](https://keymetrics.io/).
+Monitor your production applications with [PM2.io](https://app.pm2.io/).
 
 ## How to update PM2
 

@@ -5,11 +5,9 @@ description: Auto restart PM2 and processes at server reboot
 permalink: /docs/usage/startup/
 ---
 
-## Startup Script Generator
+## Persistent applications: Startup Script Generator
 
 PM2 can generate startup scripts and configure them in order to keep your process list intact across expected or unexpected machine restarts.
-
-## Init systems supported
 
 - **systemd**: Ubuntu >= 16, CentOS >= 7, Arch, Debian >= 7
 - **upstart**: Ubuntu ==> 14
@@ -20,76 +18,69 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 
 These init systems are automatically detected by PM2 with the `pm2 startup` command.
 
-## Generating a startup script
+### Generating a Startup Script
 
-To get the automatically-configured startup script for your machine you need to type this command:
+To automatically generate and configuration a startup script just type the command (without sudo) `pm2 startup`:
 
-```bash
-# Detect available init system, generate configuration and enable startup system
-pm2 startup
-```
-
-**Do not pass sudo to this command! It will print the exact right command you will have to copy/paste into your terminal**
-
-Example:
 ```bash
 $ pm2 startup
 [PM2] You have to run this command as root. Execute the following command:
-      sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v4.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
+      sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v14.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
-You simply have to copy/paste the line PM2 gives you and the startup script will be configured for your OS.
+Then copy/paste the displayed command onto the terminal:
 
+```bash
+sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v14.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
+```
 
-**NOTE 1** : When upgrading to newer Node.js version, update the PM2 startup script! Use `pm2 unstartup` first then `pm2 startup` again
+Now PM2 will automatically restart at boot.
 
-**NOTE 2**: You can customize the service name via the `--service-name <name>` option ([#3213](https://github.com/Unitech/pm2/pull/3213))
+**Note**: You can customize the service name via the `--service-name <name>` option ([#3213](https://github.com/Unitech/pm2/pull/3213))
 
-## Saving current process list
+### Saving the app list to be restored at reboot
 
-**Important**
-
-Once you started all the applications you want to manage, you have to save the list you wanna respawn at machine reboot with:
+Once you have started all desired apps, save the app list so it will respawn after reboot:
 
 ```bash
 pm2 save
 ```
 
-It will save the process list with the corresponding environments into the dump file `$PM2_HOME/.pm2/dump.pm2`.
-
 ### Manually resurrect processes
 
-This brings back previously saved processes (via pm2 save):
+To manually bring back previously saved processes (via pm2 save):
 
 ```bash
 pm2 resurrect
 ```
 
-## Disabling startup system
+### Disabling startup system
+
+To disable and remove the current startup configuration:
 
 ```bash
 pm2 unstartup
 ```
 
-The previous line code let PM2 detect your platform. Alternatively you can use another specified init system youself using:
+The previous line code let PM2 detect your platform. Alternatively you can use another specified init system yourself using:
+
+#### Updating startup script after Node.js version upgrade
+
+When you upgrade the local Node.js version, be sure to update the PM2 startup script, so it runs the latest Node.js binary you have installed.
+
+First disable and remove the current startup configuration (copy/paste the output of that command): 
 
 ```bash
-pm2 unstartup
+$ pm2 unstartup
 ```
 
-## Updating Startup Script
+Then restore a fresh startup script:
 
 ```bash
-pm2 unstartup
+$ pm2 startup
 ```
 
-Then
-
-```bash
-pm2 startup
-```
-
-## User permissions
+#### User permissions
 
 Let's say you want the startup script to be executed under another user.
 
@@ -99,14 +90,14 @@ Just change the `-u <username>` option and the `--hp <user_home>`:
 pm2 startup ubuntu -u www --hp /home/ubuntu
 ```
 
-## Specifying the init system
+#### Specifying the init system
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
 pm2 startup [ubuntu | ubuntu14 | ubuntu16 | ubuntu18 | ubuntu20 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
 ```
 
-## SystemD installation checking
+#### SystemD installation checking
 
 ```bash
 # Check if pm2-<USER> service has been added
@@ -132,8 +123,20 @@ After=network.target network-online.target
 WantedBy=multi-user.target network-online.target
 ```
 
-## Windows consideration
+#### Windows startup script
 
 To generate a Windows compatible startup script have a look to the excellent [pm2-installer](https://github.com/jessety/pm2-installer)
+
+#### Init systems supported
+
+- **systemd**: Ubuntu >= 16, CentOS >= 7, Arch, Debian >= 7
+- **upstart**: Ubuntu <= 14
+- **launchd**: Darwin, MacOSx
+- **openrc**: Gentoo Linux, Arch Linux
+- **rcd**: FreeBSD
+- **systemv**: Centos 6, Amazon Linux
+
+These init systems are automatically detected by PM2 with the `pm2 startup` command.
+
 
 

@@ -3,70 +3,57 @@
   subnav:
     - title: Quick Start
       url: /docs/usage/quick-start/
+
+- title: General
+  url: /docs/usage/process-management/
+  subnav:
     - title: Process Management
       url: /docs/usage/process-management/
-
-- title: Documentation
-  url: /docs/usage/pm2-doc-single-page/
-  subnav:
-    - title: Single Page Doc
-      url: /docs/usage/pm2-doc-single-page/
-    - title: Cluster Mode
-      url: /docs/usage/cluster-mode
-    - title: Ecosystem File
-      url: /docs/usage/application-declaration/
-    - title: Graceful Start/Shutdown
-      url: /docs/usage/signals-clean-restart/
-    - title: Environment Variables
-      url: /docs/usage/environment/
-    - title: Logs
-      url: /docs/usage/log-management/
     - title: Restart Strategies
       url: /docs/usage/restart-strategies/
-    - title: Memory Limit Reload
-      url: /docs/usage/memory-limit/
+    - title: Logs 
+      url: /docs/usage/log-management/
+    - title: Persistent Application
+      url: /docs/usage/startup/
+    - title: Configuration File
+      url: /docs/usage/application-declaration/
+    - title: Cluster Mode
+      url: /docs/usage/cluster-mode
+    - title: PM2 as a Static Server
+      url: /docs/usage/expose/
+    - title: Deployment System
+      url: /docs/usage/deployment/      
+    - title: Environment Variables
+      url: /docs/usage/environment/
     - title: Update PM2
       url: /docs/usage/update-pm2/
-    - title: Deployment
-      url: /docs/usage/deployment/
-    - title: Startup Script
-      url: /docs/usage/startup/
-    - title: Custom Metrics
-      url: /docs/usage/process-metrics/
-    - title: Process Actions
+
+- title: Advanced
+  url: /docs/usage/process-actions/
+  subnav:
+    - title: Graceful Start/Shutdown
+      url: /docs/usage/signals-clean-restart/
+    - title: Exposing RPC function 
       url: /docs/usage/process-actions/
-    - title: Watch & Restart
-      url: /docs/usage/watch-and-restart/
+    - title: Exposing Metrics
+      url: /docs/usage/process-metrics/
+    - title: PM2 Javascript API
+      url: /docs/usage/pm2-api/
     - title: Monitoring
       url: /docs/usage/monitoring/
-    - title: Source map support
-      url: /docs/usage/source-map-support/
-    - title: Specifics
+    - title: "No daemon, Multiple PM2"
       url: /docs/usage/specifics/
-    - title: PM2 API
-      url: /docs/usage/pm2-api/
     - title: Module System
       url: /docs/advanced/pm2-module-system/
-    - title: Expose static file over http
-      url: /docs/usage/expose/
-    - title: Download as ZIP
-      url: https://github.com/Unitech/PM2/releases
-      blank: true
 
 - title: Integrations
   url: /docs/usage/use-pm2-with-cloud-providers/
   subnav:
-    - title: Use PM2 in Cloud Providers
-      url: /docs/usage/use-pm2-with-cloud-providers/
     - title: Docker Integration
       url: /docs/usage/docker-pm2-nodejs/
-    - title: Heroku Integration
-      url: /docs/integrations/heroku/
+    - title: Use PM2 in Cloud Providers
+      url: /docs/usage/use-pm2-with-cloud-providers/
     - title: Production Setup with Nginx
       url: /docs/tutorials/pm2-nginx-production-setup
     - title: Using transpilers with PM2
       url: /docs/tutorials/using-transpilers-with-pm2
-    - title: PM2 in ElasticBeanstalk
-      url: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
-    - title: Capistrano like deployments
-      url: /docs/tutorials/capistrano-like-deployments

@@ -66,7 +66,7 @@ project_root # in this example absolute path is /home/www/project_root
 |   ├── 20150228100000
 |   └── 20150226100000
 ├── logs # keeping our pm2 logs in here is a good idea so that they stay the same between deployments
-└── configuration # Are you comitting your database environments?
+└── configuration # Are you committing your database environments?
 ```
 
 And, what's more important than this is to define the PM2 ecosystem to match this structure:
@@ -85,7 +85,7 @@ And, what's more important than this is to define the PM2 ecosystem to match thi
 }
 ```
 
-*You don't like absolute paths in this configuration? Use the `PWD` environement variable instead!*
+*You don't like absolute paths in this configuration? Use the `PWD` environment variable instead!*
 
 Now, the `ecosystem.json` is usually inside your project, or repository. To start it properly you'll have to start PM2 from the `project_root` directory:
 
@@ -97,7 +97,7 @@ pm2 startOrRestart current/ecosystem.json
 
 ## Logs and data tip
 
-When working in continuous integration world, you'll rather have the `logs` and `data` directories inside your repository. This eases the testability and portability of your application. When refering to a Capistrano structure, my suggestion would be to symlink data directories to the parent level.
+When working in continuous integration world, you'll rather have the `logs` and `data` directories inside your repository. This eases the testability and portability of your application. When referring to a Capistrano structure, my suggestion would be to symlink data directories to the parent level.
 
 In this case, the `ecosystem.json` can be like this:
 
@@ -137,7 +137,7 @@ project_root
 └── data -> /home/www/project_root/data # absolute path for the example
 ```
 
-For more informations, take a look at the [original issue](https://github.com/Unitech/pm2/issues/1623).
+For more information, take a look at the [original issue](https://github.com/Unitech/pm2/issues/1623).
 
 ## Shipit PM2 example
 

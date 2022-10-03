@@ -7,173 +7,184 @@ permalink: /docs/usage/process-management/
 
 ## Managing applications states
 
-PM2 is a process manager. It manages your applications states, so you can start, stop, restart and *delete* processes.
+With PM2 you can easily start/restart/reload/stop/list applications in background.
 
-Start a process:
+### Start
 
-```bash
-pm2 start app.js
-# Or set an application name with --name
-pm2 start web.js --name "web-interface"
-```
-
-Now let's say you need to stop the web-interface:
+To start an application:
 
 ```bash
-pm2 stop web-interface
+$ pm2 start api.js
 ```
 
-As you can see **the process hasn't disappeared**. It's still there but in `stopped` status.
+![image](https://user-images.githubusercontent.com/757747/123512784-b0341900-d689-11eb-93d4-69510ee2be27.png)
 
-To restart it just do:
+You can also start any kind of application like bash commands, script, binaries:
 
 ```bash
-pm2 restart web-interface
+$ pm2 start "npm run start"
+$ pm2 start "ls -la"
+$ pm2 start app.py
 ```
 
-If you want to update environment variables of your application, do not forget to add the option `--update-env`
+#### Start and display log stream
+
+To start an app and check logs stream use the `--attach` option:
 
 ```bash
-NODE_ENV=production pm2 restart web-interface --update-env
+$ pm2 start api.js --attach
 ```
 
-Now you want to **delete** the app from the PM2 process list.
-You just have to enter the following commands:
+When quitting via Ctrl-C, the app will still run in background.
+
+#### Passing arguments
+
+All option passed after `--` will be passed as argument to the app:
 
 ```bash
-pm2 delete web-interface
+$ pm2 start api.js -- arg1 arg2
 ```
+#### Configuration File
 
-[You can declare options via configuration file too](/docs/usage/application-declaration/).
+When managing multiple application at the same time or having to specify multiple options, you can use a configuration file.
+Example with this ecosystem.config.js file:
 
-## Process listing
-
-To list all running processes:
-
-```bash
-pm2 list
-# Or
-pm2 [list|ls|l|status]
-```
-
-To get more details about a specific process:
-
-```bash
-pm2 show 0
-```
-
-### Reset restart count
-
-```bash
-pm2 reset all
-```
-
-### Process sorting
-
-To sort all running processes:
-
-```bash
-pm2 list --sort name:desc
-# Or
-pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
-```
-By default sorting field is "name" and order is "asc".
-
-## Start any process type
-
-For scripts in other languages:
-
-```bash
-pm2 start echo.pl --interpreter=perl
-
-pm2 start echo.coffee
-pm2 start echo.php
-pm2 start echo.py
-pm2 start echo.sh
-pm2 start echo.rb
-```
-
-The interpreter is set by default with this equivalence:
-
-```json
-{
-  ".sh": "bash",
-  ".py": "python",
-  ".rb": "ruby",
-  ".coffee" : "coffee",
-  ".php": "php",
-  ".pl" : "perl",
-  ".js" : "node"
-}
-```
-
-### Binary code execution
-
-```bash
-pm2 start ./binary-app
-```
-
-### Process configuration
-
-To run a non-JS interpreter you must set `exec_mode` to `fork_mode` and `exec_interpreter` to your interpreter of choice.
-For example:
-
-```json
-{
-  "apps" : [{
-    "name"       : "bash-worker",
-    "script"     : "./a-bash-script",
-    "exec_interpreter": "bash",
-    "exec_mode"  : "fork_mode"
-  }, {
-    "name"       : "ruby-worker",
-    "script"     : "./some-ruby-script",
-    "exec_interpreter": "ruby",
-    "exec_mode"  : "fork_mode"
+```javascript
+module.exports = {
+  apps : [{
+    name   : "limit worker",
+    script : "./worker.js",
+    args   : "limit"
+  },{
+    name   : "rotate worker",
+    script : "./worker.js",
+    args   : "rotate"
   }]
 }
 ```
 
-## Max Memory Restart
-
-PM2 allows to restart an application based on a memory limit.
-
-Note that the max memory restart options are graceful (if your application supports graceful actions of course).
-
-### CLI
+Then to start both apps:
 
 ```bash
-pm2 start big-array.js --max-memory-restart 20M
+$ pm2 start ecosystem.config.js
 ```
 
-### JSON
+Read more about [configuration file](/docs/usage/application-declaration/).
 
-```json
-{
-  "name"   : "max_mem",
-  "script" : "big-array.js",
-  "max_memory_restart" : "20M"
-}
+### Restart
+
+To restart an application:
+
+```bash
+$ pm2 restart api
 ```
 
-### Programmatic
+To restart all applications:
 
-```
-pm2.start({
-  name               : "max_mem",
-  script             : "big-array.js",
-  max_memory_restart : "20M"
-}, function(err, proc) {
-  // Processing
-});
+```bash
+$ pm2 restart all
 ```
 
-### Units
+To restart multiple apps at once:
 
-Units can be K(ilobyte), M(egabyte), G(igabyte).
-
+```bash
+$ pm2 restart app1 app3 app4
 ```
-50M
-50K
-1G
+
+#### Updating environment variables and options
+
+To update environment variables or PM2 options, specify the `--update-env` CLI option:
+
+```bash
+$ NODE_ENV=production pm2 restart web-interface --update-env
+```
+
+### Stop
+
+To stop a specified application:
+
+```bash
+$ pm2 stop api
+$ pm2 stop [process_id]
+```
+
+To stop them all:
+
+```bash
+$ pm2 stop all
+```
+
+To stop multiple apps at once:
+
+```bash
+$ pm2 stop app1 app3 app4
+```
+
+Note: this will not delete the application from PM2 application list. See next section to delete an application.
+
+### Delete
+
+To stop and delete an application:
+
+```bash
+$ pm2 delete api
+```
+
+To delete them all:
+
+```bash
+$ pm2 delete all
+```
+
+## Listing Applications
+
+To list all running applications:
+
+```bash
+$ pm2 list
+# Or
+$ pm2 [list|ls|l|status]
+```
+
+![image](https://user-images.githubusercontent.com/757747/123511260-a3f78e00-d680-11eb-8907-3f1017ef7dc8.png)
+
+
+To specify which order you want the application to be listed:
+
+```bash
+$ pm2 list --sort name:desc
+# Or
+$ pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
+```
+
+### Terminal Dashboard
+
+PM2 gives you a simple way to monitor the resource usage of your application.
+You can monitor memory and CPU easily and straight from your terminal with:
+
+```bash
+pm2 monit
+```
+
+<center>
+<img src="/images/pm2-monit.png" title="PM2 Monit"/>
+</center>
+
+
+### Showing application metadata
+
+To display metadata about an application:
+
+```bash
+$ pm2 show api
+```
+
+<img src="https://user-images.githubusercontent.com/757747/123510635-fafb6400-d67c-11eb-8534-0ce6106979b2.png" alt="drawing" width="600"/>
+
+### Reset restart count
+
+To reset the restart counter:
+
+```bash
+$ pm2 reset all
 ```
