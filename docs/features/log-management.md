@@ -135,6 +135,7 @@ Via configuration file you can pass the options:
 |pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pid&gt;.pid)|
 |merge_logs| boolean | true | if set to true, avoid to suffix logs file with the process id  |
 |log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
+|log_type| (string) | "json" | specify log output style, possible value: 'json' (will log raw by default)|
 
 ### Disabling log suffix
  
