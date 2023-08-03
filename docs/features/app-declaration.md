@@ -123,6 +123,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 | max_memory_restart |  string |  "150M" |  your app will be restarted if it exceeds the amount of memory specified. human-friendly format : it can be "10M", "100K", "2G" and so on... |
 | env |  object |   {"NODE_ENV": "development", "ID": "42"}  | env variables which will appear in your app |
 | env_<ENV_NAME> |  object |   {"NODE_ENV": "production", "ID": "89"}  | inject <ENV_NAME> when doing pm2 restart app.yml --env <ENV_NAME>|
+| appendEnvToName | boolean | true | default to false. Use to deploy multiple environments on a single server. It will append each env to name. ex) my-api-production |
 | source_map_support | boolean |  true | default to true, [enable/disable source map file]
 | instance_var | string | "NODE_APP_INSTANCE" | [see documentation](http://pm2.keymetrics.io/docs/usage/environment/#specific-environment-variables)|
 | filter_env | array of string | [ "REACT_" ] | Excludes global variables starting with "REACT_" and will not allow their penetration into the cluster. |
