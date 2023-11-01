@@ -127,6 +127,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 | source_map_support | boolean |  true | default to true, [enable/disable source map file]
 | instance_var | string | "NODE_APP_INSTANCE" | [see documentation](http://pm2.keymetrics.io/docs/usage/environment/#specific-environment-variables)|
 | filter_env | array of string | [ "REACT_" ] | Excludes global variables starting with "REACT_" and will not allow their penetration into the cluster. |
+| post_start_hook | string | "./hooks/post-start-hook.js" | script path to be executed once app is running |
 
 ### Log files
 
