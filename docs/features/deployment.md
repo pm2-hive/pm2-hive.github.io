@@ -185,3 +185,14 @@ Host deployment
 # git@deployment:username/anyrepo.git
 # This is for cloning any repo that uses that IdentityFile. This is a good way to make sure that your remote cloning commands use the appropriate key
 ```
+Or, if you configure ssh-agent, it might be possible to solve it.
+Configure your local ~/.ssh/config as follows
+```
+# ~/.ssh/config
+Host deployment server ip address
+  ForwardAgent yes
+```
+Then run the command below
+```bash
+$ ssh-add ~/.ssh/id_rsa # your local private key
+```
