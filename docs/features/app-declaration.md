@@ -91,8 +91,8 @@ module.exports = {
 Now to switch between variables in different environment, specify the `--env [env name]` option:
 
 ```bash
-pm2 start process.json --env production
-pm2 restart process.json --env development
+pm2 start ecosystem.config.js --env production
+pm2 restart ecosystem.config.js --env development
 ```
 
 ## Attributes available
