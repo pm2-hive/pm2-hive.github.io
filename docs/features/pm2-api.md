@@ -31,7 +31,7 @@ pm2.connect(function(err) {
   }
 
   pm2.start({
-    script    : 'api.js',
+    script    : 'app.js',
     name      : 'api'
   }, function(err, apps) {
     if (err) {
