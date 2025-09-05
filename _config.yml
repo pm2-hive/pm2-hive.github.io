@@ -2,8 +2,8 @@
 title: PM2
 email: contact@pm2.io
 description: > # this means to ignore newlines until "baseurl:"
-  Advanced process manager for production Node.js applications. Load balancer, logs facility,
-  startup script, micro service management, at a glance.
+  PM2 is an advanced production process manager for Node.js applications with built-in load balancer, 
+  zero-downtime reload, startup scripts, monitoring, and microservice management features.
 baseurl: ""
 url: "https://pm2.keymetrics.io"
 repo_url: "https://github.com/pm2-hive/pm2-hive.github.io"

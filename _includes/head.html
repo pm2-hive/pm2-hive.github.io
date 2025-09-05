@@ -10,6 +10,17 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#3f51b5" />
+
+<!-- Preload critical resources -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Exo:300,500,800|Roboto&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo:300,500,800|Roboto&display=swap"></noscript>
+<link rel="preload" href="{{ site.url }}/assets/main.css" as="style">
+
+<!-- Performance optimizations -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//github.com">
+<link rel="dns-prefetch" href="//raw.githubusercontent.com">
 <meta name="copyright" content="Keymetrics Inc." />
 <meta name="description" content="{{ description | strip | escape }}">
 
@@ -26,7 +37,6 @@
 <meta name="twitter:image:src" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png" />
 <meta name="twitter:url" content="{{ url | strip | escape }}" />
 <link rel="canonical" href="{{ url | strip | escape }}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo:300,500,800|Roboto&display=swap">
 <link rel="stylesheet" href="{{ site.url }}/assets/main.css" />
 <link rel="icon" type="image/png" href="{{ site.url }}/favicon-96x96.png" sizes="96x96">
 <link rel="icon" type="image/png" href="{{ site.url }}/favicon-16x16.png" sizes="16x16">
@@ -34,3 +44,65 @@
 <link rel="icon" type="image/x-icon" href="{{ site.url }}/favicon.ico" />
 
 <title>{{ title | strip | escape }}</title>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "PM2",
+      "url": "{{ site.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pm2.keymetrics.io/assets/pm2-logo-1.png"
+      },
+      "description": "{{ site.description | strip }}",
+      "sameAs": [
+        "https://github.com/Unitech/pm2",
+        "https://www.npmjs.com/package/pm2",
+        "https://twitter.com/keymetrics_io"
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ site.url }}/#software",
+      "name": "PM2",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": ["Linux", "macOS", "Windows"],
+      "description": "{{ site.description | strip }}",
+      "url": "{{ site.url }}",
+      "downloadUrl": "https://www.npmjs.com/package/pm2",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }{% if page.layout == 'docs' %},
+    {
+      "@type": "TechArticle",
+      "@id": "{{ url | strip }}#article",
+      "headline": "{{ title | strip | escape }}",
+      "description": "{{ description | strip | escape }}",
+      "url": "{{ url | strip }}",
+      "datePublished": "{{ page.date | default: site.time | date_to_xmlschema }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | default: site.time | date_to_xmlschema }}",
+      "author": {
+        "@id": "{{ site.url }}/#organization"
+      },
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ url | strip }}"
+      }
+    }{% endif %}
+  ]
+}
+</script>

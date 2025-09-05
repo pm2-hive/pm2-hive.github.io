@@ -5,6 +5,31 @@ description: Frequently Asked Questions and Answers
 permalink: /docs/faq/
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "I can't connect my local PM2 to the PM2.io dashboard",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This can happen for several reasons: 1) You are behind a company proxy or firewall - make sure port 443 is open or set proxy config with PM2_PROXY. 2) You are using an old PM2 version - update with 'npm install pm2@latest -g'. 3) You have concurrent PM2 instances - check with 'ps -aux | grep PM2'. 4) Try refreshing connection with 'pm2 link stop' then 'pm2 link start'."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "The versioning buttons (Rollback/Pull/Upgrade) aren't working",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check these solutions: 1) If buttons are disabled, ensure 'Local changes' and 'Local commit' indicators are green. 2) 'Not authorized' warning means you lack admin privileges in the bucket. 3) If the procedure hangs, update Node.js and PM2 to latest versions. 4) Ensure your repository doesn't require password input - clone via SSH and test with 'git remote update'."
+      }
+    }
+  ]
+}
+</script>
+
 ## 1. I can't connect my local PM2 to the PM2.io dashboard
 
 If you are in this situation, it might be for several reasons.
