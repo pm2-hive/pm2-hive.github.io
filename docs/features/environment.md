@@ -10,6 +10,7 @@ permalink: /docs/usage/environment/
 PM2 will inject environment in this order when **starting** a new process :
 
 - First the PM2 CLI will use its environment so the current environment of your shell will be injected.
+- When a new shell env variable is added, you will need to `pm2 delete` and `pm2 start` the process. `pm2 restart` doesn't pick up new shell environment variables.
 - PM2 will then inject the environment that you can configure with the ecosystem file :
 
 ```javascript
