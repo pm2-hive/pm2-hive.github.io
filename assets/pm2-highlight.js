@@ -4,6 +4,11 @@
   var RE = /(^|[^\w.-])(pm2(?:-runtime|-dev|-docker)?)(?![\w.-])/g;
 
   document.querySelectorAll("code").forEach(function (code) {
+    // Flex-styled code chips (homepage) collapse whitespace between the
+    // text nodes this script creates — skip them; they are accent-colored
+    // as a whole already.
+    if (getComputedStyle(code).display.indexOf("flex") !== -1) return;
+
     var walker = document.createTreeWalker(code, NodeFilter.SHOW_TEXT, null);
     var nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);

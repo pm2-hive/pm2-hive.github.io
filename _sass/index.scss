@@ -261,8 +261,8 @@ section {
     @include button-sizes-big;
     font-family: monospace;
     font-size: 1.1rem;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
+    background-color: #000;
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius);
     color: var(--accent-text);
     text-align: left;
