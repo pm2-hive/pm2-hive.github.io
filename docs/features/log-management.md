@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Logs
-description: Log management with PM2
+title: "Log Management"
+description: "Manage Node.js application logs with PM2: stream logs in realtime, locate log files, flush and rotate them with logrotate or pm2-logrotate."
 permalink: /docs/usage/log-management/
 ---
 
@@ -15,15 +15,7 @@ Log files are located in the folder `$HOME/.pm2/logs`.
 
 To display application's log you can use the command `pm2 logs`
 
-```bash
--l --log [path]              specify filepath to output both out and error logs
--o --output <path>           specify out log file
--e --error <path>            specify error log file
---time                       prefix logs with standard formatted timestamp
---log-date-format <format>   prefix logs with custom formatted timestamp
---merge-logs                 when running multiple process with same app name, do not split file by id
 ```
-
   Usage: logs [options] [id|name|namespace]
 
   stream logs file. Default stream all logs
@@ -178,6 +170,7 @@ This will write a basic logrotate configuration to `/etc/logrotate.d/pm2-user` t
         notifempty
         compress
         delaycompress
+        copytruncate
         create 0640 user user
 }
 ```

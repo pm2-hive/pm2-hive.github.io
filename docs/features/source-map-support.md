@@ -43,7 +43,7 @@ To check your logs to detect exceptions, you can type:
 pm2 logs main
 ```
 
-Otherwise, use [keymetrics.io](https://keymetrics.io/) to have a clean listing and notifications of [new alerts](http://docs.keymetrics.io/docs/pages/issues/).
+Otherwise, use [PM2.io](https://pm2.io/) to have a clean listing and notifications of new alerts.
 
 ### Disable source map support
 

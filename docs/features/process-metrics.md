@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Custom Metrics
-description: Monitor in-code values
+description: Expose custom metrics from your Node.js application code and monitor them in real time with pm2 monit or the PM2.io web dashboard.
 permalink: /docs/usage/process-metrics/
 ---
 
@@ -50,9 +50,9 @@ $ pm2 show [app]
 # pm2 show monit
 ```
 
-*Note*: metrics are in the section "Custom Metrics".
+*Note*: metrics are in the section "Code metrics value".
 
-<img src="/images/processmetrics.png" title="custom metrics" width="600"/>
+<img src="/images/processmetrics.png" alt="Code metrics values shown by pm2 show" title="custom metrics" width="600" loading="lazy"/>
 
 
 or you can use the Terminal based interface:
@@ -61,7 +61,7 @@ or you can use the Terminal based interface:
 $ pm2 monit
 ```
 
-<img src="https://i.imgur.com/WHDEvHg.png" title="custom metrics" width="300"/>
+<img src="/images/docs/pm2-monit-custom-metrics.png" alt="Custom metrics box in pm2 monit" title="custom metrics" width="300" loading="lazy"/>
 
 ## Metrics helper available
 

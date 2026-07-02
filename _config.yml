@@ -1,9 +1,9 @@
 # Site settings
 title: PM2
 email: contact@pm2.io
-description: > # this means to ignore newlines until "baseurl:"
-  PM2 is an advanced production process manager for Node.js applications with built-in load balancer, 
-  zero-downtime reload, startup scripts, monitoring, and microservice management features.
+description: >- # this means to ignore newlines until "baseurl:"
+  PM2 is an advanced production process manager for Node.js with load balancing,
+  zero-downtime reload, startup scripts and monitoring.
 baseurl: ""
 url: "https://pm2.keymetrics.io"
 repo_url: "https://github.com/pm2-hive/pm2-hive.github.io"
@@ -13,7 +13,7 @@ sass:
 
 markdown: kramdown
 
-exclude: ['node_modules', 'scripts', 'Gemfile', 'Gemfile.lock', 'README.md']
+exclude: ['node_modules', 'scripts', 'Gemfile', 'Gemfile.lock', 'README.md', 'vendor']
 
 plugins:
   - jekyll-paginate

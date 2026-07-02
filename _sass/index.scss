@@ -1,19 +1,53 @@
+@import './theme';
+
 $small-mobile: "screen and (max-width: 749px)";
 $not-small-mobile: "(min-width: 750px)";
 $mobile: "screen and (max-width: 999px)";
 $not-mobile: "(min-width: 1000px)";
 $desktop-max-width: 1200px;
+$frame-width: 1280px;
 
 html {
-  font-family: "Exo", sans-serif;
+  font-family: "Inter", sans-serif;
   overflow-x: hidden;
   font-size: 16px;
+
+  // Hide the page scrollbar (scrolling still works)
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Inner scrollable areas (code blocks, tables) keep a slim dark scrollbar
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 body {
-  background-color: #2b037a;
+  background-color: var(--bg);
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(77, 141, 255, 0.13), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(99, 76, 255, 0.06), transparent);
+  background-repeat: no-repeat;
   margin: 0;
-  color: white;
+  color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,7 +57,46 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    // Blueprint frame: centered hairline rails with section rules and
+    // "+" markers at the intersections.
+    width: 100%;
+    max-width: $frame-width;
+    margin: 0 auto;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+
+    > section:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+
+      &::before,
+      &::after {
+        content: "+";
+        position: absolute;
+        bottom: -8px;
+        color: var(--text-dim);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        z-index: 2;
+      }
+
+      &::before {
+        left: -4px;
+      }
+
+      &::after {
+        right: -4px;
+      }
+    }
   }
+}
+
+@mixin blueprint-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 96px 96px;
 }
 
 a {
@@ -33,10 +106,10 @@ a {
 }
 
 h1 {
-  font-weight: 300;
+  font-weight: 700;
   font-size: 2.5rem;
-  text-transform: uppercase;
-  line-height: 1.45;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   margin: 0;
 }
 
@@ -65,166 +138,51 @@ section {
 
 header {
   z-index: 20;
+  border-bottom: 1px solid var(--border);
+  padding-top: 0;
+  padding-bottom: 0;
 
   .main-nav {
     @media screen and (min-width: 1400px) {
       margin: 0 -104px;
     }
-    padding: 20px 0;
+    padding: 0;
+    height: 66px;
+  }
+
+  .doc-links a {
+    font-size: 0.85rem;
+  }
+
+  .logo-link img {
+    width: auto;
+    height: 44px;
   }
 }
 
 section {
+  padding-left: 64px;
+  padding-right: 64px;
+
+  @media #{$mobile} {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media #{$small-mobile} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   &:last-child {
     flex: 1;
   }
 }
 
+// Decorative wave/hexagon backgrounds from the previous theme.
+// The markup keeps its .section-background divs; the dark theme hides them.
 .section-background {
-  position: absolute;
-  pointer-events: none;
-  top: -500px;
-  bottom: -500px;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  padding-top: 500px;
-
-  section:first-child & {
-    top: -200px;
-    padding-top: 200px;
-  }
-  section:last-child & {
-    bottom: -300px;
-  }
-  footer & {
-    bottom: 0;
-  }
-
-  footer &,
-  section:not(:first-child):nth-child(2n) & {
-    -webkit-mask: url(./bg-even.svg) no-repeat center top;
-    mask: url(./bg-even.svg) no-repeat center top;
-  }
-  section:not(:first-child):nth-child(2n + 1) & {
-    -webkit-mask: url(./bg-odd.svg) no-repeat center top;
-    mask: url(./bg-odd.svg) no-repeat center top;
-  }
-
-  @media #{$small-mobile} {
-    -webkit-mask-size: 2500px !important;
-    mask-size: 2500px !important;
-    -webkit-mask-position-y: 220px !important;
-    mask-position-y: 220px !important;
-  }
-
-  section:nth-child(6n + 1) & {
-    background: linear-gradient(100deg, #0e044b, #6901df);
-  }
-  section:nth-child(6n + 2) & {
-    background: linear-gradient(0deg, transparent 30%, #151440 60%),
-      linear-gradient(90deg, #1a3c8d, #151440 50%);
-  }
-  section:nth-child(6n + 3) & {
-    background: radial-gradient(ellipse at 100%, #130554 10%, transparent 50%),
-      linear-gradient(80deg, #6e01e8, #130554);
-  }
-  section:nth-child(6n + 4) & {
-    background: radial-gradient(ellipse at center, #151440, transparent 30%),
-      linear-gradient(173deg, #151440 50%, #410a94 70%);
-  }
-  section:nth-child(6n + 5) & {
-    background: #0e044b;
-  }
-  footer & {
-    background: linear-gradient(95deg, #0e044b, #6b01e3);
-  }
-
-  .hexagon {
-    position: absolute;
-    pointer-events: none;
-    background: url(./hexa.svg) no-repeat;
-    background-size: contain;
-    opacity: 0.1;
-  }
-  .hexagon-1 {
-    width: 700px;
-    height: 300px;
-    top: 68px;
-    right: 95%;
-  }
-  .hexagon-2 {
-    width: 1600px;
-    height: 630px;
-    top: 194px;
-    right: 27%;
-  }
-  .hexagon-3 {
-    width: 1600px;
-    height: 310px;
-    top: 524px;
-    right: -3%;
-  }
-  .hexagon-4 {
-    transform: rotate(180deg);
-    opacity: 0.07;
-    width: 1600px;
-    height: 740px;
-    top: -216px;
-    left: 53%;
-  }
-  .hexagon-5 {
-    transform: rotate(180deg);
-    opacity: 0.02;
-    filter: invert(1);
-    width: 1600px;
-    height: 740px;
-    top: -219px;
-    left: -17%;
-  }
-  .hexagon-6 {
-    opacity: 0.07;
-    width: 1600px;
-    height: 620px;
-    top: -9px;
-    right: 37%;
-  }
-  .hexagon-7 {
-    transform: rotate(180deg);
-    filter: invert(1);
-    opacity: 0.03;
-    width: 1800px;
-    height: 870px;
-    top: -360px;
-    left: -14%;
-  }
-  .hexagon-8 {
-    opacity: 0.07;
-    width: 1600px;
-    height: 620px;
-    top: -100px;
-    right: 35%;
-  }
-  .hexagon-9 {
-    width: 1600px;
-    height: 370px;
-    top: 190px;
-    right: -80%;
-  }
-  .hexagon-10 {
-    width: 1600px;
-    height: 410px;
-    top: -103px;
-    right: 10%;
-  }
-  .hexagon-11 {
-    transform: rotate(180deg);
-    opacity: 0.05;
-    width: 1600px;
-    height: 730px;
-    top: -539px;
-    left: 83%;
-  }
+  display: none;
 }
 
 @mixin button-sizes {
@@ -242,36 +200,16 @@ section {
 }
 
 .dim-border {
-  border: 1px solid rgba(44, 8, 123, 0.95);
+  border: 1px solid var(--border-strong);
 }
 
 .accent-border {
-  border: 1px solid rgb(127, 69, 231);
+  border: 1px solid var(--border);
 }
 
-@mixin border-corners($size) {
-  border-image-source: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$size} #{$size}"><rect x="0" y="0" width="#{$size}" height="#{$size}" fill="transparent" stroke="white" stroke-width="1" /></svg>');
-  border-image-slice: 51%;
-  border-image-width: #{$size}px;
-}
-.border-corners {
-  position: relative;
-
-  &::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    border-style: solid;
-    @include border-corners(3);
-  }
-
-  &.big-corners::before {
-    @include border-corners(5);
-  }
+// Legacy decoration classes kept in the markup; the dark theme renders them flat.
+.border-corners::before {
+  content: none;
 }
 
 .card {
@@ -308,17 +246,25 @@ section {
   }
 
   p {
-    line-height: 1.6;
-    font-weight: 300;
-    font-size: 1.2rem;
+    line-height: 1.7;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--text-muted);
     margin: 40px 0;
+
+    b {
+      color: var(--text);
+    }
   }
 
   code {
     @include button-sizes-big;
     font-family: monospace;
-    font-size: 1.2rem;
-    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--accent-text);
     text-align: left;
   }
 
@@ -327,7 +273,7 @@ section {
 
     code {
       flex: 1;
-      margin-right: -1px;
+      margin-right: 16px;
     }
 
     @media #{$small-mobile} {
@@ -345,22 +291,12 @@ section {
   }
 }
 
-@mixin inner-shadows($inner-size, $inner-opacity) {
-  box-shadow: inset 0 0 $inner-size rgba(84, 167, 255, $inner-opacity),
-    0 0 30px rgba(0, 0, 0, 0.2);
-}
-
-.inner-shadows {
-  @include inner-shadows(25px, 0.7);
-  background: url(./noise-20.png);
-}
-.dim-inner-shadows {
-  @include inner-shadows(25px, 0.3);
-  background: url(./noise-10.png);
-}
+// Legacy noise/glow classes kept in the markup; the dark theme renders them flat.
+.inner-shadows,
+.dim-inner-shadows,
 .big-inner-shadows {
-  @include inner-shadows(100px, 0.4);
-  background: url(./noise-05.png);
+  background: none;
+  box-shadow: none;
 }
 
 .button {
@@ -368,20 +304,37 @@ section {
 
   @include button-sizes;
 
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
 
   &.big {
     @include button-sizes-big;
   }
 
-  transition: border 0.4s, box-shadow 0.4s;
-  &:hover {
-    border: 1px solid white;
-    @include inner-shadows(35px, 1);
+  &.accent-border {
+    background-color: var(--accent);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 24px var(--accent-glow);
+
+    &:hover {
+      background-color: var(--accent-hover);
+      box-shadow: 0 0 36px var(--accent-glow);
+    }
+  }
+
+  &.dim-border {
+    background-color: transparent;
+    border-color: var(--border-strong);
+
+    &:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-hover);
+    }
   }
 }
 
@@ -398,6 +351,12 @@ section {
     position: relative;
     display: inline-block;
     @include button-sizes;
+    color: var(--text-muted);
+
+    &:hover,
+    &.current {
+      color: var(--text);
+    }
   }
 }
 
@@ -431,7 +390,7 @@ section {
       position: fixed;
       top: 40px;
       right: 32px;
-      background-color: rgba(72, 2, 169, 0.7);
+      background-color: var(--surface);
 
       @media #{$small-mobile} {
         right: 16px;
@@ -491,7 +450,8 @@ section {
       position: fixed;
       display: flex;
       flex-direction: column;
-      background-color: #130140;
+      background-color: var(--bg-elevated);
+      border-left: 1px solid var(--border);
       padding: 16px;
       top: 0;
       right: 0;
@@ -516,22 +476,27 @@ section {
   }
 }
 
+code .pm2-token {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
 
   th {
-    background: #111033;
-    color: white;
+    background: var(--surface);
+    color: var(--text);
   }
 
   th, td {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     padding: 8px;
   }
 
   tr:nth-child(even) {
-    background: #efefef;
+    background: rgba(255, 255, 255, 0.03);
   }
 }
 

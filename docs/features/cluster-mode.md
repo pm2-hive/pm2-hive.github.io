@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Cluster Mode
-description: Cluster Mode for Node.js
+title: "Cluster Mode: Node.js Load Balancing"
+description: "Scale Node.js across all CPU cores with PM2 cluster mode: a built-in load balancer with zero-downtime reload and no code changes required."
 permalink: /docs/usage/cluster-mode/
 ---
 
@@ -9,7 +9,7 @@ permalink: /docs/usage/cluster-mode/
 
 The **cluster mode** allows networked Node.js applications (http(s)/tcp/udp server) to be scaled across all CPUs available, without any code modifications. This greatly increases the performance and reliability of your applications, depending on the number of CPUs available.  Under the hood, this uses the Node.js [cluster module](https://nodejs.org/api/cluster.html) such that the scaled application's child processes can automatically share server ports. To learn more, see [How It Works](https://nodejs.org/api/cluster.html#cluster_how_it_works) in the official Node.js documentation on the cluster module.
 
-![http://i.imgur.com/kTAowsL.png](http://i.imgur.com/kTAowsL.png)
+![PM2 cluster mode processes in the process list](/images/docs/pm2-cluster-mode.png)
 
 ## Usage
 
@@ -21,7 +21,7 @@ pm2 start app.js -i max
 
 `max` means that PM2 will auto detect the number of available CPUs and run as many processes as possible
 
-Or via a [js/yaml/json file](http://pm2.keymetrics.io/docs/usage/application-declaration/):
+Or via a [js/yaml/json file](https://pm2.keymetrics.io/docs/usage/application-declaration/):
 
 ```javascript
 module.exports = {
@@ -33,7 +33,7 @@ module.exports = {
 }
 ```
 
-**NOTE**: you need to set the exec_mode to `cluster` so PM2 know you want to load balance between each instances, by default it will not
+**NOTE**: setting the `instances` option on a Node.js app automatically enables the cluster mode; declaring `exec_mode: "cluster"` explicitly is optional but recommended for clarity
 
 Then to start the Process File:
 
@@ -79,10 +79,10 @@ process.on('SIGINT', function() {
 });
 ```
 
-[Read more about Graceful Shutdown](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) feature.
+[Read more about Graceful Shutdown](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/) feature.
 
 ## Statelessify your application
 
-Be sure your [**application is stateless**](http://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that no local data is stored in the process, for example sessions/websocket connections, session-memory and related. Use Redis, Mongo or other databases to share states between processes.
+Be sure your [**application is stateless**](https://pm2.keymetrics.io/docs/usage/specifics/#stateless-apps) meaning that no local data is stored in the process, for example sessions/websocket connections, session-memory and related. Use Redis, Mongo or other databases to share states between processes.
 
 Another resource on how to write efficient, production ready stateless application is [The Twelve Factor Application manifesto](https://12factor.net/).

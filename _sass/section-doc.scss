@@ -1,12 +1,17 @@
 .section-doc {
-  .section-wrapper {
-    margin-bottom: 110px;
-    @media #{$small-mobile} {
-      margin-bottom: 400px;
-    }
+  padding-left: 32px;
+  padding-right: 32px;
+
+  @media #{$small-mobile} {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  --lateral-gutter: 3rem;
+  .section-wrapper {
+    margin-bottom: 80px;
+  }
+
+  --lateral-gutter: 2rem;
   @media #{$small-mobile} {
     --lateral-gutter: 1rem;
   }
@@ -22,11 +27,12 @@
       left: 0;
       width: 680px;
       height: 600px;
-      background: url(../assets/header-graphic.png) no-repeat;
       background-size: contain;
     }
 
     > h1 {
+      margin: 20px 0 24px;
+
       @media #{$small-mobile} {
         display: none;
       }
@@ -36,8 +42,9 @@
   .doc-nav-and-content {
     position: relative;
     display: flex;
-    color: #252525;
-    font-family: Roboto, Arial, sans-serif;
+    gap: 32px;
+    color: var(--text);
+    font-family: inherit;
     margin-top: 16px;
     z-index: 10; /* above footer */
 
@@ -47,24 +54,27 @@
   }
 
   nav {
-    background: #f2f2f2;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
 
     @media #{$not-small-mobile} {
       align-self: flex-start;
-      max-width: 290px;
+      max-width: 280px;
       min-width: 200px;
       flex: 1;
-      --lateral-gutter: 1.5rem;
+      --lateral-gutter: 1.25rem;
     }
     @media #{$small-mobile} {
       margin-bottom: 68px;
     }
 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-
     .search-field {
-      height: 55px;
-      background-image: linear-gradient(to right, #7401fe, #cb00d6);
+      height: 52px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+
       position: relative;
 
       i {
@@ -92,9 +102,9 @@
         input {
           background: transparent;
           border: none;
-          font-family: "Exo", sans-serif;
-          font-weight: 300;
-          font-size: 1.2rem;
+          font-family: inherit;
+          font-weight: 400;
+          font-size: 0.95rem;
           color: #fff;
           flex: 1;
           padding: 0 38px 0 var(--lateral-gutter);
@@ -110,6 +120,68 @@
       max-width: calc(100vw - 32px);
       min-width: 0;
       width: 500px;
+
+      // Dark theme for the DocSearch v2 dropdown
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+
+      &::before {
+        background: var(--bg-elevated);
+        border-color: var(--border-strong);
+      }
+
+      [class^="ds-dataset-"] {
+        background: var(--bg-elevated);
+        border: none;
+      }
+    }
+
+    .algolia-docsearch-suggestion {
+      background: transparent;
+      color: var(--text-muted);
+
+      .algolia-docsearch-suggestion--category-header {
+        color: var(--text);
+        border-bottom-color: var(--border);
+      }
+
+      .algolia-docsearch-suggestion--subcategory-column {
+        color: var(--text-dim);
+
+        &::before {
+          background: var(--border);
+        }
+      }
+
+      .algolia-docsearch-suggestion--content {
+        &::before {
+          background: var(--border);
+        }
+      }
+
+      .algolia-docsearch-suggestion--title {
+        color: var(--text);
+      }
+
+      .algolia-docsearch-suggestion--text {
+        color: var(--text-muted);
+      }
+
+      .algolia-docsearch-suggestion--highlight {
+        background: var(--accent-glow);
+        color: var(--accent-text);
+        box-shadow: none;
+      }
+    }
+
+    .ds-suggestion.ds-cursor .algolia-docsearch-suggestion--content {
+      background: var(--surface-hover);
+    }
+
+    .algolia-docsearch-footer {
+      opacity: 0.6;
     }
 
     ul {
@@ -131,7 +203,7 @@
       padding: 28px var(--lateral-gutter);
       font-size: 1.7rem;
       font-weight: bold;
-      color: #230061;
+      color: var(--text);
       cursor: pointer;
       user-select: none;
 
@@ -151,16 +223,16 @@
       margin-bottom: 23px;
       letter-spacing: 1px;
       @media #{$small-mobile} {
-        border-top: 1px solid #e2e6eb;
+        border-top: 1px solid var(--border);
       }
       & + .nav-section {
-        border-top: 1px solid #e2e6eb;
+        border-top: 1px solid var(--border);
       }
     }
     a {
       transition: 0.4s background-color;
       &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgba(255, 255, 255, 0.05);
       }
     }
     .nav-section-title {
@@ -169,53 +241,67 @@
       display: block;
       padding: 14px var(--lateral-gutter);
       margin-top: 16px;
-      color: #230061;
+      color: var(--text);
     }
     .nav-section-entry {
       text-transform: uppercase;
       font-size: 0.85rem;
+      color: var(--text-muted);
       a {
         display: block;
-        padding: 6px var(--lateral-gutter);
+        padding: 9px var(--lateral-gutter);
       }
       &.active a {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgba(255, 255, 255, 0.06);
         font-weight: bold;
-        border-left: 9px solid #0074ff;
+        border-left: 9px solid var(--accent);
         margin-left: -9px;
+        color: var(--text);
       }
     }
   }
 
   .doc-content {
     flex: 1.5;
-    font-size: 15px;
-    background-color: #f2f2f2;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
     min-width: 0;
-    padding: 0.9rem var(--lateral-gutter);
+    padding: 2rem var(--lateral-gutter);
     line-height: 1.6;
-    box-shadow: 0 40px 40px rgba(0, 0, 0, 0.3);
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
 
     h2 {
       font-size: 1.7rem;
-      border-bottom: 1px solid currentColor;
+      border-bottom: 1px solid var(--border);
+
       &:not(:first-child) {
-        margin-top: 30px;
+        margin-top: 40px;
       }
     }
 
     h3 {
       font-size: 1.5rem;
-      border-bottom: 1px solid #b2c1d3;
     }
 
-
+    h4 {
+      font-size: 1.3rem;
+    }
     h2,
     h3,
     h4 {
       a {
         display: inline-block;
         padding: 11px 0;
+        border-bottom: 1px solid currentColor;
         margin-bottom: -1px;
         &:hover {
           text-decoration: none;
@@ -234,38 +320,44 @@
       }
     }
 
-    h4 {
-      font-size: 1.3rem;
-      margin: 0;
-      a { 
-        padding: 11px 0 0 0;
-      }
-
-    }
-    a,
+    h1,
     h2,
     h3,
     h4 {
-      color: #30519d;
+      color: var(--text);
       font-weight: bold;
+    }
+
+    a {
+      color: var(--accent-text);
+      font-weight: bold;
+    }
+
+    h1 a,
+    h2 a,
+    h3 a,
+    h4 a {
+      color: inherit;
     }
 
     a:hover {
       text-decoration: underline;
     }
 
+    h1,
     h2,
     h3,
     h4,
     p,
     div.highlighter-rouge {
-      margin: 0 0 10px;
+      margin: 0 0 25px;
     }
 
     :not(pre) > code {
-      // color: #2160a4;
-      background-color: #111033;
-      color: white;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      color: var(--accent-text);
       padding: 3px 8px;
     }
 
@@ -276,14 +368,15 @@
     img:only-child,
     div.highlighter-rouge,
     .edit-page-button {
-     
+      //box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     }
 
     .edit-page-button {
       display: flex;
       align-items: center;
       margin: 100px auto;
-      background-color: #0492da;
+      background-color: var(--accent);
+      border-radius: 999px;
       color: white;
       text-transform: uppercase;
       max-width: max-content;
@@ -303,9 +396,10 @@
     padding: 17px 24px;
     margin: 0;
     line-height: 1.8;
-    background-color: #111033;
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     overflow: auto;
-    font-size: 14px;
   }
 }
 .highlight table td {
@@ -316,7 +410,7 @@
 }
 .highlight,
 .highlight .w {
-  color: white;
+  color: #d0d0d0;
 }
 .highlight .err {
   color: #151515;

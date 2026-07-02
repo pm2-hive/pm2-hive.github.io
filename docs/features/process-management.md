@@ -17,7 +17,7 @@ To start an application:
 $ pm2 start api.js
 ```
 
-![image](https://user-images.githubusercontent.com/757747/123512784-b0341900-d689-11eb-93d4-69510ee2be27.png)
+![pm2 stop command output](/images/docs/pm2-stop.png)
 
 You can also start any kind of application like bash commands, script, binaries:
 
@@ -146,7 +146,7 @@ $ pm2 list
 $ pm2 [list|ls|l|status]
 ```
 
-![image](https://user-images.githubusercontent.com/757747/123511260-a3f78e00-d680-11eb-8907-3f1017ef7dc8.png)
+![pm2 restart command output](/images/docs/pm2-restart.png)
 
 
 To specify which order you want the application to be listed:
@@ -167,7 +167,7 @@ pm2 monit
 ```
 
 <center>
-<img src="/images/pm2-monit.png" title="PM2 Monit"/>
+<img src="/images/pm2-monit.png" alt="pm2 monit terminal dashboard" title="PM2 Monit" loading="lazy"/>
 </center>
 
 
@@ -179,7 +179,7 @@ To display metadata about an application:
 $ pm2 show api
 ```
 
-<img src="https://user-images.githubusercontent.com/757747/123510635-fafb6400-d67c-11eb-8534-0ce6106979b2.png" alt="drawing" width="600"/>
+<img src="/images/docs/pm2-process-list.png" alt="drawing" width="600"/>
 
 ### Reset restart count
 

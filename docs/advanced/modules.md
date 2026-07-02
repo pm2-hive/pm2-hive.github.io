@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Module System
-description: Standalone Node.JS applications ran by PM2
+description: "Create, install and publish PM2 modules: standalone Node.js applications managed by PM2, such as pm2-logrotate, with persistent configuration."
 permalink: /docs/advanced/pm2-module-system/
 ---
 
@@ -9,7 +9,7 @@ permalink: /docs/advanced/pm2-module-system/
 
 A PM2 module is a standalone software installed and managed by PM2. These softwares are pulled from the NPM repository and are published as common Javascript libraries on NPM.
 
-[Anyone can create and publish a module](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/#creating-a-module). A module can be a [log rotation module](https://github.com/pm2-hive/pm2-logrotate), a [standalone http proxy](https://github.com/gridcontrol/proxy-only), a load balancer, a Node.js based wikipedia, a DNS server or any kind of utility. Your creativity is the limit!
+[Anyone can create and publish a module](https://pm2.keymetrics.io/docs/advanced/pm2-module-system/#creating-a-module). A module can be a [log rotation module](https://github.com/pm2-hive/pm2-logrotate), a [standalone http proxy](https://github.com/gridcontrol/proxy-only), a load balancer, a Node.js based wikipedia, a DNS server or any kind of utility. Your creativity is the limit!
 
 ## Managing a module
 
@@ -59,7 +59,7 @@ cd <module-name>
 pm2 install .
 ```
 
-You can now edit the source and when you change something, PM2 will automatically restart the module ([watch option activated](http://pm2.keymetrics.io/docs/usage/watch-and-restart/)).
+You can now edit the source and when you change something, PM2 will automatically restart the module ([watch option activated](https://pm2.keymetrics.io/docs/usage/watch-and-restart/)).
 
 To display module logs:
 
@@ -77,7 +77,7 @@ pm2 uninstall <module-name>
 
 Complementary information can be added to the **package.json** file.
 
-You can define configuration values under the `config` attribute and the module behavior like a common [pm2 managed process](http://pm2.keymetrics.io/docs/usage/application-declaration/).
+You can define configuration values under the `config` attribute and the module behavior like a common [pm2 managed process](https://pm2.keymetrics.io/docs/usage/application-declaration/).
 
 Example:
 
@@ -210,23 +210,23 @@ pm2 set server-monitoring:days_interval 2
 
 ## Publishing a module
 
-Updating or publishing a module is straightforward. The `pm2 publish` command will increment the minor version of the module, will `git add . ; git commit -m "VERSION"; git push origin master` then it will `npm publish`.
+Updating or publishing a module is straightforward. By default `pm2 publish` packages the module as a tarball. To publish to npm, pass the `--npm` flag: it will increment the minor version of the module, run `git add . ; git commit -m "VERSION"; git push origin master` then `npm publish`.
 
 ```bash
 cd my-module
-pm2 publish
+pm2 publish --npm
 ```
 
 ## Modules <3 Keymetrics
 
-With [Keymetrics](https://keymetrics.io/) you can [create a customized interface](http://pm2.keymetrics.io/docs/advanced/pm2-module-system/#module-entry-point) with [metrics monitoring](http://docs.keymetrics.io/docs/pages/custom-metrics/) and [remote actions](http://docs.keymetrics.io/docs/pages/custom-actions/).
+With [PM2.io](https://pm2.io/) you can [create a customized interface](https://pm2.keymetrics.io/docs/advanced/pm2-module-system/#module-entry-point) with [metrics monitoring](https://pm2.keymetrics.io/docs/usage/process-metrics/) and [remote actions](https://pm2.keymetrics.io/docs/usage/process-actions/).
 
 This will give you this kind of result:
 
-<a href="/images/mongodb-rack.png" title="Keymetrics interface explanation"><img src="/images/mongodb-rack.png"/></a>
+<a href="/images/mongodb-rack.png" title="PM2.io interface explanation"><img src="/images/mongodb-rack.png" alt="MongoDB module metrics displayed in the PM2.io interface" loading="lazy"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-mongodb" title="pm2-mongodb">pm2-mongodb module</a></center>
 
-<a href="/images/server-monit.png" title="Keymetrics interface explanation"><img src="/images/server-monit.png"/></a>
+<a href="/images/server-monit.png" title="PM2.io interface explanation"><img src="/images/server-monit.png" alt="Server monitoring module in the PM2.io interface" loading="lazy"/></a>
 <center><a href="https://github.com/pm2-hive/pm2-server-monit" title="pm2-server-monit">pm2-server-monit-module</a></center>
 
 ### Options with pmx.initModule

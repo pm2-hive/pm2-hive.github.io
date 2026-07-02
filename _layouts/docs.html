@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     {% include head.html %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
   </head>
   <body>
@@ -58,20 +58,6 @@
               <i class="fa fa-2x fa-github" aria-hidden="true"></i>
               Contribute to this page
             </a>
-
-            <div id="disqus_thread"></div>
-            <script type="text/javascript">
-              /* * * CONFIGURATION VARIABLES * * */
-              var disqus_shortname = 'pm2';
-
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
             </article>
           </div>
         </div>
@@ -89,5 +75,6 @@
     </script>
     <script src="{{ site.url }}/assets/docs.js"></script>
     <script src="{{ site.url }}/assets/menu.js"></script>
+    <script src="{{ site.url }}/assets/pm2-highlight.js"></script>
   </body>
 </html>

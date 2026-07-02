@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Expose static file over http
-description: Expose static file over http
+description: Serve static files and single-page applications over HTTP with the pm2 serve command, with optional basic auth and SPA redirection.
 permalink: /docs/usage/expose/
 ---
 

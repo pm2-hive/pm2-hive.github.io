@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Not found
+sitemap: false
 ---
 
 <section class="section-404">
@@ -16,9 +17,15 @@ title: Not found
         <h1>Page not found :(</h1>
 
         <p>The requested page could not be found.</p>
+
+        <p>
+          <a href="{{ site.url }}/" title="Home">Back to Home</a> ·
+          <a href="{{ site.url }}/docs/usage/quick-start/" title="Quick Start">Quick Start</a> ·
+          <a href="{{ site.url }}/docs/usage/pm2-doc-single-page/" title="Documentation">Documentation</a>
+        </p>
       </div>
       <div class="card-right">
-        <img src="{{ site.url }}/assets/travolta.gif" />
+        <img src="{{ site.url }}/assets/travolta.gif" alt="Confused Travolta looking for the page" width="245" height="238" />
       </div>
       <div class="card-left">
       </div>

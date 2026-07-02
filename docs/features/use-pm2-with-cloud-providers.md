@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Use PM2 in Cloud Providers
-description: Use PM2 in a cloud environment (without CLI)
+description: Use PM2 on cloud platforms and PaaS like Heroku, Azure or Google App Engine where the CLI is unavailable, with pm2-runtime as the entrypoint.
 permalink: /docs/usage/use-pm2-with-cloud-providers/
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Memory Limit Reload
-description: Set memory threshold and trigger soft restarts
+description: Automatically reload Node.js applications when they exceed a memory threshold with the PM2 max-memory-restart option.
 permalink: /docs/usage/memory-limit/
 ---
 

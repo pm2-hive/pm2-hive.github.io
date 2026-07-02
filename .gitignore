@@ -6,3 +6,5 @@ Gemfile.lock
 \#*\#
 .\#*
 package-lock.json
+vendor
+.bundle

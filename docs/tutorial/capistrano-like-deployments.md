@@ -2,7 +2,7 @@
 layout: docs
 title: Capistrano like deployments
 description: How to deploy with pm2, symlinks and a correct working directory
-permalink: /docs/tutorials/capistrano-like-deployments
+permalink: /docs/tutorials/capistrano-like-deployments/
 ---
 
 ## Capistrano like deployments
@@ -171,4 +171,4 @@ In our example, the executed command would result in:
 SOME_APP_ENV="production" cd /home/www/project_root && pm2 startOrRestart --env production current/ecosystem.json`
 ```
 
-Note that I'm using [PM2's environments ability](http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments) on top of declaring my own environment variable (`SOME_APP_ENV`).
+Note that I'm using [PM2's environments ability](https://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments) on top of declaring my own environment variable (`SOME_APP_ENV`).

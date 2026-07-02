@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Watch & Restart
-description: Restart process on file change
+description: Automatically restart your Node.js application when files change with the PM2 watch option, including ignore rules and watch delay tuning.
 permalink: /docs/usage/watch-and-restart/
 ---
 

@@ -1,19 +1,22 @@
 
 .section-monitoring {
   .section-wrapper {
-    margin-top: 133px;
-    margin-bottom: 200px;
+    margin-top: 90px;
+    margin-bottom: 100px;
     @media #{$mobile} {
-      margin-top: 80px;
-      margin-bottom: 180px;
+      margin-top: 60px;
+      margin-bottom: 90px;
     }
   }
 
   .card-right {
-    padding: 10px;
+    padding: 8px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
 
     img {
       width: 100%;
+      height: auto;
       display: block;
     }
     @media #{$mobile} {

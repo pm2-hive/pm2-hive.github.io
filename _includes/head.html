@@ -2,7 +2,7 @@
   {% if page.title %}{{ site.title }} - {{ page.title }}{% else %}{{ site.title }} - Advanced Node.js process manager{% endif %}
 {% endcapture %}
 {% capture description %}
-  {% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}
+  {% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}
 {% endcapture %}
 {% capture url %}
   {{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}
@@ -10,38 +10,44 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#3f51b5" />
+<meta name="theme-color" content="#07080d" />
 
 <!-- Preload critical resources -->
-<link rel="preload" href="https://fonts.googleapis.com/css?family=Exo:300,500,800|Roboto&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo:300,500,800|Roboto&display=swap"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 <link rel="preload" href="{{ site.url }}/assets/main.css" as="style">
 
 <!-- Performance optimizations -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//github.com">
 <link rel="dns-prefetch" href="//raw.githubusercontent.com">
 <meta name="copyright" content="Keymetrics Inc." />
 <meta name="description" content="{{ description | strip | escape }}">
+{% if page.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
 
 <meta property="og:url" content="{{ url | strip | escape }}" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ title | strip | escape }}" />
 <meta property="og:description" content="{{ description | strip | escape }}" />
-<meta property="og:image" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png" />
+<meta property="og:image" content="{{ site.url }}/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="PM2" />
+<meta property="og:locale" content="en_US" />
 <meta name="google-site-verification" content="ELR1mLPjKnUWvC62UIAp4fpVUvO4ToECWOK_jb922bI" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@keymetrics_io" />
 <meta name="twitter:title" content="{{ title | strip | escape }}" />
 <meta name="twitter:description" content="{{ description | strip | escape }}" />
-<meta name="twitter:image:src" content="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png" />
-<meta name="twitter:url" content="{{ url | strip | escape }}" />
+<meta name="twitter:image" content="{{ site.url }}/assets/og-image.png" />
 <link rel="canonical" href="{{ url | strip | escape }}">
 <link rel="stylesheet" href="{{ site.url }}/assets/main.css" />
 <link rel="icon" type="image/png" href="{{ site.url }}/favicon-96x96.png" sizes="96x96">
 <link rel="icon" type="image/png" href="{{ site.url }}/favicon-16x16.png" sizes="16x16">
 <link rel="icon" type="image/png" href="{{ site.url }}/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/x-icon" href="{{ site.url }}/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}/apple-touch-icon.png">
 
 <title>{{ title | strip | escape }}</title>
 
@@ -89,9 +95,9 @@
       "@id": "{{ url | strip }}#article",
       "headline": "{{ title | strip | escape }}",
       "description": "{{ description | strip | escape }}",
-      "url": "{{ url | strip }}",
-      "datePublished": "{{ page.date | default: site.time | date_to_xmlschema }}",
-      "dateModified": "{{ page.last_modified_at | default: page.date | default: site.time | date_to_xmlschema }}",
+      "url": "{{ url | strip }}",{% if page.date or page.last_modified_at %}
+      "datePublished": "{{ page.date | default: page.last_modified_at | date_to_xmlschema }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",{% endif %}
       "author": {
         "@id": "{{ site.url }}/#organization"
       },

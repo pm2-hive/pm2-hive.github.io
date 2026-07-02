@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Ecosystem File
-description: Manage applications via a configuration file
+description: "Declare and manage multiple Node.js applications with the PM2 ecosystem configuration file: all attributes, environment switching and examples."
 permalink: /docs/usage/application-declaration/
 ---
 
@@ -109,7 +109,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |args| (string)      | "-a 13 -b 12" | string containing all arguments passed via CLI to script|
 |interpreter| (string) | "/usr/bin/python" |interpreter absolute path (default to node)|
 |interpreter_args| (string) | "--harmony" | option to pass to the interpreter|
-|node_args| (string) |   |alias to interpreter_args |
+|node_args| (string) |   |arguments passed to the node interpreter (interpreter_args is an alias of this option)|
 
 
 ### Advanced features
@@ -123,10 +123,10 @@ Application behavior and configuration can be fine-tuned with the following attr
 | max_memory_restart |  string |  "150M" |  your app will be restarted if it exceeds the amount of memory specified. human-friendly format : it can be "10M", "100K", "2G" and so on... |
 | env |  object |   {"NODE_ENV": "development", "ID": "42"}  | env variables which will appear in your app |
 | env_<ENV_NAME> |  object |   {"NODE_ENV": "production", "ID": "89"}  | inject <ENV_NAME> when doing pm2 restart app.yml --env <ENV_NAME>|
-| appendEnvToName | boolean | true | default to false. Use to deploy multiple environments on a single server. It will append each env to name. ex) my-api-production |
+| append_env_to_name | boolean | true | default to false. Use to deploy multiple environments on a single server. It will append each env to name. ex) my-api-production |
 | source_map_support | boolean |  true | default to true, [enable/disable source map file]
-| instance_var | string | "NODE_APP_INSTANCE" | [see documentation](http://pm2.keymetrics.io/docs/usage/environment/#specific-environment-variables)|
-| filter_env | array of string | [ "REACT_" ] | Excludes global variables starting with "REACT_" and will not allow their penetration into the cluster. |
+| instance_var | string | "NODE_APP_INSTANCE" | [see documentation](https://pm2.keymetrics.io/docs/usage/environment/#specific-environment-variables)|
+| filter_env | boolean, string or array of string | [ "REACT_" ] | Excludes global variables whose name contains one of the given strings (e.g. "REACT_") and will not allow their penetration into the cluster. Set to true to drop all global environment variables. |
 
 ### Log files
 
@@ -137,7 +137,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 |out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out-&lt;pid&gt;.log)|
 |log_file| (string) | | file path for both output and error logs (disabled by default)|
 |combine_logs| boolean | true | if set to true, avoid to suffix logs file with the process id |
-|merge_logs| boolean | true | alias to combine_logs |
+|merge_logs| boolean | true | if set to true, avoid to suffix logs file with the process id (combine_logs is an alias of this option)|
 |time| boolean | false | false by default. If true auto prefixes logs with Date|
 |pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pid&gt;.pid)|
 
@@ -146,11 +146,11 @@ Application behavior and configuration can be fine-tuned with the following attr
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
 |min_uptime| (number) | | min uptime of the app to be considered started |
-| listen_timeout | number | 8000 | time in ms before forcing a reload if app not listening |
-| kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/#cleaning-states-and-jobs) |
+| listen_timeout | number | 3000 | time in ms before forcing a reload if app not listening (defaults to 3000) |
+| kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/#cleaning-states-and-jobs) |
 | shutdown_with_message | boolean | false | shutdown an application with process.send('shutdown') instead of process.kill(pid, SIGINT) |
 | wait_ready | boolean | false | Instead of reload waiting for listen event, wait for process.send('ready') |
-| max_restarts| number | 10 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted|
+| max_restarts| number | 16 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted. defaults to 16|
 | restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
 | autorestart | boolean |  false  |  true by default. if false, PM2 will not restart your app if it crashes or ends peacefully  |
 | cron_restart    |  string |                "1 0 * * *"                |                                      a cron pattern to restart your app. Application must be running for cron feature to work  |

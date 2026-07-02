@@ -67,7 +67,10 @@ Some options you can pass to the CLI:
 # Specify cron for forced restart
 --cron <cron_pattern>
 
-# Attach to application log
+# Attach to application log after start
+--attach
+
+# Run the PM2 daemon in the foreground
 --no-daemon
 ```
 
@@ -100,7 +103,7 @@ List the status of all application managed by PM2:
 $ pm2 [list|ls|status]
 ```
 
-![https://i.imgur.com/LmRD3FN.png](https://i.imgur.com/LmRD3FN.png)
+![pm2 ls output listing managed Node.js processes](/images/docs/pm2-ls-output.png)
 
 ### Display logs
 
@@ -124,7 +127,7 @@ Here is a realtime dashboard that fits directly into your terminal:
 $ pm2 monit
 ```
 
-![https://i.imgur.com/xo0LDb7.png](https://i.imgur.com/xo0LDb7.png)
+![pm2 monit terminal-based monitoring dashboard](/images/docs/pm2-monit-dashboard.png)
 
 ### pm2.io: Monitoring & Diagnostic Web Interface
 
@@ -134,7 +137,7 @@ Web based dashboard, cross servers with diagnostic system:
 $ pm2 plus
 ```
 
-![https://i.imgur.com/sigMHli.png](https://i.imgur.com/sigMHli.png)
+![PM2 Plus web monitoring dashboard](/images/docs/pm2-plus-dashboard.png)
 
 ## Cluster mode
 
@@ -237,7 +240,7 @@ pm2 start app.js --name my-api # Name process
 
 # Cluster mode
 pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
-pm2 start app.js -i max      # Same as above, but deprecated.
+pm2 start app.js -i max      # Same as above
 pm2 scale app +3             # Scales `app` up by 3 workers
 pm2 scale app 2              # Scales `app` up or down to 2 workers total
 
@@ -283,11 +286,11 @@ pm2 start app.js --no-autorestart
 
 ## What's next?
 
-Learn how to declare all your application's behavior options into a [JSON configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/).
+Learn how to declare all your application's behavior options into a [JSON configuration file](https://pm2.keymetrics.io/docs/usage/application-declaration/).
 
-Learn how to do [clean stop and restart](http://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability.
+Learn how to do [clean stop and restart](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/) to increase reliability.
 
-Learn how to [deploy and update production applications easily](http://pm2.keymetrics.io/docs/usage/deployment/).
+Learn how to [deploy and update production applications easily](https://pm2.keymetrics.io/docs/usage/deployment/).
 
 Monitor your production applications with [PM2.io](https://app.pm2.io/).
 

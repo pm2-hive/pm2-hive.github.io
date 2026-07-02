@@ -1,0 +1,19 @@
+// Design tokens for the dark theme.
+// Every partial should color through these variables, never hardcoded values.
+:root {
+  --bg: #07080d;
+  --bg-elevated: #0d0f17;
+  --surface: #11141f;
+  --surface-hover: #161a28;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #f2f4f8;
+  --text-muted: #98a2b8;
+  --text-dim: #6b7488;
+  --accent: #4d8dff;
+  --accent-hover: #6ba1ff;
+  --accent-glow: rgba(77, 141, 255, 0.25);
+  --accent-text: #8db8ff;
+  --radius: 0px;
+  --radius-lg: 0px;
+}

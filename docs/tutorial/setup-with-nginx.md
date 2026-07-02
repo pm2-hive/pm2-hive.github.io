@@ -1,8 +1,8 @@
 ---
 layout: docs
 title: Production Setup with Nginx
-description: Production Setup with Nginx
-permalink: /docs/tutorials/pm2-nginx-production-setup
+description: Set up a production Node.js stack with Nginx as a reverse proxy in front of PM2-managed applications, with HTTPS and caching configuration.
+permalink: /docs/tutorials/pm2-nginx-production-setup/
 ---
 
 ## Nginx as a HTTP proxy

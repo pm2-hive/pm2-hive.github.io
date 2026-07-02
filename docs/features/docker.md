@@ -1,12 +1,12 @@
 ---
 layout: docs
 title: Docker Integration
-description: Seamless PM2 integration within Docker
+description: Run Node.js applications with PM2 inside Docker containers using pm2-runtime, a drop-in replacement for the node binary designed for containers.
 permalink: /docs/usage/docker-pm2-nodejs/
 ---
 
 <center style="margin-top: 28px; margin-bottom: 23px">
-<img src="/images/docker_logo.png" title="Docker PM2 Node.js"/>
+<img src="/images/docker_logo.png" alt="Docker and PM2 for Node.js" title="Docker PM2 Node.js" loading="lazy"/>
 </center>
 
 ## Docker Integration
@@ -135,9 +135,9 @@ Replacing **pm2-runtime** with **pm2-dev** will enable the watch and restart fea
 
 ### Using PM2.io
 
-[Keymetrics.io](https://keymetrics.io/) is a monitoring service built on top of PM2 that allows to monitor and manage applications easily (logs, restart, exceptions monitoring...). Once you created a Bucket on Keymetrics you will get a public and a secret key.
+[PM2.io](https://pm2.io/) is a monitoring service built on top of PM2 that allows to monitor and manage applications easily (logs, restart, exceptions monitoring...). Once you created a Bucket on PM2.io you will get a public and a secret key.
 
-To enable Keymetrics monitoring with **pm2-runtime**, you can either use the CLI option **--public XXX** and **--secret YYY** or pass the environment variables **KEYMETRICS_PUBLIC** and **KEYMETRICS_SECRET**.
+To enable PM2.io monitoring with **pm2-runtime**, you can either use the CLI option **--public XXX** and **--secret YYY** or pass the environment variables **PM2_PUBLIC_KEY** and **PM2_SECRET_KEY**.
 
 Example with the CLI options via a Dockerfile:
 
@@ -173,12 +173,18 @@ Here is the pm2-runtime helper:
 
     -V, --version              output the version number
     -i --instances <number>    launch [number] of processes automatically load-balanced. Increase overall performances and performance stability.
-    --secret [key]             [MONITORING] keymetrics secret key
-    --public [key]             [MONITORING] keymetrics public key
-    --machine-name [name]      [MONITORING] keymetrics machine name
-    --raw                      raw log output
-    --json                     output logs in json format
+    -n --name <name>           set a name for the process in the process list
+    --interpreter <interpreter> set a specific interpreter to use for executing app
+    --node-args <node_args>    space delimited arguments to pass to node
+    --secret [key]             [MONITORING] PM2 plus secret key
+    --public [key]             [MONITORING] PM2 plus public key
+    --machine-name [name]      [MONITORING] PM2 plus machine name
+    --trace                    enable transaction tracing with km
+    --v8                       enable v8 data collecting
     --format                   output logs formatted like key=val
+    --raw                      raw log output
+    --formatted                formatted log output |id|app|log|
+    --json                     output logs in json format
     --delay <seconds>          delay start of configuration file by <seconds>
     --web [port]               launch process web api on [port] (default to 9615)
     --only <application-name>  only act on one application of configuration
@@ -187,6 +193,7 @@ Here is the pm2-runtime helper:
     --watch                    watch and restart application on file change
     --error <path>             error log file destination (default disabled)
     --output <path>            output log file destination (default disabled)
+    --deep-monitoring          enable all monitoring tools (equivalent to --v8 --event-loop-inspector --trace)
     -h, --help                 output usage information
 
 

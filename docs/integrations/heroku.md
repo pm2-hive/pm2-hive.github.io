@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Heroku Integration
-description: PM2 integration for Heroku
+description: "Deploy PM2-managed Node.js applications on Heroku: use pm2-runtime as your Procfile entrypoint for clustering and automatic restarts."
 permalink: /docs/integrations/heroku/
 ---
 

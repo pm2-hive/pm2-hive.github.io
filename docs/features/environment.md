@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Environment Variables
-description: manage environment variables of your applications
+description: "Manage environment variables for Node.js applications with PM2: per-environment configuration, --env switching and instance variables."
 permalink: /docs/usage/environment/
 ---
 

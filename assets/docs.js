@@ -122,7 +122,10 @@
     .querySelectorAll(".doc-content h1[id], h2[id], h3[id], h4[id]")
     .forEach(element => {
       element.appendChild(
-        h("a", { href: "#" + element.id }, element.childNodes)
+        // Snapshot the live NodeList: appending a node into the anchor removes
+        // it from the heading, which would shift the list mid-iteration and
+        // scramble headings that contain inline markup.
+        h("a", { href: "#" + element.id }, Array.from(element.childNodes))
       );
     });
 })();

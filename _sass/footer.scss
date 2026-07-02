@@ -1,10 +1,19 @@
 
 footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  padding-top: 40px;
+
   .section-wrapper {
-    margin-top: 154px;
+    margin-top: 20px;
     @media #{$mobile} {
-      margin-top: 104px;
+      margin-top: 20px;
     }
+  }
+
+  .logo-link img {
+    width: auto;
+    height: 40px;
   }
 
   .doc-links {

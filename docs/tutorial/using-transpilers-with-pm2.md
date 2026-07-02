@@ -1,8 +1,8 @@
 ---
 layout: docs
 title: Using transpilers with PM2
-description: How to use babel, coffescript, typescript etc. with pm2
-permalink: /docs/tutorials/using-transpilers-with-pm2
+description: How to use babel, CoffeeScript, typescript etc. with pm2
+permalink: /docs/tutorials/using-transpilers-with-pm2/
 ---
 
 ## Using transpilers with PM2
@@ -19,7 +19,7 @@ For example, a usual directory structure will look like this:
 └── package.json
 ```
 
-Where `src` contains es6 , coffescript, or whatever and `dist` is the transpiled Javascript. 
+Where `src` contains es6 , CoffeeScript, or whatever and `dist` is the transpiled Javascript. 
 This is now easy to setup with PM2, as it will launch Javascript without any configuration.
 
 However, when writing code, it might make it harder to configure. Say that you want to watch and restart. You will have to watch, transpile, restart. PM2 is not a build system nor a task runner, so we advise you to prefer the second way.

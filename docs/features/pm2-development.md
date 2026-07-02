@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: pm2-dev for development
-description: Developing application with PM2
+description: Use pm2-dev to run Node.js applications in development mode with automatic restart on file change and inline log streaming.
 permalink: /docs/usage/pm2-development/
 ---
 

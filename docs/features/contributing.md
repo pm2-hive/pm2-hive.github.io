@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Contributing
-description: Contributing to PM2
+description: "How to contribute to PM2: fork the repository, set up the development environment, run the test suite and submit pull requests."
 permalink: /docs/usage/contributing/
 ---
 
@@ -28,10 +28,6 @@ npm install https://github.com/Unitech/pm2#development -g
 ```
 
 ## Launch the tests
-
-Master: [![Build Status](https://img.shields.io/travis/Unitech/pm2/master.svg?style=flat-square)](https://travis-ci.org/Unitech/pm2)
-
-Dev   : [![Build Status](https://img.shields.io/travis/Unitech/pm2/development.svg?style=flat-square)](https://travis-ci.org/Unitech/pm2)
 
 Just try the tests before using PM2 on your production server:
 

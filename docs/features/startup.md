@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Startup Script
-description: Auto restart PM2 and processes at server reboot
+description: Generate startup scripts with pm2 startup to restart PM2 and your Node.js processes automatically at server boot on systemd, upstart or launchd.
 permalink: /docs/usage/startup/
 ---
 
@@ -24,8 +24,9 @@ To automatically generate and configuration a startup script just type the comma
 
 ```bash
 $ pm2 startup
-[PM2] You have to run this command as root. Execute the following command:
-      sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v14.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
+[PM2] Init System found: systemd
+[PM2] To setup the Startup Script, copy/paste the following command:
+sudo env PATH=$PATH:/home/unitech/.nvm/versions/node/v22.0.0/bin pm2 startup systemd -u <user> --hp <home-path>
 ```
 
 Then copy/paste the displayed command onto the terminal:
@@ -94,7 +95,7 @@ pm2 startup ubuntu -u www --hp /home/ubuntu
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
-pm2 startup [ubuntu | ubuntu14 | ubuntu16 | ubuntu18 | ubuntu20 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
+pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | rcd-openbsd | openrc | smf | sunos | solaris]
 ```
 
 #### SystemD installation checking

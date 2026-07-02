@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Setup Auto Completion
-description: Auto complete commands and arguments with PM2
+description: Enable shell auto-completion for PM2 commands and arguments in bash and zsh with the pm2 completion command.
 permalink: /docs/usage/auto-completion/
 ---
 

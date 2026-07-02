@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Update PM2
-description: Upgrade PM2 to the latest version
+description: Update PM2 to the latest version with npm and migrate the in-memory daemon seamlessly with the pm2 update command.
 permalink: /docs/usage/update-pm2/
 ---
 
