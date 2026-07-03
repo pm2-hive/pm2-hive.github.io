@@ -194,6 +194,71 @@ description: PM2 is a daemon process manager for Node.js with a built-in load ba
   </div>
 </section>
 
+<section class="section-livemap">
+  <div class="section-wrapper">
+    <div class="card">
+      <div class="card-left">
+        <h1>Live Downloads</h1>
+        <p>Watch PM2 being installed across the world, in real time:</p>
+      </div>
+      <div
+        class="card-right border-corners accent-border big-corners big-inner-shadows"
+      >
+        <div
+          id="livemap-facade"
+          role="button"
+          tabindex="0"
+          aria-label="Load the live PM2 downloads map"
+        >
+          <img alt="World map of PM2 downloads happening in real time" src="{{ site.url }}/assets/pm2-live-map.jpg" width="1200" height="630" loading="lazy" />
+          <span class="livemap-play button big accent-border dim-inner-shadows">&#9654; View Live</span>
+        </div>
+      </div>
+      <div class="card-left">
+        <div class="code-and-button">
+          <code class="dim-border">npm install pm2 -g</code
+          ><!--
+           --><a
+            href="https://ping.pm2.io"
+            target="_blank"
+            rel="noopener"
+            title="Open the live downloads map fullscreen"
+            class="button big dim-border dim-inner-shadows"
+          >
+            Open Fullscreen
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  (function () {
+    var facade = document.getElementById('livemap-facade');
+    if (!facade) return;
+    function loadMap() {
+      if (facade.querySelector('iframe')) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://ping.pm2.io/';
+      iframe.title = 'PM2 Realtime Downloads map';
+      facade.appendChild(iframe);
+      facade.classList.add('is-live');
+      function sizeMap() {
+        iframe.style.transform = 'scale(' + facade.clientWidth / 1200 + ')';
+      }
+      sizeMap();
+      window.addEventListener('resize', sizeMap);
+    }
+    facade.addEventListener('click', loadMap);
+    facade.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        loadMap();
+      }
+    });
+  })();
+</script>
+
 <section class="section-monitoring">
   <div class="section-background">
     <div class="section-wrapper"><div class="hexagon hexagon-6"></div></div>
@@ -261,71 +326,6 @@ description: PM2 is a daemon process manager for Node.js with a built-in load ba
     </div>
   </div>
 </section>
-
-<section class="section-livemap">
-  <div class="section-wrapper">
-    <div class="card">
-      <div class="card-left">
-        <h1>Live Downloads</h1>
-        <p>Watch PM2 being installed across the world, in real time:</p>
-      </div>
-      <div
-        class="card-right border-corners accent-border big-corners big-inner-shadows"
-      >
-        <div
-          id="livemap-facade"
-          role="button"
-          tabindex="0"
-          aria-label="Load the live PM2 downloads map"
-        >
-          <img alt="World map of PM2 downloads happening in real time" src="{{ site.url }}/assets/pm2-live-map.jpg" width="1200" height="630" loading="lazy" />
-          <span class="livemap-play button big accent-border dim-inner-shadows">&#9654; View Live</span>
-        </div>
-      </div>
-      <div class="card-left">
-        <div class="code-and-button">
-          <code class="dim-border">npm install pm2 -g</code
-          ><!--
-           --><a
-            href="https://ping.pm2.io"
-            target="_blank"
-            rel="noopener"
-            title="Open the live downloads map fullscreen"
-            class="button big dim-border dim-inner-shadows"
-          >
-            Open Fullscreen
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<script>
-  (function () {
-    var facade = document.getElementById('livemap-facade');
-    if (!facade) return;
-    function loadMap() {
-      if (facade.querySelector('iframe')) return;
-      var iframe = document.createElement('iframe');
-      iframe.src = 'https://ping.pm2.io/';
-      iframe.title = 'PM2 Realtime Downloads map';
-      facade.appendChild(iframe);
-      facade.classList.add('is-live');
-      function sizeMap() {
-        iframe.style.transform = 'scale(' + facade.clientWidth / 1200 + ')';
-      }
-      sizeMap();
-      window.addEventListener('resize', sizeMap);
-    }
-    facade.addEventListener('click', loadMap);
-    facade.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        loadMap();
-      }
-    });
-  })();
-</script>
 
 <section class="section-testimonials">
   <div class="section-background">
