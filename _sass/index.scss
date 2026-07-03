@@ -249,6 +249,18 @@ section {
     grid-row: 1 / span 2;
   }
 
+  .image-wrapper {
+    padding: 8px;
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
   @media #{$mobile} {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
