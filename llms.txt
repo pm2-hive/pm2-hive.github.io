@@ -14,6 +14,7 @@ single Markdown file at https://pm2.keymetrics.io/llms-full.txt
 ## Process Management
 
 - [Process Management](https://pm2.keymetrics.io/docs/usage/process-management/): start, stop, restart, delete and list processes
+- [CLI Reference](https://pm2.keymetrics.io/docs/usage/commands/): every pm2 command in one page, grouped by theme
 - [Restart Strategies](https://pm2.keymetrics.io/docs/usage/restart-strategies/): automatic crash restart, exponential backoff, cron restarts and exit-code rules
 - [Logs](https://pm2.keymetrics.io/docs/usage/log-management/): stream logs in realtime, locate log files, flush and rotate them
 - [Persistent Application](https://pm2.keymetrics.io/docs/usage/startup/): pm2 startup scripts to restart processes at server boot (systemd, upstart, launchd)
@@ -42,6 +43,7 @@ single Markdown file at https://pm2.keymetrics.io/llms-full.txt
 ## Integrations
 
 - [Docker](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/): pm2-runtime, a drop-in replacement for the node binary in containers
+- [Bun, Deno & other Runtimes](https://pm2.keymetrics.io/docs/usage/bun-deno/): Bun interpreter for TypeScript, cluster mode under Bun, Deno via --interpreter
 - [Cloud Providers](https://pm2.keymetrics.io/docs/usage/use-pm2-with-cloud-providers/): use PM2 on PaaS platforms like Heroku, Azure or Google App Engine
 - [Production Setup with Nginx](https://pm2.keymetrics.io/docs/tutorials/pm2-nginx-production-setup/): Nginx as a reverse proxy in front of PM2, with HTTPS and caching
 - [Using Transpilers](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2/): run Babel, CoffeeScript or TypeScript apps with PM2

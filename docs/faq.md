@@ -89,6 +89,30 @@ permalink: /docs/faq/
         "@type": "Answer",
         "text": "Check these solutions: 1) If buttons are disabled, ensure 'Local changes' and 'Local commit' indicators are green. 2) 'Not authorized' warning means you lack admin privileges in the bucket. 3) If the procedure hangs, update Node.js and PM2 to latest versions. 4) Ensure your repository doesn't require password input - clone via SSH and test with 'git remote update'."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I group processes together with namespaces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start processes with a namespace using 'pm2 start app.js --namespace backend' or the namespace attribute in the ecosystem file. Every command accepting a process name also accepts a namespace, so 'pm2 restart backend', 'pm2 stop backend' or 'pm2 logs backend' act on all processes of the namespace at once."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get a diagnostic report about my PM2 installation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run 'pm2 report'. It prints a full report: PM2, Node.js and OS versions, daemon state and the process list. Attach it when opening an issue on the PM2 GitHub repository."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I start or reload applications in a CI/CD pipeline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use 'pm2 startOrReload ecosystem.config.js': it starts the applications if they are not running, and performs a zero-downtime reload if they are. This makes deployments idempotent - the same command works on the first deploy and on every update. Follow it with 'pm2 save' to persist the process list."
+      }
     }
   ]
 }
@@ -198,3 +222,37 @@ Make sure you have only one PM2 instance launched `ps -aux | grep PM2`
 - If none of the above happens, but the procedure just hangs, make sure you have a recent version of Node.js as well as the latest version of PM2.
 
 - Also, your repository should not ask for a password input (it means you must clone it via ssh), try typing `git remote update` manually in the folder and see if it asks for a password or not.
+
+## How do I group processes together with namespaces?
+
+Start processes with a namespace, either from the CLI or with the `namespace` attribute in the [configuration file](/docs/usage/application-declaration/):
+
+```bash
+pm2 start api.js    --namespace backend
+pm2 start worker.js --namespace backend
+```
+
+Every command that accepts a process name also accepts a namespace, so you can act on the whole group at once:
+
+```bash
+pm2 restart backend
+pm2 stop backend
+pm2 logs backend
+```
+
+## How do I get a diagnostic report about my PM2 installation?
+
+```bash
+pm2 report
+```
+
+It prints a full report — PM2, Node.js and OS versions, daemon state and the process list. Attach it when [opening an issue](https://github.com/Unitech/pm2/issues).
+
+## How do I start or reload applications in a CI/CD pipeline?
+
+```bash
+pm2 startOrReload ecosystem.config.js
+pm2 save
+```
+
+`pm2 startOrReload` starts the applications if they are not running and performs a **zero-downtime reload** if they are, making deployments idempotent: the same command works on the first deploy and on every update. `pm2 startOrRestart` does the same with a hard restart. Follow it with `pm2 save` so the new process list survives a reboot.

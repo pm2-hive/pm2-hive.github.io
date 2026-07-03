@@ -9,6 +9,8 @@
   subnav:
     - title: Process Management
       url: /docs/usage/process-management/
+    - title: CLI Reference
+      url: /docs/usage/commands/
     - title: Restart Strategies
       url: /docs/usage/restart-strategies/
     - title: Logs 
@@ -61,6 +63,8 @@
   subnav:
     - title: Docker Integration
       url: /docs/usage/docker-pm2-nodejs/
+    - title: Bun, Deno & other Runtimes
+      url: /docs/usage/bun-deno/
     - title: Use PM2 in Cloud Providers
       url: /docs/usage/use-pm2-with-cloud-providers/
     - title: Production Setup with Nginx
