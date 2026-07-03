@@ -1,0 +1,267 @@
+<script>
+  (function () {
+    "use strict";
+
+    const debugLog = function () {
+      const config = window.MIXPANEL_CONFIG || {};
+      if (config.debug) {
+        console.log.apply(console, arguments);
+      }
+    };
+
+    window.CONSENT_READY = false;
+    window.ANALYTICS_CONSENT_GIVEN = false;
+
+    function checkPrivacySignals() {
+      const dnt = navigator.doNotTrack === "1" || window.doNotTrack === "1";
+      const gpc = navigator.globalPrivacyControl === true;
+      return dnt || gpc;
+    }
+
+    function initCookieConsent() {
+      if (typeof CookieConsent === "undefined") {
+        debugLog("[Cookie Consent] Library not loaded");
+        setTimeout(initCookieConsent, 100);
+        return;
+      }
+
+      if (!window.GEO_DETECTION || !window.GEO_DETECTION.detected) {
+        debugLog("[Cookie Consent] Waiting for geo detection...");
+        window.addEventListener("geo-detection-complete", initCookieConsent, {
+          once: true,
+        });
+        return;
+      }
+
+      if (!window.GEO_DETECTION.isEU) {
+        debugLog(
+          "[Cookie Consent] Non-EU user detected (" +
+            window.GEO_DETECTION.country +
+            ") - Skipping consent banner"
+        );
+        window.CONSENT_READY = true;
+        window.ANALYTICS_CONSENT_GIVEN = true; // Auto-accept for non-EU
+        window.dispatchEvent(new Event("consent-manager-ready"));
+        window.dispatchEvent(new Event("analytics-consent-granted"));
+        return;
+      }
+
+      debugLog(
+        "[Cookie Consent] EU user detected (" +
+          window.GEO_DETECTION.country +
+          ") - Showing consent banner"
+      );
+
+      const hasPrivacySignal = checkPrivacySignals();
+
+      if (hasPrivacySignal) {
+        debugLog(
+          "[Cookie Consent] DNT/GPC signal detected - Analytics will default to rejected"
+        );
+      }
+
+      CookieConsent.run({
+        cookie: {
+          name: "pm2_cookie_consent",
+          expiresAfterDays: 182,
+        },
+
+        guiOptions: {
+          consentModal: {
+            layout: "box inline",
+            position: "bottom center",
+            equalWeightButtons: true,
+            flipButtons: false,
+          },
+          preferencesModal: {
+            layout: "box",
+            position: "right",
+            equalWeightButtons: true,
+            flipButtons: false,
+          },
+        },
+
+        onFirstConsent: function () {
+          debugLog("[Cookie Consent] First consent given");
+          updateConsentState();
+        },
+
+        onConsent: function () {
+          debugLog("[Cookie Consent] Consent updated");
+          updateConsentState();
+        },
+
+        onChange: function ({ changedCategories }) {
+          debugLog("[Cookie Consent] Preferences changed:", changedCategories);
+          updateConsentState();
+        },
+
+        categories: {
+          necessary: {
+            enabled: true,
+            readOnly: true,
+          },
+          analytics: {
+            enabled: hasPrivacySignal ? false : undefined,
+            autoClear: {
+              cookies: [
+                {
+                  name: /^mp_/,
+                },
+                {
+                  name: "mixpanel",
+                },
+              ],
+            },
+            services: {
+              mixpanel: {
+                label: "Mixpanel Analytics",
+                onAccept: function () {
+                  debugLog("[Cookie Consent] Mixpanel analytics accepted");
+                  window.ANALYTICS_CONSENT_GIVEN = true;
+                  window.dispatchEvent(new Event("analytics-consent-granted"));
+                },
+                onReject: function () {
+                  debugLog("[Cookie Consent] Mixpanel analytics rejected");
+                  window.ANALYTICS_CONSENT_GIVEN = false;
+                  window.dispatchEvent(new Event("analytics-consent-rejected"));
+
+                  if (
+                    window.mixpanel &&
+                    typeof window.mixpanel.opt_out_tracking === "function"
+                  ) {
+                    window.mixpanel.opt_out_tracking();
+                  }
+                },
+              },
+            },
+          },
+        },
+
+        language: {
+          default: "en",
+          translations: {
+            en: {
+              consentModal: {
+                title: "We use cookies 🍪",
+                description:
+                  "We use cookies to enhance your experience on PM2.io. Essential cookies are required for the site to function. Analytics cookies help us understand how you use our platform to improve our service.",
+                acceptAllBtn: "Accept all",
+                acceptNecessaryBtn: "Reject all",
+                showPreferencesBtn: "Manage preferences",
+              },
+              preferencesModal: {
+                title: "Cookie Preferences",
+                acceptAllBtn: "Accept all",
+                acceptNecessaryBtn: "Reject all",
+                savePreferencesBtn: "Save preferences",
+                closeIconLabel: "Close modal",
+                serviceCounterLabel: "Service|Services",
+                sections: [
+                  {
+                    title: "Cookie Usage",
+                    description:
+                      "We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want.",
+                  },
+                  {
+                    title: "Strictly Necessary Cookies",
+                    description:
+                      "These cookies are essential for the proper functioning of the website and cannot be disabled.",
+                    linkedCategory: "necessary",
+                  },
+                  {
+                    title: "Analytics Cookies",
+                    description:
+                      "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We use <strong>Mixpanel</strong> to analyze usage patterns and improve your experience.",
+                    linkedCategory: "analytics",
+                    cookieTable: {
+                      headers: {
+                        name: "Cookie",
+                        domain: "Domain",
+                        description: "Description",
+                        expiration: "Expiration",
+                      },
+                      body: [
+                        {
+                          name: "mp_*",
+                          domain: "pm2.io",
+                          description:
+                            "Mixpanel analytics cookies for tracking user behavior",
+                          expiration: "1 year",
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    title: "More information",
+                    description:
+                      'For any questions about our cookie policy, please <a href="{{ site.baseurl }}/contact">contact us</a>.',
+                  },
+                ],
+              },
+            },
+          },
+        },
+      });
+
+      function updateConsentState() {
+        const analyticsAccepted = CookieConsent.acceptedCategory("analytics");
+        window.ANALYTICS_CONSENT_GIVEN = analyticsAccepted;
+
+        if (analyticsAccepted) {
+          debugLog("[Cookie Consent] ✓ Analytics category accepted");
+          window.dispatchEvent(new Event("analytics-consent-granted"));
+        } else {
+          debugLog("[Cookie Consent] ✗ Analytics category rejected");
+          window.dispatchEvent(new Event("analytics-consent-rejected"));
+
+          if (
+            window.mixpanel &&
+            typeof window.mixpanel.opt_out_tracking === "function"
+          ) {
+            window.mixpanel.opt_out_tracking();
+          }
+        }
+      }
+
+      window.CONSENT_READY = true;
+      window.dispatchEvent(new Event("consent-manager-ready"));
+
+      debugLog("[Cookie Consent] Initialized", {
+        privacySignalDetected: hasPrivacySignal,
+        analyticsDefaultState: hasPrivacySignal ? "rejected" : "pending",
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCookieConsent);
+    } else {
+      initCookieConsent();
+    }
+  })();
+</script>
+
+<style>
+  :root {
+    --cc-bg: #fff;
+    --cc-text: #2d4156;
+    --cc-btn-primary-bg: #3498db;
+    --cc-btn-primary-text: #fff;
+    --cc-btn-primary-hover-bg: #2980b9;
+    --cc-btn-secondary-bg: #eaeff2;
+    --cc-btn-secondary-text: #2d4156;
+    --cc-btn-secondary-hover-bg: #d5dde0;
+    --cc-toggle-bg-off: #919ea6;
+    --cc-toggle-bg-on: #3498db;
+    --cc-toggle-bg-readonly: #d5dde0;
+    --cc-toggle-knob-bg: #fff;
+    --cc-toggle-knob-icon-color: #ecf2fa;
+    --cc-cookie-category-block-bg: #f0f4f7;
+    --cc-cookie-category-block-bg-hover: #e9eff4;
+    --cc-section-border: #f1f3f5;
+    --cc-cookie-table-border: #e9edf2;
+    --cc-overlay-bg: rgba(4, 6, 8, 0.85);
+    --cc-webkit-scrollbar-bg: #cfd5db;
+    --cc-webkit-scrollbar-bg-hover: #9199a0;
+  }
+</style>

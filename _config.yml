@@ -17,6 +17,7 @@ exclude: ['node_modules', 'scripts', 'Gemfile', 'Gemfile.lock', 'README.md', 've
 
 plugins:
   - jekyll-paginate
+  - jekyll-redirect-from
 
 redcarpet:
   extensions: ['tables', 'no_intra_emphasis', 'autolink']
@@ -24,3 +25,11 @@ redcarpet:
 permalink: /blog/:year/:month/:day/:title
 paginate: 1
 register_url: https://id.keymetrics.io/api/oauth/register
+
+# Analytics (ported from pm2.io)
+mixpanel:
+  enabled: true
+  token: 0abf6a940a43403982c64ed92aa398dd
+  api_host: https://api-eu.mixpanel.com
+  dev_mode: false # Set to true to enable debug logging and ignore DNT locally
+  geo_targeting: true # Set to true enable the geo-based cookie-consent banner display

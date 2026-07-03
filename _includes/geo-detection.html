@@ -1,0 +1,135 @@
+<script>
+  (function () {
+    "use strict";
+
+    const debugLog = function () {
+      const config = window.MIXPANEL_CONFIG || {};
+      if (config.debug) {
+        console.log.apply(console, arguments);
+      }
+    };
+
+    // EU country codes (all 27 EU member states + EEA countries subject to GDPR)
+    const EU_COUNTRIES = [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      // EEA countries (also subject to GDPR)
+      "IS",
+      "LI",
+      "NO",
+      // UK (still follows GDPR-equivalent rules)
+      "GB",
+    ];
+
+    window.GEO_DETECTION = {
+      isEU: null,
+      country: null,
+      detected: false,
+      error: null,
+    };
+
+    function detectGeoLocation() {
+      const cached = localStorage.getItem("pm2_geo_cache");
+      if (cached) {
+        try {
+          const data = JSON.parse(cached);
+          const age = Date.now() - data.timestamp;
+
+          if (age < 86400000) {
+            debugLog(
+              "[Geo Detection] Using cached location:",
+              data.country,
+              "(EU:",
+              data.isEU + ")"
+            );
+            window.GEO_DETECTION = {
+              isEU: data.isEU,
+              country: data.country,
+              detected: true,
+              error: null,
+            };
+            window.dispatchEvent(new Event("geo-detection-complete"));
+            return;
+          }
+        } catch (e) {
+          debugLog("[Geo Detection] Cache parse error:", e);
+        }
+      }
+
+      debugLog("[Geo Detection] Detecting user location...");
+
+      fetch("https://ipapi.co/json/")
+        .then((response) => response.json())
+        .then((data) => {
+          const countryCode = data.country_code || data.country;
+          const isEU = EU_COUNTRIES.includes(countryCode);
+
+          window.GEO_DETECTION = {
+            isEU: isEU,
+            country: countryCode,
+            detected: true,
+            error: null,
+          };
+
+          localStorage.setItem(
+            "pm2_geo_cache",
+            JSON.stringify({
+              isEU: isEU,
+              country: countryCode,
+              timestamp: Date.now(),
+            })
+          );
+
+          debugLog(
+            "[Geo Detection] ✓ Location detected:",
+            countryCode,
+            "| EU:",
+            isEU
+          );
+          window.dispatchEvent(new Event("geo-detection-complete"));
+        })
+        .catch((error) => {
+          debugLog(
+            "[Geo Detection] ⚠️  Failed to detect location, assuming NON-EU for better UX:",
+            error.message
+          );
+
+          window.GEO_DETECTION = {
+            isEU: false,
+            country: "UNKNOWN",
+            detected: true,
+            error: error.message,
+          };
+
+          window.dispatchEvent(new Event("geo-detection-complete"));
+        });
+    }
+
+    detectGeoLocation();
+  })();
+</script>

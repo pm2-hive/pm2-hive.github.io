@@ -120,3 +120,11 @@
 <script type="text/javascript">
   DocsBotAI.init({id: "BMuVnSl9ZazjH0ZvzXOC/jHv1oRUjA99vNVbekCwx"});
 </script>
+
+{% if site.mixpanel.enabled %}
+{% include geo-detection.html %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
+<script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+{% include cookie-consent.html %}
+{% include mixpanel.html %}
+{% endif %}
