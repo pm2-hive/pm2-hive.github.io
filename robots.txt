@@ -6,3 +6,5 @@ User-agent: *
 Allow: /
 
 Sitemap: {{ site.url }}/sitemap.xml
+
+# LLM-friendly documentation: {{ site.url }}/llms.txt (index) and {{ site.url }}/llms-full.txt (full docs)
