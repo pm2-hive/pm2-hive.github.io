@@ -7,6 +7,8 @@ section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/guides/log/"
 description: "This feature allow to store all of your application logs directly in PM2 Enterprise so you can retrieve them later to inspect them. It take the standard…"
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#guides-log"
 ---
 
 # Overview

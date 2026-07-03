@@ -7,6 +7,8 @@ section: plus
 hide_comments: true
 permalink: "/docs/plus/guide/"
 description: "Follow this guide and get your Node.js app monitored by PM2 Plus in minutes!"
+sitemap: false
+redirect_to: "/docs/pm2-plus/#guide"
 ---
 
 # Guide

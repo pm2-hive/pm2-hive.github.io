@@ -7,6 +7,8 @@ section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/guides/profiling/"
 description: "The profiling feature is a key feature that allow you to profile your applications at runtime. By profiling, we mean recording what's your application is…"
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#guides-profiling"
 ---
 
 # Overview

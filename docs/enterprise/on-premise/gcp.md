@@ -6,6 +6,8 @@ lang: en
 section: enterprise
 permalink: "/docs/enterprise/gcp/"
 description: "Documentation about how to deploy the keymetrics on-premise version on GCP"
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#gcp"
 ---
 
 ## Deployment on Google Cloud Plateform

@@ -7,6 +7,8 @@ section: plus
 hide_comments: true
 permalink: /docs/plus/best-practices/
 description: "This section gathers best practices to make your app scalable from the beginning."
+sitemap: false
+redirect_to: "/docs/pm2-plus/#best-practices"
 ---
 
 # Monitoring Best Practices

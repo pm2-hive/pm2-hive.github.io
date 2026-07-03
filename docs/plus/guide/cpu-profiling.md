@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/guide/cpu-profiling/"
 description: "The CPU profiling tool helps you better understand how CPU is used with your application."
+sitemap: false
+redirect_to: "/docs/pm2-plus/#guide-cpu-profiling"
 ---
 
 # Overview

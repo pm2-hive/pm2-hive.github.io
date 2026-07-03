@@ -6,6 +6,8 @@ lang: en
 section: enterprise
 permalink: "/docs/enterprise/guides/webchecks/"
 description: "When monitoring your infrastructure, there are two paths: you can monitor from the inside or from the outside. The whole Enterprise product is mostly a…"
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#guides-webchecks"
 ---
 
 # Webchecks

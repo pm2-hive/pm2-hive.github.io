@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/guide/transaction-tracing/"
 description: "The transaction tracing is useful to troubleshoot performance issues and get detailed low-level insight of how your app is working."
+sitemap: false
+redirect_to: "/docs/pm2-plus/#guide-transaction-tracing"
 ---
 
 # Transaction tracing

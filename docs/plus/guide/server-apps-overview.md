@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/guide/server-apps-overview/"
 description: "There are 2 types of overview in PM2 Plus, the first one is the Application overview where you don't see any reference to a server in the overview, this…"
+sitemap: false
+redirect_to: "/docs/pm2-plus/#guide-server-apps-overview"
 ---
 
 # Presentation

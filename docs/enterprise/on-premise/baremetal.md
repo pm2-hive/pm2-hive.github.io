@@ -6,6 +6,8 @@ lang: en
 section: enterprise
 permalink: "/docs/enterprise/on-premise/baremetal/"
 description: "Note that this tutorial is only made if you decided to deploy PM2 Enterprise On-Premise. If you use the Cloud based one you can just use it straight from…"
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#on-premise-baremetal"
 ---
 
 # Deployment on Baremetal Servers

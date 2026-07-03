@@ -6,6 +6,8 @@ lang: en
 section: enterprise
 permalink: "/docs/enterprise/backend/"
 description: "To deploy keymetrics you first need to get access to one of the images that contains it, see the readme for this."
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#backend"
 ---
 
 

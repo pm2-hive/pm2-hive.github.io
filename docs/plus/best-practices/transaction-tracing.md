@@ -5,6 +5,8 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/best-practices/transaction-tracing/"
+sitemap: false
+redirect_to: "/docs/pm2-plus/#best-practices-transaction-tracing"
 ---
 
 # Transaction Tracing

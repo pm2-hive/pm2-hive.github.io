@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/overview/"
 description: "Once you go serious about production, you need to make sure that your application is running properly, without bugs, without performance issues and…"
+sitemap: false
+redirect_to: "/docs/pm2-plus/#overview"
 ---
 # Welcome to the **PM2 Plus** documentation
 

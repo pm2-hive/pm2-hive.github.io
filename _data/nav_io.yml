@@ -1,52 +1,56 @@
 sidebar:
   - title: PM2 Plus Software
-    url: "/docs/plus/overview/"
+    url: "/docs/pm2-plus/"
     subnav:
       - title: Overview
-        url: "/docs/plus/overview/"
+        url: "/docs/pm2-plus/#overview"
       - title: Quick Start
-        url: "/docs/plus/quick-start/"
+        url: "/docs/pm2-plus/#quick-start"
       - title: Server & Apps Overview
-        url: "/docs/plus/guide/server-apps-overview/"
+        url: "/docs/pm2-plus/#guide-server-apps-overview"
       - title: Application dashboard
-        url: "/docs/plus/guide/app-dashboard/"
+        url: "/docs/pm2-plus/#guide-app-dashboard"
       - title: Notifications
-        url: "/docs/plus/guide/notifications/"
+        url: "/docs/pm2-plus/#guide-notifications"
       - title: Issue Dashboard
-        url: "/docs/plus/guide/issue-dashboard/"
+        url: "/docs/pm2-plus/#guide-issue-dashboard"
       - title: Custom Metrics
-        url: "/docs/plus/guide/custom-metrics/"
+        url: "/docs/pm2-plus/#guide-custom-metrics"
       - title: Custom Actions
-        url: "/docs/plus/guide/custom-actions/"
+        url: "/docs/pm2-plus/#guide-custom-actions"
       - title: Realtime logs
-        url: "/docs/plus/guide/realtime-logs/"
+        url: "/docs/pm2-plus/#guide-realtime-logs"
       - title: pm2/io reference
-        url: "/docs/plus/reference/pm2io/"
+        url: "/docs/pm2-plus/#reference-pm2io"
       - title: Modules
-        url: "/docs/plus/guide/modules/"
+        url: "/docs/pm2-plus/#guide-modules"
       - title: Metrics Glossary
-        url: "/docs/plus/best-practices/metrics-glossary/"
+        url: "/docs/pm2-plus/#best-practices-metrics-glossary"
   - title: PM2 Enterprise Software
-    url: "/docs/enterprise/overview/"
+    url: "/docs/pm2-enterprise/"
     subnav:
       - title: Overview
-        url: "/docs/enterprise/overview/"
+        url: "/docs/pm2-enterprise/#overview"
       - title: Distributed Tracing
-        url: "/docs/enterprise/guides/distributed-tracing/"
+        url: "/docs/pm2-enterprise/#guides-distributed-tracing"
       - title: Profiling
-        url: "/docs/enterprise/guides/profiling"
+        url: "/docs/pm2-enterprise/#guides-profiling"
       - title: Alerting
-        url: "/docs/enterprise/guides/alerting"
+        url: "/docs/pm2-enterprise/#guides-alerting"
       - title: Dashboards
-        url: "/docs/enterprise/guides/dashboard"
+        url: "/docs/pm2-enterprise/#guides-dashboard"
       - title: Log
-        url: "/docs/enterprise/guides/log"
+        url: "/docs/pm2-enterprise/#guides-log"
       - title: Webchecks
-        url: "/docs/enterprise/guides/webchecks/"
+        url: "/docs/pm2-enterprise/#guides-webchecks"
       - title: Golang
-        url: "/docs/enterprise/collector/go"
+        url: "/docs/pm2-enterprise/#collector-go"
       - title: Prometheus Integration
-        url: "/docs/enterprise/collector/prometheus"
+        url: "/docs/pm2-enterprise/#collector-prometheus"
+      - title: Frontend Monitoring
+        url: "/docs/pm2-enterprise/#frontend-monitoring-overview"
+      - title: On-Premise
+        url: "/docs/pm2-enterprise/#on-premise"
   - title: PM2 Runtime Doc
     url: "/docs/usage/pm2-doc-single-page/"
     subnav:
@@ -67,7 +71,7 @@ sidebar:
       - title: Memory Limit Reload
         url: "/docs/usage/memory-limit/"
   - title: PM2 Integration
-    url: "/docs/plus/integration/cloud-providers/"
+    url: "/docs/usage/use-pm2-with-cloud-providers/"
     subnav:
       - title: AWS Elastic Beanstalk
         url: "/docs/usage/use-pm2-with-cloud-providers/"
@@ -78,8 +82,8 @@ sidebar:
       - title: With a Cloud Provider
         url: "/docs/usage/use-pm2-with-cloud-providers/"
       - title: Node.js with PM2
-        url: "/docs/enterprise/collector/pm2"
+        url: "/docs/pm2-enterprise/#collector-pm2"
       - title: Node.js without PM2
-        url: "/docs/enterprise/collector/standalone"
+        url: "/docs/pm2-enterprise/#collector-standalone"
   - title: FAQ
-    url: "/docs/plus/faq/"
+    url: "/docs/pm2-plus/#faq"

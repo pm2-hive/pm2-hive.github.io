@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/guide/memory-profiling/"
 description: "Profiling tools help you diagnose memory issues in your application."
+sitemap: false
+redirect_to: "/docs/pm2-plus/#guide-memory-profiling"
 ---
 
 # Memory profiling

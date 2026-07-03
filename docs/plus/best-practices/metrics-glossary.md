@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/best-practices/metrics-glossary/"
 description: "This glossary is an exhaustive list of all metrics recorded by PM2 Plus. Understand what a metric stands for and how it is computed will avoid you to draw…"
+sitemap: false
+redirect_to: "/docs/pm2-plus/#best-practices-metrics-glossary"
 ---
 
 # Metrics Glossary

@@ -6,6 +6,8 @@ lang: en
 section: enterprise
 permalink: "/docs/enterprise/helm/"
 description: "Documentation about how to deploy the keymetrics on-premise version on Kubernetes using Helm"
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#helm"
 ---
 
 ## Deployment on Kubernetes with Helm

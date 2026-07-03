@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/integration/heroku/"
 description: "In seconds, this tutorial will show you how to monitor a Node.js application with PM2 Plus in Heroku."
+sitemap: false
+redirect_to: "/docs/pm2-plus/#integration-heroku"
 ---
 
 # Monitor your Node.js app in Heroku

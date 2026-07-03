@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/guide/notifications/"
 description: "Notifications are one of the most powerful feature of PM2 Plus, always getting you aware about critical events."
+sitemap: false
+redirect_to: "/docs/pm2-plus/#guide-notifications"
 ---
 
 # Notifications

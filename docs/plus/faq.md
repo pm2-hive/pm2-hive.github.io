@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/faq/"
 description: "What is a process? A process represent one Node.js application instance. For example let's say you have one API application that is scaled across 4…"
+sitemap: false
+redirect_to: "/docs/pm2-plus/#faq"
 ---
 
 # FAQ & Troubleshooting

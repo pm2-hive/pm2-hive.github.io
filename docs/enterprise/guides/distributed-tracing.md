@@ -6,6 +6,8 @@ lang: en
 section: enterprise
 permalink: "/docs/enterprise/guides/distributed-tracing/"
 description: "The Distributed Tracing allows to captures and propagates distributed traces through your system, allowing you to visualize how customer requests flow…"
+sitemap: false
+redirect_to: "/docs/pm2-enterprise/#guides-distributed-tracing"
 ---
 
 # Overview

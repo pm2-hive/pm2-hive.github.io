@@ -6,6 +6,8 @@ lang: en
 section: plus
 permalink: "/docs/plus/guide/realtime-logs/"
 description: "In PM2 Plus you are able to stream the logs that your application output directly to the dashboard. It can be really helpful if you don't want to SSH into…"
+sitemap: false
+redirect_to: "/docs/pm2-plus/#guide-realtime-logs"
 ---
 
 # Realtime Logs
