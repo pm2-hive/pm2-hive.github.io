@@ -87,3 +87,9 @@
       url: /docs/faq/
     - title: Contributing
       url: /docs/usage/contributing/
+
+- title: PM2 Plus
+  url: /docs/pm2-plus/
+
+- title: PM2 Enterprise
+  url: /docs/pm2-enterprise/
