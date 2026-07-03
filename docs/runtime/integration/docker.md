@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/integration/docker/"
+last_modified_at: 2026-07-03
 description: "Production ready Node.js Docker image including PM2."
 sitemap: false
 redirect_to: "/docs/usage/docker-pm2-nodejs/"

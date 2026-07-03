@@ -5,6 +5,7 @@ description: Watch & Restart application on file change
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/watch-restart/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/watch-and-restart/"
 ---

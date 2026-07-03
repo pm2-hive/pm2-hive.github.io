@@ -6,6 +6,7 @@ lang: en
 section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/guides/alerting/"
+last_modified_at: 2026-07-03
 description: "The alerting engine of PM2 Enterprise allows you to set alerts on metrics and receive alerts, like it's possible with other monitoring solution. However…"
 ---
 

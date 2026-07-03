@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/installation/"
+last_modified_at: 2026-07-03
 description: "We assume that your app have been started with PM2. If not, follow the Quick Start tutorial."
 ---
 

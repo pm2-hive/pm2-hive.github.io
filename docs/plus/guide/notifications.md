@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/notifications/"
+last_modified_at: 2026-07-03
 description: "Notifications are one of the most powerful feature of PM2 Plus, always getting you aware about critical events."
 ---
 

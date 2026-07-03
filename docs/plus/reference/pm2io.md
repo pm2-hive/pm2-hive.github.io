@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/reference/pm2io/"
+last_modified_at: 2026-07-03
 description: "@pm2/io is the library that comes with PM2 which is in charge of gathering the metrics that are displayed in PM2 Plus By default, the module just wraps…"
 ---
 

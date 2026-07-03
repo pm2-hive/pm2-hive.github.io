@@ -6,6 +6,7 @@ lang: en
 section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/guides/log/"
+last_modified_at: 2026-07-03
 description: "This feature allow to store all of your application logs directly in PM2 Enterprise so you can retrieve them later to inspect them. It take the standard…"
 ---
 

@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/best-practices/graceful-shutdown/"
+last_modified_at: 2026-07-03
 description: "Your applications will restart several times in its lifetime, be it on deployment or, more sadly, if your application crashes."
 sitemap: false
 redirect_to: "/docs/usage/signals-clean-restart/"

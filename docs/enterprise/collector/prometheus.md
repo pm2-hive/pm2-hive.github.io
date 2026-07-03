@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/prometheus/"
+last_modified_at: 2026-07-03
 description: "When setting up the monitoring for your production environment, you might have already ran a Prometheus server and maybe a graphana dashboard. Even if…"
 ---
 

@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/faq/"
+last_modified_at: 2026-07-03
 description: "What is a process? A process represent one Node.js application instance. For example let's say you have one API application that is scaled across 4…"
 ---
 

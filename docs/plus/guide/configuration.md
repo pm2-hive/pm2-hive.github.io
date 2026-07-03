@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/configuration/"
+last_modified_at: 2026-07-03
 description: "Your dashboard already comes with a lot of metrics without any configuration. But don't worry, you also can add predefined set of metrics or - even better…"
 ---
 

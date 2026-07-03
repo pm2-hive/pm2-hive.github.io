@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/aws/"
+last_modified_at: 2026-07-03
 description: "Documentation about how to deploy the PM2 Enterprise on-premise version on AWS"
 ---
 

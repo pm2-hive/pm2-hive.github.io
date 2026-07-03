@@ -5,6 +5,7 @@ description: PM2 Inception
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/multiple-pm2/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/specifics/"
 ---

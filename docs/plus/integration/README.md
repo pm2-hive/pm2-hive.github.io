@@ -6,6 +6,7 @@ lang: en
 section: plus
 hide_comments: true
 permalink: "/docs/plus/integration/"
+last_modified_at: 2026-07-03
 description: "This section will help you integrate PM2 Plus."
 ---
 

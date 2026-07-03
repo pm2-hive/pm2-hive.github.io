@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/reference/ecosystem-file/"
+last_modified_at: 2026-07-03
 description: "The purpose of the ecosystem file is to gather all options and environment variables for all your applications."
 sitemap: false
 redirect_to: "/docs/usage/application-declaration/"

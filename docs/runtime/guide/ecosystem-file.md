@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/ecosystem-file/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/application-declaration/"
 description: "When deploying on multiple servers or when using multiple CLI arguments, an alternative to the command line becomes more convenient for starting your apps."

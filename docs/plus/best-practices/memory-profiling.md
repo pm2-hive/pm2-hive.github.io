@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: /docs/plus/best-practices/memory-profiling/
+last_modified_at: 2026-07-03
 description: "<!-- Profiling files can also be downloaded and inspected later in the chrome development tool."
 ---
 

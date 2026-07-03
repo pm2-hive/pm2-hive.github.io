@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/on-premise/baremetal/"
+last_modified_at: 2026-07-03
 description: "Note that this tutorial is only made if you decided to deploy PM2 Enterprise On-Premise. If you use the Cloud based one you can just use it straight from…"
 ---
 

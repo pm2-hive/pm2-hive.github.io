@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/backend/"
+last_modified_at: 2026-07-03
 description: "To deploy keymetrics you first need to get access to one of the images that contains it, see the readme for this."
 ---
 

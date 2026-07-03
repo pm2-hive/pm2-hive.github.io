@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: /docs/plus/best-practices/cpu-profiling/
+last_modified_at: 2026-07-03
 description: "PM2 Plus comes with a ready to use CPU profiling tool. All your servers can be profiled directly from your web dashboard. The visualisation tools then…"
 ---
 

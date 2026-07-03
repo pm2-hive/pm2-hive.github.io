@@ -6,6 +6,7 @@ lang: en
 section: plus
 hide_comments: true
 permalink: /docs/plus/best-practices/
+last_modified_at: 2026-07-03
 description: "This section gathers best practices to make your app scalable from the beginning."
 ---
 

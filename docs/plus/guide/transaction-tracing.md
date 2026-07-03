@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/transaction-tracing/"
+last_modified_at: 2026-07-03
 description: "The transaction tracing is useful to troubleshoot performance issues and get detailed low-level insight of how your app is working."
 ---
 

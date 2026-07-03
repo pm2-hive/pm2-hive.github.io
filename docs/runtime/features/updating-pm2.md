@@ -5,6 +5,7 @@ description: Updating is a matter of 3 commands
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/updating-pm2/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/update-pm2/"
 ---

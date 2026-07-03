@@ -5,6 +5,7 @@ description: Different Restart Strategies in case of crash
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/restart-strategies/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/restart-strategies/"
 ---

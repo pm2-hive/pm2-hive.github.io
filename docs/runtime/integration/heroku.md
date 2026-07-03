@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/integration/heroku/"
+last_modified_at: 2026-07-03
 description: "This docs will guide you step by step through the PM2 integration with Heroku."
 sitemap: false
 redirect_to: "/docs/integrations/heroku/"

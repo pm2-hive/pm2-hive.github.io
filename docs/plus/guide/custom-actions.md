@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/custom-actions/"
+last_modified_at: 2026-07-03
 description: "Custom actions are function that you expose to PM2 Plus with @pm2/io so you are able to launch them from the dashboard. A example use case that everyone…"
 ---
 

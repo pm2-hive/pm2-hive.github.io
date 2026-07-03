@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/pm2/"
+last_modified_at: 2026-07-03
 description: "When you already use PM2 and you want to use PM2 Enterprise, it's really easy to launch our agent since it is directly embed as a dependency."
 ---
 

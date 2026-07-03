@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/process-management/"
+last_modified_at: 2026-07-03
 description: "PM2 is a process kept in the background, a daemon, that takes care of all your running processes."
 sitemap: false
 redirect_to: "/docs/usage/process-management/"

@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/standalone/"
+last_modified_at: 2026-07-03
 description: "When monitoring your production environment, you might not see the point of using a process manager in your container when you already use orchestrator…"
 ---
 

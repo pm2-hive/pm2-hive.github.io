@@ -6,6 +6,7 @@ lang: en
 section: runtime
 hide_comments: true
 permalink: "/docs/runtime/best-practices/"
+last_modified_at: 2026-07-03
 description: "This section gathers production best practices to make your app scalable from the beginning:"
 sitemap: false
 redirect_to: "/docs/usage/signals-clean-restart/"

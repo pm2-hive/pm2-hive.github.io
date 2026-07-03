@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/frontend-monitoring/install/"
+last_modified_at: 2026-07-03
 description: "First, connect to your PM2 Enterprise dashboard. Go to your bucket, and click on Frontend at the top of the docs."
 ---
 

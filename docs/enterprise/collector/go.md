@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/go/"
+last_modified_at: 2026-07-03
 description: "All PM2 tools are mostly written to suit Node.js applications, but sometimes you want to monitor other languages in your production environment."
 ---
 

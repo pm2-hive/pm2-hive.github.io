@@ -5,6 +5,7 @@ description: PM2 Inception
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/commands-cheatsheet/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/quick-start/"
 ---

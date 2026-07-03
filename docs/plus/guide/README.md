@@ -6,6 +6,7 @@ lang: en
 section: plus
 hide_comments: true
 permalink: "/docs/plus/guide/"
+last_modified_at: 2026-07-03
 description: "Follow this guide and get your Node.js app monitored by PM2 Plus in minutes!"
 ---
 

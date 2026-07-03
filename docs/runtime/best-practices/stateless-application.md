@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/best-practices/stateless-application/"
+last_modified_at: 2026-07-03
 description: "A stateless application has no local data stored in the process. For example, sessions/websocket connections, session-memory and related."
 sitemap: false
 redirect_to: "/docs/usage/cluster-mode/"

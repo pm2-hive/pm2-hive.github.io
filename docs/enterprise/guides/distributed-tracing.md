@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/guides/distributed-tracing/"
+last_modified_at: 2026-07-03
 description: "The Distributed Tracing allows to captures and propagates distributed traces through your system, allowing you to visualize how customer requests flow…"
 ---
 

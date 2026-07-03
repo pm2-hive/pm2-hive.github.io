@@ -5,6 +5,7 @@ description: Set a memory limit and allow soft reloads without downtime
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/javascript-source-maps/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/source-map-support/"
 ---

@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/best-practices/metrics-glossary/"
+last_modified_at: 2026-07-03
 description: "This glossary is an exhaustive list of all metrics recorded by PM2 Plus. Understand what a metric stands for and how it is computed will avoid you to draw…"
 ---
 

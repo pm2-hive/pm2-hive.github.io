@@ -6,6 +6,7 @@ lang: en
 section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/guides/profiling/"
+last_modified_at: 2026-07-03
 description: "The profiling feature is a key feature that allow you to profile your applications at runtime. By profiling, we mean recording what's your application is…"
 ---
 

@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/server-apps-overview/"
+last_modified_at: 2026-07-03
 description: "There are 2 types of overview in PM2 Plus, the first one is the Application overview where you don't see any reference to a server in the overview, this…"
 ---
 

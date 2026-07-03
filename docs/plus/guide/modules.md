@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/modules/"
+last_modified_at: 2026-07-03
 description: "Modules are open-source addons built and maintained thanks to the community. A PM2 module is just a Node.js process run by PM2 and can be pulled directly…"
 ---
 

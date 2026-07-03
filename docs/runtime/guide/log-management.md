@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/log-management/"
+last_modified_at: 2026-07-03
 description: "Logs are available at realtime and are saved into your hard disk."
 sitemap: false
 redirect_to: "/docs/usage/log-management/"

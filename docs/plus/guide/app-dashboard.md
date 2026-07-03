@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/app-dashboard/"
+last_modified_at: 2026-07-03
 description: "This dashboard is used to give you insight on a particular application."
 ---
 

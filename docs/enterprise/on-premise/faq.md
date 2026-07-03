@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/on-premise/faq/"
+last_modified_at: 2026-07-03
 description: "You need to verify that the KMSITEURL you configured is the endpoint you use to connect to the frontend. If you modify it, you need to delete the mongodb…"
 ---
 

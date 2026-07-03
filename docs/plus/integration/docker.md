@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/integration/docker/"
+last_modified_at: 2026-07-03
 description: "In seconds, this tutorial will show you how to monitor a Node.js application with PM2 Plus inside a container."
 ---
 

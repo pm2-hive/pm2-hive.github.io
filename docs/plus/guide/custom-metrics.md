@@ -5,6 +5,7 @@ menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/custom-metrics/"
+last_modified_at: 2026-07-03
 description: "By default PM2 Plus will add some metrics into your application, but it's not always enough. @pm2/io is the library that will help you add custom metrics…"
 ---
 

@@ -5,6 +5,7 @@ description: Fast way to temporarily fix memory leaks
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/memory-limit/"
+last_modified_at: 2026-07-03
 sitemap: false
 redirect_to: "/docs/usage/memory-limit/"
 ---
