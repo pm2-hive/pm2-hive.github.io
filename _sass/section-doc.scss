@@ -60,6 +60,10 @@
 
     @media #{$not-small-mobile} {
       align-self: flex-start;
+      position: sticky;
+      top: 24px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
       max-width: 280px;
       min-width: 200px;
       flex: 1;
@@ -220,13 +224,15 @@
     }
 
     .nav-section {
-      margin-bottom: 23px;
       letter-spacing: 1px;
       @media #{$small-mobile} {
         border-top: 1px solid var(--border);
       }
       & + .nav-section {
         border-top: 1px solid var(--border);
+      }
+      &:last-child {
+        margin-bottom: 12px;
       }
     }
     a {
@@ -235,47 +241,49 @@
         background-color: rgba(255, 255, 255, 0.05);
       }
     }
+    // Section header: one full-width click target that expands/collapses
+    // the section (a plain link when the section has no children).
     .nav-section-header {
       display: flex;
       align-items: center;
-    }
-    .nav-section-title {
-      font-weight: 600;
-      font-size: 1.3rem;
-      display: block;
-      flex: 1;
-      min-width: 0;
-      padding: 14px var(--lateral-gutter);
-      margin-top: 16px;
-      color: var(--text);
-    }
-    .nav-section-toggle {
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      box-sizing: border-box;
       background: none;
       border: none;
-      color: var(--text-muted);
+      text-align: left;
+      font: inherit;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
       cursor: pointer;
-      padding: 14px var(--lateral-gutter);
-      margin-top: 16px;
-
-      i {
-        transition: transform 0.3s;
-      }
+      padding: 12px var(--lateral-gutter);
+      transition: background-color 0.2s;
 
       &:hover {
-        color: var(--text);
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      i {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        transition: transform 0.25s;
+        flex-shrink: 0;
       }
     }
-    // Accordion: only the current page's section is expanded by default;
-    // the chevron toggles the others. .open/.collapsed are set by docs.js,
-    // .active by the layout (so no-JS still shows the current section).
+    // Accordion state: only the current page's section is expanded by
+    // default (.active, set by the layout so no-JS still works); docs.js
+    // toggles .open/.collapsed on header click.
     .nav-section.has-subnav:not(.active):not(.open) .nav-section-content {
       display: none;
     }
     .nav-section.collapsed .nav-section-content {
       display: none !important;
     }
-    .nav-section.active:not(.collapsed) .nav-section-toggle i,
-    .nav-section.open .nav-section-toggle i {
+    .nav-section.active:not(.collapsed) > .nav-section-header i,
+    .nav-section.open > .nav-section-header i {
       transform: rotate(180deg);
     }
     .nav-section-entry {

@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Cloud Providers | Integration | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/integration/cloud-providers/"
 description: "You might find yourself in a situation in which you do not have access to the CLI to start your Node.js applications."
+sitemap: false
+redirect_to: "/docs/usage/use-pm2-with-cloud-providers/"
 ---
 
 # Using PM2 in a Cloud Provider

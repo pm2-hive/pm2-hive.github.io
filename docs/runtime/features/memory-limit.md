@@ -1,10 +1,12 @@
 ---
-layout: docs-io
+layout: none
 title: Memory Threshold Auto Reload | Features | PM2 Documentation
 description: Fast way to temporarily fix memory leaks
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/memory-limit/"
+sitemap: false
+redirect_to: "/docs/usage/memory-limit/"
 ---
 
 ## Max Memory Threshold Auto Reload

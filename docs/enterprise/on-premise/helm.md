@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Deployment on Kubernetes with Helm | On-Premise | PM2 Enterprise Documentation
 menu: starter
 lang: en

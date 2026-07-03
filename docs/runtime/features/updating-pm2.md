@@ -1,10 +1,12 @@
 ---
-layout: docs-io
+layout: none
 title: Updating PM2 | Features | PM2 Documentation
 description: Updating is a matter of 3 commands
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/updating-pm2/"
+sitemap: false
+redirect_to: "/docs/usage/update-pm2/"
 ---
 
 ## Updating PM2

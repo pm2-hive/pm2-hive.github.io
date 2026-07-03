@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Alerting | Guides | PM2 Enterprise Documentation
 menu: starter
 lang: en

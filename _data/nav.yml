@@ -90,6 +90,50 @@
 
 - title: PM2 Plus
   url: /docs/pm2-plus/
+  subnav:
+    - title: Overview
+      url: /docs/pm2-plus/#overview
+    - title: Quick Start
+      url: /docs/pm2-plus/#quick-start
+    - title: Application Dashboard
+      url: /docs/pm2-plus/#guide-app-dashboard
+    - title: Realtime Logs
+      url: /docs/pm2-plus/#guide-realtime-logs
+    - title: Notifications
+      url: /docs/pm2-plus/#guide-notifications
+    - title: Custom Metrics
+      url: /docs/pm2-plus/#guide-custom-metrics
+    - title: Custom Actions
+      url: /docs/pm2-plus/#guide-custom-actions
+    - title: Modules
+      url: /docs/pm2-plus/#guide-modules
+    - title: pm2/io Reference
+      url: /docs/pm2-plus/#reference-pm2io
+    - title: FAQ
+      url: /docs/pm2-plus/#faq
 
 - title: PM2 Enterprise
   url: /docs/pm2-enterprise/
+  subnav:
+    - title: Overview
+      url: /docs/pm2-enterprise/#overview
+    - title: Distributed Tracing
+      url: /docs/pm2-enterprise/#guides-distributed-tracing
+    - title: Profiling
+      url: /docs/pm2-enterprise/#guides-profiling
+    - title: Alerting
+      url: /docs/pm2-enterprise/#guides-alerting
+    - title: Dashboards
+      url: /docs/pm2-enterprise/#guides-dashboard
+    - title: Logs
+      url: /docs/pm2-enterprise/#guides-log
+    - title: Webchecks
+      url: /docs/pm2-enterprise/#guides-webchecks
+    - title: Go Collector
+      url: /docs/pm2-enterprise/#collector-go
+    - title: Prometheus
+      url: /docs/pm2-enterprise/#collector-prometheus
+    - title: Frontend Monitoring
+      url: /docs/pm2-enterprise/#frontend-monitoring-overview
+    - title: On-Premise
+      url: /docs/pm2-enterprise/#on-premise

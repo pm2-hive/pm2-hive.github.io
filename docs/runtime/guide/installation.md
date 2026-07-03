@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Installation | Guide | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/installation/"
 description: "By default, CLI autocompletion is not installed with PM2, we recommend it:"
+sitemap: false
+redirect_to: "/docs/usage/quick-start/"
 ---
 
 # Installation

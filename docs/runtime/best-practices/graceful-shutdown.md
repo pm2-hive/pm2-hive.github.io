@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Graceful Shutdown | Best Practices | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/best-practices/graceful-shutdown/"
 description: "Your applications will restart several times in its lifetime, be it on deployment or, more sadly, if your application crashes."
+sitemap: false
+redirect_to: "/docs/usage/signals-clean-restart/"
 ---
 
 # Graceful Shutdown

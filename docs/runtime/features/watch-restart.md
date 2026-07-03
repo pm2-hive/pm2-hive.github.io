@@ -1,10 +1,12 @@
 ---
-layout: docs-io
+layout: none
 title: Watch & Restart | Features | PM2 Documentation
 description: Watch & Restart application on file change
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/watch-restart/"
+sitemap: false
+redirect_to: "/docs/usage/watch-and-restart/"
 ---
 
 ## Auto restart apps on file change

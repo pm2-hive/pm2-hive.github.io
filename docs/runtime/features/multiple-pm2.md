@@ -1,10 +1,12 @@
 ---
-layout: docs-io
+layout: none
 title: Multiple PM2 Runtime | Features | PM2 Documentation
 description: PM2 Inception
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/multiple-pm2/"
+sitemap: false
+redirect_to: "/docs/usage/specifics/"
 ---
 
 ## Running Multiple PM2

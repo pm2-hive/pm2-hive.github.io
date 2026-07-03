@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Best Practices | PM2 Documentation
 menu: starter
 lang: en
@@ -7,6 +7,8 @@ section: runtime
 hide_comments: true
 permalink: "/docs/runtime/best-practices/"
 description: "This section gathers production best practices to make your app scalable from the beginning:"
+sitemap: false
+redirect_to: "/docs/usage/signals-clean-restart/"
 ---
 
 # Production Best Practices

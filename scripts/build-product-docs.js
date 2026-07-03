@@ -98,7 +98,7 @@ for (const product of PRODUCTS) {
     fp,
     `\
 ---
-layout: docs-io
+layout: docs
 title: ${product.title}
 description: "${product.description}"
 section: ${product.section}

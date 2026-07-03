@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Process Management | Guide | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/process-management/"
 description: "PM2 is a process kept in the background, a daemon, that takes care of all your running processes."
+sitemap: false
+redirect_to: "/docs/usage/process-management/"
 ---
 
 # Process management

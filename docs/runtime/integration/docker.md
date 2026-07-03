@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Docker | Integration | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/integration/docker/"
 description: "Production ready Node.js Docker image including PM2."
+sitemap: false
+redirect_to: "/docs/usage/docker-pm2-nodejs/"
 ---
 
 # Using PM2 with Docker

@@ -132,11 +132,11 @@
 
 /**
  * Sidebar accordion: the layout expands the current page's section (.active);
- * chevron buttons toggle the others (.open) or collapse the active one
+ * clicking a section header toggles it (.open) or collapses the active one
  * (.collapsed).
  */
 (() => {
-  document.querySelectorAll(".nav-section-toggle").forEach(button => {
+  document.querySelectorAll("button.nav-section-header").forEach(button => {
     button.addEventListener("click", () => {
       const section = button.closest(".nav-section");
       const expanded =
@@ -144,13 +144,15 @@
         (section.classList.contains("active") &&
           !section.classList.contains("collapsed"));
 
-      if (expanded) {
-        section.classList.remove("open");
-        section.classList.add("collapsed");
-      } else {
-        section.classList.add("open");
-        section.classList.remove("collapsed");
-      }
+      section.classList.toggle("open", !expanded);
+      section.classList.toggle("collapsed", expanded);
+      button.setAttribute("aria-expanded", String(!expanded));
     });
   });
+
+  // Keep the current page visible in the scrollable sidebar
+  const active = document.querySelector(".nav-section-entry.active");
+  if (active) {
+    active.scrollIntoView({ block: "nearest" });
+  }
 })();

@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Load-Balancing | Guide | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/load-balancing/"
 description: "The built-in load-balancer provides networked Node.js applications (http(s)/tcp/udp server) to be scaled across all CPUs available, without any code…"
+sitemap: false
+redirect_to: "/docs/usage/cluster-mode/"
 ---
 
 # Load-Balancing (cluster mode)

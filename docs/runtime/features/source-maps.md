@@ -1,10 +1,12 @@
 ---
-layout: docs-io
+layout: none
 title: Memory Threshold Auto Reload | Features | PM2 Documentation
 description: Set a memory limit and allow soft reloads without downtime
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/javascript-source-maps/"
+sitemap: false
+redirect_to: "/docs/usage/source-map-support/"
 ---
 
 ## Source Map

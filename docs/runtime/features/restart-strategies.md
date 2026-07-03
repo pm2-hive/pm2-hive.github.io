@@ -1,10 +1,12 @@
 ---
-layout: docs-io
+layout: none
 title: Restart Strategies | Features | PM2 Documentation
 description: Different Restart Strategies in case of crash
 lang: en
 section: runtime
 permalink: "/docs/runtime/features/restart-strategies/"
+sitemap: false
+redirect_to: "/docs/usage/restart-strategies/"
 ---
 
 ## Exponential Backoff Restart Delay

@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Commands Cheatsheet | PM2 Documentation
 description: PM2 Inception
 lang: en

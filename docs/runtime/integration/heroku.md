@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Heroku | Integration | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/integration/heroku/"
 description: "This docs will guide you step by step through the PM2 integration with Heroku."
+sitemap: false
+redirect_to: "/docs/integrations/heroku/"
 ---
 
 # Using PM2 with Heroku

@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Development Tools | Guide | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/development-tools/"
 description: "PM2 comes with two development tools that will help you on the development stage: a watch and restart mode and a server for static files."
+sitemap: false
+redirect_to: "/docs/usage/pm2-development/"
 ---
 
 # Development Tools

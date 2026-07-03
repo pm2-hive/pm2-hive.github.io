@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Profiling | Guides | PM2 Enterprise Documentation
 menu: starter
 lang: en

@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Transpilers | Integration | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/integration/transpilers/"
 description: "This tutorial will show you how to use pm2 with transpilers."
+sitemap: false
+redirect_to: "/docs/tutorials/using-transpilers-with-pm2/"
 ---
 
 # Using PM2 with transpilers

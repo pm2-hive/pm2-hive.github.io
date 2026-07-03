@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Environment Variables | Best Practices | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/best-practices/environment-variables/"
 description: "Environment variables are special variables that can be set out of your Node.js applications, particularly useful to make your application configurable…"
+sitemap: false
+redirect_to: "/docs/usage/environment/"
 ---
 
 # Environment Variables Management

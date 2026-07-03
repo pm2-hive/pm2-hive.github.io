@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Easy Deploy With SSH | Guide | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/easy-deploy-with-ssh/"
 description: "In many deployment workflows, the routine basically consists of connecting with SSH to multiple servers, git pull the latest version, then reload the app."
+sitemap: false
+redirect_to: "/docs/usage/deployment/"
 ---
 
 # Easy Deploy with SSH

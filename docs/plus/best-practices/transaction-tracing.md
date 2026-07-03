@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Transaction Tracing | Best Practices | PM2 Plus Documentation
 menu: starter
 lang: en

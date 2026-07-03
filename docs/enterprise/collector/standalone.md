@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Standalone Agent | Guides | PM2 Enterprise Documentation
 menu: starter
 lang: en

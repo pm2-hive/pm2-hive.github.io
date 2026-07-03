@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Stateless Application | Best Practices | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/best-practices/stateless-application/"
 description: "A stateless application has no local data stored in the process. For example, sessions/websocket connections, session-memory and related."
+sitemap: false
+redirect_to: "/docs/usage/cluster-mode/"
 ---
 
 # Stateless Application

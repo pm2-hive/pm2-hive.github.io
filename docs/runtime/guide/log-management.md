@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Log Management | Guide | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/log-management/"
 description: "Logs are available at realtime and are saved into your hard disk."
+sitemap: false
+redirect_to: "/docs/usage/log-management/"
 ---
 
 # Log management

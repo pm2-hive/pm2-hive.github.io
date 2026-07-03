@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Elastic Beanstalk | Integration | PM2 Plus Documentation
 menu: starter
 lang: en

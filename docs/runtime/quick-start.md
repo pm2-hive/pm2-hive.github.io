@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Quick Start | PM2 Documentation
 menu: starter
 lang: en

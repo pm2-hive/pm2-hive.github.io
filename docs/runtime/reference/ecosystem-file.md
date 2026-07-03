@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Ecosystem File | Reference | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/reference/ecosystem-file/"
 description: "The purpose of the ecosystem file is to gather all options and environment variables for all your applications."
+sitemap: false
+redirect_to: "/docs/usage/application-declaration/"
 ---
 
 # Ecosystem file reference

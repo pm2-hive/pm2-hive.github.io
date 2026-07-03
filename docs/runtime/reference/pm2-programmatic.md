@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Programmatic | Reference | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/reference/pm2-programmatic/"
 description: "pm2 can also be used programmatically, meaning that you can embed a process manager directly in your code, spawn processes, keep them alive even if the…"
+sitemap: false
+redirect_to: "/docs/usage/pm2-api/"
 ---
 
 # PM2 API

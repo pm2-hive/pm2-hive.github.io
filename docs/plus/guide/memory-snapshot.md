@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Memory Snapshot | Guide | PM2 Plus Documentation
 menu: starter
 lang: en

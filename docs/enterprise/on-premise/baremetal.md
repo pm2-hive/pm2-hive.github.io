@@ -1,5 +1,5 @@
 ---
-layout: docs-io
+layout: none
 title: Deployment on Baremetal Servers | On-Premise | PM2 Enterprise Documentation
 menu: starter
 lang: en

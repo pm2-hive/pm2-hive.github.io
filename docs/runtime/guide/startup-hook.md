@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: Startup Hook | Guide | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/guide/startup-hook/"
 description: "The purpose of a startup hook is to save your process list and bring it back at machine restarts, even unexpected ones."
+sitemap: false
+redirect_to: "/docs/usage/startup/"
 ---
 
 # Startup Hook

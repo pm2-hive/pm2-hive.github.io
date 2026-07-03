@@ -27,7 +27,11 @@ function parseNav(file) {
       const url = line.match(/^\s+url:\s*(\S+)/);
       if (title) pending = title[1].replace(/^"(.*)"$/, "$1");
       if (url && pending) {
-        entries.push({ title: pending, url: url[1] });
+        // In-page anchors (PM2 Plus/Enterprise sections) and external links
+        // are navigation-only: they have no standalone docs file to inline.
+        if (!url[1].includes("#") && !url[1].includes("://")) {
+          entries.push({ title: pending, url: url[1] });
+        }
         pending = null;
       }
     }

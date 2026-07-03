@@ -1,11 +1,13 @@
 ---
-layout: docs-io
+layout: none
 title: CLI | Reference | PM2 Documentation
 menu: starter
 lang: en
 section: runtime
 permalink: "/docs/runtime/reference/pm2-cli/"
 description: "Flag name|Description ---|--- -V, --version|output the version number -v --version|get version -s --silent|hide all messages -m --mini-list|display a…"
+sitemap: false
+redirect_to: "/docs/usage/commands/"
 ---
 
 # CLI reference
