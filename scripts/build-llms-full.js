@@ -1,5 +1,8 @@
-// Generates /llms-full.txt: the whole documentation as a single Markdown
-// file for LLM consumption (https://llmstxt.org), ordered like _data/nav.yml.
+// Generates the LLM-oriented documentation artifacts (https://llmstxt.org):
+// - /llms-full.txt: the whole documentation as a single Markdown file,
+//   ordered like _data/nav.yml
+// - per-page Markdown mirrors at <permalink>index.html.md, so agents
+//   following llms.txt links get clean Markdown instead of full HTML
 // Usage: node scripts/build-llms-full.js  (from the repository root)
 
 const fs = require("fs");
@@ -37,7 +40,11 @@ function collectDocs(dir, map = {}) {
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       collectDocs(file, map);
-    } else if (entry.name.endsWith(".md") && file !== path.join("docs", "full.md")) {
+    } else if (
+      entry.name.endsWith(".md") &&
+      entry.name !== "index.html.md" &&
+      file !== path.join("docs", "full.md")
+    ) {
       const source = fs.readFileSync(file, "utf-8");
       const permalink = source.match(/^permalink:\s*(\S+)/m);
       if (permalink) map[permalink[1]] = source;
@@ -72,3 +79,30 @@ const header = `\
 
 fs.writeFileSync("llms-full.txt", header + sections.join("\n---\n\n"));
 console.log(`llms-full.txt written (${sections.length} pages)`);
+
+// Per-page Markdown mirrors: <permalink>index.html.md (static passthrough,
+// no front-matter, so Jekyll copies them verbatim and skips them in sitemap)
+const wanted = new Set();
+nav.forEach((entry, i) => {
+  const mirror = path.join(entry.url.replace(/^\//, ""), "index.html.md");
+  wanted.add(mirror);
+  fs.mkdirSync(path.dirname(mirror), { recursive: true });
+  fs.writeFileSync(mirror, sections[i]);
+});
+
+// Remove mirrors whose permalink no longer exists in the nav
+function collectMirrors(dir, files = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const file = path.join(dir, entry.name);
+    if (entry.isDirectory()) collectMirrors(file, files);
+    else if (entry.name === "index.html.md") files.push(file);
+  }
+  return files;
+}
+for (const mirror of collectMirrors("docs")) {
+  if (!wanted.has(mirror)) {
+    fs.unlinkSync(mirror);
+    console.log(`removed stale mirror: ${mirror}`);
+  }
+}
+console.log(`markdown mirrors written (${wanted.size} pages)`);

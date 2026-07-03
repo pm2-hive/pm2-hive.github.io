@@ -9,52 +9,52 @@ single Markdown file at https://pm2.keymetrics.io/llms-full.txt
 
 ## Getting Started
 
-- [Quick Start](https://pm2.keymetrics.io/docs/usage/quick-start/): install PM2, then start, manage and monitor Node.js applications
+- [Quick Start](https://pm2.keymetrics.io/docs/usage/quick-start/index.html.md): install PM2, then start, manage and monitor Node.js applications
 
 ## Process Management
 
-- [Process Management](https://pm2.keymetrics.io/docs/usage/process-management/): start, stop, restart, delete and list processes
-- [CLI Reference](https://pm2.keymetrics.io/docs/usage/commands/): every pm2 command in one page, grouped by theme
-- [Restart Strategies](https://pm2.keymetrics.io/docs/usage/restart-strategies/): automatic crash restart, exponential backoff, cron restarts and exit-code rules
-- [Logs](https://pm2.keymetrics.io/docs/usage/log-management/): stream logs in realtime, locate log files, flush and rotate them
-- [Persistent Application](https://pm2.keymetrics.io/docs/usage/startup/): pm2 startup scripts to restart processes at server boot (systemd, upstart, launchd)
-- [Configuration File](https://pm2.keymetrics.io/docs/usage/application-declaration/): the ecosystem file to declare multiple applications, with all attributes
-- [Cluster Mode](https://pm2.keymetrics.io/docs/usage/cluster-mode/): scale Node.js across all CPU cores with zero-downtime reload, no code changes
-- [Watch & Restart](https://pm2.keymetrics.io/docs/usage/watch-and-restart/): restart automatically on file change, with ignore rules
-- [Memory Limit](https://pm2.keymetrics.io/docs/usage/memory-limit/): reload applications exceeding a memory threshold (max-memory-restart)
-- [PM2 as a Static Server](https://pm2.keymetrics.io/docs/usage/expose/): serve static files and SPAs over HTTP with pm2 serve
-- [Deployment System](https://pm2.keymetrics.io/docs/usage/deployment/): deploy to one or many servers over SSH with setup, update and rollback
-- [Environment Variables](https://pm2.keymetrics.io/docs/usage/environment/): per-environment configuration and --env switching
-- [Update PM2](https://pm2.keymetrics.io/docs/usage/update-pm2/): update the daemon in-memory without losing processes
+- [Process Management](https://pm2.keymetrics.io/docs/usage/process-management/index.html.md): start, stop, restart, delete and list processes
+- [CLI Reference](https://pm2.keymetrics.io/docs/usage/commands/index.html.md): every pm2 command in one page, grouped by theme
+- [Restart Strategies](https://pm2.keymetrics.io/docs/usage/restart-strategies/index.html.md): automatic crash restart, exponential backoff, cron restarts and exit-code rules
+- [Logs](https://pm2.keymetrics.io/docs/usage/log-management/index.html.md): stream logs in realtime, locate log files, flush and rotate them
+- [Persistent Application](https://pm2.keymetrics.io/docs/usage/startup/index.html.md): pm2 startup scripts to restart processes at server boot (systemd, upstart, launchd)
+- [Configuration File](https://pm2.keymetrics.io/docs/usage/application-declaration/index.html.md): the ecosystem file to declare multiple applications, with all attributes
+- [Cluster Mode](https://pm2.keymetrics.io/docs/usage/cluster-mode/index.html.md): scale Node.js across all CPU cores with zero-downtime reload, no code changes
+- [Watch & Restart](https://pm2.keymetrics.io/docs/usage/watch-and-restart/index.html.md): restart automatically on file change, with ignore rules
+- [Memory Limit](https://pm2.keymetrics.io/docs/usage/memory-limit/index.html.md): reload applications exceeding a memory threshold (max-memory-restart)
+- [PM2 as a Static Server](https://pm2.keymetrics.io/docs/usage/expose/index.html.md): serve static files and SPAs over HTTP with pm2 serve
+- [Deployment System](https://pm2.keymetrics.io/docs/usage/deployment/index.html.md): deploy to one or many servers over SSH with setup, update and rollback
+- [Environment Variables](https://pm2.keymetrics.io/docs/usage/environment/index.html.md): per-environment configuration and --env switching
+- [Update PM2](https://pm2.keymetrics.io/docs/usage/update-pm2/index.html.md): update the daemon in-memory without losing processes
 
 ## Advanced
 
-- [Graceful Start/Shutdown](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/): signal handling, SIGINT, kill timeout tuning and clean restarts
-- [Exposing RPC Functions](https://pm2.keymetrics.io/docs/usage/process-actions/): trigger custom in-code actions remotely with pm2 trigger
-- [Exposing Metrics](https://pm2.keymetrics.io/docs/usage/process-metrics/): expose custom metrics and monitor them with pm2 monit
-- [PM2 JavaScript API](https://pm2.keymetrics.io/docs/usage/pm2-api/): embed PM2 programmatically — start, stop, list and receive bus events
-- [Monitoring](https://pm2.keymetrics.io/docs/usage/monitoring/): CPU/memory monitoring in the terminal or on the PM2.io web dashboard
-- [No Daemon & Multiple PM2](https://pm2.keymetrics.io/docs/usage/specifics/): port 80 without root, multiple daemons, no-daemon mode, interpreter flags
-- [Module System](https://pm2.keymetrics.io/docs/advanced/pm2-module-system/): create, install and publish PM2 modules like pm2-logrotate
-- [Source Map Support](https://pm2.keymetrics.io/docs/usage/source-map-support/): stack traces for BabelJS/TypeScript and other transpilers
-- [Development Workflow](https://pm2.keymetrics.io/docs/usage/pm2-development/): pm2-dev for auto-restart and inline logs during development
-- [Auto Completion](https://pm2.keymetrics.io/docs/usage/auto-completion/): shell completion for bash and zsh
+- [Graceful Start/Shutdown](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/index.html.md): signal handling, SIGINT, kill timeout tuning and clean restarts
+- [Exposing RPC Functions](https://pm2.keymetrics.io/docs/usage/process-actions/index.html.md): trigger custom in-code actions remotely with pm2 trigger
+- [Exposing Metrics](https://pm2.keymetrics.io/docs/usage/process-metrics/index.html.md): expose custom metrics and monitor them with pm2 monit
+- [PM2 JavaScript API](https://pm2.keymetrics.io/docs/usage/pm2-api/index.html.md): embed PM2 programmatically — start, stop, list and receive bus events
+- [Monitoring](https://pm2.keymetrics.io/docs/usage/monitoring/index.html.md): CPU/memory monitoring in the terminal or on the PM2.io web dashboard
+- [No Daemon & Multiple PM2](https://pm2.keymetrics.io/docs/usage/specifics/index.html.md): port 80 without root, multiple daemons, no-daemon mode, interpreter flags
+- [Module System](https://pm2.keymetrics.io/docs/advanced/pm2-module-system/index.html.md): create, install and publish PM2 modules like pm2-logrotate
+- [Source Map Support](https://pm2.keymetrics.io/docs/usage/source-map-support/index.html.md): stack traces for BabelJS/TypeScript and other transpilers
+- [Development Workflow](https://pm2.keymetrics.io/docs/usage/pm2-development/index.html.md): pm2-dev for auto-restart and inline logs during development
+- [Auto Completion](https://pm2.keymetrics.io/docs/usage/auto-completion/index.html.md): shell completion for bash and zsh
 
 ## Integrations
 
-- [Docker](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/): pm2-runtime, a drop-in replacement for the node binary in containers
-- [Bun, Deno & other Runtimes](https://pm2.keymetrics.io/docs/usage/bun-deno/): Bun interpreter for TypeScript, cluster mode under Bun, Deno via --interpreter
-- [Cloud Providers](https://pm2.keymetrics.io/docs/usage/use-pm2-with-cloud-providers/): use PM2 on PaaS platforms like Heroku, Azure or Google App Engine
-- [Production Setup with Nginx](https://pm2.keymetrics.io/docs/tutorials/pm2-nginx-production-setup/): Nginx as a reverse proxy in front of PM2, with HTTPS and caching
-- [Using Transpilers](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2/): run Babel, CoffeeScript or TypeScript apps with PM2
-- [Heroku](https://pm2.keymetrics.io/docs/integrations/heroku/): pm2-runtime as the Procfile entrypoint for clustering on Heroku
-- [AWS Elastic Beanstalk](https://pm2.keymetrics.io/docs/tutorials/use-pm2-with-aws-elastic-beanstalk/): deploy PM2-managed applications on Elastic Beanstalk
-- [Capistrano-like Deployments](https://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments/): deploy with symlinks and a correct working directory
+- [Docker](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/index.html.md): pm2-runtime, a drop-in replacement for the node binary in containers
+- [Bun, Deno & other Runtimes](https://pm2.keymetrics.io/docs/usage/bun-deno/index.html.md): Bun interpreter for TypeScript, cluster mode under Bun, Deno via --interpreter
+- [Cloud Providers](https://pm2.keymetrics.io/docs/usage/use-pm2-with-cloud-providers/index.html.md): use PM2 on PaaS platforms like Heroku, Azure or Google App Engine
+- [Production Setup with Nginx](https://pm2.keymetrics.io/docs/tutorials/pm2-nginx-production-setup/index.html.md): Nginx as a reverse proxy in front of PM2, with HTTPS and caching
+- [Using Transpilers](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2/index.html.md): run Babel, CoffeeScript or TypeScript apps with PM2
+- [Heroku](https://pm2.keymetrics.io/docs/integrations/heroku/index.html.md): pm2-runtime as the Procfile entrypoint for clustering on Heroku
+- [AWS Elastic Beanstalk](https://pm2.keymetrics.io/docs/tutorials/use-pm2-with-aws-elastic-beanstalk/index.html.md): deploy PM2-managed applications on Elastic Beanstalk
+- [Capistrano-like Deployments](https://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments/index.html.md): deploy with symlinks and a correct working directory
 
 ## Resources
 
-- [FAQ](https://pm2.keymetrics.io/docs/faq/): cluster mode, log locations, startup scripts, zero-downtime reloads, memory
-- [Contributing](https://pm2.keymetrics.io/docs/usage/contributing/): fork, develop and submit pull requests to PM2
+- [FAQ](https://pm2.keymetrics.io/docs/faq/index.html.md): cluster mode, log locations, startup scripts, zero-downtime reloads, memory
+- [Contributing](https://pm2.keymetrics.io/docs/usage/contributing/index.html.md): fork, develop and submit pull requests to PM2
 
 ## Optional
 

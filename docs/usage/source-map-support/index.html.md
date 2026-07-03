@@ -1,0 +1,48 @@
+# Source Map Support
+Source: https://pm2.keymetrics.io/docs/usage/source-map-support/
+
+If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get useful information you need to generate [source map files](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
+
+Once these source map files are generated, PM2 will automatically detect them and will help you inspect errors.
+
+## Source map
+
+Since version 1.0.2, PM2 embeds a mechanism to support javascript source maps.
+
+**PM2 automatically detects javascript source map files** if you start app.js, it will expect app.js.map to exist as well.
+
+If you have a different layout, you can force source map support by starting your application:
+
+Via CLI:
+
+```bash
+pm2 start app.js --source-map-support
+```
+
+Or via JSON file:
+
+```javascript
+module.exports = {
+   name: 'babel-app',
+   script: 'app.js',
+   source_map_support: true
+}
+```
+
+### Inspect exceptions
+
+Exceptions are logged into your application error log file.
+
+To check your logs to detect exceptions, you can type:
+
+```bash
+pm2 logs main
+```
+
+Otherwise, use [PM2.io](https://pm2.io/) to have a clean listing and notifications of new alerts.
+
+### Disable source map support
+
+If you do not want PM2 to automatically support javascript source maps you can use the option `--disable-source-map-support`.
+
+This is supported both via CLI and via a JSON file.
