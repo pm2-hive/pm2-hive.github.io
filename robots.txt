@@ -5,6 +5,21 @@ layout: none
 User-agent: *
 Allow: /
 
+# AI crawlers are explicitly welcome
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
+Allow: /
+
 Sitemap: {{ site.url }}/sitemap.xml
 
 # LLM-friendly documentation: {{ site.url }}/llms.txt (index) and {{ site.url }}/llms-full.txt (full docs)
