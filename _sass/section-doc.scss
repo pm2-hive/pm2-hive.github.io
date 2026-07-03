@@ -338,8 +338,8 @@
       color: var(--text);
     }
     .nav-section-entry {
-      font-size: 0.9rem;
-      letter-spacing: normal;
+      text-transform: uppercase;
+      font-size: 0.85rem;
       color: var(--text-muted);
       a {
         display: block;
