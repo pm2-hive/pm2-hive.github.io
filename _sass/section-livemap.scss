@@ -1,0 +1,58 @@
+
+.section-livemap {
+  .section-wrapper {
+    margin-top: 90px;
+    margin-bottom: 100px;
+    @media #{$mobile} {
+      margin-top: 60px;
+      margin-bottom: 90px;
+    }
+  }
+
+  .card-right {
+    padding: 8px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    @media #{$mobile} {
+      margin-bottom: 44px;
+    }
+  }
+
+  #livemap-facade {
+    position: relative;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1200px;
+      height: 630px;
+      transform-origin: 0 0;
+      border: 0;
+    }
+
+    .livemap-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    &.is-live {
+      cursor: default;
+
+      .livemap-play {
+        display: none;
+      }
+    }
+  }
+}
