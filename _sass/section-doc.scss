@@ -273,6 +273,14 @@
         flex-shrink: 0;
       }
     }
+    .nav-section-logo {
+      display: block;
+      height: 22px;
+      width: auto;
+      max-width: calc(100% - 24px);
+      object-fit: contain;
+      object-position: left center;
+    }
     // Accordion state: only the current page's section is expanded by
     // default (.active, set by the layout so no-JS still works); docs.js
     // toggles .open/.collapsed on header click.

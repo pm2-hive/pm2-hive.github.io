@@ -35,14 +35,21 @@
                 {% endfor %}
                 <li class="nav-section {% if section_active %}active{% endif %} {% if item.subnav %}has-subnav{% endif %}">
 
+                  {% capture section_label %}
+                    {% if item.logo %}
+                    <img class="nav-section-logo" src="{{ site.url }}{{ item.logo }}" alt="{{ item.title | escape }}" />
+                    {% else %}
+                    <span class="nav-section-title">{{ item.title | escape }}</span>
+                    {% endif %}
+                  {% endcapture %}
                   {% if item.subnav %}
                   <button class="nav-section-header" type="button" aria-expanded="{{ section_active }}">
-                    <span class="nav-section-title">{{ item.title | escape }}</span>
+                    {{ section_label }}
                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </button>
                   {% else %}
                   <a class="nav-section-header" href="{{ item.url | escape }}">
-                    <span class="nav-section-title">{{ item.title | escape }}</span>
+                    {{ section_label }}
                   </a>
                   {% endif %}
 

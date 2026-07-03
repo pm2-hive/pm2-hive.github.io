@@ -1,5 +1,6 @@
 - title: PM2 CLI
   url: /docs/usage/quick-start/
+  logo: /img/logos-pm2/pm2-runtime_white.png
   subnav:
     - title: Quick Start
       url: /docs/usage/quick-start/
@@ -85,6 +86,7 @@
 
 - title: PM2 Plus
   url: /docs/pm2-plus/
+  logo: /img/logos-pm2/pm2-plus_white.png
   subnav:
     - title: Overview
       url: /docs/pm2-plus/#overview
@@ -109,6 +111,7 @@
 
 - title: PM2 Enterprise
   url: /docs/pm2-enterprise/
+  logo: /img/logos-pm2/pm2-enterprise_white.png
   subnav:
     - title: Overview
       url: /docs/pm2-enterprise/#overview
