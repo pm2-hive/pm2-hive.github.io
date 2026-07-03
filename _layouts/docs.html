@@ -29,7 +29,10 @@
                 {% for item in site.data.nav %}
                 {% assign section_active = false %}
                 {% if page.url contains item.url %}{% assign section_active = true %}{% endif %}
-                {% for sub in item.subnav %}{% if page.url == sub.url %}{% assign section_active = true %}{% endif %}{% endfor %}
+                {% for sub in item.subnav %}
+                  {% if page.url == sub.url %}{% assign section_active = true %}{% endif %}
+                  {% for child in sub.subnav %}{% if page.url == child.url %}{% assign section_active = true %}{% endif %}{% endfor %}
+                {% endfor %}
                 <li class="nav-section {% if section_active %}active{% endif %} {% if item.subnav %}has-subnav{% endif %}">
 
                   {% if item.subnav %}
@@ -44,18 +47,39 @@
                   {% endif %}
 
                   <ul class="nav-section-content">
-                    {% for item in item.subnav %}
-                    <li class="nav-section-entry {% if page.url == item.url %}active{% endif %}">
+                    {% for sub in item.subnav %}
+                    {% if sub.subnav %}
+                    <li class="nav-group">
+                      <span class="nav-group-label">{{ sub.title | escape }}</span>
+                      <ul>
+                        {% for child in sub.subnav %}
+                        <li class="nav-section-entry {% if page.url == child.url %}active{% endif %}">
+                          <a
+                            href="{% unless child.url contains '://' %}{{ site.url }}{% endunless %}{{ child.url }}"
+                            title="{{child.title}}"
+                            {% if child.blank == true %}
+                            target="_blank"
+                            {% endif %}
+                          >
+                            {{ child.title }}
+                          </a>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-section-entry {% if page.url == sub.url %}active{% endif %}">
                       <a
-                        href="{% unless item.url contains '://' %}{{ site.url }}{% endunless %}{{ item.url }}"
-                        title="{{item.title}}"
-                        {% if item.blank == true %}
+                        href="{% unless sub.url contains '://' %}{{ site.url }}{% endunless %}{{ sub.url }}"
+                        title="{{sub.title}}"
+                        {% if sub.blank == true %}
                         target="_blank"
                         {% endif %}
                       >
-                        {{ item.title }}
+                        {{ sub.title }}
                       </a>
                     </li>
+                    {% endif %}
                     {% endfor %}
                   </ul>
                 </li>

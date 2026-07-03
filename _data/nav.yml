@@ -3,90 +3,85 @@
   subnav:
     - title: Quick Start
       url: /docs/usage/quick-start/
+    - title: General
+      subnav:
+        - title: Process Management
+          url: /docs/usage/process-management/
+        - title: CLI Reference
+          url: /docs/usage/commands/
+        - title: Restart Strategies
+          url: /docs/usage/restart-strategies/
+        - title: Logs 
+          url: /docs/usage/log-management/
+        - title: Persistent Application
+          url: /docs/usage/startup/
+        - title: Configuration File
+          url: /docs/usage/application-declaration/
+        - title: Cluster Mode
+          url: /docs/usage/cluster-mode/
+        - title: Watch & Restart
+          url: /docs/usage/watch-and-restart/
+        - title: Memory Limit
+          url: /docs/usage/memory-limit/
+        - title: PM2 as a Static Server
+          url: /docs/usage/expose/
+        - title: Deployment System
+          url: /docs/usage/deployment/      
+        - title: Environment Variables
+          url: /docs/usage/environment/
+        - title: Update PM2
+          url: /docs/usage/update-pm2/
 
-- title: General
-  url: /docs/usage/process-management/
-  subnav:
-    - title: Process Management
-      url: /docs/usage/process-management/
-    - title: CLI Reference
-      url: /docs/usage/commands/
-    - title: Restart Strategies
-      url: /docs/usage/restart-strategies/
-    - title: Logs 
-      url: /docs/usage/log-management/
-    - title: Persistent Application
-      url: /docs/usage/startup/
-    - title: Configuration File
-      url: /docs/usage/application-declaration/
-    - title: Cluster Mode
-      url: /docs/usage/cluster-mode/
-    - title: Watch & Restart
-      url: /docs/usage/watch-and-restart/
-    - title: Memory Limit
-      url: /docs/usage/memory-limit/
-    - title: PM2 as a Static Server
-      url: /docs/usage/expose/
-    - title: Deployment System
-      url: /docs/usage/deployment/      
-    - title: Environment Variables
-      url: /docs/usage/environment/
-    - title: Update PM2
-      url: /docs/usage/update-pm2/
+    - title: Advanced
+      subnav:
+        - title: Graceful Start/Shutdown
+          url: /docs/usage/signals-clean-restart/
+        - title: Exposing RPC function 
+          url: /docs/usage/process-actions/
+        - title: Exposing Metrics
+          url: /docs/usage/process-metrics/
+        - title: PM2 Javascript API
+          url: /docs/usage/pm2-api/
+        - title: Monitoring
+          url: /docs/usage/monitoring/
+        - title: "No daemon, Multiple PM2"
+          url: /docs/usage/specifics/
+        - title: Module System
+          url: /docs/advanced/pm2-module-system/
+        - title: Source Map Support
+          url: /docs/usage/source-map-support/
+        - title: Development Workflow
+          url: /docs/usage/pm2-development/
+        - title: Auto Completion
+          url: /docs/usage/auto-completion/
 
-- title: Advanced
-  url: /docs/usage/process-actions/
-  subnav:
-    - title: Graceful Start/Shutdown
-      url: /docs/usage/signals-clean-restart/
-    - title: Exposing RPC function 
-      url: /docs/usage/process-actions/
-    - title: Exposing Metrics
-      url: /docs/usage/process-metrics/
-    - title: PM2 Javascript API
-      url: /docs/usage/pm2-api/
-    - title: Monitoring
-      url: /docs/usage/monitoring/
-    - title: "No daemon, Multiple PM2"
-      url: /docs/usage/specifics/
-    - title: Module System
-      url: /docs/advanced/pm2-module-system/
-    - title: Source Map Support
-      url: /docs/usage/source-map-support/
-    - title: Development Workflow
-      url: /docs/usage/pm2-development/
-    - title: Auto Completion
-      url: /docs/usage/auto-completion/
+    - title: Integrations
+      subnav:
+        - title: Docker Integration
+          url: /docs/usage/docker-pm2-nodejs/
+        - title: Bun, Deno & other Runtimes
+          url: /docs/usage/bun-deno/
+        - title: Use PM2 in Cloud Providers
+          url: /docs/usage/use-pm2-with-cloud-providers/
+        - title: Production Setup with Nginx
+          url: /docs/tutorials/pm2-nginx-production-setup/
+        - title: Using transpilers with PM2
+          url: /docs/tutorials/using-transpilers-with-pm2/
+        - title: Heroku
+          url: /docs/integrations/heroku/
+        - title: AWS Elastic Beanstalk
+          url: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
+        - title: Capistrano-like Deployments
+          url: /docs/tutorials/capistrano-like-deployments/
 
-- title: Integrations
-  url: /docs/usage/use-pm2-with-cloud-providers/
-  subnav:
-    - title: Docker Integration
-      url: /docs/usage/docker-pm2-nodejs/
-    - title: Bun, Deno & other Runtimes
-      url: /docs/usage/bun-deno/
-    - title: Use PM2 in Cloud Providers
-      url: /docs/usage/use-pm2-with-cloud-providers/
-    - title: Production Setup with Nginx
-      url: /docs/tutorials/pm2-nginx-production-setup/
-    - title: Using transpilers with PM2
-      url: /docs/tutorials/using-transpilers-with-pm2/
-    - title: Heroku
-      url: /docs/integrations/heroku/
-    - title: AWS Elastic Beanstalk
-      url: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
-    - title: Capistrano-like Deployments
-      url: /docs/tutorials/capistrano-like-deployments/
-
-- title: Resources
-  url: /docs/faq/
-  subnav:
-    - title: What's New
-      url: /docs/usage/whats-new/
-    - title: FAQ
-      url: /docs/faq/
-    - title: Contributing
-      url: /docs/usage/contributing/
+    - title: Resources
+      subnav:
+        - title: What's New
+          url: /docs/usage/whats-new/
+        - title: FAQ
+          url: /docs/faq/
+        - title: Contributing
+          url: /docs/usage/contributing/
 
 - title: PM2 Plus
   url: /docs/pm2-plus/

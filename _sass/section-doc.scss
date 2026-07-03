@@ -286,9 +286,25 @@
     .nav-section.open > .nav-section-header i {
       transform: rotate(180deg);
     }
-    .nav-section-entry {
+    .nav-group {
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+    }
+    .nav-group-label {
+      display: block;
+      padding: 14px var(--lateral-gutter) 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    .nav-section-entry {
+      font-size: 0.9rem;
+      letter-spacing: normal;
       color: var(--text-muted);
       a {
         display: block;
