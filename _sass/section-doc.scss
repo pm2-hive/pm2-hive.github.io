@@ -273,13 +273,33 @@
         flex-shrink: 0;
       }
     }
-    .nav-section-logo {
-      display: block;
-      height: 22px;
-      width: auto;
-      max-width: calc(100% - 24px);
-      object-fit: contain;
-      object-position: left center;
+    // Product branding as on the pricing cards: PM2 logo, colored rule,
+    // italic product name.
+    .nav-section-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+
+      img {
+        height: 20px;
+        width: auto;
+        display: block;
+      }
+
+      .nav-brand-line {
+        flex: 1;
+        min-width: 12px;
+        border-bottom: 3px solid;
+      }
+
+      .nav-brand-name {
+        font-style: italic;
+        font-weight: 600;
+        color: #ebecf0;
+        white-space: nowrap;
+      }
     }
     // Accordion state: only the current page's section is expanded by
     // default (.active, set by the layout so no-JS still works); docs.js

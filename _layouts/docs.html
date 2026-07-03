@@ -36,8 +36,12 @@
                 <li class="nav-section {% if section_active %}active{% endif %} {% if item.subnav %}has-subnav{% endif %}">
 
                   {% capture section_label %}
-                    {% if item.logo %}
-                    <img class="nav-section-logo" src="{{ site.url }}{{ item.logo }}" alt="{{ item.title | escape }}" />
+                    {% if item.brand %}
+                    <span class="nav-section-brand">
+                      <img src="{{ site.url }}/assets/pm2-logo-1.png" alt="PM2" />
+                      <span class="nav-brand-line" style="border-color: {{ item.brand_color }}"></span>
+                      <span class="nav-brand-name">{{ item.brand | escape }}</span>
+                    </span>
                     {% else %}
                     <span class="nav-section-title">{{ item.title | escape }}</span>
                     {% endif %}
