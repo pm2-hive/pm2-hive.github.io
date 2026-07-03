@@ -154,6 +154,18 @@ header {
     font-size: 0.85rem;
   }
 
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
   .logo-link img {
     width: auto;
     height: 44px;
