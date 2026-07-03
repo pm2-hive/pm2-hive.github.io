@@ -39,8 +39,10 @@
                     {% if item.brand %}
                     <span class="nav-section-brand">
                       <img src="{{ site.url }}/assets/pm2-logo-1.png" alt="PM2" />
-                      <span class="nav-brand-line" style="border-color: {{ item.brand_color }}"></span>
-                      <span class="nav-brand-name">{{ item.brand | escape }}</span>
+                      <span class="nav-brand-sub">
+                        <span class="nav-brand-line" style="border-color: {{ item.brand_color }}"></span>
+                        <span class="nav-brand-name">{{ item.brand | escape }}</span>
+                      </span>
                     </span>
                     {% else %}
                     <span class="nav-section-title">{{ item.title | escape }}</span>

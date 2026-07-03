@@ -273,24 +273,31 @@
         flex-shrink: 0;
       }
     }
-    // Product branding as on the pricing cards: PM2 logo, colored rule,
-    // italic product name.
+    // Product branding as on the pricing cards: PM2 logo on top, colored
+    // rule with the italic product name beneath.
     .nav-section-brand {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 6px;
       flex: 1;
       min-width: 0;
+      padding: 4px 0;
 
       img {
-        height: 20px;
+        height: 34px;
         width: auto;
         display: block;
+        align-self: flex-start;
+      }
+
+      .nav-brand-sub {
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
 
       .nav-brand-line {
         flex: 1;
-        min-width: 12px;
         border-bottom: 3px solid;
       }
 
