@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     {% include head.html %}
-    <link rel="stylesheet" href="{{ site.url }}/assets/io.css" />
+    <link rel="stylesheet" href="{{ site.url }}/assets/io.css?v={{ site.time | date: '%Y%m%d%H%M' }}" />
   </head>
   <body>
     {% include header.html %}
