@@ -3,6 +3,7 @@ layout: docs
 title: Quick Start
 description: Learn how to install, start, and manage Node.js applications with PM2 process manager. Complete beginner's guide to PM2 with examples and best practices.
 permalink: /docs/usage/quick-start/
+last_modified_at: 2026-07-02
 ---
 
 ## PM2 Process Management Quick Start

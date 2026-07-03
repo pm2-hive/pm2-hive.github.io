@@ -3,6 +3,7 @@ layout: docs
 title: Using transpilers with PM2
 description: How to use babel, CoffeeScript, typescript etc. with pm2
 permalink: /docs/tutorials/using-transpilers-with-pm2/
+last_modified_at: 2026-07-02
 ---
 
 ## Using transpilers with PM2

@@ -3,6 +3,7 @@ layout: docs
 title: PM2 API
 description: "Embed PM2 in your own Node.js code with the programmatic API: start, stop, restart, list processes and receive events via the message bus."
 permalink: /docs/usage/pm2-api/
+last_modified_at: 2026-07-02
 ---
 
 ## PM2 API

@@ -3,6 +3,7 @@ layout: docs
 title: Graceful Start/Shutdown
 description: "How PM2 handles system signals: graceful shutdown with SIGINT, kill timeout tuning, and clean restarts for stateful Node.js applications."
 permalink: /docs/usage/signals-clean-restart/
+last_modified_at: 2026-07-02
 ---
 
 ## Graceful Stop

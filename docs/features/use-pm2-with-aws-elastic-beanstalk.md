@@ -3,6 +3,7 @@ layout: docs
 title: PM2 in ElasticBeanstalk
 description: Deploy PM2-managed Node.js applications on AWS Elastic Beanstalk using pm2-runtime, with clustering and production configuration.
 permalink: /docs/tutorials/use-pm2-with-aws-elastic-beanstalk/
+last_modified_at: 2026-07-02
 ---
 
 ## Using PM2/Keymetrics in AWS Elastic Beanstalk

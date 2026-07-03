@@ -3,6 +3,7 @@ layout: docs
 title: "Bun, Deno & other Runtimes"
 description: "Run Bun and TypeScript applications with PM2: automatic Bun interpreter for .ts files, cluster mode under Bun, and Deno or any other runtime via --interpreter."
 permalink: /docs/usage/bun-deno/
+last_modified_at: 2026-07-03
 ---
 
 ## Using Bun, Deno and other Runtimes with PM2

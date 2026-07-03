@@ -3,6 +3,7 @@ layout: docs
 title: Startup Script
 description: Generate startup scripts with pm2 startup to restart PM2 and your Node.js processes automatically at server boot on systemd, upstart or launchd.
 permalink: /docs/usage/startup/
+last_modified_at: 2026-07-02
 ---
 
 ## Persistent applications: Startup Script Generator

@@ -3,6 +3,7 @@ layout: docs
 title: Module System
 description: "Create, install and publish PM2 modules: standalone Node.js applications managed by PM2, such as pm2-logrotate, with persistent configuration."
 permalink: /docs/advanced/pm2-module-system/
+last_modified_at: 2026-07-02
 ---
 
 ## PM2 Modules

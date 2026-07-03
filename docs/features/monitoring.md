@@ -3,6 +3,7 @@ layout: docs
 title: "Monitoring Node.js Applications"
 description: Monitor CPU and memory usage of your Node.js applications from the terminal with pm2 monit, or across servers with the PM2.io web dashboard.
 permalink: /docs/usage/monitoring/
+last_modified_at: 2026-07-02
 ---
 
 ## Monitoring CPU/Memory

@@ -3,6 +3,7 @@ layout: docs
 title: CLI Reference
 description: "Complete PM2 command reference: every pm2 command grouped by theme — process control, status, logs, monitoring, startup, deployment, modules and PM2 Plus."
 permalink: /docs/usage/commands/
+last_modified_at: 2026-07-03
 ---
 
 ## PM2 CLI Command Reference

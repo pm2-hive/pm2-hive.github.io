@@ -3,6 +3,7 @@ layout: docs
 title: Capistrano like deployments
 description: How to deploy with pm2, symlinks and a correct working directory
 permalink: /docs/tutorials/capistrano-like-deployments/
+last_modified_at: 2026-07-02
 ---
 
 ## Capistrano like deployments

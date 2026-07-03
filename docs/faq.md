@@ -3,6 +3,7 @@ layout: docs
 title: FAQ
 description: "Answers to frequently asked questions about PM2: cluster mode, log locations, startup scripts, zero-downtime reloads and memory management."
 permalink: /docs/faq/
+last_modified_at: 2026-07-03
 ---
 
 <script type="application/ld+json">

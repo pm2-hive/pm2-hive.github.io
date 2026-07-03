@@ -3,6 +3,7 @@ layout: docs
 title: "Log Management"
 description: "Manage Node.js application logs with PM2: stream logs in realtime, locate log files, flush and rotate them with logrotate or pm2-logrotate."
 permalink: /docs/usage/log-management/
+last_modified_at: 2026-07-02
 ---
 
 ## Application Logs

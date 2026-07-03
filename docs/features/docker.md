@@ -3,6 +3,7 @@ layout: docs
 title: Docker Integration
 description: Run Node.js applications with PM2 inside Docker containers using pm2-runtime, a drop-in replacement for the node binary designed for containers.
 permalink: /docs/usage/docker-pm2-nodejs/
+last_modified_at: 2026-07-02
 ---
 
 <center style="margin-top: 28px; margin-bottom: 23px">
