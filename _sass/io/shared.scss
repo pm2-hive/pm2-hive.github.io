@@ -1,0 +1,45 @@
+// Helper classes used by the pages imported from pm2.io
+// (lifted from pm2-io-website _sass/index.scss; the rest of the base
+// styling is already provided by hive's main.css).
+
+.container {
+  @media (max-width: 1200px) {
+    padding-left: 0px;
+  }
+}
+
+.text-card {
+  margin: 2rem 0;
+}
+
+.post-date {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin: 15px 0;
+}
+
+.post-title {
+  font-size: 24px;
+  color: var(--text);
+  font-weight: bold;
+}
+
+.post-description {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 20px 0;
+}
+
+.section-title {
+  font-size: 35px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.align-center {
+  text-align: center;
+}

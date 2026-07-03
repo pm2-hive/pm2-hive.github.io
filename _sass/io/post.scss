@@ -1,0 +1,120 @@
+.post {
+
+  section:nth-child(7n + 2) {
+    .section-wrapper {
+      padding-bottom: 80px;
+    }
+
+    .content {
+    	max-width: 1200px;
+	    margin: auto;
+	    margin-top: 60px;
+      padding-bottom: 50px;
+	    background: var(--surface);
+	    border: 1px solid var(--border);
+	    border-radius: var(--radius-lg);
+    	padding-top: 50px;
+
+    	.container {
+    		padding: 0 50px;
+    	}
+
+    	.left-padding-container {
+    		padding: 50px 0;
+    		padding-left: 50px;
+    		background: var(--bg-elevated);
+    	}
+
+    	.right-padding-container {
+    		padding: 50px 0;
+    		padding-right: 50px;
+    	}
+
+    	h1 {
+    		font-size: 42px;
+    		strong {
+    			font-size: 65px;
+    			font-weight: 800;
+    			color: var(--accent-text);
+    			vertical-align: top;
+    		}
+    		span {
+    			font-size: 28px;
+    			font-weight: 800;
+    			color: var(--accent-text);
+    			vertical-align: text-bottom;
+    		}
+    	}
+
+    	h1, h2, h3, h4, h5 {
+    		color: var(--text);
+        padding: 0 25px;
+    	}
+
+    	strong {
+    		color: var(--text);
+    	}
+
+    	p {
+        padding: 0 25px;
+    		color: var(--text-muted);
+    		font-size: 18px;
+    	}
+
+    	img {
+    		width: 100%;
+    	}
+
+    	.three-columns {
+    		margin: 80px 0;
+    		display: grid;
+    		grid-template-columns: repeat(3, 1fr);
+    		grid-column-gap: 10%;
+    	}
+
+    	.two-columns {
+    		display: grid;
+    		align-items: center;
+    		grid-template-columns: repeat(2, 1fr);
+    		grid-column-gap: 10%;
+    	}
+
+      @media #{$small-mobile} {
+      	.container {
+    		padding: 50px 10px 0px;
+    	}
+    	.left-padding-container {
+    		padding: 50px 10px;
+    		text-align: center;
+    	}
+
+    	.right-padding-container {
+    		padding: 50px 10px;
+    		text-align: center;
+    	}
+      	.three-columns {
+        	grid-template-columns: 1fr;
+        	grid-template-rows: auto;
+        	grid-row-gap: 50px;
+        }
+
+        .two-columns {
+        	grid-template-columns: 1fr;
+        	grid-template-rows: auto;
+        	grid-row-gap: 50px;
+        }
+      }
+    }
+  }
+  section:nth-child(7n + 3) {
+
+  	.section-wrapper {
+      margin-top: 40px;
+    }
+
+    .article-grid {
+    	margin-bottom: 150px;
+    }
+
+  }
+}

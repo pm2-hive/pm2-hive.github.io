@@ -1,0 +1,36 @@
+.section-register {
+  @include blueprint-grid;
+
+  .section-wrapper {
+    margin: 140px auto 160px;
+    @media #{$mobile} {
+      margin: 80px auto 100px;
+    }
+
+    h2 {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 45px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 50px auto;
+      max-width: 1000px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .code-and-button {
+      text-align: center;
+      .button {
+        max-width: 380px;
+        width: 100%;
+        margin: auto;
+      }
+    }
+  }
+}

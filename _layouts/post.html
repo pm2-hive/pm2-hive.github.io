@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+    <link rel="stylesheet" href="{{ site.url }}/assets/io.css" />
+  </head>
+  <body>
+    {% include header.html %}
+    <main class="post">
+      <section class="section-hero">
+        <div class="section-background">
+        </div>
+        <div class="section-wrapper">
+          <h1>{{ page.title }}</h1>
+        </div>
+      </section>
+      <section>
+        <div class="section-background">
+        </div>
+        <div class="section-wrapper">
+          <div class="content">
+            <div class="container">
+              <h1 class="align-center">{{ page.title }}</h1>
+              <p class="align-center">{{ page.description }}</p>
+            </div>
+            {{ content }}
+          </div>
+        </div>
+      </section>
+      <section class="section-register">
+        <div class="section-wrapper">
+          <h1>With PM2 Harden your Node.js Workload and be Ready to Scale</h1>
+          <p>Setup takes 2 minutes with no configuration change</p>
+          <div class="code-and-button">
+            <a
+              href="/docs/usage/quick-start/"
+              title="Get Started"
+              class="button big accent-border border-corners inner-shadows"
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    {% include footer.html %}
+    <script src="{{ site.url }}/assets/testimonials.js"></script>
+    <script src="{{ site.url }}/assets/menu.js"></script>
+    <script src="{{ site.url }}/assets/pm2-highlight.js"></script>
+  </body>
+</html>

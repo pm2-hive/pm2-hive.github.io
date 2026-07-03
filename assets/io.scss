@@ -1,0 +1,22 @@
+---
+---
+
+$small-mobile: "screen and (max-width: 749px)";
+$not-small-mobile: "(min-width: 750px)";
+$mobile: "screen and (max-width: 999px)";
+$not-mobile: "(min-width: 1000px)";
+$desktop-max-width: 1200px;
+
+@mixin blueprint-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 96px 96px;
+}
+
+@import 'io/shared';
+@import 'io/section-hero';
+@import 'io/section-register';
+@import 'io/pricing';
+@import 'io/contact';
+@import 'io/post';

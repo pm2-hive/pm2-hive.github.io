@@ -1,0 +1,85 @@
+sidebar:
+  - title: PM2 Plus Software
+    url: "/docs/plus/overview/"
+    subnav:
+      - title: Overview
+        url: "/docs/plus/overview/"
+      - title: Quick Start
+        url: "/docs/plus/quick-start/"
+      - title: Server & Apps Overview
+        url: "/docs/plus/guide/server-apps-overview/"
+      - title: Application dashboard
+        url: "/docs/plus/guide/app-dashboard/"
+      - title: Notifications
+        url: "/docs/plus/guide/notifications/"
+      - title: Issue Dashboard
+        url: "/docs/plus/guide/issue-dashboard/"
+      - title: Custom Metrics
+        url: "/docs/plus/guide/custom-metrics/"
+      - title: Custom Actions
+        url: "/docs/plus/guide/custom-actions/"
+      - title: Realtime logs
+        url: "/docs/plus/guide/realtime-logs/"
+      - title: pm2/io reference
+        url: "/docs/plus/reference/pm2io/"
+      - title: Modules
+        url: "/docs/plus/guide/modules/"
+      - title: Metrics Glossary
+        url: "/docs/plus/best-practices/metrics-glossary/"
+  - title: PM2 Enterprise Software
+    url: "/docs/enterprise/overview/"
+    subnav:
+      - title: Overview
+        url: "/docs/enterprise/overview/"
+      - title: Distributed Tracing
+        url: "/docs/enterprise/guides/distributed-tracing/"
+      - title: Profiling
+        url: "/docs/enterprise/guides/profiling"
+      - title: Alerting
+        url: "/docs/enterprise/guides/alerting"
+      - title: Dashboards
+        url: "/docs/enterprise/guides/dashboard"
+      - title: Log
+        url: "/docs/enterprise/guides/log"
+      - title: Webchecks
+        url: "/docs/enterprise/guides/webchecks/"
+      - title: Golang
+        url: "/docs/enterprise/collector/go"
+      - title: Prometheus Integration
+        url: "/docs/enterprise/collector/prometheus"
+  - title: PM2 Runtime Doc
+    url: "/docs/usage/pm2-doc-single-page/"
+    subnav:
+      - title: Single Page Doc
+        url: "/docs/usage/pm2-doc-single-page/"
+      - title: Cluster Mode
+        url: "/docs/usage/cluster-mode/"
+      - title: Ecosystem File
+        url: "/docs/usage/application-declaration/"
+      - title: Graceful Start/Shutdown
+        url: "/docs/usage/signals-clean-restart/"
+      - title: Environment Variables
+        url: "/docs/usage/environment/"
+      - title: Logs
+        url: "/docs/usage/log-management/"
+      - title: Restart Strategies
+        url: "/docs/usage/restart-strategies/"
+      - title: Memory Limit Reload
+        url: "/docs/usage/memory-limit/"
+  - title: PM2 Integration
+    url: "/docs/plus/integration/cloud-providers/"
+    subnav:
+      - title: AWS Elastic Beanstalk
+        url: "/docs/usage/use-pm2-with-cloud-providers/"
+      - title: Docker
+        url: "/docs/usage/docker-pm2-nodejs/"
+      - title: Heroku
+        url: "/docs/integrations/heroku/"
+      - title: With a Cloud Provider
+        url: "/docs/usage/use-pm2-with-cloud-providers/"
+      - title: Node.js with PM2
+        url: "/docs/enterprise/collector/pm2"
+      - title: Node.js without PM2
+        url: "/docs/enterprise/collector/standalone"
+  - title: FAQ
+    url: "/docs/plus/faq/"

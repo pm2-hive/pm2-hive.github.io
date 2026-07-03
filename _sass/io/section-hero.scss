@@ -1,0 +1,25 @@
+.section-hero {
+  .section-wrapper {
+    margin: 60px auto 80px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 35px;
+  }
+
+  p {
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  @media #{$mobile} {
+    h1 {
+      margin-top: 54px;
+    }
+    p {
+      margin-top: 20px;
+      margin-bottom: 60px;
+    }
+  }
+}
