@@ -27,11 +27,9 @@
     width: 100%;
     height: auto;
     margin-top: -40px;
-    margin-left: 80px;
 
     @media #{$mobile} {
       margin-top: 12px;
-      margin-left: 50px;
     }
     @media #{$small-mobile} {
       margin-top: 12px;

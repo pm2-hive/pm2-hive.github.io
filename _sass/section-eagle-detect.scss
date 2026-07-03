@@ -37,14 +37,4 @@
     }
   }
 
-  // Product screenshots escape the 1280px blueprint frame and bleed past the
-  // right edge of the viewport (body overflow:hidden clips them), so they
-  // render larger and easier to read.
-  &:not(.section-mcp) .card .card-right {
-    margin-right: calc(-1 * (32px + max(0px, (100vw - #{$frame-width}) / 2) + 8vw));
-
-    @media #{$mobile} {
-      margin-right: 0;
-    }
-  }
 }
