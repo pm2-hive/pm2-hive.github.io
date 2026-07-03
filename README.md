@@ -3,6 +3,8 @@
 
 This is the Jekyll/Github page that generates the website hosted on http://pm2.keymetrics.io/
 
+LLM-friendly documentation is available at [pm2.keymetrics.io/llms.txt](https://pm2.keymetrics.io/llms.txt) (index) and [pm2.keymetrics.io/llms-full.txt](https://pm2.keymetrics.io/llms-full.txt) (full docs in one Markdown file).
+
 # Updating the documentation
 
 After editing files under `docs/`, regenerate the LLM-oriented single-file documentation ([llms.txt](https://llmstxt.org) convention) and commit the result:

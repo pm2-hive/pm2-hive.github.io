@@ -113,6 +113,14 @@ permalink: /docs/faq/
         "@type": "Answer",
         "text": "Use 'pm2 startOrReload ecosystem.config.js': it starts the applications if they are not running, and performs a zero-downtime reload if they are. This makes deployments idempotent - the same command works on the first deploy and on every update. Follow it with 'pm2 save' to persist the process list."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the PM2 documentation with AI assistants like ChatGPT, Claude or Cursor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The documentation follows the llms.txt convention: https://pm2.keymetrics.io/llms.txt is a Markdown index of every documentation page, and https://pm2.keymetrics.io/llms-full.txt contains the entire documentation in a single Markdown file. Paste either URL into your AI tool to give it up-to-date PM2 knowledge."
+      }
     }
   ]
 }
@@ -256,3 +264,12 @@ pm2 save
 ```
 
 `pm2 startOrReload` starts the applications if they are not running and performs a **zero-downtime reload** if they are, making deployments idempotent: the same command works on the first deploy and on every update. `pm2 startOrRestart` does the same with a hard restart. Follow it with `pm2 save` so the new process list survives a reboot.
+
+## Can I use the PM2 documentation with AI assistants like ChatGPT, Claude or Cursor?
+
+Yes — the documentation follows the [llms.txt convention](https://llmstxt.org):
+
+- [https://pm2.keymetrics.io/llms.txt](https://pm2.keymetrics.io/llms.txt) — a Markdown index of every documentation page
+- [https://pm2.keymetrics.io/llms-full.txt](https://pm2.keymetrics.io/llms-full.txt) — the entire documentation in a single Markdown file
+
+Paste either URL into your AI tool to give it up-to-date PM2 knowledge.
