@@ -468,17 +468,19 @@
     .edit-page-button {
       display: flex;
       align-items: center;
-      margin: 100px auto;
+      margin: 60px auto;
       background-color: var(--accent);
       border-radius: 999px;
       color: white;
       text-transform: uppercase;
       max-width: max-content;
-      padding: 16px 30px;
+      padding: 8px 18px;
+      font-size: 0.8rem;
       font-weight: bold;
 
       i {
-        margin-right: 30px;
+        margin-right: 12px;
+        font-size: 1.4em;
       }
     }
   }
