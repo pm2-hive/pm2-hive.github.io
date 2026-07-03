@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Elastic Beanstalk | Integration | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/integration/elastic-beanstalk/"
 description: "In seconds, this tutorial will show you how to monitor a Node.js application with PM2 Plus in AWS Elastic Beanstalk."
-sitemap: false
-redirect_to: "/docs/pm2-plus/#integration-elastic-beanstalk"
 ---
 
 # Monitor your Node.js app in AWS Elastic Beanstalk

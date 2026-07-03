@@ -29,6 +29,7 @@
                 {% for item in site.data.nav %}
                 {% assign section_active = false %}
                 {% if page.url contains item.url %}{% assign section_active = true %}{% endif %}
+                {% if item.section and item.section == page.section %}{% assign section_active = true %}{% endif %}
                 {% for sub in item.subnav %}
                   {% if page.url == sub.url %}{% assign section_active = true %}{% endif %}
                   {% for child in sub.subnav %}{% if page.url == child.url %}{% assign section_active = true %}{% endif %}{% endfor %}

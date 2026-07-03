@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Golang Agent | Guides | PM2 Enterprise Documentation
 menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/go/"
 description: "All PM2 tools are mostly written to suit Node.js applications, but sometimes you want to monitor other languages in your production environment."
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#collector-go"
 ---
 
 # Overview

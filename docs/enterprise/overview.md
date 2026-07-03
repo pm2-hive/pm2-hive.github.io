@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: docs
 title: Overview | PM2 Enterprise Documentation
 menu: starter
 lang: en
@@ -7,8 +7,6 @@ section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/overview/"
 description: "PM2 Enterprise is an advanced Node.js toolset that is convenient for high scale or critical Node.js services. It answers to the need of companies willing…"
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#overview"
 ---
 
 # Welcome to the **PM2 Enterprise** documentation

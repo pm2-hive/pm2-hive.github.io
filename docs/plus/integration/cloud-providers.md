@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Cloud Providers | Integration | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/integration/cloud-providers/"
 description: "In seconds, this tutorial will show you how to monitor a Node.js application with PM2 Plus in a cloud provider."
-sitemap: false
-redirect_to: "/docs/pm2-plus/#integration-cloud-providers"
 ---
 
 # Monitor your Node.js app in a cloud provider

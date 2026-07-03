@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: FAQ | On-Premise | PM2 Enterprise Documentation
 menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/on-premise/faq/"
 description: "You need to verify that the KMSITEURL you configured is the endpoint you use to connect to the frontend. If you modify it, you need to delete the mongodb…"
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#on-premise-faq"
 ---
 
 # FAQ

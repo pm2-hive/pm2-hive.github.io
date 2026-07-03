@@ -17,12 +17,17 @@ function parseNav(file) {
   const entries = [];
   let inSubnav = false;
   let pending = null;
+  let skipSection = false;
   for (const line of fs.readFileSync(file, "utf-8").split("\n")) {
     if (/^- title:/.test(line)) {
       inSubnav = false;
+      skipSection = false;
+    } else if (/^  llms: false/.test(line)) {
+      // Product docs sections opt out of the LLM export
+      skipSection = true;
     } else if (/^\s+subnav:/.test(line)) {
       inSubnav = true;
-    } else if (inSubnav) {
+    } else if (inSubnav && !skipSection) {
       const title = line.match(/^\s+- title:\s*(.+?)\s*$/);
       const url = line.match(/^\s+url:\s*(\S+)/);
       if (title) pending = title[1].replace(/^"(.*)"$/, "$1");

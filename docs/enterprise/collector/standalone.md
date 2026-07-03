@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Standalone Agent | Guides | PM2 Enterprise Documentation
 menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/standalone/"
 description: "When monitoring your production environment, you might not see the point of using a process manager in your container when you already use orchestrator…"
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#collector-standalone"
 ---
 
 ## Overview

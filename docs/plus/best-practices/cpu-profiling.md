@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: CPU Profiling | Best Practices | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: /docs/plus/best-practices/cpu-profiling/
 description: "PM2 Plus comes with a ready to use CPU profiling tool. All your servers can be profiled directly from your web dashboard. The visualisation tools then…"
-sitemap: false
-redirect_to: "/docs/pm2-plus/#best-practices-cpu-profiling"
 ---
 
 # CPU Profiling

@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Overview | PM2 Enterprise Documentation
 menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/"
 description: "When installing PM2 Enterprise, you need to choose how you want to fetch monitoring data. We have multiples way to 'collect' the data:"
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#collector"
 ---
 
 ## Overview

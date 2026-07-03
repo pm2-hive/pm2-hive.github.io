@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Prometheus Integration | Guides | PM2 Enterprise Documentation
 menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/collector/prometheus/"
 description: "When setting up the monitoring for your production environment, you might have already ran a Prometheus server and maybe a graphana dashboard. Even if…"
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#collector-prometheus"
 ---
 
 ## Overview

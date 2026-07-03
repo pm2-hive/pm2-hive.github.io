@@ -86,55 +86,65 @@
           url: /docs/usage/contributing/
 
 - title: PM2 Plus
-  url: /docs/pm2-plus/
+  url: /docs/plus/overview/
+  section: plus
+  llms: false
   brand: Plus
   brand_color: "#0da693"
   subnav:
     - title: Overview
-      url: /docs/pm2-plus/#overview
+      url: /docs/plus/overview/
     - title: Quick Start
-      url: /docs/pm2-plus/#quick-start
+      url: /docs/plus/quick-start/
+    - title: Server & Apps Overview
+      url: /docs/plus/guide/server-apps-overview/
     - title: Application Dashboard
-      url: /docs/pm2-plus/#guide-app-dashboard
+      url: /docs/plus/guide/app-dashboard/
     - title: Realtime Logs
-      url: /docs/pm2-plus/#guide-realtime-logs
+      url: /docs/plus/guide/realtime-logs/
     - title: Notifications
-      url: /docs/pm2-plus/#guide-notifications
+      url: /docs/plus/guide/notifications/
+    - title: Issue Dashboard
+      url: /docs/plus/guide/issue-dashboard/
     - title: Custom Metrics
-      url: /docs/pm2-plus/#guide-custom-metrics
+      url: /docs/plus/guide/custom-metrics/
     - title: Custom Actions
-      url: /docs/pm2-plus/#guide-custom-actions
+      url: /docs/plus/guide/custom-actions/
     - title: Modules
-      url: /docs/pm2-plus/#guide-modules
+      url: /docs/plus/guide/modules/
     - title: pm2/io Reference
-      url: /docs/pm2-plus/#reference-pm2io
+      url: /docs/plus/reference/pm2io/
+    - title: Metrics Glossary
+      url: /docs/plus/best-practices/metrics-glossary/
     - title: FAQ
-      url: /docs/pm2-plus/#faq
+      url: /docs/plus/faq/
 
 - title: PM2 Enterprise
-  url: /docs/pm2-enterprise/
+  url: /docs/enterprise/overview/
+  section: enterprise
+  llms: false
   brand: Enterprise
   brand_color: "#777fe7"
   subnav:
     - title: Overview
-      url: /docs/pm2-enterprise/#overview
+      url: /docs/enterprise/overview/
     - title: Distributed Tracing
-      url: /docs/pm2-enterprise/#guides-distributed-tracing
+      url: /docs/enterprise/guides/distributed-tracing/
     - title: Profiling
-      url: /docs/pm2-enterprise/#guides-profiling
+      url: /docs/enterprise/guides/profiling/
     - title: Alerting
-      url: /docs/pm2-enterprise/#guides-alerting
+      url: /docs/enterprise/guides/alerting/
     - title: Dashboards
-      url: /docs/pm2-enterprise/#guides-dashboard
+      url: /docs/enterprise/guides/dashboard/
     - title: Logs
-      url: /docs/pm2-enterprise/#guides-log
+      url: /docs/enterprise/guides/log/
     - title: Webchecks
-      url: /docs/pm2-enterprise/#guides-webchecks
+      url: /docs/enterprise/guides/webchecks/
     - title: Go Collector
-      url: /docs/pm2-enterprise/#collector-go
+      url: /docs/enterprise/collector/go/
     - title: Prometheus
-      url: /docs/pm2-enterprise/#collector-prometheus
+      url: /docs/enterprise/collector/prometheus/
     - title: Frontend Monitoring
-      url: /docs/pm2-enterprise/#frontend-monitoring-overview
+      url: /docs/enterprise/frontend-monitoring/overview/
     - title: On-Premise
-      url: /docs/pm2-enterprise/#on-premise
+      url: /docs/enterprise/backend/

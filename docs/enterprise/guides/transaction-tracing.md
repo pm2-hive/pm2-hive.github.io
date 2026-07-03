@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Transaction Tracing | Guide | PM2 Enterprise Documentation
 menu: starter
 lang: en
 section: enterprise
 permalink: "/docs/enterprise/guides/transaction-tracing/"
 description: "Note : We have finished our new tracing solution which is now called the Distributed Tracing, we are now deprecating the old Transaction Tracing."
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#guides-transaction-tracing"
 ---
 
 # Transaction tracing

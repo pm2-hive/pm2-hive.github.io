@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Issue Dashboard | Guide | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/issue-dashboard/"
 description: "By default when one of your applications crash, pm2 will of course automatically restart it but it will also send the error to PM2 Plus. In the issue…"
-sitemap: false
-redirect_to: "/docs/pm2-plus/#guide-issue-dashboard"
 ---
 
 # Issue dashboard

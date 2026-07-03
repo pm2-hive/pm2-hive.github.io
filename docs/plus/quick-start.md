@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Installation | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/quick-start/"
 description: "In seconds, this Installation tutorial will show you how to start monitoring your Node.js application with PM2 Plus."
-sitemap: false
-redirect_to: "/docs/pm2-plus/#quick-start"
 ---
 
 # Installation

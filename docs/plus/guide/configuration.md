@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Configuration | Guide | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/configuration/"
 description: "Your dashboard already comes with a lot of metrics without any configuration. But don't worry, you also can add predefined set of metrics or - even better…"
-sitemap: false
-redirect_to: "/docs/pm2-plus/#guide-configuration"
 ---
 
 ![pm2io](https://raw.githubusercontent.com/keymetrics/branding/master/logos/pm2ioAPM/io-white.png)

@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Reference | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/reference/pm2io/"
 description: "@pm2/io is the library that comes with PM2 which is in charge of gathering the metrics that are displayed in PM2 Plus By default, the module just wraps…"
-sitemap: false
-redirect_to: "/docs/pm2-plus/#reference-pm2io"
 ---
 
 # The @pm2/io Library

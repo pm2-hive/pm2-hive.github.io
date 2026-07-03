@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Memory Profiling | Guide | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/memory-profiling/"
 description: "Profiling tools help you diagnose memory issues in your application."
-sitemap: false
-redirect_to: "/docs/pm2-plus/#guide-memory-profiling"
 ---
 
 # Memory profiling

@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Memory Snapshot | Guide | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/memory-snapshot/"
 description: "This feature help you diagnose memory issues in your application."
-sitemap: false
-redirect_to: "/docs/pm2-plus/#guide-memory-snapshot"
 ---
 
 # Overview

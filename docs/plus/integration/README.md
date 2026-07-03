@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: docs
 title: Integration | PM2 Plus Documentation
 menu: starter
 lang: en
@@ -7,8 +7,6 @@ section: plus
 hide_comments: true
 permalink: "/docs/plus/integration/"
 description: "This section will help you integrate PM2 Plus."
-sitemap: false
-redirect_to: "/docs/pm2-plus/#integration"
 ---
 
 # Integration

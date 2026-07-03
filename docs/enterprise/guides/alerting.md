@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: docs
 title: Alerting | Guides | PM2 Enterprise Documentation
 menu: starter
 lang: en
@@ -7,8 +7,6 @@ section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/guides/alerting/"
 description: "The alerting engine of PM2 Enterprise allows you to set alerts on metrics and receive alerts, like it's possible with other monitoring solution. However…"
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#guides-alerting"
 ---
 
 # Overview

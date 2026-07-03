@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: docs
 title:  Overview | Frontend Monitoring | PM2 Enterprise Documentation
 menu: starter
 lang: en
@@ -7,8 +7,6 @@ section: enterprise
 hide_comments: true
 permalink: "/docs/enterprise/frontend-monitoring/overview/"
 description: "Start monitoring your website frontend inside your PM2 dashboard. This will allow collecting and inspecting:"
-sitemap: false
-redirect_to: "/docs/pm2-enterprise/#frontend-monitoring-overview"
 ---
 
 # Frontend Monitoring overview

@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: Configuration | Guide | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/custom-metrics/"
 description: "By default PM2 Plus will add some metrics into your application, but it's not always enough. @pm2/io is the library that will help you add custom metrics…"
-sitemap: false
-redirect_to: "/docs/pm2-plus/#guide-custom-metrics"
 ---
 
 ![pm2io](https://raw.githubusercontent.com/keymetrics/branding/master/logos/pm2ioAPM/io-white.png)

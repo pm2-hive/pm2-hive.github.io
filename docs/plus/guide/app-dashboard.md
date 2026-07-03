@@ -1,13 +1,11 @@
 ---
-layout: none
+layout: docs
 title: App Dashboard | Guide | PM2 Plus Documentation
 menu: starter
 lang: en
 section: plus
 permalink: "/docs/plus/guide/app-dashboard/"
 description: "This dashboard is used to give you insight on a particular application."
-sitemap: false
-redirect_to: "/docs/pm2-plus/#guide-app-dashboard"
 ---
 
 # Application Dashboard
