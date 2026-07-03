@@ -1,0 +1,50 @@
+.section-eagle-detect {
+  .section-wrapper {
+
+    .metrics-dd {
+      margin-top: 30px;
+      color: var(--text-muted);
+      line-height: 1.3;
+
+      .mtrc {
+        font-size: 34px;
+        font-weight: 700;
+        color: var(--text);
+      }
+    }
+
+    margin: 70px auto;
+    @media #{$mobile} {
+      margin: 50px auto;
+    }
+    h2 {
+      font-size: 35px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .card {
+      max-width: 1400px;
+      margin: auto;
+
+      @media #{$mobile} {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-row-gap: 20px;
+
+      }
+    }
+  }
+
+  // Product screenshots escape the 1280px blueprint frame and bleed past the
+  // right edge of the viewport (body overflow:hidden clips them), so they
+  // render larger and easier to read.
+  &:not(.section-mcp) .card .card-right {
+    margin-right: calc(-1 * (32px + max(0px, (100vw - #{$frame-width}) / 2) + 8vw));
+
+    @media #{$mobile} {
+      margin-right: 0;
+    }
+  }
+}

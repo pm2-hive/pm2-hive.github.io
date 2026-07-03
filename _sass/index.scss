@@ -512,10 +512,68 @@ table {
   }
 }
 
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-text);
+  margin: 0 0 18px;
+}
+
+.section-big-msg {
+  text-align: center;
+
+  .section-wrapper {
+    h2 {
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      margin: 0;
+    }
+    margin-top: 40px;
+    margin-bottom: 40px;
+    @media #{$mobile} {
+      margin-top: 0px;
+    }
+
+    .card {
+      max-width: 1400px;
+      margin: auto;
+
+      .card-right {
+        position: relative;
+
+        &::before {
+          position: absolute;
+          opacity: 0.4;
+          content: "";
+          top: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          background: url(./card-left-vector.png) no-repeat;
+          background-size: contain;
+          transform: rotate(180deg);
+        }
+      }
+
+      @media #{$mobile} {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-row-gap: 20px;
+
+      }
+    }
+  }
+}
 @import './section-404';
 @import './section-intro';
 @import './section-microservice';
 @import './section-features';
+@import './section-eagle-detect';
+@import './section-mcp';
 @import './section-monitoring';
 @import './section-livemap';
 @import './section-testimonials';
