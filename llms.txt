@@ -53,6 +53,7 @@ single Markdown file at https://pm2.keymetrics.io/llms-full.txt
 
 ## Resources
 
+- [What's New](https://pm2.keymetrics.io/docs/usage/whats-new/index.html.md): release highlights — PM2 7 breaking changes, Bun support, security fixes
 - [FAQ](https://pm2.keymetrics.io/docs/faq/index.html.md): cluster mode, log locations, startup scripts, zero-downtime reloads, memory
 - [Contributing](https://pm2.keymetrics.io/docs/usage/contributing/index.html.md): fork, develop and submit pull requests to PM2
 

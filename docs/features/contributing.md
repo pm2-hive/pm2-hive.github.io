@@ -3,7 +3,7 @@ layout: docs
 title: Contributing
 description: "How to contribute to PM2: fork the repository, set up the development environment, run the test suite and submit pull requests."
 permalink: /docs/usage/contributing/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Contributing/Development mode

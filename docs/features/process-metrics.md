@@ -3,7 +3,7 @@ layout: docs
 title: Custom Metrics
 description: Expose custom metrics from your Node.js application code and monitor them in real time with pm2 monit or the PM2.io web dashboard.
 permalink: /docs/usage/process-metrics/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Expose Metrics

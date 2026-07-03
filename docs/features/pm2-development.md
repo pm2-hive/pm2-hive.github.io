@@ -3,7 +3,7 @@ layout: docs
 title: pm2-dev for development
 description: Use pm2-dev to run Node.js applications in development mode with automatic restart on file change and inline log streaming.
 permalink: /docs/usage/pm2-development/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 PM2 comes with a handy development tool that allow you to start an application and restart it on file change:

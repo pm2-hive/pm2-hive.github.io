@@ -3,7 +3,7 @@ layout: docs
 title: "Cluster Mode: Node.js Load Balancing"
 description: "Scale Node.js across all CPU cores with PM2 cluster mode: a built-in load balancer with zero-downtime reload and no code changes required."
 permalink: /docs/usage/cluster-mode/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Cluster Mode

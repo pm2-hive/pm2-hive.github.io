@@ -3,7 +3,7 @@ layout: docs
 title: Process Management
 description: Complete guide to PM2 process management - start, stop, restart, delete, and monitor Node.js applications. Learn PM2 commands and process control.
 permalink: /docs/usage/process-management/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Managing applications states

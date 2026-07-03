@@ -3,7 +3,7 @@ layout: docs
 title: Memory Limit Reload
 description: Automatically reload Node.js applications when they exceed a memory threshold with the PM2 max-memory-restart option.
 permalink: /docs/usage/memory-limit/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Max Memory Threshold Auto Reload

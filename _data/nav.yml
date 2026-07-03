@@ -81,6 +81,8 @@
 - title: Resources
   url: /docs/faq/
   subnav:
+    - title: What's New
+      url: /docs/usage/whats-new/
     - title: FAQ
       url: /docs/faq/
     - title: Contributing

@@ -3,7 +3,7 @@ layout: docs
 title: Ecosystem File
 description: "Declare and manage multiple Node.js applications with the PM2 ecosystem configuration file: all attributes, environment switching and examples."
 permalink: /docs/usage/application-declaration/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Configuration File

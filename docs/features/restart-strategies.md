@@ -3,7 +3,7 @@ layout: docs
 title: Restart Strategies
 description: "PM2 restart strategies for Node.js apps: automatic crash restart, exponential backoff, cron-based restarts, memory limits and exit-code rules."
 permalink: /docs/usage/restart-strategies/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Restart strategies

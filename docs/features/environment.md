@@ -3,7 +3,7 @@ layout: docs
 title: Environment Variables
 description: "Manage environment variables for Node.js applications with PM2: per-environment configuration, --env switching and instance variables."
 permalink: /docs/usage/environment/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## When starting a new process

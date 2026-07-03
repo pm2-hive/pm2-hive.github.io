@@ -3,7 +3,7 @@ layout: docs
 title: "Deployment System"
 description: "Deploy Node.js applications to one or many servers over SSH with the pm2 deploy system: setup, update, rollback and lifecycle hooks."
 permalink: /docs/usage/deployment/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Deployment System

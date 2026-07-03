@@ -3,7 +3,7 @@ layout: docs
 title: Process Actions
 description: Expose custom RPC actions in your Node.js code and trigger them remotely with the pm2 trigger command, without redeploying your application.
 permalink: /docs/usage/process-actions/
-last_modified_at: 2026-07-02
+last_modified_at: 2026-07-03
 ---
 
 ## Expose RPC Methods: Process Actions
