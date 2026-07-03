@@ -129,3 +129,28 @@
       );
     });
 })();
+
+/**
+ * Sidebar accordion: the layout expands the current page's section (.active);
+ * chevron buttons toggle the others (.open) or collapse the active one
+ * (.collapsed).
+ */
+(() => {
+  document.querySelectorAll(".nav-section-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const section = button.closest(".nav-section");
+      const expanded =
+        section.classList.contains("open") ||
+        (section.classList.contains("active") &&
+          !section.classList.contains("collapsed"));
+
+      if (expanded) {
+        section.classList.remove("open");
+        section.classList.add("collapsed");
+      } else {
+        section.classList.add("open");
+        section.classList.remove("collapsed");
+      }
+    });
+  });
+})();

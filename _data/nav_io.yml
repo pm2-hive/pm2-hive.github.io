@@ -1,6 +1,7 @@
 sidebar:
   - title: PM2 Plus Software
     url: "/docs/pm2-plus/"
+    section: plus
     subnav:
       - title: Overview
         url: "/docs/pm2-plus/#overview"
@@ -28,6 +29,7 @@ sidebar:
         url: "/docs/pm2-plus/#best-practices-metrics-glossary"
   - title: PM2 Enterprise Software
     url: "/docs/pm2-enterprise/"
+    section: enterprise
     subnav:
       - title: Overview
         url: "/docs/pm2-enterprise/#overview"
@@ -53,6 +55,7 @@ sidebar:
         url: "/docs/pm2-enterprise/#on-premise"
   - title: PM2 Runtime Doc
     url: "/docs/usage/pm2-doc-single-page/"
+    section: runtime
     subnav:
       - title: Single Page Doc
         url: "/docs/usage/pm2-doc-single-page/"

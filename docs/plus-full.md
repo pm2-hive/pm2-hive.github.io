@@ -2,6 +2,7 @@
 layout: docs-io
 title: PM2 Plus Documentation
 description: "The complete PM2 Plus documentation on a single page: monitoring dashboard, custom metrics and actions, realtime logs, profiling and notifications."
+section: plus
 permalink: /docs/pm2-plus/
 ---
 

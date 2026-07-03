@@ -2,6 +2,7 @@
 layout: docs-io
 title: PM2 Enterprise Documentation
 description: "The complete PM2 Enterprise documentation on a single page: on-premise installation, collectors, distributed tracing, frontend monitoring, alerting and dashboards."
+section: enterprise
 permalink: /docs/pm2-enterprise/
 ---
 

@@ -235,13 +235,48 @@
         background-color: rgba(255, 255, 255, 0.05);
       }
     }
+    .nav-section-header {
+      display: flex;
+      align-items: center;
+    }
     .nav-section-title {
       font-weight: 600;
       font-size: 1.3rem;
       display: block;
+      flex: 1;
+      min-width: 0;
       padding: 14px var(--lateral-gutter);
       margin-top: 16px;
       color: var(--text);
+    }
+    .nav-section-toggle {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 14px var(--lateral-gutter);
+      margin-top: 16px;
+
+      i {
+        transition: transform 0.3s;
+      }
+
+      &:hover {
+        color: var(--text);
+      }
+    }
+    // Accordion: only the current page's section is expanded by default;
+    // the chevron toggles the others. .open/.collapsed are set by docs.js,
+    // .active by the layout (so no-JS still shows the current section).
+    .nav-section.has-subnav:not(.active):not(.open) .nav-section-content {
+      display: none;
+    }
+    .nav-section.collapsed .nav-section-content {
+      display: none !important;
+    }
+    .nav-section.active:not(.collapsed) .nav-section-toggle i,
+    .nav-section.open .nav-section-toggle i {
+      transform: rotate(180deg);
     }
     .nav-section-entry {
       text-transform: uppercase;

@@ -18,6 +18,7 @@ const PRODUCTS = [
     dir: "docs/plus",
     out: "docs/plus-full.md",
     permalink: "/docs/pm2-plus/",
+    section: "plus",
     title: "PM2 Plus Documentation",
     description:
       "The complete PM2 Plus documentation on a single page: monitoring dashboard, custom metrics and actions, realtime logs, profiling and notifications.",
@@ -42,6 +43,7 @@ const PRODUCTS = [
     dir: "docs/enterprise",
     out: "docs/enterprise-full.md",
     permalink: "/docs/pm2-enterprise/",
+    section: "enterprise",
     title: "PM2 Enterprise Documentation",
     description:
       "The complete PM2 Enterprise documentation on a single page: on-premise installation, collectors, distributed tracing, frontend monitoring, alerting and dashboards.",
@@ -99,6 +101,7 @@ for (const product of PRODUCTS) {
 layout: docs-io
 title: ${product.title}
 description: "${product.description}"
+section: ${product.section}
 permalink: ${product.permalink}
 ---
 `
