@@ -3,6 +3,7 @@ layout: docs
 title: What's New in PM2
 description: "PM2 release highlights: version 7 with Node.js 20+ requirement, native Bun runtime support, security fixes, reduced dependencies and a rewritten process tree kill."
 permalink: /docs/usage/whats-new/
+last_modified_at: 2026-07-03
 ---
 
 ## What's New in PM2

@@ -7,13 +7,14 @@ LLM-friendly documentation is available at [pm2.keymetrics.io/llms.txt](https://
 
 # Updating the documentation
 
-After editing files under `docs/`, regenerate the LLM-oriented single-file documentation ([llms.txt](https://llmstxt.org) convention) and commit the result:
+The LLM-oriented artifacts ([llms.txt](https://llmstxt.org) convention) — `llms-full.txt`, the per-page `index.html.md` Markdown mirrors and the `last_modified_at` front-matter dates — are regenerated automatically by the `Keep LLM docs in sync` GitHub Action after every docs change. To regenerate locally instead:
 
 ```bash
+node scripts/update-last-modified.js
 node scripts/build-llms-full.js
 ```
 
-This rebuilds `llms-full.txt` at the repository root, following the page order of `_data/nav.yml`. The curated index `llms.txt` is hand-maintained: update it when adding or removing a docs page.
+The curated index `llms.txt` is hand-maintained: update it when adding or removing a docs page.
 
 # Contribution
 
