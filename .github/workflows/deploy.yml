@@ -1,0 +1,90 @@
+name: Build and deploy site
+
+# Builds the site with our own Jekyll (github-pages gem, non-safe mode so
+# _plugins/ loads) and deploys it to GitHub Pages via Actions.
+#
+# Why we own the build instead of the default Pages builder:
+# the default `jekyll-build-pages` image RENDERS the per-page Markdown
+# mirrors (docs/**/index.html.md) as Jekyll pages. Because of the .html.md
+# double extension their output path becomes index.html, which overwrites the
+# real doc page's index.html and strips its layout/sidebar. A normal
+# `jekyll build` treats those mirrors as static passthrough, so building it
+# ourselves keeps both the HTML pages and the raw Markdown mirrors intact.
+#
+# This job also regenerates llms-full.txt, the Markdown mirrors and the
+# last_modified_at front-matter (previously the separate "Keep LLM docs in
+# sync" workflow), commits the refresh, then builds from the fresh tree.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write # auto-commit of regenerated llms files
+  pages: write
+  id-token: write
+
+# Never cancel an in-progress deploy; queue the next one instead.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history for git-derived last_modified_at
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Regenerate LLM docs and freshness dates
+        run: |
+          node scripts/update-last-modified.js
+          node scripts/build-llms-full.js
+
+      # Persist the regenerated files back to the repo. Best-effort: a push
+      # conflict must never block the deploy, which builds from the working
+      # tree regardless. GITHUB_TOKEN pushes don't re-trigger this workflow.
+      - name: Commit regenerated files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "Regenerate llms files and last_modified_at [auto]"
+            git push || echo "::warning::Could not push regenerated files (non-fatal)"
+          fi
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+          # Belt-and-suspenders taint shim: Liquid 4.0.3 (pinned by
+          # github-pages) calls Object#tainted?, removed in Ruby 3.2+. The
+          # non-safe build already loads _plugins/liquid_modern_ruby_patch.rb,
+          # this guarantees it is defined even if plugin loading changes.
+          RUBYOPT: "-r${{ github.workspace }}/_plugins/liquid_modern_ruby_patch.rb"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
