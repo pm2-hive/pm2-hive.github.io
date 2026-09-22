@@ -21,7 +21,7 @@ These init systems are automatically detected by PM2 with the `pm2 startup` comm
 
 ### Generating a Startup Script
 
-To automatically generate and configuration a startup script just type the command (without sudo) `pm2 startup`:
+To automatically generate and configure a startup script just type the command (without sudo) `pm2 startup`:
 
 ```bash
 $ pm2 startup
