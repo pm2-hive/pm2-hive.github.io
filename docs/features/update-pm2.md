@@ -10,6 +10,8 @@ last_modified_at: 2026-07-03
 
 Updating PM2 is extremely fast (less than few seconds) and seamless.
 
+You may wish to backup the `$HOME/.pm2/dump.pm2` file before performing an update, which will in turn back up your current processes.
+
 ### Process to update PM2
 
 Install the latest PM2 version:
