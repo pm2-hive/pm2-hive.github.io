@@ -106,6 +106,10 @@ $ pm2 [list|ls|status]
 
 ![pm2 ls output listing managed Node.js processes](/images/docs/pm2-ls-output.png)
 
+*Note*: If you experience issues with the table rendering too large, you can utilize the `PM2_LS_CONDENSED_COLUMN_BREAKPOINT` environment variable to force PM2 to render in condensed mode. (default is `120` columns).
+- Example: `PM2_LS_CONDENSED_COLUMN_BREAKPOINT=300 pm2 ls`, all terminals less than 300 columns will be rendered in condensed mode.
+- You can see how many columns your terminal is by running `node -e "console.log(process.stdout.columns)"`
+
 ### Display logs
 
 To display logs in realtime:
