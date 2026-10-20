@@ -75,7 +75,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "I can't connect my local PM2 to the PM2.io dashboard",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This can happen for several reasons: 1) You are behind a company proxy or firewall - make sure port 443 is open or set proxy config with PM2_PROXY. 2) You are using an old PM2 version - update with 'npm install pm2@latest -g'. 3) You have concurrent PM2 instances - check with 'ps -aux | grep PM2'. 4) Try refreshing connection with 'pm2 link stop' then 'pm2 link start'."
+        "text": "This can happen for several reasons: 1) You are behind a company proxy or firewall - make sure outbound port 443 to PM2.io is open (the agent does not go through HTTP proxies). 2) You are using an old PM2 version - update with 'npm install pm2@latest -g'. 3) You have concurrent PM2 instances - check with 'ps -aux | grep PM2'. 4) Try refreshing connection with 'pm2 link stop' then 'pm2 link start'."
       }
     },
     {
@@ -207,8 +207,7 @@ If you are in this situation, it might be for several reasons.
 
 - You are behind a company proxy or firewall. 
 
-Make sure the 443 port is opened and/or set the proxy config:
-`PM2_PROXY=<proxy-address> pm2 link <secret> <public>`
+Make sure outbound connections on port 443 to PM2.io are allowed (the PM2.io agent does not go through HTTP proxies).
 
 - You are using a old PM2 version. Update PM2 to latest: `npm install pm2@latest -g`
 
