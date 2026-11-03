@@ -1,6 +1,6 @@
 # PM2
 
-> PM2 is a production process manager for Node.js applications with a built-in
+> PM2 is a production process manager for Node.js/Bun applications with a built-in
 > load balancer. It keeps applications alive forever, reloads them without
 > downtime, manages logs, and facilitates common system admin tasks.
 
@@ -36,14 +36,14 @@ single Markdown file at https://pm2.keymetrics.io/llms-full.txt
 - [Monitoring](https://pm2.keymetrics.io/docs/usage/monitoring/index.html.md): CPU/memory monitoring in the terminal or on the PM2.io web dashboard
 - [No Daemon & Multiple PM2](https://pm2.keymetrics.io/docs/usage/specifics/index.html.md): port 80 without root, multiple daemons, no-daemon mode, interpreter flags
 - [Module System](https://pm2.keymetrics.io/docs/advanced/pm2-module-system/index.html.md): create, install and publish PM2 modules like pm2-logrotate
-- [Source Map Support](https://pm2.keymetrics.io/docs/usage/source-map-support/index.html.md): stack traces for BabelJS/TypeScript and other transpilers
+- [Source Map Support](https://pm2.keymetrics.io/docs/usage/source-map-support/index.html.md): native Node.js source maps for BabelJS/TypeScript and other transpilers
 - [Development Workflow](https://pm2.keymetrics.io/docs/usage/pm2-development/index.html.md): pm2-dev for auto-restart and inline logs during development
 - [Auto Completion](https://pm2.keymetrics.io/docs/usage/auto-completion/index.html.md): shell completion for bash and zsh
 
 ## Integrations
 
 - [Docker](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/index.html.md): pm2-runtime, a drop-in replacement for the node binary in containers, and the official keymetrics/pm2 images (Node.js 22/24/26, hardened, Bun)
-- [Bun, Deno & other Runtimes](https://pm2.keymetrics.io/docs/usage/bun-deno/index.html.md): Bun interpreter for TypeScript, cluster mode under Bun, Deno via --interpreter
+- [Bun, Deno & other Runtimes](https://pm2.keymetrics.io/docs/usage/bun-deno/index.html.md): Bun interpreter for TypeScript (Node.js type stripping without Bun), cluster mode under Bun, Deno via --interpreter
 - [Cloud Providers](https://pm2.keymetrics.io/docs/usage/use-pm2-with-cloud-providers/index.html.md): use PM2 on PaaS platforms like Heroku, Azure or Google App Engine
 - [Production Setup with Nginx](https://pm2.keymetrics.io/docs/tutorials/pm2-nginx-production-setup/index.html.md): Nginx as a reverse proxy in front of PM2, with HTTPS and caching
 - [Using Transpilers](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2/index.html.md): run Babel, CoffeeScript or TypeScript apps with PM2
@@ -53,7 +53,7 @@ single Markdown file at https://pm2.keymetrics.io/llms-full.txt
 
 ## Resources
 
-- [What's New](https://pm2.keymetrics.io/docs/usage/whats-new/index.html.md): release highlights — PM2 7 breaking changes, Bun support, security fixes
+- [What's New](https://pm2.keymetrics.io/docs/usage/whats-new/index.html.md): release highlights — PM2 7.0/7.1 breaking changes (Node.js 18+, filter_env), Bun support, TypeScript type stripping, host metrics, security fixes
 - [FAQ](https://pm2.keymetrics.io/docs/faq/index.html.md): cluster mode, log locations, startup scripts, zero-downtime reloads, memory
 - [Contributing](https://pm2.keymetrics.io/docs/usage/contributing/index.html.md): fork, develop and submit pull requests to PM2
 

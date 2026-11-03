@@ -6,33 +6,15 @@ permalink: /docs/usage/source-map-support/
 last_modified_at: 2026-07-03
 ---
 
-If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get useful information you need to generate [source map files](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
-
-Once these source map files are generated, PM2 will automatically detect them and will help you inspect errors.
+If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get useful information you need to generate [source map files](https://developer.mozilla.org/en-US/docs/Glossary/Source_map).
 
 ## Source map
 
-Since version 1.0.2, PM2 embeds a mechanism to support javascript source maps.
+Since PM2 7, source maps are handled natively by Node.js: every process container calls `process.setSourceMapsEnabled(true)` before loading your app, so stack traces are mapped back to the original sources.
 
-**PM2 automatically detects javascript source map files** if you start app.js, it will expect app.js.map to exist as well.
+Node.js finds the map through the `//# sourceMappingURL=` comment emitted by your transpiler (e.g. `tsc --sourceMap`, `babel --source-maps`). There is nothing to configure in PM2.
 
-If you have a different layout, you can force source map support by starting your application:
-
-Via CLI:
-
-```bash
-pm2 start app.js --source-map-support
-```
-
-Or via JSON file:
-
-```javascript
-module.exports = {
-   name: 'babel-app',
-   script: 'app.js',
-   source_map_support: true
-}
-```
+PM2 7 no longer auto-detects `app.js.map` files nor ships the `source-map-support` package: `--source-map-support` / `source_map_support` are still accepted but do nothing.
 
 ### Inspect exceptions
 
@@ -48,6 +30,10 @@ Otherwise, use [PM2.io](https://pm2.io/) to have a clean listing and notificatio
 
 ### Disable source map support
 
-If you do not want PM2 to automatically support javascript source maps you can use the option `--disable-source-map-support`.
+To start an app without source map support:
 
-This is supported both via CLI and via a JSON file.
+```bash
+pm2 start app.js --disable-source-map-support
+```
+
+Or `disable_source_map_support: true` in the ecosystem file.

@@ -19,7 +19,7 @@ Serve your static files (like a frontend app) over http with a simple command :
 pm2 serve <path> <port>
 ```
 
-The current folder will be used if you don't precise `<path>`, for the port the default one is `8080`.
+The current folder will be used if you don't precise `<path>`, for the port the default one is `8080` (it can also be set with `--port <port>`). The server listens on `0.0.0.0`.
 You can use the same options as a normal application like `--name` or `--watch`.
 
 ## Process file
@@ -36,7 +36,7 @@ module.exports = {
 }
 ```
 
-You just need to add `PM2_SERVE_PATH` and `PM2_SERVE_PORT` to env variables to specify the path and the port, the default are the same as the CLI.
+You just need to add `PM2_SERVE_PATH` and `PM2_SERVE_PORT` to env variables to specify the path and the port, the default are the same as the CLI. Set `PM2_SERVE_HOST` to bind another interface than `0.0.0.0` (e.g. `127.0.0.1`).
 
 ## Serving SPA: redirect all to index.html
 
@@ -83,3 +83,20 @@ module.exports = {
 }
 ```
 
+## Directory listing
+
+To list the content of directories (like `python -m http.server`) use the `--ftp` option. A folder containing an `index.html` serves it, other folders display a file listing:
+
+```bash
+pm2 serve --ftp
+```
+
+Via a process file, set `PM2_SERVE_FTP: 'true'` in `env`.
+
+## Frontend monitoring
+
+With a PM2 instance [linked to PM2 Plus](/docs/usage/monitoring/), `--monitor <app-name>` injects the PM2 Plus browser monitoring snippet into every served HTML file:
+
+```bash
+pm2 serve --monitor my-frontend
+```

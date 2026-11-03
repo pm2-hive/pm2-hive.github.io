@@ -83,13 +83,19 @@ By default, logs (error and output), pid files, dumps, and PM2 logs are located 
 
 ```
 .pm2/
-├── dump.pm2
-├── custom_options.sh
-├── pm2.log
-├── pm2.pid
-├── logs
-└── pids
+├── dump.pm2            # process list saved by pm2 save
+├── dump.pm2.bak        # previous dump
+├── module_conf.json    # pm2 set / module configuration
+├── pm2.log             # daemon logs
+├── pm2.pid             # daemon pid
+├── rpc.sock            # CLI <-> daemon RPC socket
+├── pub.sock            # daemon event bus socket
+├── logs/               # app logs
+├── pids/               # app pid files
+└── modules/            # installed PM2 modules
 ```
+
+When linked to PM2.io, the agent adds `agent.log`, `agent.pid`, `agent.json5` and `interactor.sock`. The home folder is changed with `PM2_HOME`.
 
 ## Passing Node.js flags
 

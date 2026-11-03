@@ -100,6 +100,8 @@ To update environment variables or PM2 options, specify the `--update-env` CLI o
 $ NODE_ENV=production pm2 restart web-interface --update-env
 ```
 
+The shell environment is re-read like on the first start: only real environment variables are taken, filtered by the app's [`filter_env`](/docs/usage/environment/#filtering-the-shell-environment). Shell variables named like a PM2 option (`name`, `instances`, `watch`...) or prefixed `pm_`/`axm_` are ignored: change PM2 options with CLI flags or the ecosystem file.
+
 ### Stop
 
 To stop a specified application:
@@ -155,8 +157,10 @@ To specify which order you want the application to be listed:
 ```bash
 $ pm2 list --sort name:desc
 # Or
-$ pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
+$ pm2 list --sort [name|namespace|id|pid|memory|cpu|status|uptime][:asc|desc]
 ```
+
+`--sort` and `-m` (compact list) only work with `pm2 list`/`pm2 ls`, not with the `l`, `ps` and `status` aliases.
 
 ### Terminal Dashboard
 

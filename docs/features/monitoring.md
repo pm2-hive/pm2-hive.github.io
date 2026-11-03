@@ -19,6 +19,14 @@ You can monitor memory and CPU easily and straight from your terminal:
 pm2 monit
 ```
 
+`pm2 monit` (or `pm2 dash`) preloads the last 200 log lines (out + err merged) of every process. Use `--lines <n>` to display more:
+
+```bash
+pm2 monit --lines 1000
+```
+
+Ctrl+Up / Ctrl+Down (or PageUp / PageDown) scroll the focused log pane page by page. Press `q` or Esc to exit.
+
 ## PM2.io
 
 If you manage your Node.js application with PM2, we invite you to try [PM2.io](https://pm2.io). It makes monitoring and managing applications across servers easier than ever.

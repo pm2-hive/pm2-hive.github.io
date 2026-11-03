@@ -48,7 +48,7 @@ Some options you can pass to the CLI:
 --watch
 
 # Set memory threshold for app reload
---max-memory-restart <200MB>
+--max-memory-restart 200M
 
 # Specify log file
 --log <log_path>
@@ -75,7 +75,7 @@ Some options you can pass to the CLI:
 --no-daemon
 ```
 
-As you can see many options are available to manage your application with PM2. You will discover them depending on your use case.
+As you can see many options are available to manage your application with PM2. You will discover them depending on your use case. See the [options reference](/docs/usage/commands/#options) for the full list.
 
 ## Managing processes
 
