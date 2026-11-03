@@ -42,7 +42,7 @@ single Markdown file at https://pm2.keymetrics.io/llms-full.txt
 
 ## Integrations
 
-- [Docker](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/index.html.md): pm2-runtime, a drop-in replacement for the node binary in containers
+- [Docker](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/index.html.md): pm2-runtime, a drop-in replacement for the node binary in containers, and the official keymetrics/pm2 images (Node.js 22/24/26, hardened, Bun)
 - [Bun, Deno & other Runtimes](https://pm2.keymetrics.io/docs/usage/bun-deno/index.html.md): Bun interpreter for TypeScript, cluster mode under Bun, Deno via --interpreter
 - [Cloud Providers](https://pm2.keymetrics.io/docs/usage/use-pm2-with-cloud-providers/index.html.md): use PM2 on PaaS platforms like Heroku, Azure or Google App Engine
 - [Production Setup with Nginx](https://pm2.keymetrics.io/docs/tutorials/pm2-nginx-production-setup/index.html.md): Nginx as a reverse proxy in front of PM2, with HTTPS and caching
