@@ -3,7 +3,7 @@ layout: docs
 title: Docker Integration
 description: Run Node.js applications with PM2 inside Docker containers using pm2-runtime, a drop-in replacement for the node binary designed for containers.
 permalink: /docs/usage/docker-pm2-nodejs/
-last_modified_at: 2026-07-03
+last_modified_at: 2026-11-03
 ---
 
 <center style="margin-top: 28px; margin-bottom: 23px">
@@ -44,6 +44,30 @@ CMD ["pm2-runtime", "app.js"]
 ```
 
 **You are now all set!** Your Node.js application is now wrapped into a proper Node.js production environment.
+
+### Official images
+
+Instead of installing PM2 yourself, you can start from the [keymetrics/pm2](https://hub.docker.com/r/keymetrics/pm2) images, which ship Node.js and PM2 ready to use:
+
+```
+FROM keymetrics/pm2:24-alpine
+
+WORKDIR /app
+COPY package.json .
+RUN npm install --production
+COPY . .
+
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+```
+
+Tags follow the `<node>-<variant>` pattern, for `linux/amd64` and `linux/arm64`:
+
+- **Node.js**: `22`, `24`, `26` or `latest` (newest Node.js release)
+- **Variant**: `alpine`, `bookworm`, `trixie` or `slim`, on top of the [official Node.js images](https://hub.docker.com/_/node)
+- **Hardened**: `22-hardened`, `24-hardened`, `26-hardened`, based on [Docker Hardened Images](https://docs.docker.com/dhi/) (non-root, no shell, near-zero CVEs)
+- **Bun**: `bun` and `bun-alpine`, to run PM2 and your applications on [Bun](https://bun.sh)
+
+Images are rebuilt every week to pick up Node.js security updates, and on every PM2 release. See the [docker-pm2 repository](https://github.com/keymetrics/docker-pm2) for the full tag list and usage of the hardened images.
 
 ### Starting a configuration file
 

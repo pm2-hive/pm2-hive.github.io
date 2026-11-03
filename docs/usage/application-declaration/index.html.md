@@ -122,7 +122,7 @@ Application behavior and configuration can be fine-tuned with the following attr
 | append_env_to_name | boolean | true | default to false. Use to deploy multiple environments on a single server. It will append each env to name. ex) my-api-production |
 | source_map_support | boolean |  true | default to true, [enable/disable source map file]
 | instance_var | string | "NODE_APP_INSTANCE" | [see documentation](https://pm2.keymetrics.io/docs/usage/environment/#specific-environment-variables)|
-| filter_env | boolean, string or array of string | [ "REACT_" ] | Excludes global variables whose name contains one of the given strings (e.g. "REACT_") and will not allow their penetration into the cluster. Set to true to drop all global environment variables. |
+| filter_env | boolean, string or array of string | [ "REACT_" ] | Filter the environment of the shell running pm2 (and, in cluster mode, of the daemon) passed to the app. `true` keeps only PATH, HOME, USER, LOGNAME, SHELL, LANG, LANGUAGE, the LC\_\* locale categories, TZ, TMPDIR, PM2_HOME and the Windows system variables; a string drops this exact variable; an array drops the variables whose name contains one of the strings (e.g. "REACT_"). Variables declared in `env` are always passed. CLI: `--filter-env` alone means `true`, `--filter-env AWS_` gives `["AWS_"]`. |
 
 ### Log files
 
