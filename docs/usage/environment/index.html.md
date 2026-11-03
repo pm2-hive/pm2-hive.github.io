@@ -49,20 +49,6 @@ Here the default environment is in the `env`, but you can decide to use `env_pro
 
 You can define as many environments as you like, just remember that you must pass the name of the environment (after `env_`) you want to use with `--env`.
 
-## Not passing the shell environment
-
-Set `filter_env` to keep the environment of the shell running `pm2` (and, in cluster mode, of the PM2 daemon) away from the app:
-
-- `filter_env: true` (CLI `--filter-env`): the app only gets PATH, HOME, USER, LOGNAME, SHELL, LANG, LANGUAGE, the LC\_\* locale categories, TZ, TMPDIR, PM2_HOME (and the Windows system variables) plus what `env` declares
-- `filter_env: "AWS_SECRET"`: drops this variable
-- `filter_env: ["AWS_", "TOKEN"]` (CLI `--filter-env AWS_ --filter-env TOKEN`): drops every variable whose name contains one of the strings
-
-It also applies on `pm2 restart/reload --update-env`. Declare any other variable the app needs (NODE_ENV, NODE_OPTIONS, HTTP_PROXY...) in `env`.
-
-`filter_env` keeps secrets out of the app environment, it does not isolate it: an app running as the same user as the PM2 daemon can still read the daemon environment (`/proc/<pid>/environ` on Linux). Start the daemon from a clean environment (e.g. `pm2 startup`) or run the app with `uid`.
-
-Before PM2 7.1.2, `filter_env: true` was ignored. Variables an app already received stay in its saved configuration across restarts: run `pm2 delete <app>`, `pm2 start ecosystem.config.js`, `pm2 save --force`, and rotate any exposed secret.
-
 ## Specific environment variables
 
 ### NODE_APP_INSTANCE (PM2 2.5 minimum)
