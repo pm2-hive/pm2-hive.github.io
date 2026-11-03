@@ -45,7 +45,7 @@ module.exports = {
 };
 ```
 
-**Note**: make sure the application configuration file in the local folder is named either ecosystem.config.js or pm2.config.js, so you don't need to type the configuration filename for each command.
+**Note**: when no file is given, PM2 looks in the local folder for `ecosystem.json`, `ecosystem.yml`, `ecosystem.yaml`, `ecosystem.config.js`, `ecosystem.config.cjs`, `ecosystem.config.mjs`, `ecosystem.json5` then `package.json` (first found wins), so you don't need to type the configuration filename for each command.
 
 ### Provision remote server
 
@@ -60,7 +60,7 @@ Once remote servers have been configured you can start provisioning them:
 $ pm2 deploy production setup
 ```
 
-**Note**: as the app configuration file is named ecosystem.config.js or pm2.config.js in the local folder, you do not need to specify the filename each time
+**Note**: as the app configuration file is named `ecosystem.config.js` (or one of the other default names above) in the local folder, you do not need to specify the filename each time
 
 ### Deploy application
 

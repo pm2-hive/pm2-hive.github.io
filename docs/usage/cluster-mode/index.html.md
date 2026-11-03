@@ -31,6 +31,8 @@ module.exports = {
 
 **NOTE**: setting the `instances` option on a Node.js app automatically enables the cluster mode; declaring `exec_mode: "cluster"` explicitly is optional but recommended for clarity
 
+Cluster mode works with the Node.js and Bun runtimes, including JS/TS run by a custom interpreter (`tsx`, `ts-node`). On a binary or a non-JS script (bash, python...), `exec_mode: "cluster"` falls back to fork mode with a warning (PM2 7.1.0+).
+
 Then to start the Process File:
 
 ```bash

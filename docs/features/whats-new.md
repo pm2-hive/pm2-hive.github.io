@@ -3,7 +3,7 @@ layout: docs
 title: What's New in PM2
 description: "PM2 release highlights: version 7 with Node.js 18+ requirement, native Bun runtime support, TypeScript via Node.js type stripping, built-in host metrics, stricter env filtering, security fixes and reduced dependencies."
 permalink: /docs/usage/whats-new/
-last_modified_at: 2026-07-03
+last_modified_at: 2026-11-03
 ---
 
 ## What's New in PM2

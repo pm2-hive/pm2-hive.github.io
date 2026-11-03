@@ -10,6 +10,8 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 | Command | Description |
 |:--------|:------------|
 | `pm2 start <script/name/id/ecosystem>` | Start and daemonize an app, or start apps declared in a [configuration file](/docs/usage/application-declaration/) |
+| `pm2 start <app> --container` | Start the app inside a Docker container based on `keymetrics/pm2:<node>-trixie` — `--node-version <major>` to pick the Node.js version, `--fresh` to rebuild the Dockerfile, `--dist --image-name <name>` to build a distributable image |
+| `pm2 create` | Pick a sample app boilerplate, copy it to the current folder and start it |
 | `pm2 stop <name/id/namespace/all>` | Stop a process without removing it from the list |
 | `pm2 restart <name/id/namespace/all>` | Kill then restart a process ([restart strategies](/docs/usage/restart-strategies/)) |
 | `pm2 reload <name/id/namespace/all>` | Zero-downtime reload for [cluster mode](/docs/usage/cluster-mode/) applications |
@@ -48,12 +50,15 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 
 | Command | Description |
 |:--------|:------------|
-| `pm2 monit` | Terminal-based dashboard with CPU/memory and [custom metrics](/docs/usage/process-metrics/) |
-| `pm2 dashboard` (alias `dash`) | Terminal dashboard combining monitoring and logs |
+| `pm2 monit` | Terminal-based dashboard with CPU/memory, [custom metrics](/docs/usage/process-metrics/) and logs — `--lines <n>` log lines kept per process (default 200) |
+| `pm2 dashboard` (alias `dash`) | Same terminal dashboard as `pm2 monit` — `--lines <n>` (default 200) |
 | `pm2 imonit` | Legacy terminal monitoring interface |
-| `pm2 sysmonit` | Start the system (host-level) monitoring daemon |
-| `pm2 sysinfos` (alias `slist`) | Print system information in JSON |
-| `pm2 trigger <name/id/namespace/all> <action>` | Trigger a [custom process action](/docs/usage/process-actions/) |
+| `pm2 slist` (alias `sysinfos`) | Print system (host) information in JSON — `--tree` to display it as a tree |
+| `pm2 trigger <name/id/namespace/all> <action> [params]` | Trigger a [custom process action](/docs/usage/process-actions/), optionally with a parameter |
+
+In `pm2 monit` / `pm2 dash`, Ctrl+Up / Ctrl+Down (or PageUp / PageDown) scroll the focused log pane page by page.
+
+Host metrics (CPU, memory, disk, network) are collected by the PM2 daemon by default. To disable the collection: `pm2 set pm2:sysmonit false` then `pm2 update`.
 
 ### Logs
 
@@ -70,7 +75,7 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 |:--------|:------------|
 | `pm2 startup [platform]` | Generate a boot init script (systemd, launchd, ...) — see [persistent applications](/docs/usage/startup/) |
 | `pm2 unstartup [platform]` | Disable and remove the boot init script |
-| `pm2 save` (alias `dump`) | Save the current process list so it can be resurrected at boot |
+| `pm2 save` (alias `dump`) | Save the current process list so it can be resurrected at boot — `--force` to overwrite the dump even when the list is empty |
 | `pm2 resurrect` | Restore the previously saved process list |
 | `pm2 cleardump` | Empty the saved process list dump file |
 
@@ -87,9 +92,9 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 
 | Command | Description |
 |:--------|:------------|
-| `pm2 install <module>` (alias `module:install`) | Install and run a [PM2 module](/docs/advanced/pm2-module-system/) (e.g. `pm2 install pm2-logrotate`) |
+| `pm2 install <module>` (alias `module:install`) | Install and run a [PM2 module](/docs/advanced/pm2-module-system/) (e.g. `pm2 install pm2-logrotate`) — `--tarball` install a local tarball (`--install` to run `yarn install` before starting it), `--safe [time]` restore the previous version if the new one keeps restarting |
 | `pm2 uninstall <module>` (alias `module:uninstall`) | Stop and uninstall a module |
-| `pm2 module:update <module>` | Update a module |
+| `pm2 module:update <module>` | Update a module (`--tarball` for a local tarball) |
 | `pm2 module:generate [name]` | Generate a sample module boilerplate |
 | `pm2 package [target]` | Check and package a TAR-type module |
 | `pm2 publish` (alias `module:publish`) | Publish the module in the current folder |
@@ -97,7 +102,8 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 | `pm2 get [key]` | Read a configuration value |
 | `pm2 unset <key>` | Clear a configuration value |
 | `pm2 multiset "k1 v1 k2 v2"` | Set several configuration values at once |
-| `pm2 conf [key] [value]` (alias `config`) | Get or set module configuration values |
+| `pm2 conf` | Print all configuration values (same as `pm2 get`) |
+| `pm2 config <key> [value]` | Get a configuration value, or set it when `[value]` is given |
 
 ### PM2 Plus
 
@@ -105,7 +111,8 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 |:--------|:------------|
 | `pm2 plus` (alias `register`) | Connect to [PM2 Plus](/docs/usage/monitoring/) web monitoring |
 | `pm2 login` / `pm2 logout` | Log in to / out of PM2 Plus |
-| `pm2 link <secret> <public>` | Link this PM2 instance to the PM2 Plus dashboard |
+| `pm2 link [secret] [public] [name]` | Link this PM2 instance to the PM2 Plus dashboard (`--info-node <url>` for on-premise); without arguments, relaunch the agent with the saved keys |
+| `pm2 link stop` / `pm2 link info` / `pm2 link delete` | Stop the agent / print agent information / stop the agent and delete its saved keys |
 | `pm2 unlink` | Unlink from the PM2 Plus dashboard |
 | `pm2 monitor [name]` / `pm2 unmonitor [name]` | Enable or disable monitoring of a process |
 | `pm2 open` | Open the PM2 Plus dashboard in the browser |
@@ -125,4 +132,95 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 
 | Command | Description |
 |:--------|:------------|
-| `pm2 serve [path] [port]` (alias `expose`) | Serve a directory over HTTP ([static server](/docs/usage/expose/)) — `--spa` for single-page apps |
+| `pm2 serve [path] [port]` (alias `expose`) | Serve a directory over HTTP ([static server](/docs/usage/expose/)) — `--spa` for single-page apps, `--ftp` for directory listing |
+
+### Options
+
+Global options, usable with `pm2 start` and the other commands they apply to. `pm2 -h` prints the full list.
+
+#### Start & runtime
+
+| Option | Description |
+|:-------|:------------|
+| `-n --name <name>` | Set a name for the process in the process list |
+| `-i --instances <number>` | Launch `<number>` instances in [cluster mode](/docs/usage/cluster-mode/) (`max` or `0` = number of CPUs) |
+| `--namespace <ns>` | Start the application within the specified namespace |
+| `--cwd <path>` | Run the script from path `<cwd>` |
+| `--env <environment_name>` | Inject the `env_<environment_name>` set of the ecosystem file ([environment](/docs/usage/environment/)) |
+| `-a --update-env` | Update the environment on restart/reload |
+| `--filter-env [envs]` | Do not pass global variables containing the given strings to the app (alone: drop all but `PATH`, `HOME`...) |
+| `--only <app-name>` | With an ecosystem file, act on one application only |
+| `--interpreter <interpreter>` | Interpreter used to run the app (default `node`) |
+| `--interpreter-args <arguments>` / `--node-args <node_args>` | Arguments passed to the interpreter |
+| `-x --execute-command` | Execute a program using fork mode |
+| `--uid <uid>` / `--gid <gid>` | Run the app with `<uid>` / `<gid>` rights |
+| `--no-autostart` | Add the app to the list without starting it |
+| `--no-daemon` | Run the PM2 daemon in the foreground if it is not already running |
+| `--source-map-support` / `--disable-source-map-support` | Force or disable source map support |
+| `--parallel <number>` | Number of parallel actions (for restart/reload) |
+| `-f --force` | Force actions (e.g. start a script already running) |
+
+#### Restart & shutdown
+
+| Option | Description |
+|:-------|:------------|
+| `--watch [paths]` | Restart on file changes in the app folder, or in `[paths]` (repeatable) ([watch & restart](/docs/usage/watch-and-restart/)) |
+| `--ignore-watch <folders/files>` | Paths to ignore (name or regex) |
+| `--watch-delay <delay>` | Delay before restarting after a file change (`4` = 4 seconds, `4000ms`) |
+| `--ext <extensions>` | Watch only these file extensions |
+| `--max-memory-restart <memory>` | Restart the app when it exceeds this amount of memory (e.g. `200M`, `1G`) |
+| `--max-restarts [count]` | Number of unstable restarts before the app is marked as errored |
+| `--restart-delay <delay>` | Delay between restarts (ms) |
+| `--exp-backoff-restart-delay <delay>` | Initial exponential backoff restart delay (ms) |
+| `--no-autorestart` | Do not restart the app automatically |
+| `--stop-exit-codes <exit_codes...>` | Exit codes that skip automatic restart |
+| `-c --cron <cron_pattern>` (alias `--cron-restart`) | Restart the app on a cron pattern |
+| `-k --kill-timeout <delay>` | Delay before sending the final `SIGKILL` |
+| `--listen-timeout <delay>` | Listen timeout on reload |
+| `--wait-ready` | Wait for `process.send('ready')` from the app |
+| `--shutdown-with-message` | Shutdown with `process.send('shutdown')` instead of `SIGINT` |
+| `--no-treekill` | Only kill the main process, not detached children |
+
+#### Logs
+
+| Option | Description |
+|:-------|:------------|
+| `-o --output <path>` / `-e --error <path>` | stdout / stderr log file |
+| `-l --log [path]` | Log file gathering both stdout and stderr |
+| `--log-type <type>` | Log output style (`raw` by default, `json` optional) |
+| `--log-date-format <format>` | Prefix logs with a custom timestamp |
+| `--time` | Prefix logs with a timestamp |
+| `--merge-logs` | Merge logs of all instances (out and err kept separate) |
+| `--disable-logs` | Do not store any logs |
+| `--attach` | Attach to logs after start/restart/stop/reload |
+| `-p --pid <pid>` | PID file path |
+
+#### Monitoring
+
+| Option | Description |
+|:-------|:------------|
+| `--no-pmx` (alias `--no-automation`) | Do not inject the monitoring agent in the app |
+| `--trace` / `--disable-trace` | Enable or disable transaction tracing |
+| `--v8` | Enable V8 data collection |
+| `--event-loop-inspector` | Enable event-loop inspector dumps |
+| `--deep-monitoring` | Same as `--v8 --event-loop-inspector --trace` |
+| `--no-vizion` | Disable versioning metadata (git parsing is only done when `PM2_ENABLE_GIT_PARSING=true`) |
+
+#### Startup script
+
+| Option | Description |
+|:-------|:------------|
+| `-u --user <username>` | User for the startup script |
+| `--hp <home path>` | Home path for the startup script |
+| `--service-name <name>` | Service name for the startup script |
+| `--wait-ip` | systemd only: wait for full internet connectivity before launching PM2 |
+
+#### Display
+
+| Option | Description |
+|:-------|:------------|
+| `-m --mini-list` | Compact process list without formatting |
+| `--sort <field_name:sort>` | Sort the process list by field (e.g. `name:desc`) |
+| `-s --silent` | Hide all messages |
+| `--no-color` | Disable colors |
+| `-v --version` | Print the PM2 version |

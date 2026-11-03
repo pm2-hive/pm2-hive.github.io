@@ -11,7 +11,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "What is the difference between fork mode and cluster mode?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Fork mode runs your application as a single process, like running it with node directly. Cluster mode spawns multiple instances of your Node.js application and load-balances incoming HTTP/TCP connections between them using the Node.js cluster module, using all available CPU cores. Enable it with 'pm2 start app.js -i max'. Cluster mode only works for Node.js applications; other languages must use fork mode."
+        "text": "Fork mode runs your application as a single process, like running it with node directly. Cluster mode spawns multiple instances of your Node.js application and load-balances incoming HTTP/TCP connections between them using the Node.js cluster module, using all available CPU cores. Enable it with 'pm2 start app.js -i max'. Cluster mode works for Node.js and Bun applications; other languages must use fork mode."
       }
     },
     {
@@ -59,7 +59,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "Can PM2 run applications written in other languages than Node.js?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. PM2 can start any script or binary: Python, Ruby, Bash, PHP or compiled binaries, e.g. 'pm2 start app.py' or 'pm2 start ./binary-file'. The interpreter is selected from the file extension and can be overridden with the --interpreter option. Cluster mode however is only available for Node.js applications."
+        "text": "Yes. PM2 can start any script or binary: Python, Ruby, Bash, PHP or compiled binaries, e.g. 'pm2 start app.py' or 'pm2 start ./binary-file'. The interpreter is selected from the file extension and can be overridden with the --interpreter option. Cluster mode however is only available for Node.js and Bun applications."
       }
     },
     {
@@ -75,7 +75,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "I can't connect my local PM2 to the PM2.io dashboard",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This can happen for several reasons: 1) You are behind a company proxy or firewall - make sure outbound port 443 to PM2.io is open (the agent does not go through HTTP proxies). 2) You are using an old PM2 version - update with 'npm install pm2@latest -g'. 3) You have concurrent PM2 instances - check with 'ps -aux | grep PM2'. 4) Try refreshing connection with 'pm2 link stop' then 'pm2 link start'."
+        "text": "This can happen for several reasons: 1) You are behind a company proxy or firewall - make sure outbound port 443 to PM2.io is open (the agent does not go through HTTP proxies). 2) You are using an old PM2 version - update with 'npm install pm2@latest -g'. 3) You have concurrent PM2 instances - check with 'ps -aux | grep PM2'. 4) Try refreshing connection with 'pm2 link stop' then 'pm2 link'."
       }
     },
     {
@@ -83,7 +83,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "The versioning buttons (Rollback/Pull/Upgrade) aren't working",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Check these solutions: 1) If buttons are disabled, ensure 'Local changes' and 'Local commit' indicators are green. 2) 'Not authorized' warning means you lack admin privileges in the bucket. 3) If the procedure hangs, update Node.js and PM2 to latest versions. 4) Ensure your repository doesn't require password input - clone via SSH and test with 'git remote update'."
+        "text": "Check these solutions: 1) Git metadata is only collected when the PM2 daemon runs with PM2_ENABLE_GIT_PARSING=true - set it, then run 'pm2 update'. 2) If buttons are disabled, ensure 'Local changes' and 'Local commit' indicators are green. 3) 'Not authorized' warning means you lack admin privileges in the bucket. 4) If the procedure hangs, update Node.js and PM2 to latest versions. 5) Ensure your repository doesn't require password input - clone via SSH and test with 'git remote update'."
       }
     },
     {
@@ -132,7 +132,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
 pm2 start app.js -i max
 ```
 
-Cluster mode only works for Node.js applications; scripts in other languages run in fork mode. Read more in the [cluster mode documentation](/docs/usage/cluster-mode/).
+Cluster mode works for Node.js and Bun applications; scripts in other languages run in fork mode. Read more in the [cluster mode documentation](/docs/usage/cluster-mode/).
 
 ## How do I make PM2 restart my apps automatically after a server reboot?
 
@@ -188,7 +188,7 @@ pm2 start app.py
 pm2 start ./binary-file -- --port 1520
 ```
 
-The interpreter is picked from the file extension and can be overridden with `--interpreter`. Cluster mode, however, is Node.js only.
+The interpreter is picked from the file extension and can be overridden with `--interpreter`. Cluster mode, however, is Node.js and Bun only.
 
 ## How do I run PM2 inside a Docker container?
 
@@ -214,9 +214,11 @@ Make sure outbound connections on port 443 to PM2.io are allowed (the PM2.io age
 - You have concurrent PM2 sending data to the same bucket with an identical server name.
 Make sure you have only one PM2 instance launched `ps -aux | grep PM2`
 
-- Refresh your connection to PM2.io. `pm2 link stop` then `pm2 link start`. Also don't forget to refresh the dashboard itself, it might help sometimes.
+- Refresh your connection to PM2.io. `pm2 link stop` then `pm2 link`. Also don't forget to refresh the dashboard itself, it might help sometimes.
 
 ## The versioning buttons (Rollback/Pull/Upgrade) aren't working
+
+- Git metadata is only collected when the PM2 daemon runs with `PM2_ENABLE_GIT_PARSING=true`: export it, then run `pm2 update` so the daemon restarts with it. Apps started with `--no-vizion` (`vizion: false`) are never parsed.
 
 - If the buttons are disabled, make sure that the `Local changes` and `Local commit` indicators are green.
 

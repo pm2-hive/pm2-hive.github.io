@@ -14,7 +14,13 @@ Or via configuration file set the option `watch: true`.
 If an application is started with the `--watch` option, stopping the app will not prevent it to be restarted on file change.
 To totally disable the watch feature, do: `pm2 stop app --watch` or toggle the watch option on application restart via `pm2 restart app --watch`.
 
-To watch specific paths, please use a [Ecosystem File](/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
+Watching is disabled by default. To watch specific paths, pass them to `--watch` (repeatable):
+
+```bash
+pm2 start app.js --watch src --watch lib
+```
+
+Or in an [Ecosystem File](/docs/usage/application-declaration/), where `watch` can be `true`, a string or an array of paths:
 
 ```javascript
 module.exports = {

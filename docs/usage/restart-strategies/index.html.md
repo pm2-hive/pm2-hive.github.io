@@ -77,12 +77,14 @@ module.exports = {
   script: "app.js",
   // Specify which folder to watch
   watch: ["server", "client"],
-  // Specify delay between watch interval
+  // Delay in ms between a file change and the restart (default 0)
   watch_delay: 1000,
-  // Specify which folder to ignore 
+  // Specify which folder to ignore (replaces the default: dotfiles and node_modules)
   ignore_watch : ["node_modules", "client/img"],
 }
 ```
+
+Via CLI, `--watch-delay` is in seconds (`--watch-delay 4`) unless suffixed with `ms` (`--watch-delay 4000ms`). Extra [chokidar](https://github.com/paulmillr/chokidar#api) options can be passed with `watch_options`.
 
 ## Memory based restart strategy
 
@@ -195,6 +197,6 @@ PM2      | App [throw:0] exited with code [1] via signal [SIGINT]
 PM2      | App [throw:0] will restart in 225ms
 ```
 
-As you can see the restart delay between restarts will increase in an exponential moving average, till reaching the maximum of 15000ms between restarts.
+As you can see the restart delay is multiplied by 1.5 at each restart, till reaching the maximum of 15000ms between restarts.
 
-When the application will then get back to a stable mode (uptime without restarts of more than 30 seconds), the restart delay will automatically reset to 0ms.
+When the application will then get back to a stable mode (uptime without restarts of more than 30 seconds), the restart delay will automatically reset to its base value (`exp_backoff_restart_delay`).

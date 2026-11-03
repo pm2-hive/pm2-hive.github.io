@@ -14,7 +14,7 @@ The goal of pm2-runtime is to wrap your applications into a proper Node.js produ
 - Second Process Fallback for High Application Reliability
 - Process Flow Control
 - Automatic Application Monitoring to keep it always sane and high performing
-- Automatic Source Map Discovery and Resolving Support 
+- Source Map Support (native Node.js source maps enabled by default)
 
 Further than that, using PM2 as a layer between the container and the application brings PM2 powerful features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/) and other great features to manage your Node.js application in production environment.
 
@@ -87,13 +87,13 @@ All options available are [listed here](/docs/usage/application-declaration/#att
 You can then replace the **CMD** directive by this:
 
 ```
-CMD ["pm2-runtime", "process.yml"]
+CMD ["pm2-runtime", "ecosystem.config.js"]
 ```
 
 To split each processes in its own Docker, you can use the --only [app-name] option:
 
 ```
-CMD ["pm2-runtime", "process.yml", "--only", "APP"]
+CMD ["pm2-runtime", "ecosystem.config.js", "--only", "APP"]
 ```
 
 ### Using exec_mode cluster together with nuxtjs
@@ -121,12 +121,13 @@ If you want to change the log output format you can select one of this options:
 
 - **--json**: will output logs in JSON format (logstash)
 - **--format**: will output logs in = style format
-- **--raw**: will output logs as is
+- **--formatted**: will output logs prefixed with `|id|app|`
+- **--raw**: will output logs as is (default)
 
 To use one of this flag, you just need to pass them to pm2-runtime:
 
 ```
-CMD ["pm2-runtime", "--json", "process.yml"]
+CMD ["pm2-runtime", "--json", "ecosystem.config.js"]
 ```
 
 ### Enabling Graceful Shutdown
@@ -162,7 +163,7 @@ To enable PM2.io monitoring with **pm2-runtime**, you can either use the CLI opt
 Example with the CLI options via a Dockerfile:
 
 ```
-CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "process.yml"]
+CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "ecosystem.config.js"]
 ```
 
 Or via environment variables:
@@ -187,38 +188,42 @@ Here is the pm2-runtime helper:
 
   Usage: pm2-runtime app.js
 
-  pm2-runtime is a drop-in replacement node.js binary with some interesting production features
+  pm2-runtime is a drop-in replacement Node.js binary for containers
 
   Options:
 
-    -V, --version              output the version number
-    -i --instances <number>    launch [number] of processes automatically load-balanced. Increase overall performances and performance stability.
-    -n --name <name>           set a name for the process in the process list
-    --interpreter <interpreter> set a specific interpreter to use for executing app
-    --node-args <node_args>    space delimited arguments to pass to node
-    --secret [key]             [MONITORING] PM2 plus secret key
-    --public [key]             [MONITORING] PM2 plus public key
-    --machine-name [name]      [MONITORING] PM2 plus machine name
-    --trace                    enable transaction tracing with km
-    --v8                       enable v8 data collecting
-    --format                   output logs formatted like key=val
-    --raw                      raw log output
-    --formatted                formatted log output |id|app|log|
-    --json                     output logs in json format
-    --delay <seconds>          delay start of configuration file by <seconds>
-    --web [port]               launch process web api on [port] (default to 9615)
-    --only <application-name>  only act on one application of configuration
-    --no-auto-exit             do not exit if all processes are errored/stopped or 0 apps launched
-    --env [name]               inject env_[name] env variables in process config file
-    --watch                    watch and restart application on file change
-    --error <path>             error log file destination (default disabled)
-    --output <path>            output log file destination (default disabled)
-    --deep-monitoring          enable all monitoring tools (equivalent to --v8 --event-loop-inspector --trace)
-    -h, --help                 output usage information
-
+    -V, --version                      output the version number
+    -i --instances <number>            launch [number] of processes automatically load-balanced. Increase overall performances and performance stability.
+    --secret [key]                     [MONITORING] PM2 plus secret key
+    --no-autostart                     add an app without automatic start
+    --no-autorestart                   start an app without automatic restart
+    --stop-exit-codes <exit_codes...>  specify a list of exit codes that should skip automatic restart
+    --node-args <node_args>            space delimited arguments to pass to node in cluster mode - e.g. --node-args="--debug=7001 --trace-deprecation"
+    -n --name <name>                   set a <name> for script
+    --max-memory-restart <memory>      specify max memory amount used to autorestart (in octet or use syntax like 100M)
+    -c --cron <cron_pattern>           restart a running process based on a cron pattern
+    --interpreter <interpreter>        the interpreter pm2 should use for executing app (bash, python...)
+    --public [key]                     [MONITORING] PM2 plus public key
+    --machine-name [name]              [MONITORING] PM2 plus machine name
+    --trace                            enable transaction tracing with km
+    --v8                               enable v8 data collecting
+    --format                           output logs formated like key=val
+    --raw                              raw output (default mode)
+    --formatted                        formatted log output |id|app|log
+    --json                             output logs in json format
+    --delay <seconds>                  delay start of configuration file by <seconds> (default: 0)
+    --web [port]                       launch process web api on [port] (default to 9615)
+    --only <application-name>          only act on one application of configuration
+    --no-auto-exit                     do not exit if all processes are errored/stopped or 0 apps launched
+    --env [name]                       inject env_[name] env variables in process config file
+    --watch                            watch and restart application on file change
+    --error <path>                     error log file destination (default disabled) (default: /dev/null)
+    --output <path>                    output log file destination (default disabled) (default: /dev/null)
+    --deep-monitoring                  enable all monitoring tools (equivalent to --v8 --event-loop-inspector --trace)
+    -h, --help                         output usage information
 
   Commands:
 
     *
-    start <app.js|json_file>  start an application or json ecosystem file
+    start <app.js|json_file>           start an application or json ecosystem file
 ```

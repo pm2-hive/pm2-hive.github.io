@@ -14,6 +14,12 @@ PM2 supports Bun natively. When Bun is installed, TypeScript files are started w
 pm2 start app.ts
 ```
 
+On a Bun-only machine (no Node.js), symlink `node` to `bun` so the `pm2` command (`#!/usr/bin/env node`) resolves:
+
+```bash
+sudo ln -s $(which bun) /usr/local/bin/node
+```
+
 To run any application with Bun explicitly, set the interpreter:
 
 ```bash
@@ -34,6 +40,16 @@ module.exports = {
 ```
 
 All the usual PM2 features work with Bun applications: log management, restart strategies, max memory restart, graceful shutdown and monitoring.
+
+### TypeScript without Bun
+
+Since PM2 7.0.4, when bun is not installed, `.ts` apps run with Node.js native type stripping:
+
+- Node.js >= 22.18 / >= 23.6: works out of the box
+- Node.js 22.6 to 22.17 and 23.0 to 23.5: PM2 adds `--experimental-strip-types` to `node_args` automatically
+- Older Node.js: `pm2 start` fails; install bun or set a custom interpreter (e.g. `--interpreter ts-node`)
+
+Type stripping only removes type annotations (no `enum`, `namespace`...). `.tsx` files still require bun.
 
 ### Cluster Mode with Bun
 
@@ -79,13 +95,15 @@ PM2 picks the interpreter from the file extension:
 | Extension | Interpreter |
 |:----------|:------------|
 | `.js` | node (or bun when PM2 runs under Bun) |
-| `.ts`, `.tsx` | bun |
+| `.ts` | bun (Node.js type stripping when bun is not installed) |
+| `.tsx` | bun |
 | `.py` | python |
 | `.rb` | ruby |
 | `.sh` | bash |
 | `.php` | php |
 | `.pl` | perl |
 | `.coffee` | coffee |
+| `.ls` | lsc |
 
 Any other runtime works by setting `--interpreter` (CLI) or `interpreter` / `interpreter_args` (configuration file) explicitly:
 

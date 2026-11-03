@@ -44,6 +44,9 @@ pm2 logs --json
 
 # Display 1000 lines of api log file
 pm2 logs big-api --lines 1000
+
+# Display logs of all apps whose name matches a regex
+pm2 logs "/^api-/"
 ```
 
 You can also check logs with the CLI dashboard:
@@ -99,6 +102,8 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 --time                       prefix logs with standard formatted timestamp
 --log-date-format <format>   prefix logs with custom formatted timestamp
 --merge-logs                 when running multiple process with same app name, do not split file by id
+--log-type <type>            log output style (raw by default, json optional)
+--disable-logs               drop all app output (no log file, nothing in pm2 logs)
 ```
 
 #### Auto prefixing logs with Date
@@ -117,13 +122,14 @@ Via configuration file you can pass the options:
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
-|error_file| (string)| | error file path (default to $HOME/.pm2/logs/&lt;app name&gt;-error-&lt;pid&gt;.log)|
-|out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out-&lt;pid&gt;.log)|
-|log_file| (string) | | file path for both output and error logs (disabled by default)|
-|pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pid&gt;.pid)|
-|merge_logs| boolean | true | if set to true, avoid to suffix logs file with the process id  |
+|error_file| (string)| | error file path (default to $HOME/.pm2/logs/&lt;app name&gt;-error.log, suffixed with the pm_id unless merge_logs is set: &lt;app name&gt;-error-&lt;pm_id&gt;.log)|
+|out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out.log, suffixed with the pm_id unless merge_logs is set)|
+|log_file| (string or boolean) | | file path for both output and error logs (disabled by default). `true` writes to $HOME/.pm2/logs/&lt;app name&gt;.log|
+|pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pm_id&gt;.pid, always suffixed with the pm_id)|
+|merge_logs| boolean | true | if set to true, avoid to suffix logs file with the pm_id. Default to true when `exec_mode` is not cluster and `instances` is unset or 0, false otherwise |
 |log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
 |log_type| (string) | "json" | specify log output style, possible value: 'json' (will log raw by default)|
+|disable_logs| boolean | true | false by default. If true app output is dropped: nothing is written to disk nor shown by `pm2 logs`|
 
 ### Disabling log suffix
  
@@ -149,6 +155,8 @@ module.exports = {
 ```
 
 You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are a hardcoded string).
+
+To also stop the output from reaching `pm2 logs`, use `disable_logs: true` (or `--disable-logs`).
 
 ### Setting up a native logrotate
 

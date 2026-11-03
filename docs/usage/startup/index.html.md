@@ -10,6 +10,8 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 - **launchd**: Darwin, MacOSx
 - **openrc**: Gentoo Linux, Arch Linux
 - **rcd**: FreeBSD
+- **rcd-openbsd**: OpenBSD
+- **smf**: SunOS, Solaris
 - **systemv**: Centos 6, Amazon Linux
 
 These init systems are automatically detected by PM2 with the `pm2 startup` command.
@@ -28,7 +30,7 @@ sudo env PATH=$PATH:/home/unitech/.nvm/versions/node/v22.0.0/bin pm2 startup sys
 Then copy/paste the displayed command onto the terminal:
 
 ```bash
-sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v14.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
+sudo env PATH=$PATH:/home/unitech/.nvm/versions/node/v22.0.0/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
 Now PM2 will automatically restart at boot.
@@ -87,11 +89,19 @@ Just change the `-u <username>` option and the `--hp <user_home>`:
 pm2 startup ubuntu -u www --hp /home/ubuntu
 ```
 
+#### Waiting for network connectivity (systemd)
+
+If your apps need full network connectivity at boot, add `--wait-ip`: the generated systemd unit is started after `network-online.target`:
+
+```bash
+pm2 startup --wait-ip
+```
+
 #### Specifying the init system
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
-pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | rcd-openbsd | openrc | smf | sunos | solaris]
+pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | openbsd | systemd | systemv | upstart | launchd | rcd | rcd-openbsd | openrc | smf | sunos | solaris]
 ```
 
 #### SystemD installation checking
@@ -131,6 +141,8 @@ To generate a Windows compatible startup script have a look to the excellent [pm
 - **launchd**: Darwin, MacOSx
 - **openrc**: Gentoo Linux, Arch Linux
 - **rcd**: FreeBSD
+- **rcd-openbsd**: OpenBSD
+- **smf**: SunOS, Solaris
 - **systemv**: Centos 6, Amazon Linux
 
 These init systems are automatically detected by PM2 with the `pm2 startup` command.

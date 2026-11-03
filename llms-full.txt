@@ -49,7 +49,7 @@ Some options you can pass to the CLI:
 --watch
 
 # Set memory threshold for app reload
---max-memory-restart <200MB>
+--max-memory-restart 200M
 
 # Specify log file
 --log <log_path>
@@ -76,7 +76,7 @@ Some options you can pass to the CLI:
 --no-daemon
 ```
 
-As you can see many options are available to manage your application with PM2. You will discover them depending on your use case.
+As you can see many options are available to manage your application with PM2. You will discover them depending on your use case. See the [options reference](/docs/usage/commands/#options) for the full list.
 
 ## Managing processes
 
@@ -409,6 +409,8 @@ To update environment variables or PM2 options, specify the `--update-env` CLI o
 $ NODE_ENV=production pm2 restart web-interface --update-env
 ```
 
+The shell environment is re-read like on the first start: only real environment variables are taken, filtered by the app's [`filter_env`](/docs/usage/environment/#filtering-the-shell-environment). Shell variables named like a PM2 option (`name`, `instances`, `watch`...) or prefixed `pm_`/`axm_` are ignored: change PM2 options with CLI flags or the ecosystem file.
+
 ### Stop
 
 To stop a specified application:
@@ -464,8 +466,10 @@ To specify which order you want the application to be listed:
 ```bash
 $ pm2 list --sort name:desc
 # Or
-$ pm2 list --sort [name|id|pid|memory|cpu|status|uptime][:asc|desc]
+$ pm2 list --sort [name|namespace|id|pid|memory|cpu|status|uptime][:asc|desc]
 ```
+
+`--sort` and `-m` (compact list) only work with `pm2 list`/`pm2 ls`, not with the `l`, `ps` and `status` aliases.
 
 ### Terminal Dashboard
 
@@ -513,6 +517,8 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 | Command | Description |
 |:--------|:------------|
 | `pm2 start <script/name/id/ecosystem>` | Start and daemonize an app, or start apps declared in a [configuration file](/docs/usage/application-declaration/) |
+| `pm2 start <app> --container` | Start the app inside a Docker container based on `keymetrics/pm2:<node>-trixie` — `--node-version <major>` to pick the Node.js version, `--fresh` to rebuild the Dockerfile, `--dist --image-name <name>` to build a distributable image |
+| `pm2 create` | Pick a sample app boilerplate, copy it to the current folder and start it |
 | `pm2 stop <name/id/namespace/all>` | Stop a process without removing it from the list |
 | `pm2 restart <name/id/namespace/all>` | Kill then restart a process ([restart strategies](/docs/usage/restart-strategies/)) |
 | `pm2 reload <name/id/namespace/all>` | Zero-downtime reload for [cluster mode](/docs/usage/cluster-mode/) applications |
@@ -551,12 +557,15 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 
 | Command | Description |
 |:--------|:------------|
-| `pm2 monit` | Terminal-based dashboard with CPU/memory and [custom metrics](/docs/usage/process-metrics/) |
-| `pm2 dashboard` (alias `dash`) | Terminal dashboard combining monitoring and logs |
+| `pm2 monit` | Terminal-based dashboard with CPU/memory, [custom metrics](/docs/usage/process-metrics/) and logs — `--lines <n>` log lines kept per process (default 200) |
+| `pm2 dashboard` (alias `dash`) | Same terminal dashboard as `pm2 monit` — `--lines <n>` (default 200) |
 | `pm2 imonit` | Legacy terminal monitoring interface |
-| `pm2 sysmonit` | Start the system (host-level) monitoring daemon |
-| `pm2 sysinfos` (alias `slist`) | Print system information in JSON |
-| `pm2 trigger <name/id/namespace/all> <action>` | Trigger a [custom process action](/docs/usage/process-actions/) |
+| `pm2 slist` (alias `sysinfos`) | Print system (host) information in JSON — `--tree` to display it as a tree |
+| `pm2 trigger <name/id/namespace/all> <action> [params]` | Trigger a [custom process action](/docs/usage/process-actions/), optionally with a parameter |
+
+In `pm2 monit` / `pm2 dash`, Ctrl+Up / Ctrl+Down (or PageUp / PageDown) scroll the focused log pane page by page.
+
+Host metrics (CPU, memory, disk, network) are collected by the PM2 daemon by default. To disable the collection: `pm2 set pm2:sysmonit false` then `pm2 update`.
 
 ### Logs
 
@@ -573,7 +582,7 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 |:--------|:------------|
 | `pm2 startup [platform]` | Generate a boot init script (systemd, launchd, ...) — see [persistent applications](/docs/usage/startup/) |
 | `pm2 unstartup [platform]` | Disable and remove the boot init script |
-| `pm2 save` (alias `dump`) | Save the current process list so it can be resurrected at boot |
+| `pm2 save` (alias `dump`) | Save the current process list so it can be resurrected at boot — `--force` to overwrite the dump even when the list is empty |
 | `pm2 resurrect` | Restore the previously saved process list |
 | `pm2 cleardump` | Empty the saved process list dump file |
 
@@ -590,9 +599,9 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 
 | Command | Description |
 |:--------|:------------|
-| `pm2 install <module>` (alias `module:install`) | Install and run a [PM2 module](/docs/advanced/pm2-module-system/) (e.g. `pm2 install pm2-logrotate`) |
+| `pm2 install <module>` (alias `module:install`) | Install and run a [PM2 module](/docs/advanced/pm2-module-system/) (e.g. `pm2 install pm2-logrotate`) — `--tarball` install a local tarball (`--install` to run `yarn install` before starting it), `--safe [time]` restore the previous version if the new one keeps restarting |
 | `pm2 uninstall <module>` (alias `module:uninstall`) | Stop and uninstall a module |
-| `pm2 module:update <module>` | Update a module |
+| `pm2 module:update <module>` | Update a module (`--tarball` for a local tarball) |
 | `pm2 module:generate [name]` | Generate a sample module boilerplate |
 | `pm2 package [target]` | Check and package a TAR-type module |
 | `pm2 publish` (alias `module:publish`) | Publish the module in the current folder |
@@ -600,7 +609,8 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 | `pm2 get [key]` | Read a configuration value |
 | `pm2 unset <key>` | Clear a configuration value |
 | `pm2 multiset "k1 v1 k2 v2"` | Set several configuration values at once |
-| `pm2 conf [key] [value]` (alias `config`) | Get or set module configuration values |
+| `pm2 conf` | Print all configuration values (same as `pm2 get`) |
+| `pm2 config <key> [value]` | Get a configuration value, or set it when `[value]` is given |
 
 ### PM2 Plus
 
@@ -608,7 +618,8 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 |:--------|:------------|
 | `pm2 plus` (alias `register`) | Connect to [PM2 Plus](/docs/usage/monitoring/) web monitoring |
 | `pm2 login` / `pm2 logout` | Log in to / out of PM2 Plus |
-| `pm2 link <secret> <public>` | Link this PM2 instance to the PM2 Plus dashboard |
+| `pm2 link [secret] [public] [name]` | Link this PM2 instance to the PM2 Plus dashboard (`--info-node <url>` for on-premise); without arguments, relaunch the agent with the saved keys |
+| `pm2 link stop` / `pm2 link info` / `pm2 link delete` | Stop the agent / print agent information / stop the agent and delete its saved keys |
 | `pm2 unlink` | Unlink from the PM2 Plus dashboard |
 | `pm2 monitor [name]` / `pm2 unmonitor [name]` | Enable or disable monitoring of a process |
 | `pm2 open` | Open the PM2 Plus dashboard in the browser |
@@ -628,7 +639,98 @@ Every PM2 command, one line each, grouped by theme. Run `pm2 <command> -h` to li
 
 | Command | Description |
 |:--------|:------------|
-| `pm2 serve [path] [port]` (alias `expose`) | Serve a directory over HTTP ([static server](/docs/usage/expose/)) — `--spa` for single-page apps |
+| `pm2 serve [path] [port]` (alias `expose`) | Serve a directory over HTTP ([static server](/docs/usage/expose/)) — `--spa` for single-page apps, `--ftp` for directory listing |
+
+### Options
+
+Global options, usable with `pm2 start` and the other commands they apply to. `pm2 -h` prints the full list.
+
+#### Start & runtime
+
+| Option | Description |
+|:-------|:------------|
+| `-n --name <name>` | Set a name for the process in the process list |
+| `-i --instances <number>` | Launch `<number>` instances in [cluster mode](/docs/usage/cluster-mode/) (`max` or `0` = number of CPUs) |
+| `--namespace <ns>` | Start the application within the specified namespace |
+| `--cwd <path>` | Run the script from path `<cwd>` |
+| `--env <environment_name>` | Inject the `env_<environment_name>` set of the ecosystem file ([environment](/docs/usage/environment/)) |
+| `-a --update-env` | Update the environment on restart/reload |
+| `--filter-env [envs]` | Do not pass global variables containing the given strings to the app (alone: drop all but `PATH`, `HOME`...) |
+| `--only <app-name>` | With an ecosystem file, act on one application only |
+| `--interpreter <interpreter>` | Interpreter used to run the app (default `node`) |
+| `--interpreter-args <arguments>` / `--node-args <node_args>` | Arguments passed to the interpreter |
+| `-x --execute-command` | Execute a program using fork mode |
+| `--uid <uid>` / `--gid <gid>` | Run the app with `<uid>` / `<gid>` rights |
+| `--no-autostart` | Add the app to the list without starting it |
+| `--no-daemon` | Run the PM2 daemon in the foreground if it is not already running |
+| `--source-map-support` / `--disable-source-map-support` | Force or disable source map support |
+| `--parallel <number>` | Number of parallel actions (for restart/reload) |
+| `-f --force` | Force actions (e.g. start a script already running) |
+
+#### Restart & shutdown
+
+| Option | Description |
+|:-------|:------------|
+| `--watch [paths]` | Restart on file changes in the app folder, or in `[paths]` (repeatable) ([watch & restart](/docs/usage/watch-and-restart/)) |
+| `--ignore-watch <folders/files>` | Paths to ignore (name or regex) |
+| `--watch-delay <delay>` | Delay before restarting after a file change (`4` = 4 seconds, `4000ms`) |
+| `--ext <extensions>` | Watch only these file extensions |
+| `--max-memory-restart <memory>` | Restart the app when it exceeds this amount of memory (e.g. `200M`, `1G`) |
+| `--max-restarts [count]` | Number of unstable restarts before the app is marked as errored |
+| `--restart-delay <delay>` | Delay between restarts (ms) |
+| `--exp-backoff-restart-delay <delay>` | Initial exponential backoff restart delay (ms) |
+| `--no-autorestart` | Do not restart the app automatically |
+| `--stop-exit-codes <exit_codes...>` | Exit codes that skip automatic restart |
+| `-c --cron <cron_pattern>` (alias `--cron-restart`) | Restart the app on a cron pattern |
+| `-k --kill-timeout <delay>` | Delay before sending the final `SIGKILL` |
+| `--listen-timeout <delay>` | Listen timeout on reload |
+| `--wait-ready` | Wait for `process.send('ready')` from the app |
+| `--shutdown-with-message` | Shutdown with `process.send('shutdown')` instead of `SIGINT` |
+| `--no-treekill` | Only kill the main process, not detached children |
+
+#### Logs
+
+| Option | Description |
+|:-------|:------------|
+| `-o --output <path>` / `-e --error <path>` | stdout / stderr log file |
+| `-l --log [path]` | Log file gathering both stdout and stderr |
+| `--log-type <type>` | Log output style (`raw` by default, `json` optional) |
+| `--log-date-format <format>` | Prefix logs with a custom timestamp |
+| `--time` | Prefix logs with a timestamp |
+| `--merge-logs` | Merge logs of all instances (out and err kept separate) |
+| `--disable-logs` | Do not store any logs |
+| `--attach` | Attach to logs after start/restart/stop/reload |
+| `-p --pid <pid>` | PID file path |
+
+#### Monitoring
+
+| Option | Description |
+|:-------|:------------|
+| `--no-pmx` (alias `--no-automation`) | Do not inject the monitoring agent in the app |
+| `--trace` / `--disable-trace` | Enable or disable transaction tracing |
+| `--v8` | Enable V8 data collection |
+| `--event-loop-inspector` | Enable event-loop inspector dumps |
+| `--deep-monitoring` | Same as `--v8 --event-loop-inspector --trace` |
+| `--no-vizion` | Disable versioning metadata (git parsing is only done when `PM2_ENABLE_GIT_PARSING=true`) |
+
+#### Startup script
+
+| Option | Description |
+|:-------|:------------|
+| `-u --user <username>` | User for the startup script |
+| `--hp <home path>` | Home path for the startup script |
+| `--service-name <name>` | Service name for the startup script |
+| `--wait-ip` | systemd only: wait for full internet connectivity before launching PM2 |
+
+#### Display
+
+| Option | Description |
+|:-------|:------------|
+| `-m --mini-list` | Compact process list without formatting |
+| `--sort <field_name:sort>` | Sort the process list by field (e.g. `name:desc`) |
+| `-s --silent` | Hide all messages |
+| `--no-color` | Disable colors |
+| `-v --version` | Print the PM2 version |
 
 ---
 
@@ -711,12 +813,14 @@ module.exports = {
   script: "app.js",
   // Specify which folder to watch
   watch: ["server", "client"],
-  // Specify delay between watch interval
+  // Delay in ms between a file change and the restart (default 0)
   watch_delay: 1000,
-  // Specify which folder to ignore 
+  // Specify which folder to ignore (replaces the default: dotfiles and node_modules)
   ignore_watch : ["node_modules", "client/img"],
 }
 ```
+
+Via CLI, `--watch-delay` is in seconds (`--watch-delay 4`) unless suffixed with `ms` (`--watch-delay 4000ms`). Extra [chokidar](https://github.com/paulmillr/chokidar#api) options can be passed with `watch_options`.
 
 ## Memory based restart strategy
 
@@ -829,9 +933,9 @@ PM2      | App [throw:0] exited with code [1] via signal [SIGINT]
 PM2      | App [throw:0] will restart in 225ms
 ```
 
-As you can see the restart delay between restarts will increase in an exponential moving average, till reaching the maximum of 15000ms between restarts.
+As you can see the restart delay is multiplied by 1.5 at each restart, till reaching the maximum of 15000ms between restarts.
 
-When the application will then get back to a stable mode (uptime without restarts of more than 30 seconds), the restart delay will automatically reset to 0ms.
+When the application will then get back to a stable mode (uptime without restarts of more than 30 seconds), the restart delay will automatically reset to its base value (`exp_backoff_restart_delay`).
 
 ---
 
@@ -881,6 +985,9 @@ pm2 logs --json
 
 # Display 1000 lines of api log file
 pm2 logs big-api --lines 1000
+
+# Display logs of all apps whose name matches a regex
+pm2 logs "/^api-/"
 ```
 
 You can also check logs with the CLI dashboard:
@@ -936,6 +1043,8 @@ When running `pm2 start app.js [OPTIONS]` you can pass any of this options to th
 --time                       prefix logs with standard formatted timestamp
 --log-date-format <format>   prefix logs with custom formatted timestamp
 --merge-logs                 when running multiple process with same app name, do not split file by id
+--log-type <type>            log output style (raw by default, json optional)
+--disable-logs               drop all app output (no log file, nothing in pm2 logs)
 ```
 
 #### Auto prefixing logs with Date
@@ -954,13 +1063,14 @@ Via configuration file you can pass the options:
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
-|error_file| (string)| | error file path (default to $HOME/.pm2/logs/&lt;app name&gt;-error-&lt;pid&gt;.log)|
-|out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out-&lt;pid&gt;.log)|
-|log_file| (string) | | file path for both output and error logs (disabled by default)|
-|pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pid&gt;.pid)|
-|merge_logs| boolean | true | if set to true, avoid to suffix logs file with the process id  |
+|error_file| (string)| | error file path (default to $HOME/.pm2/logs/&lt;app name&gt;-error.log, suffixed with the pm_id unless merge_logs is set: &lt;app name&gt;-error-&lt;pm_id&gt;.log)|
+|out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out.log, suffixed with the pm_id unless merge_logs is set)|
+|log_file| (string or boolean) | | file path for both output and error logs (disabled by default). `true` writes to $HOME/.pm2/logs/&lt;app name&gt;.log|
+|pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pm_id&gt;.pid, always suffixed with the pm_id)|
+|merge_logs| boolean | true | if set to true, avoid to suffix logs file with the pm_id. Default to true when `exec_mode` is not cluster and `instances` is unset or 0, false otherwise |
 |log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
 |log_type| (string) | "json" | specify log output style, possible value: 'json' (will log raw by default)|
+|disable_logs| boolean | true | false by default. If true app output is dropped: nothing is written to disk nor shown by `pm2 logs`|
 
 ### Disabling log suffix
  
@@ -986,6 +1096,8 @@ module.exports = {
 ```
 
 You can provide `/dev/null` or `NULL` as output of logs (not depending on the platform, they are a hardcoded string).
+
+To also stop the output from reaching `pm2 logs`, use `disable_logs: true` (or `--disable-logs`).
 
 ### Setting up a native logrotate
 
@@ -1022,6 +1134,8 @@ PM2 can generate startup scripts and configure them in order to keep your proces
 - **launchd**: Darwin, MacOSx
 - **openrc**: Gentoo Linux, Arch Linux
 - **rcd**: FreeBSD
+- **rcd-openbsd**: OpenBSD
+- **smf**: SunOS, Solaris
 - **systemv**: Centos 6, Amazon Linux
 
 These init systems are automatically detected by PM2 with the `pm2 startup` command.
@@ -1040,7 +1154,7 @@ sudo env PATH=$PATH:/home/unitech/.nvm/versions/node/v22.0.0/bin pm2 startup sys
 Then copy/paste the displayed command onto the terminal:
 
 ```bash
-sudo su -c "env PATH=$PATH:/home/unitech/.nvm/versions/node/v14.3/bin pm2 startup <distribution> -u <user> --hp <home-path>
+sudo env PATH=$PATH:/home/unitech/.nvm/versions/node/v22.0.0/bin pm2 startup <distribution> -u <user> --hp <home-path>
 ```
 
 Now PM2 will automatically restart at boot.
@@ -1099,11 +1213,19 @@ Just change the `-u <username>` option and the `--hp <user_home>`:
 pm2 startup ubuntu -u www --hp /home/ubuntu
 ```
 
+#### Waiting for network connectivity (systemd)
+
+If your apps need full network connectivity at boot, add `--wait-ip`: the generated systemd unit is started after `network-online.target`:
+
+```bash
+pm2 startup --wait-ip
+```
+
 #### Specifying the init system
 
 You can specify the platform you use by yourself if you want to (where platform can be either one of the cited above): 
 ```
-pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | rcd-openbsd | openrc | smf | sunos | solaris]
+pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | openbsd | systemd | systemv | upstart | launchd | rcd | rcd-openbsd | openrc | smf | sunos | solaris]
 ```
 
 #### SystemD installation checking
@@ -1143,6 +1265,8 @@ To generate a Windows compatible startup script have a look to the excellent [pm
 - **launchd**: Darwin, MacOSx
 - **openrc**: Gentoo Linux, Arch Linux
 - **rcd**: FreeBSD
+- **rcd-openbsd**: OpenBSD
+- **smf**: SunOS, Solaris
 - **systemv**: Centos 6, Amazon Linux
 
 These init systems are automatically detected by PM2 with the `pm2 startup` command.
@@ -1252,56 +1376,75 @@ Application behavior and configuration can be fine-tuned with the following attr
 |:----------|:-------:|:------------------------------:|:-------------------------|
 |name   | (string)   | "my-api" | application name (default to script filename without extension)|
 |script| (string)    | "./api/app.js" | script path relative to pm2 start|
+|namespace| (string) | "api" | process namespace, usable as target in commands (default to "default")|
 |cwd| (string)       | "/var/www/" | the directory from which your app will be launched|
-|args| (string)      | "-a 13 -b 12" | string containing all arguments passed via CLI to script|
+|args| (string or array) | "-a 13 -b 12" | arguments passed to the script|
 |interpreter| (string) | "/usr/bin/python" |interpreter absolute path (default to node)|
-|interpreter_args| (string) | "--harmony" | option to pass to the interpreter|
-|node_args| (string) |   |arguments passed to the node interpreter (interpreter_args is an alias of this option)|
+|interpreter_args| (string or array) | "--harmony" | option to pass to the interpreter|
+|node_args| (string or array) |   |arguments passed to the node interpreter (interpreter_args is an alias of this option)|
+|port| (number) | 3000 | shortcut to inject a `PORT` environment variable|
+|uid| (number or string) | "www-data" | run the app as this user (alias `user`). PM2 must run as root, not available on Windows|
+|gid| (number or string) | "www-data" | run the app with this group. PM2 must run as root, not available on Windows|
 
 
 ### Advanced features
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
-|instances | number | -1 | number of app instance to be launched |
-|exec_mode | string | "cluster" | mode to start your app, can be "cluster" or "fork", default fork|
+|instances | number or "max" | -1 | number of app instance to be launched. `0` or "max" for one per CPU, `-1` for CPUs minus one |
+|exec_mode | string | "cluster" | mode to start your app, can be "cluster" or "fork". Default to cluster when `instances` is set and the interpreter is node or bun, fork otherwise. A non-JS script in cluster mode falls back to fork with a warning|
 | watch   | boolean or [] |  true |  enable watch & restart feature, if a file change in the folder or subfolder, your app will get reloaded |
-|    ignore_watch    |   list  |     ["[\\/\\\\]\\./", "node_modules"]     | list of regex to ignore some file or folder names by the watch feature|
+|    ignore_watch    |   list  |     ["[\\/\\\\]\\./", "node_modules"]     | list of regex to ignore some file or folder names by the watch feature. Replaces the default ignore (dotfiles and node_modules)|
+| watch_delay | number | 1000 | time in ms to wait after a file change before restarting (default 0) |
+| watch_options | object | {"usePolling": true} | options passed to [chokidar](https://github.com/paulmillr/chokidar#api), merged over PM2 defaults |
+| increment_var | string | "PORT" | env variable incremented by one for each instance ([see documentation](/docs/usage/environment/#specific-environment-variables)) |
 | max_memory_restart |  string |  "150M" |  your app will be restarted if it exceeds the amount of memory specified. human-friendly format : it can be "10M", "100K", "2G" and so on... |
 | env |  object |   {"NODE_ENV": "development", "ID": "42"}  | env variables which will appear in your app |
 | env_<ENV_NAME> |  object |   {"NODE_ENV": "production", "ID": "89"}  | inject <ENV_NAME> when doing pm2 restart app.yml --env <ENV_NAME>|
 | append_env_to_name | boolean | true | default to false. Use to deploy multiple environments on a single server. It will append each env to name. ex) my-api-production |
-| source_map_support | boolean |  true | default to true, [enable/disable source map file]
+| disable_source_map_support | boolean |  true | default to false. If true, PM2 does not enable Node.js source maps (`process.setSourceMapsEnabled`) |
 | instance_var | string | "NODE_APP_INSTANCE" | [see documentation](https://pm2.keymetrics.io/docs/usage/environment/#specific-environment-variables)|
 | filter_env | boolean, string or array of string | [ "REACT_" ] | Filter the environment of the shell running pm2 (and, in cluster mode, of the daemon) passed to the app. `true` keeps only PATH, HOME, USER, LOGNAME, SHELL, LANG, LANGUAGE, the LC\_\* locale categories, TZ, TMPDIR, PM2_HOME and the Windows system variables; a string drops this exact variable; an array drops the variables whose name contains one of the strings (e.g. "REACT_"). Variables declared in `env` are always passed. CLI: `--filter-env` alone means `true`, `--filter-env AWS_` gives `["AWS_"]`. |
+| pmx | boolean | false | default to true. If false, the monitoring agent (pm2-io-bpm) is not injected in the app. `automation: false` does the same |
+| trace | boolean | true | default to false. Enable transaction tracing (OpenTelemetry packages are installed on first use, see `pm2 install-otel`) |
+| disable_trace | boolean | true | force tracing off |
+| deep_monitoring | boolean | true | enable all monitoring tools (v8, event loop inspector, tracing) |
+| windowsHide | boolean | false | default to true. Hide the console window of the app on Windows (fork mode) |
 
 ### Log files
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
 |log_date_format| (string) | "YYYY-MM-DD HH:mm Z" | log date format (see log section)|
-|error_file| (string)| | error file path (default to $HOME/.pm2/logs/&lt;app name&gt;-error-&lt;pid&gt;.log)|
-|out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out-&lt;pid&gt;.log)|
-|log_file| (string) | | file path for both output and error logs (disabled by default)|
-|combine_logs| boolean | true | if set to true, avoid to suffix logs file with the process id |
-|merge_logs| boolean | true | if set to true, avoid to suffix logs file with the process id (combine_logs is an alias of this option)|
+|error_file| (string)| | error file path (default to $HOME/.pm2/logs/&lt;app name&gt;-error.log, suffixed with the pm_id unless merge_logs is set: &lt;app name&gt;-error-&lt;pm_id&gt;.log)|
+|out_file| (string) | | output file path (default to $HOME/.pm2/logs/&lt;app name&gt;-out.log, suffixed with the pm_id unless merge_logs is set)|
+|log_file| (string or boolean) | | file path for both output and error logs (disabled by default). `true` writes to $HOME/.pm2/logs/&lt;app name&gt;.log|
+|combine_logs| boolean | true | if set to true, avoid to suffix logs file with the pm_id |
+|merge_logs| boolean | true | if set to true, avoid to suffix logs file with the pm_id (combine_logs is an alias of this option). Default to true when `exec_mode` is not cluster and `instances` is unset or 0, false otherwise|
 |time| boolean | false | false by default. If true auto prefixes logs with Date|
-|pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pid&gt;.pid)|
+|log_type| (string) | "json" | log output style, possible value: 'json' (raw by default)|
+|disable_logs| boolean | true | false by default. If true app output is dropped: nothing is written to disk nor shown by `pm2 logs`|
+|pid_file| (string) | | pid file path (default to $HOME/.pm2/pids/&lt;app name&gt;-&lt;pm_id&gt;.pid, always suffixed with the pm_id)|
 
 ### Control flow
 
 |    Field |   Type  |  Example |  Description|
 |:----------|:-------:|:------------------------------:|:-------------------------|
-|min_uptime| (number) | | min uptime of the app to be considered started |
+|min_uptime| (number or string) | "10s" | min uptime of the app to be considered started (defaults to 1000 ms) |
 | listen_timeout | number | 3000 | time in ms before forcing a reload if app not listening (defaults to 3000) |
-| kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/#cleaning-states-and-jobs) |
+| kill_timeout | number | 1600 | time in milliseconds before sending [a final SIGKILL](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/#explanation-signals-flow) |
+| kill_retry_time | number | 100 | interval in ms between checks that the app has exited after the kill signal (defaults to 100) |
+| treekill | boolean | false | true by default. If false, only the main process is killed, not its children |
 | shutdown_with_message | boolean | false | shutdown an application with process.send('shutdown') instead of process.kill(pid, SIGINT) |
 | wait_ready | boolean | false | Instead of reload waiting for listen event, wait for process.send('ready') |
 | max_restarts| number | 16 | number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime) before your app is considered errored and stop being restarted. defaults to 16|
 | restart_delay    | number |                    4000                   |                             time to wait before restarting a crashed app (in milliseconds). defaults to 0.|
+| exp_backoff_restart_delay | number | 100 | base delay in ms of the [exponential backoff restart](/docs/usage/restart-strategies/#exponential-backoff-restart-delay) |
 | autorestart | boolean |  false  |  true by default. if false, PM2 will not restart your app if it crashes or ends peacefully  |
-| cron_restart    |  string |                "1 0 * * *"                |                                      a cron pattern to restart your app. Application must be running for cron feature to work  |
-| vizion       | boolean |                   false                   |  true by default. if false, PM2 will start without vizion features (versioning control metadata) |
+| stop_exit_codes | number or array | [0] | exit codes that skip auto restart |
+| autostart | boolean | false | true by default. If false, the app is added to the process list without being started |
+| cron_restart    |  string |                "1 0 * * *"                |                                      a cron pattern to restart your app. The cron also fires when the app is stopped (or `autostart: false`), and starts it  |
+| vizion       | boolean |                   false                   |  true by default, but only active when the daemon runs with `PM2_ENABLE_GIT_PARSING=true`. If false, PM2 will start without vizion features (versioning control metadata) |
 | post_update    |   list  | ["npm install", "echo launching the app"] |                                        a list of commands which will be executed after you perform a Pull/Upgrade operation from Keymetrics dashboard |
 | force       | boolean |                    true                   |                                          defaults to false. if true, you can start the same script several times which is usually not allowed by PM2 |
 
@@ -1334,10 +1477,12 @@ All command line options passed when using the JSON app declaration will be drop
 All the keys can be used in a JSON configured file, but will remain almost the same on the command line e.g.:
 
 ```
-exec_mode         -> --execute-command
 max_restarts      -> --max-restarts
+kill_timeout      -> --kill-timeout
 force             -> --force
 ```
+
+`exec_mode` has no CLI flag: `-i <instances>` starts in cluster mode, `-x` (`--execute-command`) forces fork mode.
 
 Using quotes to make an ESC, e.g.:
 
@@ -1369,6 +1514,7 @@ but not
 
 You can pass `/dev/null` to error_file or out_file to disable logs saving.
 Note: starting PM2 `2.4.0`, `/dev/null` or `NULL` disable logs independently of the platform.
+To drop all app output (files and `pm2 logs`), use `disable_logs: true`.
 
 ### Logs suffix
 
@@ -1461,6 +1607,8 @@ module.exports = {
 
 **NOTE**: setting the `instances` option on a Node.js app automatically enables the cluster mode; declaring `exec_mode: "cluster"` explicitly is optional but recommended for clarity
 
+Cluster mode works with the Node.js and Bun runtimes, including JS/TS run by a custom interpreter (`tsx`, `ts-node`). On a binary or a non-JS script (bash, python...), `exec_mode: "cluster"` falls back to fork mode with a warning (PM2 7.1.0+).
+
 Then to start the Process File:
 
 ```bash
@@ -1531,7 +1679,13 @@ Or via configuration file set the option `watch: true`.
 If an application is started with the `--watch` option, stopping the app will not prevent it to be restarted on file change.
 To totally disable the watch feature, do: `pm2 stop app --watch` or toggle the watch option on application restart via `pm2 restart app --watch`.
 
-To watch specific paths, please use a [Ecosystem File](/docs/usage/application-declaration/), `watch` can take a string or an array of paths. Default is `true`:
+Watching is disabled by default. To watch specific paths, pass them to `--watch` (repeatable):
+
+```bash
+pm2 start app.js --watch src --watch lib
+```
+
+Or in an [Ecosystem File](/docs/usage/application-declaration/), where `watch` can be `true`, a string or an array of paths:
 
 ```javascript
 module.exports = {
@@ -1592,7 +1746,7 @@ Serve your static files (like a frontend app) over http with a simple command :
 pm2 serve <path> <port>
 ```
 
-The current folder will be used if you don't precise `<path>`, for the port the default one is `8080`.
+The current folder will be used if you don't precise `<path>`, for the port the default one is `8080` (it can also be set with `--port <port>`). The server listens on `0.0.0.0`.
 You can use the same options as a normal application like `--name` or `--watch`.
 
 ## Process file
@@ -1609,7 +1763,7 @@ module.exports = {
 }
 ```
 
-You just need to add `PM2_SERVE_PATH` and `PM2_SERVE_PORT` to env variables to specify the path and the port, the default are the same as the CLI.
+You just need to add `PM2_SERVE_PATH` and `PM2_SERVE_PORT` to env variables to specify the path and the port, the default are the same as the CLI. Set `PM2_SERVE_HOST` to bind another interface than `0.0.0.0` (e.g. `127.0.0.1`).
 
 ## Serving SPA: redirect all to index.html
 
@@ -1654,6 +1808,24 @@ module.exports = {
     PM2_SERVE_BASIC_AUTH_PASSWORD: 'example-password'
   }
 }
+```
+
+## Directory listing
+
+To list the content of directories (like `python -m http.server`) use the `--ftp` option. A folder containing an `index.html` serves it, other folders display a file listing:
+
+```bash
+pm2 serve --ftp
+```
+
+Via a process file, set `PM2_SERVE_FTP: 'true'` in `env`.
+
+## Frontend monitoring
+
+With a PM2 instance [linked to PM2 Plus](/docs/usage/monitoring/), `--monitor <app-name>` injects the PM2 Plus browser monitoring snippet into every served HTML file:
+
+```bash
+pm2 serve --monitor my-frontend
 ```
 
 ---
@@ -1705,7 +1877,7 @@ module.exports = {
 };
 ```
 
-**Note**: make sure the application configuration file in the local folder is named either ecosystem.config.js or pm2.config.js, so you don't need to type the configuration filename for each command.
+**Note**: when no file is given, PM2 looks in the local folder for `ecosystem.json`, `ecosystem.yml`, `ecosystem.yaml`, `ecosystem.config.js`, `ecosystem.config.cjs`, `ecosystem.config.mjs`, `ecosystem.json5` then `package.json` (first found wins), so you don't need to type the configuration filename for each command.
 
 ### Provision remote server
 
@@ -1720,7 +1892,7 @@ Once remote servers have been configured you can start provisioning them:
 $ pm2 deploy production setup
 ```
 
-**Note**: as the app configuration file is named ecosystem.config.js or pm2.config.js in the local folder, you do not need to specify the filename each time
+**Note**: as the app configuration file is named `ecosystem.config.js` (or one of the other default names above) in the local folder, you do not need to specify the filename each time
 
 ### Deploy application
 
@@ -1862,8 +2034,8 @@ Source: https://pm2.keymetrics.io/docs/usage/environment/
 
 PM2 will inject environment in this order when **starting** a new process :
 
-- First the PM2 CLI will use its environment so the current environment of your shell will be injected.
-- PM2 will then inject the environment that you can configure with the ecosystem file :
+- First the PM2 CLI will use its environment so the current environment of your shell will be injected. Since PM2 7.1.0, shell variables named like a PM2 option (`name`, `namespace`, `instances`, `port`, `watch`...) or prefixed with `pm_`/`axm_` are not passed, and [`filter_env`](#filtering-the-shell-environment) can drop more.
+- PM2 will then inject the environment that you can configure with the ecosystem file (it always wins over the shell) :
 
 ```javascript
 module.exports = {
@@ -1905,6 +2077,36 @@ module.exports = {
 Here the default environment is in the `env`, but you can decide to use `env_production` by using `pm2 start ecosystem.config.js --env production`.
 
 You can define as many environments as you like, just remember that you must pass the name of the environment (after `env_`) you want to use with `--env`.
+
+## Filtering the shell environment
+
+Use `filter_env` to restrict what the app inherits from the shell running pm2 (and, in cluster mode, from the daemon):
+
+| Value | Effect |
+|:---|:---|
+| `true` | keep only PATH, HOME, USER, LOGNAME, SHELL, LANG, LANGUAGE, the LC\_\* locale categories, TZ, TMPDIR, PM2_HOME (and the Windows system variables) |
+| `"KEY"` | drop this exact variable |
+| `["AWS_", "REACT_"]` | drop every variable whose name contains one of the strings |
+| `false` (default) | inherit everything |
+
+Variables declared in `env` (or the selected `env_<name>`) are always passed:
+
+```javascript
+module.exports = {
+  apps : [{
+    name: "myapp",
+    script: "./app.js",
+    filter_env: true,
+    env: {
+      NODE_ENV: "production"
+    }
+  }]
+}
+```
+
+Via CLI, `--filter-env` alone means `true`, `--filter-env AWS_` drops the variables containing `AWS_`. The filter also applies to `--update-env` restart/reload and to cluster workers.
+
+**Breaking change in PM2 7.1.2**: `filter_env: true` was ignored since 4.4.1 and works again. Apps using it no longer inherit NODE_ENV, NODE_OPTIONS, HTTP_PROXY or any other shell variable: declare them in `env`. An app that already received the full shell env (started before 7.1.2 or without `filter_env`, `dump.pm2` included) keeps it: `pm2 delete` it and start it again.
 
 ## Specific environment variables
 
@@ -1964,6 +2166,37 @@ In this example, if i run `pm2 start ecosystem.config.js` :
 
 **NOTE** : It will increment also when scaling using `pm2 scale myapp 4`, both new instances will have `3002` and `3003` as `PORT` variable.
 
+## PM2 environment variables
+
+These variables configure PM2 itself. Daemon-side ones are read when the daemon starts: run `pm2 kill` (or `pm2 update`) after changing them.
+
+| Variable | Default | Description |
+|:---|:---|:---|
+| PM2_HOME | `$HOME/.pm2` | PM2 folder (logs, pids, sockets, dump.pm2). Each PM2_HOME is a separate daemon |
+| PM2_KILL_TIMEOUT | 1600 | default `kill_timeout` (ms before the final SIGKILL) |
+| PM2_KILL_SIGNAL | SIGINT | signal sent to stop an app |
+| PM2_KILL_USE_MESSAGE | false | stop every app with `process.send('shutdown')`, like `shutdown_with_message` |
+| PM2_KILL_RETRY_TIME | 100 | default `kill_retry_time` (ms between exit checks) |
+| PM2_GRACEFUL_TIMEOUT | 8000 | cluster reload: ms to wait for the old worker to disconnect before deleting it |
+| PM2_GRACEFUL_LISTEN_TIMEOUT | 3000 | default `listen_timeout` |
+| PM2_WORKER_INTERVAL | 30000 | ms between daemon worker runs (`max_memory_restart` checks, backoff reset) |
+| PM2_CONCURRENT_ACTIONS | 2 | apps started/restarted/reloaded in parallel |
+| PM2_RELOAD_LOCK_TIMEOUT | 30000 | ms a reload refuses a concurrent one (`--force` bypasses it) |
+| PM2_ENABLE_GIT_PARSING | false | `true` enables vizion (git metadata of apps) |
+| PM2_PROCESS_INSTANCE_VAR | | overrides `instance_var` for every app |
+| PM2_LOG_DATE_FORMAT | YYYY-MM-DDTHH:mm:ss | date prefix of the daemon log (`pm2.log`) |
+| PM2_SILENT | | hide CLI output, like `-s` |
+| PM2_DISCRETE_MODE | | hide some daemon start messages (set by pm2-runtime and `-s`) |
+| PM2_NO_INTERACTION | | `true` does not start the PM2.io agent with the daemon |
+| PM2_DISABLE_VERSION_CHECK | | disable the daily new version check |
+| PM2_DAEMON_TITLE | `PM2 vX.Y.Z: God Daemon (<PM2_HOME>)` | process title of the daemon |
+| PM2_SOCKET_USER / PM2_SOCKET_GROUP | | numeric uid / gid owning the rpc and pub sockets (both required) |
+| PM2_API_IPADDR / PM2_API_PORT | 0.0.0.0 / 9615 | `pm2 web` listen address and port (PM2_WEB_PORT overrides the port) |
+| PM2_WEB_STRIP_ENV_VARS | false | remove app env variables from the `pm2 web` output |
+| PM2_OPTIMIZE_MEMORY | false | start the daemon with `--gc-global` and `--max-old-space-size` |
+| PM2_PUBLIC_KEY / PM2_SECRET_KEY | | PM2.io bucket keys |
+| PM2_MACHINE_NAME | `<hostname>-<random>` | server name on PM2.io |
+
 ---
 
 # Update PM2
@@ -2015,7 +2248,7 @@ process.on('SIGINT', function() {
 })
 ```
 
-Now `pm2 reload` will become a gracefulReload.
+Your app can then finish its work on `pm2 stop`, `pm2 restart` and `pm2 reload`.
 
 ### Configure the kill timeout
 
@@ -2093,7 +2326,7 @@ There is still the default system that hooks into `http.Server.listen` method. W
 
 When a process is stopped/restarted by PM2, some system signals are sent to your process in a given order.
 
-First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *([customizable](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/#customize-exit-delay))* it will receive a **SIGKILL** signal to force the process exit.
+First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *([customizable](/docs/usage/signals-clean-restart/#configure-the-kill-timeout))* it will receive a **SIGKILL** signal to force the process exit.
 
 The signal **SIGINT** can be replaced on any other signal (e.g. **SIGTERM**) by setting environment variable **PM2_KILL_SIGNAL**.
 
@@ -2469,50 +2702,49 @@ Connect to local PM2 or spawn a new PM2 instance.
 |[no_daemon_mode]    | boolean   | false | if true, it will run an independent PM2 that will auto exit at end|
 |fn    | function   | | Callback|
 
-* noDaemonMode: If true is passed for the first argument, pm2 will not be run as a daemon and will die when the related script exits. By default, pm2 stays alive after your script exits. If pm2 is already running, your script will link to the existing daemon but will die once your process exits.
+* no_daemon_mode: If true is passed for the first argument, pm2 will not be run as a daemon and will die when the related script exits. By default, pm2 stays alive after your script exits. If pm2 is already running, your script will link to the existing daemon but will die once your process exits.
 
-* `script` - The path of the script to run.
-* `jsonConfigFile` - The path to a JSON file that can contain the same options as the `options` parameter.
-* `errback(err,proc)` - An errback called when the `script` has been started. The `proc` parameter will be a [pm2 process object](https://github.com/soyuka/pm2-notify#templating).
-* `options` - An object with the following options (additional descriptions of these options are [here](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/)):
-  * `name` - An arbitrary name that can be used to interact with (e.g. restart) the process later in other commands. Defaults to the script name without its extension (eg `"testScript"` for `"testScript.js"`).
-  * `script` - The path of the script to run.
-  * `args` - A string or array of strings composed of arguments to pass to the script.
-  * `interpreterArgs` - A string or array of strings composed of arguments to call the interpreter process with. Eg "--harmony" or ["--harmony","--debug"]. Only applies if `interpreter` is something other than "none" (its "node" by default).
-  * `cwd` - The working directory to start the process with.
-  * `output` - (Default: `"~/.pm2/logs/app_name-out.log"`) The path to a file to append stdout output to. Can be the same file as `error`.
-  * `error` - (Default: `"~/.pm2/logs/app_name-error.err"`) The path to a file to append stderr output to. Can be the same file as `output`.
-  * `logDateFormat` - The display format for log timestamps (eg "YYYY-MM-DD HH:mm Z"). The format is a [moment display format](http://momentjs.com/docs/#/displaying/).
-  * `pid` - (Default: `"~/.pm2/pids/app_name-id.pid"`) The path to a file to write the pid of the started process. The file will be overwritten. Note that the file is not used in any way by pm2 and so the user is free to manipulate or remove that file at any time. The file will be deleted when the process is stopped or the daemon killed.
-  * `minUptime` - The minimum uptime of the script before it's considered successfully started. 
-  * `maxRestarts` - The maximum number of times in a row a script will be restarted if it exits in less than `minUptime`.
-  * `maxMemoryRestart` - If sets and `script`'s memory usage goes about the configured number, pm2 restarts the `script`. Uses human-friendly suffixes: 'K' for kilobytes, 'M' for megabytes, 'G' for gigabytes', etc. Eg "150M".
-  * `killTimeout` - (Default: `1600`) The number of milliseconds to wait after a `stop` or `restart` command issues a `SIGINT` signal to kill the script forcibly with a `SIGKILL` signal. 
-  * `restartDelay` - (Default: `0`) Number of milliseconds to wait before restarting a script that has exited.  
-  * `interpreter` - (Default: `'node'`) The interpreter for your script (eg "python", "ruby", "bash", etc). The value "none" will execute the 'script' as a binary executable.
-  * `execMode` - (Default: `'fork'`) If sets to 'cluster', will enable clustering (running multiple instances of the `script`). [See here for more details](https://pm2.keymetrics.io/docs/usage/cluster-mode/).
-  * `instances` - (*Default: `1`*) How many instances of `script` to create. Only relevant in `exec_mode` 'cluster'.
-  * `mergeLogs` - (Default: `false`) If true, merges the log files for all instances of `script` into one stderr log and one stdout log. Only applies in 'cluster' mode. For example, if you have 4 instances of 'test.js' started via pm2, normally you would have 4 stdout log files and 4 stderr log files, but with this option set to true you would only have one stdout file and one stderr file.
-  * `watch` - If set to `true`, the application will be restarted on change of the `script` file.
-  * `force` (Default: `false`) By default, pm2 will only start a script if that script isn't already running (a script is a path to an application, not the name of an application already running). If `force` is set to true, pm2 will start a new instance of that script.
-  * `autorestart` (Default `true`).  If `false`, pm2 will *not* attempt to restart it following successful completion or process failure.
-  * `cron`
-  * `executeCommand`
-  * `write`
-  * `sourceMapSupport`
-  * `disableSourceMapSupport`
+#### pm2.disconnect([fn])
 
-Disconnect from local PM2
+Disconnect from local PM2 (alias `pm2.close([fn])`). Required to let your script exit; the daemon and its apps keep running.
 
-#### pm2.start(process, fn)
+#### pm2.start(process, [options], fn)
 
 Start a process
 
 |    Param |   Type  |    Description |
 |----------|---------|----------------|
-|process    | string/object   | script path (relative) or object via [options](/docs/usage/application-declaration/#attributes-available) |
-|fn    | function   | Callback|
+|process    | string/object   | script path, [ecosystem file](/docs/usage/application-declaration/) path or object via [options](/docs/usage/application-declaration/#attributes-available) |
+|[options]  | object | options, when `process` is a script path |
+|fn    | function   | Callback(err, apps) |
 
+Options use the [ecosystem file](/docs/usage/application-declaration/#attributes-available) names, in snake_case (camelCase aliases such as `maxMemoryRestart` are also accepted). Most common ones (more on [signals and graceful shutdown](/docs/usage/signals-clean-restart/)):
+
+* `name` - An arbitrary name that can be used to interact with (e.g. restart) the process later in other commands. Defaults to the script name without its extension (eg `"testScript"` for `"testScript.js"`).
+* `script` - The path of the script to run.
+* `args` - A string or array of strings composed of arguments to pass to the script.
+* `interpreter_args` - A string or array of strings composed of arguments to call the interpreter process with. Eg "--harmony" or ["--harmony","--debug"]. Only applies if `interpreter` is something other than "none" (its "node" by default).
+* `cwd` - The working directory to start the process with.
+* `out_file` (alias `output`) - (Default: `"~/.pm2/logs/app_name-out.log"`) The path to a file to append stdout output to. Can be the same file as `error_file`.
+* `error_file` (alias `error`) - (Default: `"~/.pm2/logs/app_name-error.log"`) The path to a file to append stderr output to. Can be the same file as `out_file`.
+* `log_date_format` - The display format for log timestamps (eg "YYYY-MM-DD HH:mm Z"). The format is a [moment display format](http://momentjs.com/docs/#/displaying/).
+* `pid_file` (alias `pid`) - (Default: `"~/.pm2/pids/app_name-id.pid"`) The path to a file to write the pid of the started process. The file will be overwritten. Note that the file is not used in any way by pm2 and so the user is free to manipulate or remove that file at any time. The file will be deleted when the process is stopped or the daemon killed.
+* `min_uptime` - The minimum uptime of the script before it's considered successfully started.
+* `max_restarts` - The maximum number of times in a row a script will be restarted if it exits in less than `min_uptime`.
+* `max_memory_restart` - If sets and `script`'s memory usage goes about the configured number, pm2 restarts the `script`. Uses human-friendly suffixes: 'K' for kilobytes, 'M' for megabytes, 'G' for gigabytes', etc. Eg "150M".
+* `kill_timeout` - (Default: `1600`) The number of milliseconds to wait after a `stop` or `restart` command issues a `SIGINT` signal to kill the script forcibly with a `SIGKILL` signal.
+* `restart_delay` - (Default: `0`) Number of milliseconds to wait before restarting a script that has exited.
+* `interpreter` - (Default: `'node'`) The interpreter for your script (eg "python", "ruby", "bash", etc). The value "none" will execute the 'script' as a binary executable.
+* `exec_mode` - (Default: `'fork'`) If sets to 'cluster', will enable clustering (running multiple instances of the `script`). [See here for more details](/docs/usage/cluster-mode/).
+* `instances` - (*Default: `1`*) How many instances of `script` to create. Only relevant in `exec_mode` 'cluster'.
+* `merge_logs` - (Default: `false`) If true, merges the log files for all instances of `script` into one stderr log and one stdout log. Only applies in 'cluster' mode. For example, if you have 4 instances of 'test.js' started via pm2, normally you would have 4 stdout log files and 4 stderr log files, but with this option set to true you would only have one stdout file and one stderr file.
+* `watch` - If set to `true`, the application will be restarted on change of the `script` file.
+* `force` (Default: `false`) By default, pm2 will only start a script if that script isn't already running (a script is a path to an application, not the name of an application already running). If `force` is set to true, pm2 will start a new instance of that script.
+* `autorestart` (Default `true`).  If `false`, pm2 will *not* attempt to restart it following successful completion or process failure.
+* `cron_restart` (alias `cron`) - Cron pattern to restart the app.
+* `env` - Environment variables passed to the app.
+
+The callback receives an array of [process objects](#process-structure).
 
 #### pm2.stop(process, fn)
 
@@ -2520,7 +2752,7 @@ Stop a process
 
 |    Param |   Type  |    Description |
 |----------|---------|----------------|
-|process    | string/number   | target process ID or Name|
+|process    | string/number   | target process ID, Name, 'all' or ecosystem file|
 |fn    | function   | Callback|
 
 #### pm2.restart(process, [options], fn)
@@ -2529,17 +2761,18 @@ Restart a process
 
 |    Param |   Type  |    Description |
 |----------|---------|----------------|
-|process    | string/number   | target process ID or Name|
+|process    | string/number   | target process ID, Name, 'all' or ecosystem file|
 |[options]  | object | [options](/docs/usage/application-declaration/#attributes-available) (also add updateEnv: true to force update)|
 |fn    | function   | Callback|
 
-#### pm2.reload(process, fn)
+#### pm2.reload(process, [options], fn)
 
 Reload a process
 
 |    Param |   Type  |    Description |
 |----------|---------|----------------|
-|process    | string/number   | target process ID or Name|
+|process    | string/number   | target process ID, Name, 'all' or ecosystem file|
+|[options]  | object | `updateEnv: true` to update the environment, `env: 'production'` to pick an `env_production` block (ecosystem file only)|
 |fn    | function   | Callback|
 
 
@@ -2549,12 +2782,12 @@ Delete a process
 
 |    Param |   Type  |    Description |
 |----------|---------|----------------|
-|process    | string/number   | target process ID or Name|
+|process    | string/number   | target process ID, Name, 'all' or ecosystem file|
 |fn    | function   | Callback|
 
 #### pm2.killDaemon(fn)
 
-Kills the pm2 daemon (same as **pm2 kill**). Note that when the daemon is killed, all its processes are also killed. Also note that you still have to explicitly disconnect from the daemon even after you kill it.
+Kills the pm2 daemon (same as **pm2 kill**, alias `pm2.kill(fn)`). Note that when the daemon is killed, all its processes are also killed. Also note that you still have to explicitly disconnect from the daemon even after you kill it.
 
 #### pm2.describe(process, fn)
 
@@ -2569,18 +2802,68 @@ Get all metadata from a target process
 
 Retrieve all processes managed with PM2
 
+### Other Methods
+
+All callbacks are `fn(err, result)`.
+
+* `pm2.scale(name, number, fn)` - scale a cluster app to `number` instances (`'+2'` / `'-1'` strings add or remove)
+* `pm2.reset(process, fn)` - reset restart counters
+* `pm2.flush([process], fn)` - empty the log files of `process`, or of all apps and `pm2.log` when omitted
+* `pm2.reloadLogs(fn)` - reopen all log files (after a rotation)
+* `pm2.dump([force], fn)` - save the process list to `~/.pm2/dump.pm2` (**pm2 save**)
+* `pm2.resurrect(fn)` - restore the processes saved by `dump`
+* `pm2.startup(platform, opts, fn)` / `pm2.uninstallStartup(platform, opts, fn)` - generate / remove the boot script (see [Startup Script](/docs/usage/startup/))
+* `pm2.trigger(process, action_name, [params], fn)` - trigger a [custom action](/docs/usage/process-actions/)
+* `pm2.sendLineToStdin(pm_id, line, [separator], fn)` - write a line to the app stdin
+* `pm2.getPID([name], fn)` - pids of all apps or of apps named `name`
+* `pm2.env(pm_id, fn)` - print the environment of an app
+* `pm2.getVersion(fn)` - version of the running daemon
+* `pm2.ping(fn)` - ping the daemon
+* `pm2.profile('cpu'|'mem', [time], fn)` - profile the PM2 daemon for `time` ms (default 10000), written to the current directory
+* `pm2.serve(path, port, opts, {}, fn)` - serve a static directory (see [Expose static files](/docs/usage/expose/))
+* `pm2.install(module, [opts], fn)` / `pm2.uninstall(module, fn)` - install / remove a [PM2 module](/docs/advanced/pm2-module-system/)
+* `pm2.get([key], fn)`, `pm2.set(key, value, fn)`, `pm2.multiset('key1 val1 key2 val2', fn)`, `pm2.unset(key, fn)` - PM2 / module configuration (**pm2 set**)
+
+### Custom PM2 instance
+
+`require('pm2')` is a ready instance using `~/.pm2`. `require('pm2').custom` is the class, to drive another PM2:
+
+```javascript
+const PM2 = require('pm2').custom
+
+const pm2 = new PM2({
+  pm2_home: '/opt/pm2-home',  // PM2 directory (logs, pids, sockets)
+  cwd: __dirname              // cwd used to resolve script paths
+})
+
+pm2.connect(function(err) { /* ... */ })
+```
+
+| Option | Default | Description |
+|:-------|:-------:|:------------|
+| `cwd` | `process.cwd()` | cwd used to resolve script paths |
+| `pm2_home` | `~/.pm2` | PM2 directory |
+| `independent` | `false` | unique PM2 in a random `/tmp` folder (cannot be combined with `pm2_home`) |
+| `daemon_mode` | `true` (`false` when `independent`) | run the daemon detached or inside the current process |
+| `public_key` / `secret_key` / `machine_name` | | [PM2.io](https://pm2.io/) bucket keys and server name |
+
+#### pm2.destroy(fn)
+
+Kill the daemon and delete its `pm2_home` folder. Refused on a folder containing `.pm2`: meant for `independent` / temporary instances.
+
 ### Advanced Methods
 
-#### pm2.sendDataToProcessId(packet)
+#### pm2.sendDataToProcessId([id], packet, fn)
 
-Send data to target process.
+Send data to target process. Also callable as `pm2.sendDataToProcessId(id, packet, fn)` (sets `packet.id`). The callback is required.
 
 |    Param |   Type  |    Description |
 |----------|---------|----------------|
 |packet.id    | number   | target process ID |
 |packet.type    | string   | must be **process:msg** |
-|packet.topic  | boolean | must be **true** |
+|packet.topic  | string | any non-empty value (required) |
 |packet.data   | object | object data that will be sent to target process|
+|fn   | function | Callback(err, res) |
 
 Data will be received by target process via:
 
@@ -2601,6 +2884,16 @@ pm2.launchBus(function(err, pm2_bus) {
   })
 })
 ```
+
+Events emitted on the bus:
+
+| Event | Payload |
+|:------|:--------|
+| `process:msg` | `process.send({ type: 'process:msg', data })` from an app (any other `type` is emitted under that name) |
+| `process:event` | process state change: `event` (`start`, `online`, `exit`, `restart overlimit`...), `manually`, `process` |
+| `log:out` / `log:err` | a line written by an app to stdout / stderr |
+| `log:PM2` | a line logged by the daemon itself |
+| `pm2:kill` | the daemon is being killed |
 
 Then from a process managed with PM2:
 
@@ -2640,7 +2933,7 @@ When calling any of the above methods, a mutated process array is returned. This
 * **processDescription** - An array of objects with information about the process. Each object contains the properties:
   * **name** - The name given in the original **start** command.
   * **pid** - The pid of the process.
-  * **pm_id** - The pid for the **pm2** God daemon process.
+  * **pm_id** - PM2's id of the app (as shown by `pm2 list`).
   * **monit** - An object containing:
     * **memory** - The number of bytes the process is using.
     * **cpu** - The percent of CPU being used by the process at the moment.
@@ -2652,7 +2945,7 @@ When calling any of the above methods, a mutated process array is returned. This
     * **pm_uptime** - The uptime of the process.
     * **unstable_restarts** - The number of unstable restarts the process has been through.
     * **restart_time**
-    * **status** - "online", "stopping", "stopped", "launching", "errored", or "one-launch-status"
+    * **status** - "online", "stopping", "stopped", "launching", "waiting restart", "errored", or "one-launch-status"
     * **instances** - The number of running instances.
     * **pm_exec_path** - The path of the script being run in this process.
 
@@ -2669,7 +2962,7 @@ const pm2 = require('pm2')
 pm2.connect(function() {
   pm2.sendDataToProcessId({
     // id of process from "pm2 list" command or from pm2.list(errback) method
-    id   : 1,
+    id   : 0,
 
     // process:msg will be send as 'message' on target process
     type : 'process:msg',
@@ -2678,7 +2971,6 @@ pm2.connect(function() {
     data : {
       some : 'data'
     },
-    id   : 0, // id of process from "pm2 list" command or from pm2.list(errback) method
     topic: 'some topic'
   }, function(err, res) {
   })
@@ -2722,6 +3014,14 @@ You can monitor memory and CPU easily and straight from your terminal:
 ```bash
 pm2 monit
 ```
+
+`pm2 monit` (or `pm2 dash`) preloads the last 200 log lines (out + err merged) of every process. Use `--lines <n>` to display more:
+
+```bash
+pm2 monit --lines 1000
+```
+
+Ctrl+Up / Ctrl+Down (or PageUp / PageDown) scroll the focused log pane page by page. Press `q` or Esc to exit.
 
 ## PM2.io
 
@@ -2826,13 +3126,19 @@ By default, logs (error and output), pid files, dumps, and PM2 logs are located 
 
 ```
 .pm2/
-├── dump.pm2
-├── custom_options.sh
-├── pm2.log
-├── pm2.pid
-├── logs
-└── pids
+├── dump.pm2            # process list saved by pm2 save
+├── dump.pm2.bak        # previous dump
+├── module_conf.json    # pm2 set / module configuration
+├── pm2.log             # daemon logs
+├── pm2.pid             # daemon pid
+├── rpc.sock            # CLI <-> daemon RPC socket
+├── pub.sock            # daemon event bus socket
+├── logs/               # app logs
+├── pids/               # app pid files
+└── modules/            # installed PM2 modules
 ```
+
+When linked to PM2.io, the agent adds `agent.log`, `agent.pid`, `agent.json5` and `interactor.sock`. The home folder is changed with `PM2_HOME`.
 
 ## Passing Node.js flags
 
@@ -3214,33 +3520,15 @@ Have fun!
 # Source Map Support
 Source: https://pm2.keymetrics.io/docs/usage/source-map-support/
 
-If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get useful information you need to generate [source map files](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
-
-Once these source map files are generated, PM2 will automatically detect them and will help you inspect errors.
+If you use [BabelJS](https://babeljs.io/), [Typescript](http://www.typescriptlang.org/) or any other Javascript superset you may have noticed that when an exception occurs, the stacktrace is not meaningful at all. To get useful information you need to generate [source map files](https://developer.mozilla.org/en-US/docs/Glossary/Source_map).
 
 ## Source map
 
-Since version 1.0.2, PM2 embeds a mechanism to support javascript source maps.
+Since PM2 7, source maps are handled natively by Node.js: every process container calls `process.setSourceMapsEnabled(true)` before loading your app, so stack traces are mapped back to the original sources.
 
-**PM2 automatically detects javascript source map files** if you start app.js, it will expect app.js.map to exist as well.
+Node.js finds the map through the `//# sourceMappingURL=` comment emitted by your transpiler (e.g. `tsc --sourceMap`, `babel --source-maps`). There is nothing to configure in PM2.
 
-If you have a different layout, you can force source map support by starting your application:
-
-Via CLI:
-
-```bash
-pm2 start app.js --source-map-support
-```
-
-Or via JSON file:
-
-```javascript
-module.exports = {
-   name: 'babel-app',
-   script: 'app.js',
-   source_map_support: true
-}
-```
+PM2 7 no longer auto-detects `app.js.map` files nor ships the `source-map-support` package: `--source-map-support` / `source_map_support` are still accepted but do nothing.
 
 ### Inspect exceptions
 
@@ -3256,9 +3544,13 @@ Otherwise, use [PM2.io](https://pm2.io/) to have a clean listing and notificatio
 
 ### Disable source map support
 
-If you do not want PM2 to automatically support javascript source maps you can use the option `--disable-source-map-support`.
+To start an app without source map support:
 
-This is supported both via CLI and via a JSON file.
+```bash
+pm2 start app.js --disable-source-map-support
+```
+
+Or `disable_source_map_support: true` in the ecosystem file.
 
 ---
 
@@ -3277,6 +3569,28 @@ pm2-dev start my-app.js
 # or
 
 pm2-dev my-app.js
+```
+
+pm2-dev watches the application folder (dotfiles and `node_modules` are ignored), streams the logs in the terminal and restarts the app on file change. Ctrl+C deletes the apps and stops the session.
+
+pm2-dev runs its own daemon with its own home, `~/.pm2-dev`, so it does not interfere with the processes of your regular `pm2` (`~/.pm2`).
+
+## Options
+
+| Option | Description |
+|:-------|:------------|
+| `--ignore [files]` | Comma-separated files/folders to ignore while watching (`node_modules` is always added) |
+| `--post-exec [cmd]` | Execute an extra command each time the app restarts after a change |
+| `--silent-exec` | Do not output the result of the `--post-exec` command |
+| `--timestamp` | Prefix logs with a timestamp (`YYYY-MM-DD-HH:mm:ss`) |
+| `--raw` | Raw log output |
+| `--env [name]` | Inject the `env_[name]` variables of the ecosystem file |
+| `--auto-exit` | Exit when all processes are errored/stopped or no app was launched |
+| `--interpreter <interpreter>` | Interpreter used to run the app (bash, python...) |
+| `--node-args <node_args>` | Space-delimited arguments passed to node, e.g. `--node-args="--trace-deprecation"` |
+
+```bash
+pm2-dev start ecosystem.config.js --env development --ignore "tmp,logs" --post-exec "npm run lint"
 ```
 
 ---
@@ -3328,7 +3642,7 @@ The goal of pm2-runtime is to wrap your applications into a proper Node.js produ
 - Second Process Fallback for High Application Reliability
 - Process Flow Control
 - Automatic Application Monitoring to keep it always sane and high performing
-- Automatic Source Map Discovery and Resolving Support 
+- Source Map Support (native Node.js source maps enabled by default)
 
 Further than that, using PM2 as a layer between the container and the application brings PM2 powerful features like [application declaration file](/docs/usage/application-declaration/), [customizable log system](/docs/usage/log-management/) and other great features to manage your Node.js application in production environment.
 
@@ -3401,13 +3715,13 @@ All options available are [listed here](/docs/usage/application-declaration/#att
 You can then replace the **CMD** directive by this:
 
 ```
-CMD ["pm2-runtime", "process.yml"]
+CMD ["pm2-runtime", "ecosystem.config.js"]
 ```
 
 To split each processes in its own Docker, you can use the --only [app-name] option:
 
 ```
-CMD ["pm2-runtime", "process.yml", "--only", "APP"]
+CMD ["pm2-runtime", "ecosystem.config.js", "--only", "APP"]
 ```
 
 ### Using exec_mode cluster together with nuxtjs
@@ -3435,12 +3749,13 @@ If you want to change the log output format you can select one of this options:
 
 - **--json**: will output logs in JSON format (logstash)
 - **--format**: will output logs in = style format
-- **--raw**: will output logs as is
+- **--formatted**: will output logs prefixed with `|id|app|`
+- **--raw**: will output logs as is (default)
 
 To use one of this flag, you just need to pass them to pm2-runtime:
 
 ```
-CMD ["pm2-runtime", "--json", "process.yml"]
+CMD ["pm2-runtime", "--json", "ecosystem.config.js"]
 ```
 
 ### Enabling Graceful Shutdown
@@ -3476,7 +3791,7 @@ To enable PM2.io monitoring with **pm2-runtime**, you can either use the CLI opt
 Example with the CLI options via a Dockerfile:
 
 ```
-CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "process.yml"]
+CMD ["pm2-runtime", "--public", "XXX", "--secret", "YYY", "ecosystem.config.js"]
 ```
 
 Or via environment variables:
@@ -3501,40 +3816,44 @@ Here is the pm2-runtime helper:
 
   Usage: pm2-runtime app.js
 
-  pm2-runtime is a drop-in replacement node.js binary with some interesting production features
+  pm2-runtime is a drop-in replacement Node.js binary for containers
 
   Options:
 
-    -V, --version              output the version number
-    -i --instances <number>    launch [number] of processes automatically load-balanced. Increase overall performances and performance stability.
-    -n --name <name>           set a name for the process in the process list
-    --interpreter <interpreter> set a specific interpreter to use for executing app
-    --node-args <node_args>    space delimited arguments to pass to node
-    --secret [key]             [MONITORING] PM2 plus secret key
-    --public [key]             [MONITORING] PM2 plus public key
-    --machine-name [name]      [MONITORING] PM2 plus machine name
-    --trace                    enable transaction tracing with km
-    --v8                       enable v8 data collecting
-    --format                   output logs formatted like key=val
-    --raw                      raw log output
-    --formatted                formatted log output |id|app|log|
-    --json                     output logs in json format
-    --delay <seconds>          delay start of configuration file by <seconds>
-    --web [port]               launch process web api on [port] (default to 9615)
-    --only <application-name>  only act on one application of configuration
-    --no-auto-exit             do not exit if all processes are errored/stopped or 0 apps launched
-    --env [name]               inject env_[name] env variables in process config file
-    --watch                    watch and restart application on file change
-    --error <path>             error log file destination (default disabled)
-    --output <path>            output log file destination (default disabled)
-    --deep-monitoring          enable all monitoring tools (equivalent to --v8 --event-loop-inspector --trace)
-    -h, --help                 output usage information
-
+    -V, --version                      output the version number
+    -i --instances <number>            launch [number] of processes automatically load-balanced. Increase overall performances and performance stability.
+    --secret [key]                     [MONITORING] PM2 plus secret key
+    --no-autostart                     add an app without automatic start
+    --no-autorestart                   start an app without automatic restart
+    --stop-exit-codes <exit_codes...>  specify a list of exit codes that should skip automatic restart
+    --node-args <node_args>            space delimited arguments to pass to node in cluster mode - e.g. --node-args="--debug=7001 --trace-deprecation"
+    -n --name <name>                   set a <name> for script
+    --max-memory-restart <memory>      specify max memory amount used to autorestart (in octet or use syntax like 100M)
+    -c --cron <cron_pattern>           restart a running process based on a cron pattern
+    --interpreter <interpreter>        the interpreter pm2 should use for executing app (bash, python...)
+    --public [key]                     [MONITORING] PM2 plus public key
+    --machine-name [name]              [MONITORING] PM2 plus machine name
+    --trace                            enable transaction tracing with km
+    --v8                               enable v8 data collecting
+    --format                           output logs formated like key=val
+    --raw                              raw output (default mode)
+    --formatted                        formatted log output |id|app|log
+    --json                             output logs in json format
+    --delay <seconds>                  delay start of configuration file by <seconds> (default: 0)
+    --web [port]                       launch process web api on [port] (default to 9615)
+    --only <application-name>          only act on one application of configuration
+    --no-auto-exit                     do not exit if all processes are errored/stopped or 0 apps launched
+    --env [name]                       inject env_[name] env variables in process config file
+    --watch                            watch and restart application on file change
+    --error <path>                     error log file destination (default disabled) (default: /dev/null)
+    --output <path>                    output log file destination (default disabled) (default: /dev/null)
+    --deep-monitoring                  enable all monitoring tools (equivalent to --v8 --event-loop-inspector --trace)
+    -h, --help                         output usage information
 
   Commands:
 
     *
-    start <app.js|json_file>  start an application or json ecosystem file
+    start <app.js|json_file>           start an application or json ecosystem file
 ```
 
 ---
@@ -3553,6 +3872,12 @@ PM2 supports Bun natively. When Bun is installed, TypeScript files are started w
 ```bash
 # .ts and .tsx files default to the bun interpreter
 pm2 start app.ts
+```
+
+On a Bun-only machine (no Node.js), symlink `node` to `bun` so the `pm2` command (`#!/usr/bin/env node`) resolves:
+
+```bash
+sudo ln -s $(which bun) /usr/local/bin/node
 ```
 
 To run any application with Bun explicitly, set the interpreter:
@@ -3575,6 +3900,16 @@ module.exports = {
 ```
 
 All the usual PM2 features work with Bun applications: log management, restart strategies, max memory restart, graceful shutdown and monitoring.
+
+### TypeScript without Bun
+
+Since PM2 7.0.4, when bun is not installed, `.ts` apps run with Node.js native type stripping:
+
+- Node.js >= 22.18 / >= 23.6: works out of the box
+- Node.js 22.6 to 22.17 and 23.0 to 23.5: PM2 adds `--experimental-strip-types` to `node_args` automatically
+- Older Node.js: `pm2 start` fails; install bun or set a custom interpreter (e.g. `--interpreter ts-node`)
+
+Type stripping only removes type annotations (no `enum`, `namespace`...). `.tsx` files still require bun.
 
 ### Cluster Mode with Bun
 
@@ -3620,13 +3955,15 @@ PM2 picks the interpreter from the file extension:
 | Extension | Interpreter |
 |:----------|:------------|
 | `.js` | node (or bun when PM2 runs under Bun) |
-| `.ts`, `.tsx` | bun |
+| `.ts` | bun (Node.js type stripping when bun is not installed) |
+| `.tsx` | bun |
 | `.py` | python |
 | `.rb` | ruby |
 | `.sh` | bash |
 | `.php` | php |
 | `.pl` | perl |
 | `.coffee` | coffee |
+| `.ls` | lsc |
 
 Any other runtime works by setting `--interpreter` (CLI) or `interpreter` / `interpreter_args` (configuration file) explicitly:
 
@@ -4194,28 +4531,53 @@ Release highlights of the latest PM2 major versions. The complete list lives in 
 
 The current major version. Check your version with `pm2 -v` and upgrade with `npm install pm2@latest -g && pm2 update`.
 
-#### Breaking Changes
+#### PM2 7.1
 
-- Requires **Node.js >= 20** (Node.js 16 and 18 support dropped)
+##### Breaking Changes
 
-#### Runtime & Core
+- **`filter_env: true`** works again (7.1.2, was ignored since 4.4.1): apps only inherit `PATH`, `HOME`, `USER`, locales and a few OS variables besides their `env` — `NODE_ENV`, `NODE_OPTIONS`, `HTTP_PROXY`... must be declared in `env`. It also applies to `--update-env` restart/reload and to cluster workers. Apps started before 7.1.2 or without `filter_env` (`dump.pm2` included) keep the env they already received: `pm2 delete` them and start them again — see [Environment Variables](/docs/usage/environment/)
+- Shell variables named like a PM2 option (`name`, `namespace`, `instances`, `port`, `time`, `watch`...) no longer override the app configuration nor reach fork mode apps (7.1.0): declare them in `env:` — see [Application Declaration](/docs/usage/application-declaration/)
+- PM2.io agent: `PM2_PROXY` support removed (broken since 7.0.0)
+
+##### Features & Fixes
+
+- `pm2 monit` / `pm2 dash` preload the last 200 log lines of every process (`--lines <n>` for more); Ctrl+Up / Ctrl+Down (and PageUp / PageDown) scroll the focused log pane
+- `exec_mode: cluster` on a non Node.js/Bun script (bash, python, binary) falls back to fork mode with a warning
+- Cluster mode: output bypassing `process.stdout.write` (pino, `npm start`, inherited stdio) now goes to the app log files instead of `pm2.log`
+- `pm2 start --container` uses the `keymetrics/pm2:<node>-trixie` image — see [Docker Integration](/docs/usage/docker-pm2-nodejs/)
+
+#### PM2 7.0.x
+
+- Bun-only machines (no Node.js) need `node` symlinked to `bun`: `sudo ln -s $(which bun) /usr/local/bin/node` (7.0.1)
+- **TypeScript without Bun** (7.0.4): `.ts` apps run with Node.js native type stripping when bun is not installed (Node.js >= 22.18 / 23.6, `--experimental-strip-types` added automatically on 22.6+) — see [Bun, Deno & other Runtimes](/docs/usage/bun-deno/)
+- **Built-in host metrics** (7.0.2): the `pm2-sysmonit` module is replaced by a built-in collector (Linux/macOS); `pm2 ls` shows a host-metrics line (CPU, RAM, disks, active network interfaces, GPU). Disable with `pm2 set pm2:sysmonit false && pm2 update`
+- `pm2 ls` adaptive layout: picks the widest of full, condensed or `mini` (`id · name · status · cpu · mem`) that fits the terminal
+
+#### PM2 7.0.0
+
+##### Breaking Changes
+
+- Requires **Node.js >= 18** (Node.js 16 support dropped)
+
+##### Runtime & Core
 
 - **Native Bun support**: dedicated process containers for Bun in fork and cluster mode — see [Bun, Deno & other Runtimes](/docs/usage/bun-deno/)
-- Major supply-chain surface reduction: `pm2-axon`, `pm2-axon-rpc`, `pm2-io-agent` and other dependencies internalized as local modules; `needle`, `enquirer`, `promptly`, `mkdirp`, `source-map-support`, `sprintf-js` and `fclone` removed from npm dependencies in favor of native Node.js APIs
+- Major supply-chain surface reduction: `pm2-axon`, `pm2-axon-rpc`, `pm2-io-bpm`, `pm2-io-agent`, `fclone` and other dependencies internalized as local modules; `needle`, `enquirer`, `promptly`, `mkdirp`, `source-map-support`, `sprintf-js` and `fclone` removed from npm dependencies in favor of native Node.js APIs
 - Rewritten **TreeKill**: a single process-snapshot with in-memory tree build eliminates race conditions when stopping process trees; SIGKILL escalation now targets surviving children directly
 - OpenTelemetry tracing available via `pm2 install-otel` and `--trace`
 
-#### Security
+##### Security
 
 - Fixed CVE-2025-5891 (ReDoS in configuration parsing) and CVE-2026-27699 (updated proxy-agent and basic-ftp)
 - Fixed command injection vectors in `open()` helpers (`exec()` replaced by `execFile()`, `SUDO_USER` validated)
 - Fixed prototype pollution in `pm2 set`/`pm2 unset` via `__proto__` key traversal
 
-#### Features & Fixes
+##### Features & Fixes
 
 - `pm2 serve --ftp` for directory listing (python `http.server` style)
 - Fixed environment variables leaking as `[object Object]` to fork-mode subprocesses
 - Windows fixes: home path resolution via `os.homedir()`, TreeKill callback consistency
+- Source maps handled natively by Node.js (`.map` auto-detection dropped) — see [Source Maps](/docs/usage/source-map-support/)
 
 ### PM2 6.x Highlights
 
@@ -4248,7 +4610,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "What is the difference between fork mode and cluster mode?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Fork mode runs your application as a single process, like running it with node directly. Cluster mode spawns multiple instances of your Node.js application and load-balances incoming HTTP/TCP connections between them using the Node.js cluster module, using all available CPU cores. Enable it with 'pm2 start app.js -i max'. Cluster mode only works for Node.js applications; other languages must use fork mode."
+        "text": "Fork mode runs your application as a single process, like running it with node directly. Cluster mode spawns multiple instances of your Node.js application and load-balances incoming HTTP/TCP connections between them using the Node.js cluster module, using all available CPU cores. Enable it with 'pm2 start app.js -i max'. Cluster mode works for Node.js and Bun applications; other languages must use fork mode."
       }
     },
     {
@@ -4296,7 +4658,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "Can PM2 run applications written in other languages than Node.js?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. PM2 can start any script or binary: Python, Ruby, Bash, PHP or compiled binaries, e.g. 'pm2 start app.py' or 'pm2 start ./binary-file'. The interpreter is selected from the file extension and can be overridden with the --interpreter option. Cluster mode however is only available for Node.js applications."
+        "text": "Yes. PM2 can start any script or binary: Python, Ruby, Bash, PHP or compiled binaries, e.g. 'pm2 start app.py' or 'pm2 start ./binary-file'. The interpreter is selected from the file extension and can be overridden with the --interpreter option. Cluster mode however is only available for Node.js and Bun applications."
       }
     },
     {
@@ -4312,7 +4674,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "I can't connect my local PM2 to the PM2.io dashboard",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This can happen for several reasons: 1) You are behind a company proxy or firewall - make sure outbound port 443 to PM2.io is open (the agent does not go through HTTP proxies). 2) You are using an old PM2 version - update with 'npm install pm2@latest -g'. 3) You have concurrent PM2 instances - check with 'ps -aux | grep PM2'. 4) Try refreshing connection with 'pm2 link stop' then 'pm2 link start'."
+        "text": "This can happen for several reasons: 1) You are behind a company proxy or firewall - make sure outbound port 443 to PM2.io is open (the agent does not go through HTTP proxies). 2) You are using an old PM2 version - update with 'npm install pm2@latest -g'. 3) You have concurrent PM2 instances - check with 'ps -aux | grep PM2'. 4) Try refreshing connection with 'pm2 link stop' then 'pm2 link'."
       }
     },
     {
@@ -4320,7 +4682,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
       "name": "The versioning buttons (Rollback/Pull/Upgrade) aren't working",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Check these solutions: 1) If buttons are disabled, ensure 'Local changes' and 'Local commit' indicators are green. 2) 'Not authorized' warning means you lack admin privileges in the bucket. 3) If the procedure hangs, update Node.js and PM2 to latest versions. 4) Ensure your repository doesn't require password input - clone via SSH and test with 'git remote update'."
+        "text": "Check these solutions: 1) Git metadata is only collected when the PM2 daemon runs with PM2_ENABLE_GIT_PARSING=true - set it, then run 'pm2 update'. 2) If buttons are disabled, ensure 'Local changes' and 'Local commit' indicators are green. 3) 'Not authorized' warning means you lack admin privileges in the bucket. 4) If the procedure hangs, update Node.js and PM2 to latest versions. 5) Ensure your repository doesn't require password input - clone via SSH and test with 'git remote update'."
       }
     },
     {
@@ -4369,7 +4731,7 @@ Source: https://pm2.keymetrics.io/docs/faq/
 pm2 start app.js -i max
 ```
 
-Cluster mode only works for Node.js applications; scripts in other languages run in fork mode. Read more in the [cluster mode documentation](/docs/usage/cluster-mode/).
+Cluster mode works for Node.js and Bun applications; scripts in other languages run in fork mode. Read more in the [cluster mode documentation](/docs/usage/cluster-mode/).
 
 ## How do I make PM2 restart my apps automatically after a server reboot?
 
@@ -4425,7 +4787,7 @@ pm2 start app.py
 pm2 start ./binary-file -- --port 1520
 ```
 
-The interpreter is picked from the file extension and can be overridden with `--interpreter`. Cluster mode, however, is Node.js only.
+The interpreter is picked from the file extension and can be overridden with `--interpreter`. Cluster mode, however, is Node.js and Bun only.
 
 ## How do I run PM2 inside a Docker container?
 
@@ -4451,9 +4813,11 @@ Make sure outbound connections on port 443 to PM2.io are allowed (the PM2.io age
 - You have concurrent PM2 sending data to the same bucket with an identical server name.
 Make sure you have only one PM2 instance launched `ps -aux | grep PM2`
 
-- Refresh your connection to PM2.io. `pm2 link stop` then `pm2 link start`. Also don't forget to refresh the dashboard itself, it might help sometimes.
+- Refresh your connection to PM2.io. `pm2 link stop` then `pm2 link`. Also don't forget to refresh the dashboard itself, it might help sometimes.
 
 ## The versioning buttons (Rollback/Pull/Upgrade) aren't working
+
+- Git metadata is only collected when the PM2 daemon runs with `PM2_ENABLE_GIT_PARSING=true`: export it, then run `pm2 update` so the daemon restarts with it. Apps started with `--no-vizion` (`vizion: false`) are never parsed.
 
 - If the buttons are disabled, make sure that the `Local changes` and `Local commit` indicators are green.
 

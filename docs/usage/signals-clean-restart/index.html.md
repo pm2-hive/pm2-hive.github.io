@@ -13,7 +13,7 @@ process.on('SIGINT', function() {
 })
 ```
 
-Now `pm2 reload` will become a gracefulReload.
+Your app can then finish its work on `pm2 stop`, `pm2 restart` and `pm2 reload`.
 
 ### Configure the kill timeout
 
@@ -91,7 +91,7 @@ There is still the default system that hooks into `http.Server.listen` method. W
 
 When a process is stopped/restarted by PM2, some system signals are sent to your process in a given order.
 
-First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *([customizable](https://pm2.keymetrics.io/docs/usage/signals-clean-restart/#customize-exit-delay))* it will receive a **SIGKILL** signal to force the process exit.
+First a **SIGINT** a signal is sent to your processes, signal you can catch to know that your process is going to be stopped. If your application does not exit by itself before 1.6s *([customizable](/docs/usage/signals-clean-restart/#configure-the-kill-timeout))* it will receive a **SIGKILL** signal to force the process exit.
 
 The signal **SIGINT** can be replaced on any other signal (e.g. **SIGTERM**) by setting environment variable **PM2_KILL_SIGNAL**.
 
